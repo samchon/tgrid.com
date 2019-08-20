@@ -1,0 +1,13 @@
+{
+    "plugins": [ 
+        "code",
+        "codegroup",
+        "prism",
+        "-highlight"
+    ],
+    "pluginsConfig": {
+        "codegroup": {
+            "rememberTabs": true
+        }
+    }
+}

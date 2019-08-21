@@ -9,12 +9,13 @@
     - [1.2.3. Safe Implementation](README.md#23-safe-implementation)
   - [1.3. Opportunities](README.md#3-opportunities)
     - [1.3.1. Business Logic](README.md#31-business-logic)
+    - [1.3.2. Block Chain](README.md#32-new-block-chain)
 
 ## 2. Tutorial
-  - [2.1. Basic Concepts](tutorial/basic-concepts.md)
-    - [2.1.1. Outline](tutorial/basic-concepts.md#1-outline)
-    - [2.1.2. Components](tutorial/basic-concepts.md#2-components)
-    - [2.1.3. Protocols](tutorial/basic-concepts.md#3-protocols)
+  - [2.1. Basic Concepts](tutorial/concepts.md)
+    - [2.1.1. Outline](tutorial/concepts.md#1-outline)
+    - [2.1.2. Components](tutorial/concepts.md#2-components)
+    - [2.1.3. Protocols](tutorial/concepts.md#3-protocols)
   - [2.2. Learn from Examples](tutorial/examples.md)
     - [2.2.1. Remote Function Call](tutorial/examples.md#1-remote-function-call)
     - [2.2.2. Remote Object Call](tutorial/examples.md#2-remote-object-call)

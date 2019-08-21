@@ -1,7 +1,7 @@
 # Learn from Examples
 ## 1. Remote Function Call
 {% codegroup %}
-```typescript ::ICalculator.ts
+```typescript::ICalculator.ts
 export interface ISimpleCalculator
 {
     plus(x: number, y: number): number;
@@ -10,9 +10,8 @@ export interface ISimpleCalculator
     divides(x: number, y: number): number;
 }
 ```
-```typescript ::Calculator.ts
-export class SimpleCalculator 
-    implements ISimpleCalculator
+```typescript::Calculator.ts
+export class SimpleCalculator implements ISimpleCalculator
 {
     public plus(x: number, y: number): number
     {
@@ -107,7 +106,7 @@ main();
 
 ## 2. Remote Object Call
 {% codegroup %}
-```typescript ::ICalculator.ts
+```typescript::ICalculator.ts
 export interface ICompositeCalculator 
     extends ISimpleCalculator
 {
@@ -134,7 +133,7 @@ export interface IStatistics
     stdev(...elems: number[]): number;
 }
 ```
-```typescript ::Calculator.ts
+```typescript::Calculator.ts
 import { 
     ICompositeCalculator, 
     ISimpleCalculator, IScientific, IStatistics
@@ -298,7 +297,7 @@ main();
 
 ## 3. Object Oriented Network
 {% codegroup %}
-```typescript ::ICalculator.ts
+```typescript::ICalculator.ts
 export interface ICompositeCalculator 
     extends ISimpleCalculator
 {
@@ -325,7 +324,7 @@ export interface IStatistics
     stdev(...elems: number[]): number;
 }
 ```
-```typescript ::Calculator.ts
+```typescript::Calculator.ts
 import { 
     ICompositeCalculator, 
     ISimpleCalculator, IScientific, IStatistics
@@ -410,7 +409,7 @@ export class Statistics implements IStatistics
 {% endcodegroup %}
 
 {% codegroup %}
-```typescript ::calculator.ts
+```typescript::calculator.ts
 import { WorkerServer, WorkerConnector } from "tgrid/protocols/workers";
 import { Driver } from "tgrid/basic";
 
@@ -448,7 +447,7 @@ async function main(): Promise<void>
 }
 main();
 ```
-```typescript ::scientific.ts
+```typescript::scientific.ts
 import { WorkerServer } from "tgrid/protocols/workers";
 import { Scientific } from "../../providers/Calculator";
 
@@ -539,3 +538,100 @@ main().catch(exp =>
 
 
 ## 4. Remote Critical Section
+```typescript
+import { WorkerServer } from "tgrid/protocol/worker";
+import { Driver } from "tgrid/basic";
+
+import { Mutex, sleep_for } from "tstl/thread";
+import { randint } from "tstl/algorithm";
+
+interface IController
+{
+    mutex: Mutex;
+    print(character: string): void;
+}
+
+async function main(character: string): Promise<void>
+{
+    // PREPARE SERVER & DRIVER
+    let server: WorkerServer = new WorkerServer();
+    let driver: Driver<IController> = server.getDriver<IController>();
+
+    // REMOTE FUNCTION CALLS
+    await driver.mutex.lock();
+    {
+        // RANDOM SLEEP -> SEQUENCE WOULD BE SHUFFLED
+        await sleep_for(randint(50, 100));
+
+        // PRINT A LINE WITH REPEATED LETTERS
+        for (let i: number = 0; i < 20; ++i)
+        {
+            await driver.print(character); // PRINT A LETTER
+            await sleep_for(randint(50, 100)); // RANDOM SLEEP
+        }
+        await driver.print("\n");
+    }
+    await driver.mutex.unlock();
+
+    // CLOSE THE SERVER (WORKER)
+    await server.close();
+}
+main(randint(0, 9) + "");
+```
+
+```typescript
+import { WorkerConnector } from "tgrid/protocols/workers";
+
+import { Vector } from "tstl/container";
+import { Mutex } from "tstl/thread";
+import { Latch } from "tstl/thread/experimental";
+
+// FEATURES TO PROVIDE
+namespace provider
+{
+    export var mutex = new Mutex();
+    export function print(str: string): void
+    {
+        process.stdout.write(str);
+    }
+}
+
+async function main(): Promise<void>
+{
+    let workers: Vector<WorkerConnector<typeof provider>> = new Vector();
+
+    //----
+    // CREATE WORKERS
+    //----
+    for (let i: number = 0; i < 4; ++i)
+    {
+        // CONNECT TO WORKER
+        let w = new WorkerConnector(provider);
+        await w.connect(__dirname + "/child.js");
+
+        // ENROLL IT
+        workers.push_back(w);
+    }
+
+    //----
+    // WAIT THEM TO BE CLOSED
+    //----
+    // PREPARE LATCH
+    let latch: Latch = new Latch(4);
+
+    // JOIN CONNECTIONS TO LATCH
+    for (let w of workers)
+        w.join().then(() => latch.arrive());
+
+    // JOIN ALL CONNECTIONS
+    await latch.wait();
+}
+main();
+```
+
+> ```python
+> 11111111111111111111
+> 88888888888888888888
+> 44444444444444444444
+> 33333333333333333333
+> ```

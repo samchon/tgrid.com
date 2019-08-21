@@ -1,0 +1,18 @@
+I'm preparing to implement such template modules. Below of them would come into TGrid, following the new paradigm.
+
+![Interaction Demo](https://camo.githubusercontent.com/0be6043d79289587ee4aef3137423c1e75237160/687474703a2f2f73616d63686f6e2e6769746875622e696f2f6672616d65776f726b2f696d616765732f6578616d706c652f696e746572616374696f6e2f64656d6f2e6769663f7665723d32)
+
+## Parallel System
+  - https://github.com/samchon/framework/wiki/TypeScript-Templates-Parallel_System
+
+![Parallel System](https://camo.githubusercontent.com/0463e19daae6f3cff8140e8c9bf3bdc99904a85b/687474703a2f2f73616d63686f6e2e6769746875622e696f2f6672616d65776f726b2f696d616765732f64657369676e2f636f6e6365707475616c5f6469616772616d2f65787465726e616c5f76735f706172616c6c656c2e706e67)
+
+## Distributed System
+  - https://github.com/samchon/framework/wiki/TypeScript-Templates-Distributed_System
+
+![Distributed System](https://camo.githubusercontent.com/8cca9b59d36dfeff8904fdd5c47fed4ddcd90059/687474703a2f2f73616d63686f6e2e6769746875622e696f2f6672616d65776f726b2f696d616765732f64657369676e2f636f6e6365707475616c5f6469616772616d2f65787465726e616c5f76735f64697374726962757465642e706e67)
+
+## Example - Interaction
+  - https://github.com/samchon/framework/wiki/Examples-Interaction
+
+![Interaction](https://camo.githubusercontent.com/b1c93f56b43af95a018b28fae931991526babcdc/687474703a2f2f73616d63686f6e2e6769746875622e696f2f6672616d65776f726b2f696d616765732f64657369676e2f636f6e6365707475616c5f6469616772616d2f696e746572616374696f6e2e706e67)

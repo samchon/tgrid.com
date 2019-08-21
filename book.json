@@ -1,13 +1,17 @@
 {
-    "plugins": [ 
+    "plugins": [
+        "-highlight",
         "code",
         "codegroup",
         "prism",
-        "-highlight"
+        "sitemap-general"
     ],
     "pluginsConfig": {
         "codegroup": {
             "rememberTabs": true
+        },
+        "sitemap-general": {
+            "prefix": "https://tgrid.dev/"
         }
     }
 }

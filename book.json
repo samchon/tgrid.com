@@ -1,4 +1,6 @@
 {
+    "title": "TGrid",
+    "description": "Guide Documents for TGrid",
     "plugins": [
         "-highlight",
         "code",

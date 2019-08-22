@@ -5,7 +5,9 @@
         "-highlight",
         "code",
         "codegroup",
+        "panel",
         "prism",
+        "theme-github",
         "sitemap-general"
     ],
     "pluginsConfig": {

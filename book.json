@@ -5,6 +5,7 @@
         "-highlight",
         "code",
         "codegroup",
+        "github",
         "panel",
         "prism",
         "theme-github",
@@ -13,6 +14,9 @@
     "pluginsConfig": {
         "codegroup": {
             "rememberTabs": true
+        },
+        "github": {
+            "url": "https://github.com/samchon/tgrid"
         },
         "sitemap-general": {
             "prefix": "https://tgrid.dev/"

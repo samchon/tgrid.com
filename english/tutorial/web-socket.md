@@ -105,7 +105,7 @@ As you can see, it's not a matter for RFC (Remote Function Call) whether the pro
 
 ```typescript
 import { WebConnector } from "tgrid/protocols/web";
-import { Driver } from "tgrid/basic";
+import { Driver } from "tgrid/components";
 
 import { ICompositeCalculator } from "../../controllers/ICalculator";
 
@@ -218,7 +218,7 @@ export interface IChatService
 ```typescript
 import { IChatService } from "../controllers/IChatService";
 
-import { Driver } from "tgrid/basic";
+import { Driver } from "tgrid/components";
 import { HashMap } from "tstl/container/HashMap";
 import { IChatPrinter } from "../controllers/IChatPrinter";
 
@@ -281,7 +281,7 @@ export class ChatService implements IChatService
 
 ```typescript
 import { WebServer, WebAcceptor } from "tgrid/protocols/web";
-import { Driver } from "tgrid/basic";
+import { Driver } from "tgrid/components";
 
 import { ChatService } from "../../providers/ChatService";
 import { IChatPrinter } from "../../controllers/IChatPrinter";
@@ -315,7 +315,7 @@ main();
 
 ```typescript
 import { WebConnector } from "tgrid/protocols/web";
-import { Driver } from "tgrid/basic";
+import { Driver } from "tgrid/components";
 
 import { Scanner } from "../../utils/Scanner";
 import { IChatService } from "../../controllers/IChatService";

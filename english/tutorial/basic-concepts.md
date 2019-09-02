@@ -128,7 +128,7 @@ To call functions in the server, client should get [Driver\<Controller>](#13-con
 #### [`simple-calculator/client.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/simple-calculator/client.ts)
 ```typescript
 import { WebConnector } from "tgrid/protocols/web";
-import { Driver } from "tgrid/basic";
+import { Driver } from "tgrid/components";
 import { ISimpleCalculator } from "../../controllers/ICalculator";
 
 async function main(): Promise<void>
@@ -326,7 +326,7 @@ Any special description is required? Just enjoy the code `\o/`.
 #### [`composite-calculator/client.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/composite-calculator/client.ts)
 ```typescript
 import { WebConnector } from "tgrid/protocols/web";
-import { Driver } from "tgrid/basic";
+import { Driver } from "tgrid/components";
 
 import { ICompositeCalculator } from "../../controllers/ICalculator";
 
@@ -511,7 +511,7 @@ export class Statistics implements IStatistics
 {% codegroup %}
 ```typescript::calculator.ts
 import { WorkerServer, WorkerConnector } from "tgrid/protocols/workers";
-import { Driver } from "tgrid/basic";
+import { Driver } from "tgrid/components";
 
 import { SimpleCalculator } from "../../providers/Calculator";
 import { IScientific, IStatistics } from "../../controllers/ICalculator";
@@ -575,7 +575,7 @@ main();
 #### [`hierarchical-calculator/index.ts`](https://github.com/samchon/tgrid.examples/tree/master/src/projects/hierarchical-calculator/index.ts)
 ```typescript
 import { WorkerConnector } from "tgrid/protocols/workers";
-import { Driver } from "tgrid/basic";
+import { Driver } from "tgrid/components";
 
 import { ICompositeCalculator } from "../../controllers/ICalculator";
 

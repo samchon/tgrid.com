@@ -105,7 +105,7 @@ With TGrid and RFC (Remote Function Call), you can imitate thread although *Work
 #### [`thread/child.ts`](https://github.com/samchon/tgrid.examples/tree/master/src/projects/thread/child.ts)
 ```typescript
 import { WorkerServer } from "tgrid/protocol/worker";
-import { Driver } from "tgrid/basic";
+import { Driver } from "tgrid/components";
 
 import { Mutex, sleep_for } from "tstl/thread";
 import { randint } from "tstl/algorithm";
@@ -226,7 +226,7 @@ main();
 #### [`compiler/index.ts`](https://github.com/samchon/tgrid.examples/tree/master/src/projects/compiler/index.ts)
 ```typescript
 import { WorkerConnector } from "tgrid/protocols/workers";
-import { Driver } from "tgrid/basic";
+import { Driver } from "tgrid/components";
 
 import { ICompositeCalculator } from "../../controllers/ICalculator";
 import { Bundler } from "../../utils/Bundler";
@@ -343,7 +343,7 @@ main();
 #### [`hierarchical-calculator/calculator.ts`](https://github.com/samchon/tgrid.examples/tree/master/src/projects/hierarchical-calculator/calculator.ts)
 ```typescript
 import { WorkerServer, WorkerConnector } from "tgrid/protocols/workers";
-import { Driver } from "tgrid/basic";
+import { Driver } from "tgrid/components";
 
 import { SimpleCalculator } from "../../providers/Calculator";
 import { IScientific, IStatistics } from "../../controllers/ICalculator";
@@ -383,7 +383,7 @@ main();
 #### [`hierarchical-calculator/index.ts`](https://github.com/samchon/tgrid.examples/tree/master/src/projects/hierarchical-calculator/index.ts)
 ```typescript
 import { WorkerConnector } from "tgrid/protocols/workers";
-import { Driver } from "tgrid/basic";
+import { Driver } from "tgrid/components";
 
 import { ICompositeCalculator } from "../../controllers/ICalculator";
 

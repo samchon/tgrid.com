@@ -69,11 +69,13 @@ main();
 ### 1.3. Client
 드디어 대망의 클라이언트 프로그램을 만들 차례가 다가왔습니다. 대체 그놈의 Remote Function Call 이 무엇인지, 아래 두 코드를 비교해보시면 단박에 이해하실 수 있으실 겁니다. 두 코드를 비교해보시면, 클라이언트가 서버에서 제공하는 원격 계산기를 사용하는 코드와, 단일 프로그램에서 자체 계산기 클래스를 사용하는 코드가 비슷함을 확인하실 수 있습니다.
 
-이를 전문적인 용어로, 비지니스 로직 (Business Logic) 코드가 완전히 유사하다고 말합니다. 물론, 두 코드가 완벽하게 100 % 일치하지는 않습니다. 도메인 로직으로써 클라이언트가 서버에 접속을 해야 한다던가, 비지니스 로직 코드부에 원격 함수를 호출할 때마다 `await` 이라는 심벌이 추가로 붙는다던가 하는 등의 소소한 차이점들은 존재하기 때문입니다. 하지만, 근본적으로 두 코드의 비지니스 로직부는 완벽하게 동질의 것이며, 이로써 비지니스 로직을 네트워크 시스템으로부터 완벽하게 분리해낼 수 있었습니다. 제 주장에 동의하시는지요?
+이를 전문적인 용어로, 비지니스 로직 (Business Logic) 코드가 완전히 유사하다고 말합니다. 물론, 두 코드가 완벽하게 100 % 일치하지는 않습니다. 도메인 로직으로써 클라이언트가 서버에 접속을 해야 한다던가, 비지니스 로직 코드부에 원격 함수를 호출할 때마다 `await` 이라는 심벌이 추가로 붙는다던가 하는 등의 소소한 차이점들은 존재하기 때문입니다. 하지만, 근본적으로 두 코드의 비지니스 로직부는 완벽하게 동질의 것이며, 이로써 비지니스 로직을 네트워크 시스템으로부터 완벽하게 분리해낼 수 있었습니다. 동의하십니까?
 
-> 17 번째 라인을 보면 클라이언트가 서버로의 접속을 마친 후, 원격 함수를 호출하기 위해 [Communicator](concepts.md#21-communicator) 로부터 `connector.getDriver<ISimpleCalculator>()` 메서드를 호출함으로써 [Driver](concepts.md#23-driver)<[Controller](concepts.md#24-controller)> 객체를 구성한 것을 보실 수 있습니다. 원격 시스템이 제공하는 [Provider](concepts.md#22-provider) 에 대한 모든 원격 함수 호출은 언제나 이 [Driver](concepts.md#23-driver)<[Controller](concepts.md#24-controller)> 를 통해 이루어집니다. 
->
-> 이 부분은 앞으로 모든 튜토리얼에서 계속하여 반복될 내용입니다. 꼭 숙지해주세요.
+네트워크로 연결되어있는 원격 시스템을, 처음부터 내 메모리 객체였던 거마냥, 자유로이 그것의 함수들을 호출할 수 있는 것. 이 것이 바로 Remote Function Call 입니다.
+
+> 17 번째 라인에서 클라이언트가 서버로의 접속을 마친 후, 원격 함수를 호출하기 위해 [Communicator](concepts.md#21-communicator) 로부터 `connector.getDriver<ISimpleCalculator>()` 메서드를 호출함으로써 [Driver](concepts.md#23-driver)<[Controller](concepts.md#24-controller)> 객체를 구성한 것을 보실 수 있습니다. 
+> 
+> 이처럼 원격 시스템이 제공하는 [Provider](concepts.md#22-provider) 에 대한 모든 원격 함수 호출은 언제나 이 [Driver](concepts.md#23-driver)<[Controller](concepts.md#24-controller)> 를 통해 이루어집니다. 이 부분은 앞으로 모든 튜토리얼에서 계속하여 반복하게 될 내용입니다. 꼭 숙지해주세요.
 
 #### [`simple-calculator/client.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/simple-calculator/client.ts)
 {% codegroup %}
@@ -159,7 +161,17 @@ main();
 
 
 ## 2. Remote Object Call
+우리는 지난 단원 [1. Remote Function Call](#1-remote-function-call) 을 통하여 원격 시스템의 함수를 호출하는 방법을 알아봤습니다. 하지만, 여지껏 다루었던 것들은 어디까지나 단순 구조체 (Singular Structure) 로써 모든 함수들은 최상위 객체로써 정의되어있었을 뿐, 단 한 번도 <u>복합 구조체</u> (Composite Structure) 를 다루었던 적이 없습니다.
+
+만일 여러분께서 사용하시려는 원격 객체 ([Provider](concepts.md#22-provider)) 가 복합 구조체라면 어떻게 하시겠습니까? 호출하고자 하는 최종 함수가 여러 객체들로 쌓여있어서, 객체에 객체의 꼬리를 물며 타고들어가야 비로소 접근할 수 있는 성질의 것이라면요? 이럴 때 **TGrid** 의 답변은 간단하고 명쾌합니다.
+
+> 그냥 쓰세요~!
+
 ### 2.1. Features
+이번 단원에서 복합 구조체 호출 (Remote Object Call) 에 대한 예증을 위해 사용할 객체는 `CompositeCalculator` 입니다. 이 클래스는 이전 단원에서 사용했던 [SimpleCalculator](#11-features) 의 사칙연산에 더하여, 내부 객체로써 공학용 계산기 (`scientific`) 와 통계용 계산기 (`statistics`) 가 추가된 복합 구조체의 형태를 띄고 있습니다.
+
+뭐 이미 다 아시리라 생각됩니다만, 우리가 이번에 만들 (원격 복합 계산기) 예제에서 `ICompositeCalculator` 는 [Controller](#23-controller) 의 역할을 수행하게 될 것입니다. 그리고 `CompositeCalculator` 는 [Provider](#22-provider) 가 되겠죠.
+
   - [`../controllers/ICalculator.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/controllers/ICalculator.ts)
   - [`../providers/Calculator.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/providers/Calculator.ts)
 
@@ -276,6 +288,8 @@ export class Statistics implements IStatistics
 {% endcodegroup %}
 
 ### 2.2. Server
+서버 코드, 달리 설명할 게 있나요? 이전 [1. Remote Function Call](#11-server) 때와 달라진 것은 오로지 단 하나, 클라이언트에게 제공할 [Provider](concepts.md#22-provider) 가 `SimpleCalculator` 에서 `CompositeCalculator` 로 바뀌었다는 것 뿐입니다. 아, 그리고보니 포트 번호도 바뀌긴 했네요.
+
 #### [`composite-calculator/server.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/composite-calculator/server.ts)
 {% codegroup %}
 ```typescript::Remote Object Call
@@ -309,6 +323,12 @@ main();
 {% endcodegroup %}
 
 ### 2.3. Client
+클라이언트 프로그램에서도 [Controller](concepts.md#23-controller) 가 `ISimpleCalculator` 에서 `ICompositeCalculator` 로 바뀌었습니다. 그리고 호출하게 되는 대상 함수들의 범위도 *root scope* 에서 *composite scope* 로 변화했구요. 하지만, 보시다시피 원격 함수를 호출하는 데에는 아무런 문제가 없습니다.
+
+구태여 제가 composite scope 형태의 원격 함수 호출을 것을 일컬어 *Remote Object Call* 이라 이름지었지만, 이는 근본적으로 이전의 [Remote Function Call](#13-client) 과 완전히 같습니다. 원격 시스템을 위해 제공되는 [Provider](concepts.md#22-provider) 와, 이를 사용하기 위한 [Controller](concepts.md#23-controller) 는 단순 구조체에서 복합 구조체로 바뀌었습니다. 그러함에도 여전히, <u>비지니스 로직 코드</u>는 네트워크 시스템을 구성할 때와 단일 프로그램을 만들 때가 <u>완전히 유사</u>합니다.
+
+네트워크로 연결되어있는 원격 시스템을, 처음부터 내 메모리 객체였던 거마냥, 자유로이 그것의 메서드들을 호출할 수 있는 것. 이 것이 바로 Remote Object Call 입니다.
+
 #### [`composite-calculator/client.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/composite-calculator/client.ts)
 {% codegroup %}
 ```typescript::Remote Object Call
@@ -361,7 +381,7 @@ async function main(): Promise<void>
 main();
 ```
 ```typescript::Remote Function Call
-import { WebConnector } from "tgrid/protocols/web/WebConnector";
+import { WebConnector } from "tgrid/protocols/web";
 import { Driver } from "tgrid/components";
 
 import { ISimpleCalculator } from "../../controllers/ICalculator";
@@ -576,12 +596,12 @@ import { IScientific, IStatistics } from "../../controllers/ICalculator";
 
 class HierarchicalCalculator extends SimpleCalculator
 {
-    // REMOTE CALCULATOR
+    // REMOTE CALCULATORS
     public scientific: Driver<IScientific>;
     public statistics: Driver<IStatistics>;
 }
 
-async function link<Controller extends object>
+async function associate<Controller extends object>
     (path: string): Promise<Driver<Controller>>
 {
     // DO CONNECT
@@ -594,10 +614,10 @@ async function link<Controller extends object>
 
 async function main(): Promise<void>
 {
-    // PREPARE REMOTE CALCULATOR
+    // PREPARE REMOTE CALCULATORS
     let calc: HierarchicalCalculator = new HierarchicalCalculator();
-    calc.scientific = await link<IScientific>("scientific.js");
-    calc.statistics = await link<IStatistics>("statistics.js");
+    calc.scientific = await associate<IScientific>("scientific.js");
+    calc.statistics = await associate<IStatistics>("statistics.js");
 
     // OPEN SERVER
     let server = new WorkerServer();

@@ -1,11 +1,15 @@
 {
     "title": "TGrid",
     "description": "Guide Documents for TGrid",
+    "author": "Jeongho Nam",
+
+    "pdf": {},
     "plugins": [
         "-highlight",
         "code",
         "codegroup",
         "github",
+        "hide-navigation-buttons",
         "panel",
         "prism",
         "theme-github",

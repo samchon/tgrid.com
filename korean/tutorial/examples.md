@@ -67,15 +67,17 @@ main();
 ```
 
 ### 1.3. Client
-드디어 대망의 클라이언트 프로그램을 만들 차례가 다가왔습니다. 대체 그놈의 Remote Function Call 이 무엇인지, 아래 두 코드를 비교해보시면 단박에 이해하실 수 있으실 겁니다. 두 코드를 비교해보시면, 클라이언트가 서버에서 제공하는 원격 계산기를 사용하는 코드와, 단일 프로그램에서 자체 계산기 클래스를 사용하는 코드가 비슷함을 확인하실 수 있습니다.
+드디어 대망의 클라이언트 프로그램을 만들 차례가 다가왔습니다. 대체 그놈의 Remote Function Call 이 무엇인지, 아래 두 코드를 비교해보시면 단박에 이해하실 수 있으실 겁니다. 두 코드를 비교해보면, 클라이언트가 서버로부터 제공되는 원격 계산기를 사용하는 코드와, 단일 프로그램에서 자체 계산기 클래스를 사용하는 코드가 비슷함을 확인하실 수 있습니다.
 
 이를 전문적인 용어로, 비지니스 로직 (Business Logic) 코드가 완전히 유사하다고 말합니다. 물론, 두 코드가 완벽하게 100 % 일치하지는 않습니다. 도메인 로직으로써 클라이언트가 서버에 접속을 해야 한다던가, 비지니스 로직 코드부에 원격 함수를 호출할 때마다 `await` 이라는 심벌이 추가로 붙는다던가 하는 등의 소소한 차이점들은 존재하기 때문입니다. 하지만, 근본적으로 두 코드의 비지니스 로직부는 완벽하게 동질의 것이며, 이로써 비지니스 로직을 네트워크 시스템으로부터 완벽하게 분리해낼 수 있었습니다. 동의하십니까?
 
 네트워크로 연결되어있는 원격 시스템을, 처음부터 내 메모리 객체였던 거마냥, 자유로이 그것의 함수들을 호출할 수 있는 것. 이 것이 바로 Remote Function Call 입니다.
 
-> 17 번째 라인에서 클라이언트가 서버로의 접속을 마친 후, 원격 함수를 호출하기 위해 [Communicator](concepts.md#21-communicator) 로부터 `connector.getDriver<ISimpleCalculator>()` 메서드를 호출함으로써 [Driver](concepts.md#23-driver)<[Controller](concepts.md#24-controller)> 객체를 구성한 것을 보실 수 있습니다. 
-> 
-> 이처럼 원격 시스템이 제공하는 [Provider](concepts.md#22-provider) 에 대한 모든 원격 함수 호출은 언제나 이 [Driver](concepts.md#23-driver)<[Controller](concepts.md#24-controller)> 를 통해 이루어집니다. 이 부분은 앞으로 모든 튜토리얼에서 계속하여 반복하게 될 내용입니다. 꼭 숙지해주세요.
+{% panel style="info", title="여기서 잠깐! 꼭 알아두세요." %}
+17 번째 라인에서 클라이언트가 서버로의 접속을 마친 후, 원격 함수를 호출하기 위해 [Communicator](concepts.md#21-communicator) 로부터 `connector.getDriver<ISimpleCalculator>()` 메서드를 호출함으로써 [Driver](concepts.md#23-driver)<[Controller](concepts.md#24-controller)> 객체를 구성한 것을 보실 수 있습니다. 
+
+이처럼 원격 시스템이 제공하는 [Provider](concepts.md#22-provider) 에 대한 모든 원격 함수 호출은 언제나 이 [Driver](concepts.md#23-driver)<[Controller](concepts.md#24-controller)> 를 통해 이루어집니다. 이 부분은 앞으로 모든 튜토리얼에서 계속하여 반복하게 될 내용입니다. 꼭 숙지해주세요.
+{% endpanel %}
 
 #### [`simple-calculator/client.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/simple-calculator/client.ts)
 {% codegroup %}
@@ -121,7 +123,7 @@ async function main(): Promise<void>
 main();
 ```
 ```typescript::Single Program
-import { SimpleCalculator } from "../../controllers/Calculator";
+import { SimpleCalculator } from "../../providers/Calculator";
 
 function main(): void
 {
@@ -165,7 +167,9 @@ main();
 
 만일 여러분께서 사용하시려는 원격 객체 ([Provider](concepts.md#22-provider)) 가 복합 구조체라면 어떻게 하시겠습니까? 호출하고자 하는 최종 함수가 여러 객체들로 쌓여있어서, 객체에 객체의 꼬리를 물며 타고들어가야 비로소 접근할 수 있는 성질의 것이라면요? 이럴 때 **TGrid** 의 답변은 간단하고 명쾌합니다.
 
-> 그냥 쓰세요~!
+{% panel style="success", title="TGrid 의 한 마디" %}
+그냥 쓰세요~!
+{% endpanel %}
 
 ### 2.1. Features
 이번 단원에서 복합 구조체 호출 (Remote Object Call) 에 대한 예증을 위해 사용할 객체는 `CompositeCalculator` 입니다. 이 클래스는 이전 단원에서 사용했던 [SimpleCalculator](#11-features) 의 사칙연산에 더하여, 내부 객체로써 공학용 계산기 (`scientific`) 와 통계용 계산기 (`statistics`) 가 추가된 복합 구조체의 형태를 띄고 있습니다.
@@ -177,7 +181,7 @@ main();
 
 {% codegroup %}
 ```typescript::ICalculator.ts
-export interface ICompositeCalculator
+export interface ICompositeCalculator 
     extends ISimpleCalculator
 {
     scientific: IScientific;
@@ -233,8 +237,8 @@ export class SimpleCalculator
     }
 }
 
-export class CompositeCalculator 
-    extends SimpleCalculator 
+export class CompositeCalculator
+    extends SimpleCalculator
     implements ICompositeCalculator
 {
     public scientific = new Scientific();
@@ -380,45 +384,38 @@ async function main(): Promise<void>
 }
 main();
 ```
-```typescript::Remote Function Call
-import { WebConnector } from "tgrid/protocols/web";
-import { Driver } from "tgrid/components";
+```typescript::Single Program
+import { CompositeCalculator } from "../../providers/Calculator";
 
-import { ISimpleCalculator } from "../../controllers/ICalculator";
-
-async function main(): Promise<void>
+function main(): void
 {
     //----
-    // CONNECTION
+    // CALL FUNCTIONS
     //----
-    let connector: WebConnector = new WebConnector();
-    await connector.connect("ws://127.0.0.1:10101");
+    // CONSTRUCT CALCULATOR
+    let calc: CompositeCalculator = new CompositeCalculator();
 
-    //----
-    // CALL REMOTE FUNCTIONS
-    //----
-    // GET DRIVER
-    let calc: Driver<ISimpleCalculator> = connector.getDriver<ISimpleCalculator>();
+    // FUNCTIONS IN THE ROOT SCOPE
+    console.log("1 + 6 =", calc.plus(1, 6));
+    console.log("7 * 2 =", calc.multiplies(7, 2));
 
-    // CALL FUNCTIONS WITH AWAIT SYMBOL
-    console.log("1 + 3 =", await calc.plus(1, 3));
-    console.log("7 - 4 =", await calc.minus(7, 4));
-    console.log("8 x 9 =", await calc.multiplies(8, 9));
+    // FUNCTIONS IN AN OBJECT (SCIENTIFIC)
+    console.log("3 ^ 4 =", calc.scientific.pow(3, 4));
+    console.log("log (2, 32) =", calc.scientific.log(2, 32));
 
-    // TO CATCH EXCEPTION IS ALSO POSSIBLE
-    try 
+    try
     {
-        await calc.divides(4, 0);
+        // TO CATCH EXCEPTION
+        calc.scientific.sqrt(-4);
     }
     catch (err)
     {
-        console.log("4 / 0 -> Error:", err.message);
+        console.log("SQRT (-4) -> Error:", err.message);
     }
 
-    //----
-    // TERMINATE
-    //----
-    await connector.close();
+    // FUNCTIONS IN AN OBJECT (STATISTICS)
+    console.log("Mean (1, 2, 3, 4) =", calc.statistics.mean(1, 2, 3, 4));
+    console.log("Stdev. (1, 2, 3, 4) =", calc.statistics.stdev(1, 2, 3, 4));
 }
 main();
 ```
@@ -438,13 +435,19 @@ main();
 
 
 ## 3. Object Oriented Network
+이번 단원에서는 이전 단원 [2. Remote Object Call](#2-remote-object-call) 에서 만들었던 원격 복합 계산기를 다시, 하지만 조금 다르게 만들어볼 것입니다; *계층형 계산기*. 현재 복합 계산기 `CompositeCalculator` 는 그 내부에 멤버객체로써, 공학용 계산기와 통계용 계산기를 가지고 있습니다. 이번 단원에서 새로이 만들어 볼 *계층형 계산기* 는, 이들 공학용 계산기와 통계용 계산기가 별도 서버로 분리됩니다.
+
+즉, 이번 단원에서는 기존의 단일 복합 계산기 서버가 총 세 대로 서버로 분리되어야 합니다. 제일 먼저 공학용 계산을 전담하는 `scientific` 서버와 통계용 계산을 전담하는 `statistics` 서버를 새로이 만들 것입니다. 그리고 스스로는 사칙연산을 전담하며, 여타 계산에 대해서는 *scientific* 및 *statistics* 서버들에게 대신 맡기는 `calculator` 서버 (메인프레임) 를 구성할 것입니다.
+
+서버를 모두 제작한 뒤에는, 마지막으로 이들 계층형 계산기를 사용할 클라이언트 프로그램을 만들어야겠죠? 자, 과연 네트워크 시스템의 구조가 이처럼 크게 변화해도, 비지니스 로직 코드는 여전히 이전과 유사할까요? 한 번 프로그램을 직접 만들어보며 알아봅시다.
+
 ![diagram](../../assets/images/examples/composite-calculator.png) | ![diagram](../../assets/images/examples/hierarchical-calculator.png)
 :-------------------:|:-----------------------:
 Composite Calculator | Hierarchical Calculator
 
 ### 3.1. Features
   - [`../controllers/ICalculator.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/controllers/ICalculator.ts)
-  - [`../providers/Calculator.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/providers/Calculator.ts)
+  - [`hierarchical-calculator/calculator.ts#L7-L13`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/hierarchical-calculator/calculator.ts#L7-L13)
 
 {% codegroup %}
 ```typescript::ICalculator.ts
@@ -474,92 +477,26 @@ export interface IStatistics
     stdev(...elems: number[]): number;
 }
 ```
-```typescript::Calculator.ts
-import { 
-    ICompositeCalculator, 
-    ISimpleCalculator, IScientific, IStatistics
-} from "../controllers/ICalculator";
+```typescript::HierarchicalCalculator
+import { Driver } from "tgrid/components";
 
-export class SimpleCalculator 
-    implements ISimpleCalculator
+import { SimpleCalculator } from "../../providers/Calculator";
+import { IScientific, IStatistics } from "../../controllers/ICalculator";
+
+export class HierarchicalCalculator 
+    extends SimpleCalculator
 {
-    public plus(x: number, y: number): number
-    {
-        return x + y;
-    }
-    public minus(x: number, y: number): number
-    {
-        return x - y;
-    }
-    
-    public multiplies(x: number, y: number): number
-    {
-        return x * y;
-    }
-    public divides(x: number, y: number): number
-    {
-        if (y === 0)
-            throw new Error("Divided by zero.");
-        return x / y;
-    }
-}
-
-export class CompositeCalculator 
-    extends SimpleCalculator 
-    implements ICompositeCalculator
-{
-    public scientific = new Scientific();
-    public statistics = new Statistics();
-}
-
-export class Scientific implements IScientific
-{
-    public pow(x: number, y: number): number
-    {
-        return Math.pow(x, y);
-    }
-
-    public log(x: number, y: number): number
-    {
-        if (x < 0 || y < 0)
-            throw new Error("Negative value on log.");
-        return Math.log(y) / Math.log(x);
-    }
-
-    public sqrt(x: number): number
-    {
-        if (x < 0)
-            throw new Error("Negative value on sqaure.");
-        return Math.sqrt(x);
-    }
-}
-
-export class Statistics implements IStatistics
-{
-    public mean(...elems: number[]): number
-    {
-        let ret: number = 0;
-        for (let val of elems)
-            ret += val;
-        return ret / elems.length;
-    }
-
-    public stdev(...elems: number[]): number
-    {
-        let mean: number = this.mean(...elems);
-        let ret: number = 0;
-
-        for (let val of elems)
-            ret += Math.pow(val - mean, 2);
-
-        return Math.sqrt(ret / elems.length);
-    }
+    // REMOTE CALCULATORS
+    public scientific: Driver<IScientific>;
+    public statistics: Driver<IStatistics>;
 }
 ```
 {% endcodegroup %}
 
 ### 3.2. Servers
 #### [`hierarchical-calculator/scientific.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/hierarchical-calculator/scientific.ts)
+공학용 계산기 서버를 만듦니다. 참 쉽죠?
+
 ```typescript
 import { WorkerServer } from "tgrid/protocols/workers";
 import { Scientific } from "../../providers/Calculator";
@@ -573,6 +510,8 @@ main();
 ```
 
 #### [`hierarchical-calculator/statistics.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/hierarchical-calculator/statistics.ts)
+공학용 계산기 서버도 만들어줍니다. 이 역시 매우 간단합니다.
+
 ```typescript
 import { WorkerServer } from "tgrid/protocols/workers";
 import { Statistics } from "../../providers/Calculator";
@@ -586,6 +525,16 @@ main();
 ```
 
 ####  [`hierarchical-calculator/calculator.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/hierarchical-calculator/calculator.ts)
+자, 이제 메인프레임 서버를 만들 차례입니다. 
+
+메인프레임 서버는 사칙연산은 스스로 수행하되, 공학용 계산이나 통계용 서버는 별도의 서버에 맡기고 자신은 그 연산결과만을 중개합니다. 이는 곧 메인프레임 서버가 클라이언트에게 제공하는 [Provider](concepts.md#22-provider) 는 사칙연산에 대해서는 스스로 구현체를 가지고 있으되, 공학용 계산기와 통계용 계산기는 원격 시스템들로부터 [Driver](concepts.md#24-driver)<[Controller](concepts.md#23-controller)> 를 받아 클라이언트에게 우회 제공함을 의미합니다.
+
+따라서 아래 메인프레임 서버의 코드를 보시면, 메인프레임 서버가 클라이언트에게 제공하는 [Provider](concepts.md#22-provider) 인, `HierarchicalCalculator` 클래스는 `SimpleCalculator` 를 상속함으로써 사칙연산에 대하여 스스로 구현체를 가지고 있습니다. 그리고 공학용 계산기와 통계용 계산기는 각각 해당 서버로부터 `Driver<IScientific>` 과 `Driver<IStatistics>` 를 받아와 이를 클라이언트에게 우회 제공하고 있음을 알 수 있습니다.
+
+> 이로써 `HierarchicalCalculator` 는, 이전 단원의 [CompositeCalculator](#21-features) 와 논리적으로 완전히 동일해졌습니다. 이 둘의 세부 구현 코드는 서로 다를 지라도, 동일한 인터페이스를 지니며 마찬가지로 동일한 기능을 제공합니다.
+> 
+> 슬슬 감이 오시나요? 이번 단원에서의 클라이언트 코드가 어떠할지?
+
 {% codegroup %}
 ```typescript::Object Oriented Network
 import { WorkerServer, WorkerConnector } from "tgrid/protocols/workers";
@@ -594,7 +543,8 @@ import { Driver } from "tgrid/components";
 import { SimpleCalculator } from "../../providers/Calculator";
 import { IScientific, IStatistics } from "../../controllers/ICalculator";
 
-class HierarchicalCalculator extends SimpleCalculator
+class HierarchicalCalculator 
+    extends SimpleCalculator
 {
     // REMOTE CALCULATORS
     public scientific: Driver<IScientific>;
@@ -602,11 +552,11 @@ class HierarchicalCalculator extends SimpleCalculator
 }
 
 async function associate<Controller extends object>
-    (path: string): Promise<Driver<Controller>>
+    (module: string): Promise<Driver<Controller>>
 {
     // DO CONNECT
-    let connector = new WorkerConnector();
-    await connector.connect(__dirname + "/" + path);
+    let connector: WorkerConnector = new WorkerConnector();
+    await connector.connect(`${__dirname}/${module}.js`);
 
     // RETURN DRIVER
     return connector.getDriver<Controller>();
@@ -616,11 +566,11 @@ async function main(): Promise<void>
 {
     // PREPARE REMOTE CALCULATORS
     let calc: HierarchicalCalculator = new HierarchicalCalculator();
-    calc.scientific = await associate<IScientific>("scientific.js");
-    calc.statistics = await associate<IStatistics>("statistics.js");
+    calc.scientific = await associate<IScientific>("scientific");
+    calc.statistics = await associate<IStatistics>("statistics");
 
     // OPEN SERVER
-    let server = new WorkerServer();
+    let server: WorkerServer<HierarchicalCalculator> = new WorkerServer();
     await server.open(calc);
 }
 main();
@@ -642,6 +592,20 @@ main();
 {% endcodegroup %}
 
 ### 3.3. Client
+메인프레임 서버에서 클라이언트를 위하여 [Provider](concepts.md#22-provider) 로 제공하는 `HierarchicalCalculator` 클래스는, 이전 단원의 [CompositeCalculator](#21-features) 와 논리적으로 완전히 동일합니다. 이 둘의 세부 구현코드는 비록 서로 다를지라도, 클라이언트에게 제공하는 인터페이스는 완벽하게 똑같습니다.
+
+즉, 이번 단원에서 클라이언트 프로그램은, (이전 단원에서 사용했던) `ICompositeCalculator` 를 다시 사용하게 됩니다. 사용하는 [Controller](concepts.md#24-controller) 가 이전과 같으며, 구현해야 될 비지니스 로직도 이전과 같다면, 결국에는 두 클라이언트 프로그램의 코드가 유사해지지 않겠습니까? 아래 코드를 보시면 실제로도 그러합니다. 두 코드는 너무나도 비슷하여, 무엇이 다른지조차 쉬이 찾기 힘듭니다.
+
+{% panel style="warning", title="혹시 무엇이 다른지 못 찾으셨나요?" %}
+11~12 번째 라인이 살짝 다릅니다. 
+
+각 클라이언트가 각기 접속해야 할 대상 서버가 서로 다르거든요.
+{% endpanel %}
+
+바로 이 것이 **TGrid** 입니다. 만들고자 하는 시스템이 단일 컴퓨터에서 동작하는 프로그램이던, 네트워크 통신을 이용한 분산처리시스템이던 아무 상관 없습니다. 심지어 같은 네트워크 시스템이라는 범주 안에서도, 그것의 분산처리 구조가 어찌 구성되는 지 또한 문제되지 않습니다. 그저 이것 하나만 기억하십시오.
+
+그 어떤 때에도, 여러분의 비지니스 로직 코드는 동일할 것입니다.
+
 #### [`hierarchical-calculator/index.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/hierarchical-calculator/index.ts)
 {% codegroup %}
 ```typescript::Object Oriented Network

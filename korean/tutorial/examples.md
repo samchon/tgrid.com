@@ -73,10 +73,12 @@ main();
 
 네트워크로 연결되어있는 원격 시스템을, 처음부터 내 메모리 객체였던 거마냥, 자유로이 그것의 함수들을 호출할 수 있는 것. 이 것이 바로 Remote Function Call 입니다.
 
-{% panel style="info", title="여기서 잠깐! 꼭 알아두세요." %}
+{% panel style="warning", title="여기서 잠깐! 꼭 알아두세요." %}
+
 17 번째 라인에서 클라이언트가 서버로의 접속을 마친 후, 원격 함수를 호출하기 위해 [Communicator](concepts.md#21-communicator) 로부터 `connector.getDriver<ISimpleCalculator>()` 메서드를 호출함으로써 [Driver](concepts.md#23-driver)<[Controller](concepts.md#24-controller)> 객체를 구성한 것을 보실 수 있습니다. 
 
 이처럼 원격 시스템이 제공하는 [Provider](concepts.md#22-provider) 에 대한 모든 원격 함수 호출은 언제나 이 [Driver](concepts.md#23-driver)<[Controller](concepts.md#24-controller)> 를 통해 이루어집니다. 이 부분은 앞으로 모든 튜토리얼에서 계속하여 반복하게 될 내용입니다. 꼭 숙지해주세요.
+
 {% endpanel %}
 
 #### [`simple-calculator/client.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/simple-calculator/client.ts)
@@ -168,7 +170,9 @@ main();
 만일 여러분께서 사용하시려는 원격 객체 ([Provider](concepts.md#22-provider)) 가 복합 구조체라면 어떻게 하시겠습니까? 호출하고자 하는 최종 함수가 여러 객체들로 쌓여있어서, 객체에 객체의 꼬리를 물며 타고들어가야 비로소 접근할 수 있는 성질의 것이라면요? 이럴 때 **TGrid** 의 답변은 간단하고 명쾌합니다.
 
 {% panel style="success", title="TGrid 의 한 마디" %}
+
 그냥 쓰세요~!
+
 {% endpanel %}
 
 ### 2.1. Features
@@ -435,9 +439,9 @@ main();
 
 
 ## 3. Object Oriented Network
-이번 단원에서는 이전 단원 [2. Remote Object Call](#2-remote-object-call) 에서 만들었던 원격 복합 계산기를 다시, 하지만 조금 다르게 만들어볼 것입니다; *계층형 계산기*. 현재 복합 계산기 `CompositeCalculator` 는 그 내부에 멤버객체로써, 공학용 계산기와 통계용 계산기를 가지고 있습니다. 이번 단원에서 새로이 만들어 볼 *계층형 계산기* 는, 이들 공학용 계산기와 통계용 계산기가 별도 서버로 분리됩니다.
+이번 단원에서는 이전 단원 [2. Remote Object Call](#2-remote-object-call) 에서 만들었던 원격 복합 계산기를 다시, 하지만 조금 다르게 만들어볼 것입니다; *계층형 계산기*. 이전의 복합 계산기 `CompositeCalculator` 는 그 내부에 멤버객체로써, 공학용 계산기와 통계용 계산기를 가지고 있습니다. 이번 단원에서 새로이 만들어 볼 *계층형 계산기* 에서는, 이들 공학용 계산기와 통계용 계산기가 별도 서버로 분리됩니다.
 
-즉, 이번 단원에서는 기존의 단일 복합 계산기 서버가 총 세 대로 서버로 분리되어야 합니다. 제일 먼저 공학용 계산을 전담하는 `scientific` 서버와 통계용 계산을 전담하는 `statistics` 서버를 새로이 만들 것입니다. 그리고 스스로는 사칙연산을 전담하며, 여타 계산에 대해서는 *scientific* 및 *statistics* 서버들에게 대신 맡기는 `calculator` 서버 (메인프레임) 를 구성할 것입니다.
+즉, 이번 단원에서는 기존의 단일 복합 계산기 서버가 총 세 대로 서버로 분리되어야 합니다. 제일 먼저 공학용 계산을 전담하는 `scientific` 서버와 통계용 계산을 전담하는 `statistics` 서버를 새로이 만들 것입니다. 그리고 스스로는 사칙연산을 전담하며, 여타 계산에 대해서는 *scientific* 및 *statistics* 서버들에게 대신 맡기는 메인프레임 서버 `calculator` 를 구성할 것입니다.
 
 서버를 모두 제작한 뒤에는, 마지막으로 이들 계층형 계산기를 사용할 클라이언트 프로그램을 만들어야겠죠? 자, 과연 네트워크 시스템의 구조가 이처럼 크게 변화해도, 비지니스 로직 코드는 여전히 이전과 유사할까요? 한 번 프로그램을 직접 만들어보며 알아봅시다.
 
@@ -446,6 +450,12 @@ main();
 Composite Calculator | Hierarchical Calculator
 
 ### 3.1. Features
+이번 단원에서 메인프레임 서버가 사용할 [Controller](concepts.md#23-controller) 는 `IScientific` 와 `ISatistics` 이며, 클라이언트가 사용할 [Controller](concepts.md#23-controller) 는 `ICompositeCalculator` 입니다. 그런데 잠깐! 클라이언트가 사용하는 [Controller](concepts.md#23-controller) 는 이전 단원 [2. Remote Object Call](#2-remote-object-call) 때와 완전히 동일하네요? 혹시 감이 오시나요?
+
+마찬가지로 공학용 계산기와 통계용 계산기가 메인프레임 서버에 제공할 [Provider](concepts.md#22-provider) 는 각각 `Scientific` 와 `Statistics` 클래스이며, 메인프레임 서버가 클라이언트에게 제공할 [Provider](concepts.md#22-provider) 는 `HierarchicalCalculator` 클래스입니다. 이 `HierarchicalCalculator` 를 보고 있노라면, 뭔가 느껴지는 바가 있지 않으십니까? 
+
+혹여 *계층형 계산기* 시스템을 구성하는 각 인스턴스가 사용할 [Controller](concepts.md#23-controller) 와 [Provider](concepts.md#22-provider) 를 본 것만으로도, 프로그램 코드를 어떻게 구현해야 할 지 감이 잡히신 분이라면, 축하드립니다. 당신은 이미 **TGrid** 에 대한 모든 것을 이해하신 겁니다.
+
   - [`../controllers/ICalculator.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/controllers/ICalculator.ts)
   - [`hierarchical-calculator/calculator.ts#L7-L13`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/hierarchical-calculator/calculator.ts#L7-L13)
 
@@ -531,9 +541,7 @@ main();
 
 따라서 아래 메인프레임 서버의 코드를 보시면, 메인프레임 서버가 클라이언트에게 제공하는 [Provider](concepts.md#22-provider) 인, `HierarchicalCalculator` 클래스는 `SimpleCalculator` 를 상속함으로써 사칙연산에 대하여 스스로 구현체를 가지고 있습니다. 그리고 공학용 계산기와 통계용 계산기는 각각 해당 서버로부터 `Driver<IScientific>` 과 `Driver<IStatistics>` 를 받아와 이를 클라이언트에게 우회 제공하고 있음을 알 수 있습니다.
 
-> 이로써 `HierarchicalCalculator` 는, 이전 단원의 [CompositeCalculator](#21-features) 와 논리적으로 완전히 동일해졌습니다. 이 둘의 세부 구현 코드는 서로 다를 지라도, 동일한 인터페이스를 지니며 마찬가지로 동일한 기능을 제공합니다.
-> 
-> 슬슬 감이 오시나요? 이번 단원에서의 클라이언트 코드가 어떠할지?
+이로써 `HierarchicalCalculator` 는, 이전 단원의 [CompositeCalculator](#21-features) 와 논리적으로 완전히 동일해졌습니다. 이 둘의 세부 구현 코드는 서로 다를 지라도, 동일한 인터페이스를 지니며 마찬가지로 동일한 기능을 제공합니다. 이쯤되면 굳이 클라이언트 프로그램의 코드를 직접 보지 않더라도, 머리 속에서 그것의 구현체가 어떻게 생겼을지 슬슬 상상이 되지 않나요?
 
 {% codegroup %}
 ```typescript::Object Oriented Network
@@ -597,14 +605,14 @@ main();
 즉, 이번 단원에서 클라이언트 프로그램은, (이전 단원에서 사용했던) `ICompositeCalculator` 를 다시 사용하게 됩니다. 사용하는 [Controller](concepts.md#24-controller) 가 이전과 같으며, 구현해야 될 비지니스 로직도 이전과 같다면, 결국에는 두 클라이언트 프로그램의 코드가 유사해지지 않겠습니까? 아래 코드를 보시면 실제로도 그러합니다. 두 코드는 너무나도 비슷하여, 무엇이 다른지조차 쉬이 찾기 힘듭니다.
 
 {% panel style="warning", title="혹시 무엇이 다른지 못 찾으셨나요?" %}
-11~12 번째 라인이 살짝 다릅니다. 
 
-각 클라이언트가 각기 접속해야 할 대상 서버가 서로 다르거든요.
+11~12 번째 라인이 살짝 다릅니다. 접속해야 할 대상 서버 주소가 서로 다르거든요.
+
 {% endpanel %}
 
-바로 이 것이 **TGrid** 입니다. 만들고자 하는 시스템이 단일 컴퓨터에서 동작하는 프로그램이던, 네트워크 통신을 이용한 분산처리시스템이던 아무 상관 없습니다. 심지어 같은 네트워크 시스템이라는 범주 안에서도, 그것의 분산처리 구조가 어찌 구성되는 지 또한 문제되지 않습니다. 그저 이것 하나만 기억하십시오.
+바로 이 것이 **TGrid** 입니다. 만들고자 하는 시스템이 단일 컴퓨터에서 동작하는 프로그램이던, 네트워크 통신을 이용한 분산처리시스템이던 상관 없습니다. 심지어 같은 네트워크 시스템이라는 범주 안에서도, 그것의 분산처리 구조가 어찌 구성되는 지 또한 아무런 문제가 되지 않습니다. 그저 이것 하나만 기억하십시오.
 
-그 어떤 때에도, 여러분의 비지니스 로직 코드는 동일할 것입니다.
+(**TGrid** 와 함께라면) 어떠한 경우에도, 여러분의 비지니스 로직 코드는 항상 동일할 것입니다.
 
 #### [`hierarchical-calculator/index.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/hierarchical-calculator/index.ts)
 {% codegroup %}
@@ -725,7 +733,129 @@ main();
 
 
 ## 4. Remote Critical Section
-### 4.1. Server
+**TGrid** 를 사용하면, 여러 대의 컴퓨터를 사용하여 통신하는 네트워크 시스템도, 논리적으로 단 한대의 컴퓨터에서 동작하는 <u>단일 프로그램</u>처럼 만들 수 있습니다. 제가 이 장을 통하여 여러분께 보여드렸던 예제 코드들은 모두, 이러한 개념의 증명을 위함이기도 합니다. 
+
+하지만, TGrid 가 네트워크 시스템을 논리적으로 단 한대의 컴퓨터에서 동작하는 단일 프로그램으로 만들어줄 수는 있어도, 이것이 곧 싱글 프로세스 (스레드) 프로그램을 의미하는 것은 아닙니다. 오히려 논리적으로는 <u>멀티 프로세싱</u>에 훨씬 가깝습니다. 즉, 우리가 **TGrid** 를 통해 만드는 모든 시스템은, 논리적으로 (하나의 컴퓨터에서 동작하는) 멀티 프로세싱 프로그램인 셈입니다.
+
+그렇다면, 멀티 프로세싱이라는 단어를 들으셨을 때 여러분은 제일 먼저 무엇이 떠오르나요? 아마 십중팔구 임계영역에 대한 제어문제가 아닐까 합니다. 보다 쉽게 와닿는 단어로는 *mutex* 가 있습니다. 멀티 프로세싱 프로그램을 만들 때 제일 중요한 게 바로 이 임계영역을 잘~ 제어해야 한다는 것입니다. 
+
+기껏 **TGrid** 를 통해 분산처리 네트워크 시스템을 논리적으로 (하나의 컴퓨터에서 동작하는) 멀티 프로세싱 프로그램으로 만들었는데, 임계영역 제어가 안 된다면 무슨 의미가 있겠습니까? 따라서 이번 단원에서 알아볼 것은 바로 네트워크 수준의 임계영역을 제어하는 방법입니다. **TGrid** 에서는 네트워크 수준의 임계영역 제어라고 해봐야 특별히 어려운 것은 없습니다. 이 또한 그저 *Remote Function Call* 을 통하여, 원격 시스템에서 제공해준 함수를 호출해주기만 하면 끝나니까요.
+
+{% panel style="info", title="라이브러리 추천" %}
+
+### TSTL
+TypeScript Standard Template Library
+  - https://tstl.dev
+
+임계영역을 제어하기 위한 라이브러리로, [TSTL](https://tstl.dev) 에서 지원하는 `<thread>` 모듈을 추천합니다. 여기서 지원하는 임계영역 제어에 관한 클래스들은 개별 프로그램에서도 사용할 수 있지만, **TGrid** 에서 네트워크 수준으로 원격 임계영역을 제어하는 데에도 유용히 사용할 수 있습니다.
+
+이번 단원의 예제코드에서 사용하는 `Mutex` 역시, [TSTL](https://tstl.dev) 의 것을 사용합니다.
+
+```typescript
+import {
+    ConditionVariable,
+    Mutex, TimedMutex,
+    SharedMutex, SharedTimedMutex,
+    UniqueLock, SharedLock,
+    Latch, Barrier, FlexBarrier,
+    Semaphore
+} from "tstl/thread";
+```
+
+{% endpanel %}
+
+### 4.1. Features
+이번 원격 임계영역 제어에 사용할 [Controller](concepts.md#23-controller) 와 [Provider](concepts.md#22-provider) 는 아래와 같습니다. 클라이언트는 서버에게 [Provider](concepts.md#22-provider) 로써 `CriticalSection` 클래스를 제공할 것이며, 서버는 [Controller](concepts.md#23-controller) 인 `ICriticalSection` 을 [Driver](concepts.md#24-driver) 로 랩핑하여 사용할 것입니다.
+
+보시다시피 클라이언트와 서버가 공유하게 될 기능은 매우 간소하며, 서버에서 클라이언트로의 원격 임계영역 제어에는 `IMutex` 객체가 쓰이겠죠? 마찬가지로 클라이언트가 서버에 제공하는 `print()` 함수는 당최 뭐에 쓰는 물건인지, 예제 코드를 보면서 천천히 알아봅시다.
+
+{% codegroup %}
+```typescript::child.ts - Controller
+export interface ICriticalSection
+{
+    mutex: IMutex;
+
+    print(character: string): void;
+}
+
+interface IMutex
+{
+    lock(): void;
+    unlock(): void;
+}
+```
+```typescript::index.ts - Provider
+import { Mutex } from "tstl/thread";
+
+export class CriticalSection
+{
+    public mutex: Mutex = new Mutex();
+
+    public print(character: string): void
+    {
+        process.stdout.write(str);
+    }
+}
+```
+{% endcodegroup %}
+
+### 4.2. Client
+클라이언트 프로그램은 총 4 개의 `WorkerServer` (Slave Process) 들을 개설합니다. 그리고 각 서버들에게 [Provider](concepts.md#22-provider) 로써 `CriticalSection` 클래스를 제공합니다. 마지막으로 각 서버 인스턴스들에 대하여, 그들이 모두 자신의 작업을 마치기를 기다렸다가 프로그램을 종료합니다.
+
+보시다시피 클라이언트 프로그램이 하는 일은 간단합니다. 그저 서버 프로그램들에게, 클라이언트 자신의 임계영역을 제어할 수 있는 [Provider](concepts.md#22-provider) 를 제공할 뿐입니다. 중요한 것은 각 서버 프로그램들이 이를 어떻게 사용하냐, 그리고 **TGrid** 에서 *Remote Function Call* 을 사용하면 정말 네트워크 수준에서 임계영역을 제어할 수 있으냐가 아닐까요?
+
+#### [`thread/index.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/thread/index.ts)
+```typescript
+import { WorkerConnector } from "tgrid/protocols/workers";
+
+import { Mutex } from "tstl/thread";
+
+class CriticalSection
+{
+    public mutex: Mutex = new Mutex();
+
+    public print(str: string): void
+    {
+        process.stdout.write(str);
+    }
+}
+
+async function main(): Promise<void>
+{
+    let workers: WorkerConnector<CriticalSection>[] = [];
+    let provider: CriticalSection = new CriticalSection();
+
+    //----
+    // CREATE WORKERS
+    //----
+    for (let i: number = 0; i < 4; ++i)
+    {
+        // CONNECT TO WORKER
+        let w: WorkerConnector<CriticalSection> = new WorkerConnector(provider);
+        await w.connect(__dirname + "/child.js");
+
+        // ENROLL IT
+        workers.push_back(w);
+    }
+
+    //----
+    // WAIT THEM ALL TO BE CLOSED
+    //----
+    let promises: Promise<void>[] = workers.map(w => w.join());
+    await Promise.all(promises);
+}
+main();
+```
+
+### 4.3. Server
+서버 프로그램은 클라이언트가 제공해 준 Mutex 를 사용, 네트워크 레벨에서 임계 영역을 제어합니다. 
+
+아래 코드에서 보시다시피, 서버 프로그램은 제일 먼저 임의의 글자를 하나 만듦니다 (38 번째 라인). 그리고 약 1 ~ 2 초에 걸쳐 전 네트워크 시스템의 임계영역를 독점적으로 점유하며, 아까 만들어두었던 임의의 문자를 클라이언트의 콘솔에 반복하여 출력해줍니다 (19 ~ 33 번째 라인).
+
+만약 **TGrid** 에서 말하는 *Remote Function Call* 이 네트워크 수준의 임계영역 제어마저 가능하다면, 콘솔에는 각 라인마다 동일한 글자가 반복될 것입니다. 반면에 **TGrid** 와 TSTL 이 네트워크 수준의 임계영역 제어에 실패한다면, 콘솔에는 서로 다른 글자가 혼란스럽게 뒤섞여있을 것입니다.
+
+자, 과연 **TGrid** 는 네트워크 수준의 임계영역 마저도 구현해낼 수 있을까요? 아래 코드와 그 출력 결과를 함께 보시죠.
+
 #### [`thread/child.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/thread/child.ts)
 ```typescript
 import { WorkerServer } from "tgrid/protocol/worker";
@@ -734,7 +864,7 @@ import { Driver } from "tgrid/components";
 import { Mutex, sleep_for } from "tstl/thread";
 import { randint } from "tstl/algorithm";
 
-interface IController
+interface ICriticalSection
 {
     mutex: Mutex;
     print(character: string): void;
@@ -744,7 +874,7 @@ async function main(character: string): Promise<void>
 {
     // PREPARE SERVER & DRIVER
     let server: WorkerServer = new WorkerServer();
-    let driver: Driver<IController> = server.getDriver<IController>();
+    let driver: Driver<ICriticalSection> = server.getDriver<ICriticalSection>();
 
     // REMOTE FUNCTION CALLS
     await driver.mutex.lock();
@@ -766,49 +896,6 @@ async function main(character: string): Promise<void>
     await server.close();
 }
 main(randint(0, 9) + "");
-```
-
-### 4.2. Client
-#### [`thread/index.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/thread/index.ts)
-```typescript
-import { WorkerConnector } from "tgrid/protocols/workers";
-
-import { Vector } from "tstl/container";
-import { Mutex } from "tstl/thread";
-
-// FEATURES TO PROVIDE
-namespace provider
-{
-    export var mutex = new Mutex();
-    export function print(str: string): void
-    {
-        process.stdout.write(str);
-    }
-}
-
-async function main(): Promise<void>
-{
-    let workers: Vector<WorkerConnector<typeof provider>> = new Vector();
-
-    //----
-    // CREATE WORKERS
-    //----
-    for (let i: number = 0; i < 4; ++i)
-    {
-        // CONNECT TO WORKER
-        let w = new WorkerConnector(provider);
-        await w.connect(__dirname + "/child.js");
-
-        // ENROLL IT
-        workers.push_back(w);
-    }
-
-    //----
-    // WAIT THEM TO BE CLOSED
-    //----
-    await Promise.all(workers.map(w => w.join()));
-}
-main();
 ```
 
 > ```python

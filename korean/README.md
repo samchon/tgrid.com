@@ -8,6 +8,8 @@
 [![DeepScan grade](https://deepscan.io/api/teams/1932/projects/3409/branches/30529/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=1932&pid=3409&bid=30529)
 [![Chat on Gitter](https://badges.gitter.im/samchon/tgrid.svg)](https://gitter.im/samchon/tgrid?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+> Computers be a computer
+
 
 ### 1.2. Grid Computing
 ### 1.3. Remote Function Call

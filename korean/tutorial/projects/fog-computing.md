@@ -1,4 +1,6 @@
 # Fog Computing
+> https://github.com/samchon/tgrid.projects.fog-computing
+
 ## 1. Outline
 
 
@@ -26,27 +28,27 @@ export class ConsumerChannel
 {
     public readonly uid: number;
 
-    /**
-     * @hidden
-     */
     private market_: Market;
-
-    /**
-     * @hidden
-     */
     private acceptor_: Acceptor;
-
-    /**
-     * @hidden
-     */
     private assignees_: HashMap<number, SupplierChannel>;
 
     /* ----------------------------------------------------------------
         CONSTRUCTORS
     ---------------------------------------------------------------- */
-    /**
-     * @hidden
-     */
+    public static async create
+        (
+            uid: number, 
+            market: Market, 
+            acceptor: Acceptor
+        ): Promise<ConsumerChannel>
+    {
+        let ret: ConsumerChannel = new ConsumerChannel(uid, market, acceptor);
+        await ret.acceptor_.accept(new ConsumerChannel.Provider(ret));
+        
+        ret._Handle_disconnection();
+        return ret;
+    }
+
     private constructor(uid: number, market: Market, acceptor: Acceptor)
     {
         this.uid = uid;
@@ -56,21 +58,6 @@ export class ConsumerChannel
         this.assignees_ = new HashMap();
     }
 
-    /**
-     * @internal
-     */
-    public static async create(uid: number, market: Market, acceptor: Acceptor): Promise<ConsumerChannel>
-    {
-        let ret: ConsumerChannel = new ConsumerChannel(uid, market, acceptor);
-        await ret.acceptor_.accept(new ConsumerChannel.Provider(ret));
-        
-        ret._Handle_disconnection();
-        return ret;
-    }
-
-    /**
-     * @hidden
-     */
     private async _Handle_disconnection(): Promise<void>
     {
         try { await this.acceptor_.join(); } catch {}

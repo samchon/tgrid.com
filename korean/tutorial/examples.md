@@ -455,7 +455,7 @@ main();
 
 서버를 모두 제작한 뒤에는, 마지막으로 이들 계층형 계산기를 사용할 클라이언트 프로그램을 만들어야겠죠? 자, 과연 네트워크 시스템의 구조가 이처럼 크게 변화해도, 비지니스 로직 코드는 여전히 이전과 유사할까요? 한 번 프로그램을 직접 만들어보며 알아봅시다.
 
-![diagram](../../assets/images/examples/composite-calculator.png) | ![diagram](../../assets/images/examples/hierarchical-calculator.png)
+![Diagram of Composite Calculator](../../assets/images/examples/composite-calculator.png) | ![Diagram of Hierarchical Calculator](../../assets/images/examples/hierarchical-calculator.png)
 :-------------------:|:-----------------------:
 Composite Calculator | Hierarchical Calculator
 
@@ -810,6 +810,8 @@ export class CriticalSection
 {% endcodegroup %}
 
 ### 4.2. Client
+![Diagram of Remote Critical Section](../../assets/images/examples/remote-critical-section.png)
+
 클라이언트 프로그램은 총 4 개의 `WorkerServer` 들을 개설합니다. 그리고 각 서버들에게 [Provider](concepts.md#22-provider) 로써 `CriticalSection` 클래스를 제공합니다. 마지막으로 각 서버 인스턴스들에 대하여, 그들이 모두 자신의 작업을 마치기를 기다렸다가 프로그램을 종료합니다.
 
 보시다시피 클라이언트 프로그램이 하는 일은 간단합니다. 그저 서버 프로그램들에게, 클라이언트 자신의 임계영역을 제어할 수 있는 [Provider](concepts.md#22-provider) 를 제공할 뿐입니다. 중요한 것은 각 서버 프로그램들이 이를 어떻게 사용하냐, 그리고 **TGrid** 에서 *Remote Function Call* 을 사용하면 정말 네트워크 수준에서 임계영역을 제어할 수 있으냐가 아닐까요?

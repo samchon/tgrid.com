@@ -8,6 +8,7 @@
         "-highlight",
         "code",
         "codegroup",
+        "disqus",
         "github",
         "hide-navigation-buttons",
         "panel",
@@ -18,6 +19,9 @@
     "pluginsConfig": {
         "codegroup": {
             "rememberTabs": true
+        },
+        "disqus": {
+            "shortName": "tgrid"
         },
         "github": {
             "url": "https://github.com/samchon/tgrid"

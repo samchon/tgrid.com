@@ -20,7 +20,7 @@ https://ko.wikipedia.org/wiki/그리드_컴퓨팅
 여러분도 그렇게 생각하시나요?
 
 ### 1.2. Remote Function Call
-> Computers be a computer
+<img src="../../assets/images/concepts/grid-computing.png" style="max-width: 563.4px" />
 
 제가 생각하는 진정한 Grid Computing 이란, 여러 대의 컴퓨터를 하나의 가상 컴퓨터로 만드는 것입니다. 그리고 Grid Computing 으로 만든 가상 컴퓨터에 탑재될 프로그램의 코드는, 실제로 하나의 컴퓨터에서 동작하는 프로그램의 코드와 동일해야 합니다.
 
@@ -33,7 +33,7 @@ https://ko.wikipedia.org/wiki/그리드_컴퓨팅
 
 때문에 이번 절은 [Remote Function Call](#12-remote-function-call) 이 정말로 그러한지, 여러 대의 컴퓨터를 하나의 가상 컴퓨터로 만들어줄 수 있는지, 간략한 증명을 해 보일 것입니다. 더불어 [Remote Function Call](#12-remote-function-call) 을 사용하는 코드는 실제로 어떻게 생겨먹었는지도 미리 한 번 봐 두어야지 않겠습니까?
 
-![Diagram of Hierarchical Calculator](../../assets/images/examples/hierarchical-calculator.png) | ![Diagram of Composite Calculator](../../assets/images/examples/composite-calculator.png) | ![Single Computer](../../assets/images/examples/single-computer.jpg)
+![Hierarchical](../../assets/images/concepts/hierarchical.png) | ![Composite](../../assets/images/concepts/composite.png) | ![Single](../../assets/images/concepts/single.jpg)
 :-----------:|:---------:|:------:
 Hierarchical | Composite | Single
 

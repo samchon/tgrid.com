@@ -20,9 +20,5 @@
 
 ## 3. Appendix
   - [3.1. SWOT Analysis](appendix/swot.md)
-    - [3.1.1. Strengths](appendix/swot.md#1-strengths)
-    - [3.1.2. Weaknesses](appendix/swot.md#2-weaknesses)
-    - [3.1.3. Opportunities](appendix/swot.md#3-opportunities)
-    - [3.1.4. Threats](appendix/swot.md#4-threats)
   - [3.2. Release Notes](https://github.com/samchon/tgrid/releases)
   - [3.3. Roadmap](https://github.com/samchon/tgrid/projects)

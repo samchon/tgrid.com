@@ -175,7 +175,7 @@ main();
 
 
 ## 2. Remote Object Call
-우리는 지난 단원 [1. Remote Function Call](#1-remote-function-call) 을 통하여 원격 시스템의 함수를 호출하는 방법을 알아봤습니다. 하지만, 여지껏 다루었던 것들은 어디까지나 단순 구조체 (Singular Structure) 로써 모든 함수들은 최상위 객체로써 정의되어있었을 뿐, 단 한 번도 <u>복합 구조체</u> (Composite Structure) 를 다루었던 적이 없습니다.
+우리는 지난 장 [1. Remote Function Call](#1-remote-function-call) 을 통하여 원격 시스템의 함수를 호출하는 방법을 알아봤습니다. 하지만, 여지껏 다루었던 것들은 어디까지나 단순 구조체 (Singular Structure) 로써 모든 함수들은 최상위 객체로써 정의되어있었을 뿐, 단 한 번도 <u>복합 구조체</u> (Composite Structure) 를 다루었던 적이 없습니다.
 
 만일 여러분께서 사용하시려는 원격 객체 ([Provider](concepts.md#22-provider)) 가 복합 구조체라면 어떻게 하시겠습니까? 호출하고자 하는 최종 함수가 여러 객체들로 쌓여있어서, 객체에 객체의 꼬리를 물며 타고들어가야 비로소 접근할 수 있는 성질의 것이라면요? 이럴 때 **TGrid** 의 답변은 간단하고 명쾌합니다.
 
@@ -186,7 +186,7 @@ main();
 {% endpanel %}
 
 ### 2.1. Features
-이번 단원에서 복합 구조체 호출 (Remote Object Call) 에 대한 예증을 위해 사용할 객체는 `CompositeCalculator` 입니다. 이 클래스는 이전 단원에서 사용했던 [SimpleCalculator](#11-features) 의 사칙연산에 더하여, 내부 객체로써 공학용 계산기 (`scientific`) 와 통계용 계산기 (`statistics`) 가 추가된 복합 구조체의 형태를 띄고 있습니다.
+이번 장에서 복합 구조체 호출 (Remote Object Call) 에 대한 예증을 위해 사용할 객체는 `CompositeCalculator` 입니다. 이 클래스는 이전 장에서 사용했던 [SimpleCalculator](#11-features) 의 사칙연산에 더하여, 내부 객체로써 공학용 계산기 (`scientific`) 와 통계용 계산기 (`statistics`) 가 추가된 복합 구조체의 형태를 띄고 있습니다.
 
 뭐 이미 다 아시리라 생각됩니다만, 우리가 이번에 만들 (원격 복합 계산기) 예제에서 `ICompositeCalculator` 는 [Controller](#23-controller) 의 역할을 수행하게 될 것입니다. 그리고 `CompositeCalculator` 는 [Provider](#22-provider) 가 되겠죠.
 
@@ -449,9 +449,9 @@ main();
 
 
 ## 3. Object Oriented Network
-이번 단원에서는 이전 단원 [2. Remote Object Call](#2-remote-object-call) 에서 만들었던 원격 복합 계산기를 다시, 하지만 조금 다르게 만들어볼 것입니다; *계층형 계산기*. 이전의 복합 계산기 `CompositeCalculator` 는 그 내부에 멤버객체로써, 공학용 계산기와 통계용 계산기를 가지고 있습니다. 이번 단원에서 새로이 만들어 볼 *계층형 계산기* 에서는, 이들 공학용 계산기와 통계용 계산기가 별도 서버로 분리됩니다.
+이번 장에서는 이전 장 [2. Remote Object Call](#2-remote-object-call) 에서 만들었던 원격 복합 계산기를 다시, 하지만 조금 다르게 만들어볼 것입니다; *계층형 계산기*. 이전의 복합 계산기 `CompositeCalculator` 는 그 내부에 멤버객체로써, 공학용 계산기와 통계용 계산기를 가지고 있습니다. 이번 장에서 새로이 만들어 볼 *계층형 계산기* 에서는, 이들 공학용 계산기와 통계용 계산기가 별도 서버로 분리됩니다.
 
-즉, 이번 단원에서는 기존의 단일 복합 계산기 서버가 총 세 대로 서버로 분리되어야 합니다. 제일 먼저 공학용 계산을 전담하는 `scientific` 서버와 통계용 계산을 전담하는 `statistics` 서버를 새로이 만들 것입니다. 그리고 스스로는 사칙연산을 전담하며, 여타 계산에 대해서는 *scientific* 및 *statistics* 서버들에게 대신 맡기는 메인프레임 서버 `calculator` 를 구성할 것입니다.
+즉, 이번 장에서는 기존의 단일 복합 계산기 서버가 총 세 대로 서버로 분리되어야 합니다. 제일 먼저 공학용 계산을 전담하는 `scientific` 서버와 통계용 계산을 전담하는 `statistics` 서버를 새로이 만들 것입니다. 그리고 스스로는 사칙연산을 전담하며, 여타 계산에 대해서는 *scientific* 및 *statistics* 서버들에게 대신 맡기는 메인프레임 서버 `calculator` 를 구성할 것입니다.
 
 서버를 모두 제작한 뒤에는, 마지막으로 이들 계층형 계산기를 사용할 클라이언트 프로그램을 만들어야겠죠? 자, 과연 네트워크 시스템의 구조가 이처럼 크게 변화해도, 비지니스 로직 코드는 여전히 이전과 유사할까요? 한 번 프로그램을 직접 만들어보며 알아봅시다.
 
@@ -460,7 +460,7 @@ main();
 Composite Calculator | Hierarchical Calculator
 
 ### 3.1. Features
-이번 단원에서 메인프레임 서버가 사용할 [Controller](concepts.md#23-controller) 는 `IScientific` 와 `ISatistics` 이며, 클라이언트가 사용할 [Controller](concepts.md#23-controller) 는 `ICompositeCalculator` 입니다. 그런데 잠깐! 클라이언트가 사용하는 [Controller](concepts.md#23-controller) 는 이전 단원 [2. Remote Object Call](#2-remote-object-call) 때와 완전히 동일하네요? 혹시 감이 오시나요?
+이번 장에서 메인프레임 서버가 사용할 [Controller](concepts.md#23-controller) 는 `IScientific` 와 `ISatistics` 이며, 클라이언트가 사용할 [Controller](concepts.md#23-controller) 는 `ICompositeCalculator` 입니다. 그런데 잠깐! 클라이언트가 사용하는 [Controller](concepts.md#23-controller) 는 이전 장 [2. Remote Object Call](#2-remote-object-call) 때와 완전히 동일하네요? 혹시 감이 오시나요?
 
 마찬가지로 공학용 계산기와 통계용 계산기가 메인프레임 서버에 제공할 [Provider](concepts.md#22-provider) 는 각각 `Scientific` 와 `Statistics` 클래스이며, 메인프레임 서버가 클라이언트에게 제공할 [Provider](concepts.md#22-provider) 는 `HierarchicalCalculator` 클래스입니다. 이 `HierarchicalCalculator` 를 보고 있노라면, 뭔가 느껴지는 바가 있지 않으십니까? 
 
@@ -551,7 +551,7 @@ main();
 
 따라서 아래 메인프레임 서버의 코드를 보시면, 메인프레임 서버가 클라이언트에게 제공하는 [Provider](concepts.md#22-provider) 인, `HierarchicalCalculator` 클래스는 `SimpleCalculator` 를 상속함으로써 사칙연산에 대하여 스스로 구현체를 가지고 있습니다. 그리고 공학용 계산기와 통계용 계산기는 각각 해당 서버로부터 `Driver<IScientific>` 과 `Driver<IStatistics>` 를 받아와 이를 클라이언트에게 우회 제공하고 있음을 알 수 있습니다.
 
-이로써 `HierarchicalCalculator` 는, 이전 단원의 [CompositeCalculator](#21-features) 와 논리적으로 완전히 동일해졌습니다. 이 둘의 세부 구현 코드는 서로 다를 지라도, 동일한 인터페이스를 지니며 마찬가지로 동일한 기능을 제공합니다. 이쯤되면 굳이 클라이언트 프로그램의 코드를 직접 보지 않더라도, 머리 속에서 그것의 구현체가 어떻게 생겼을지 슬슬 상상이 되지 않나요?
+이로써 `HierarchicalCalculator` 는, 이전 장의 [CompositeCalculator](#21-features) 와 논리적으로 완전히 동일해졌습니다. 이 둘의 세부 구현 코드는 서로 다를 지라도, 동일한 인터페이스를 지니며 마찬가지로 동일한 기능을 제공합니다. 이쯤되면 굳이 클라이언트 프로그램의 코드를 직접 보지 않더라도, 머리 속에서 그것의 구현체가 어떻게 생겼을지 슬슬 상상이 되지 않나요?
 
 {% codegroup %}
 ```typescript::Object Oriented Network
@@ -610,9 +610,9 @@ main();
 {% endcodegroup %}
 
 ### 3.3. Client
-메인프레임 서버에서 클라이언트를 위하여 [Provider](concepts.md#22-provider) 로 제공하는 `HierarchicalCalculator` 클래스는, 이전 단원의 [CompositeCalculator](#21-features) 와 논리적으로 완전히 동일합니다. 이 둘의 세부 구현코드는 비록 서로 다를지라도, 클라이언트에게 제공하는 인터페이스는 완벽하게 똑같습니다.
+메인프레임 서버에서 클라이언트를 위하여 [Provider](concepts.md#22-provider) 로 제공하는 `HierarchicalCalculator` 클래스는, 이전 장의 [CompositeCalculator](#21-features) 와 논리적으로 완전히 동일합니다. 이 둘의 세부 구현코드는 비록 서로 다를지라도, 클라이언트에게 제공하는 인터페이스는 완벽하게 똑같습니다.
 
-즉, 이번 단원에서 클라이언트 프로그램은, (이전 단원에서 사용했던) `ICompositeCalculator` 를 다시 사용하게 됩니다. 사용하는 [Controller](concepts.md#24-controller) 가 이전과 같으며, 구현해야 될 비지니스 로직도 이전과 같다면, 결국에는 두 클라이언트 프로그램의 코드가 유사해지지 않겠습니까? 아래 코드를 보시면 실제로도 그러합니다. 두 코드는 너무나도 비슷하여, 무엇이 다른지조차 쉬이 찾기 힘듭니다.
+즉, 이번 장에서 클라이언트 프로그램은, (이전 장에서 사용했던) `ICompositeCalculator` 를 다시 사용하게 됩니다. 사용하는 [Controller](concepts.md#24-controller) 가 이전과 같으며, 구현해야 될 비지니스 로직도 이전과 같다면, 결국에는 두 클라이언트 프로그램의 코드가 유사해지지 않겠습니까? 아래 코드를 보시면 실제로도 그러합니다. 두 코드는 너무나도 비슷하여, 무엇이 다른지조차 쉬이 찾기 힘듭니다.
 
 {% panel style="warning", title="혹시 무엇이 다른지 못 찾으셨나요?" %}
 
@@ -749,7 +749,7 @@ main();
 
 그렇다면, '멀티 스레드' 라는 단어를 들으셨을 때, 여러분은 제일 먼저 무엇이 떠오르나요? 아마 십중팔구 임계영역에 대한 제어문제가 아닐까 합니다. 보다 쉽게 와닿는 단어로는 *mutex* 가 있습니다. 멀티 스레드 프로그램을 만들 때 제일 중요한 게 바로 이 임계영역을 잘~ 제어해야 한다는 것입니다. 
 
-기껏 **TGrid** 를 통해 분산처리 네트워크 시스템을 논리적으로 (하나의 컴퓨터에서 동작하는) 멀티 스레딩 프로그램으로 만들었는데, 임계영역 제어가 안 된다면 무슨 의미가 있겠습니까? 따라서 이번 단원에서 알아볼 것은 바로 네트워크 수준의 임계영역을 제어하는 방법입니다. **TGrid** 에서는 네트워크 수준의 임계영역 제어라고 해봐야 특별히 어려운 것은 없습니다. 이 또한 그저 *Remote Function Call* 을 통하여, 원격 시스템에서 제공해준 함수를 호출해주기만 하면 끝나니까요.
+기껏 **TGrid** 를 통해 분산처리 네트워크 시스템을 논리적으로 (하나의 컴퓨터에서 동작하는) 멀티 스레딩 프로그램으로 만들었는데, 임계영역 제어가 안 된다면 무슨 의미가 있겠습니까? 따라서 이번 장에서 알아볼 것은 바로 네트워크 수준의 임계영역을 제어하는 방법입니다. **TGrid** 에서는 네트워크 수준의 임계영역 제어라고 해봐야 특별히 어려운 것은 없습니다. 이 또한 그저 *Remote Function Call* 을 통하여, 원격 시스템에서 제공해준 함수를 호출해주기만 하면 끝나니까요.
 
 {% panel style="info", title="라이브러리 추천" %}
 
@@ -759,7 +759,7 @@ TypeScript Standard Template Library
 
 임계영역을 제어하기 위한 라이브러리로, [TSTL](https://tstl.dev) 에서 지원하는 `<thread>` 모듈을 추천합니다. 여기서 지원하는 임계영역 제어에 관한 클래스들은 개별 프로그램에서도 사용할 수 있지만, **TGrid** 에서 네트워크 수준으로 원격 임계영역을 제어하고자 할 때 특히 유용합니다.
 
-이번 단원의 예제코드에서 사용하는 `Mutex` 역시, [TSTL](https://tstl.dev) 의 것을 사용합니다.
+이번 장의 예제코드에서 사용하는 `Mutex` 역시, [TSTL](https://tstl.dev) 의 것을 사용합니다.
 
 ```typescript
 import {

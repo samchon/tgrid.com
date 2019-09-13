@@ -1,4 +1,13 @@
 # Basic Concepts
+이번 단원에서는 **TGrid** 의 <u>기초 개념</u>에 대하여 알아볼 것입니다. 
+
+이번 단원의 [제 1 장 Outline](#1-outline) 에서는 기초 이론을 배웁니다. **TGrid** 가 주창하는 진정한 Grid Computing 이 무엇이며, *Remote Function Call* 은 어떤 개념인지 알아볼 것입니다. [제 2 장 Components](#2-components) 에서는 TGrid 의 가장 핵심이 되는 기초 컴포넌트들을 익힐 것입니다. 마지막으로 [제 3 장 Protocols](#3-protocols) 에서는 TGrid 가 지원하는 두 가지 프로토콜, *Web Socket* 과 *Workers* 대하여 알아봅니다.
+
+만약, 이 글을 읽으시는 여러분께서 이론보다는 실전을 선호하시며 백 번의 설명보다는 한 번의 코드 읽기를 추구하시는 성향이시라면, 이 단원은 과감히 건너뛰셔도 좋습니다. 이런 분들께는, 바로 이 다음 단원인, [Learn from Examples](examples.md) 부터 읽으시기를 권해드립니다.
+
+
+
+
 ## 1. Outline
 ### 1.1. Grid Computing
 그리드 컴퓨팅에 대한 위키백과의 설명은 이러합니다.

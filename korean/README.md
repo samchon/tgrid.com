@@ -30,7 +30,9 @@
     - [Release Notes](https://github.com/samchon/tgrid/releases)
 
 ### 1.2. Grid Computing
-Computers be a virtual computer
+<img src="../assets/images/concepts/grid-computing.png" style="max-width: 563.4px" />
+
+> Computers be a (virtual) computer
 
 **TGrid** 는 그 이름 그대로, TypeScript 에서 [Grid Computing](#12-grid-computing) 시스템을 구현하는 데 유용하게 사용할 수 있는 Framework 입니다. 단, **TGrid** 가 말하는 Grid Computing 이란, 단순히 여러 대의 컴퓨터를 네트워크 통신을 이용하여 공통된 작업을 분산처리하는 것이 아닙니다. TGrid 가 말하는 진정한 Grid Computing 이란, 여러 대의 컴퓨터를 묶어 한 대의 가상 컴퓨터로 만들어내는 것입니다.
 

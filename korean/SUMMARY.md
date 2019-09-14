@@ -16,7 +16,7 @@
   - [2.3. Learn from Projects](tutorial/projects/README.md)
     - [2.3.1. Chat Application](tutorial/projects/chat-application.md)
     - [2.3.2. Omok Game](tutorial/projects/omok-game.md)
-    - [2.3.3. Fog Computing](tutorial/projects/fog-computing.md)
+    - [2.3.3. Grid Market](tutorial/projects/grid-market.md)
 
 ## 3. Appendix
   - [3.1. SWOT Analysis](appendix/swot.md)

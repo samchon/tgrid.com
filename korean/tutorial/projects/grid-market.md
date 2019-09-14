@@ -1,17 +1,17 @@
 # Fog Computing
-> https://github.com/samchon/tgrid.projects.fog-computing
+> https://github.com/samchon/tgrid.projects.grid-market
 
 ## 1. Outline
 
 
 
-## 2. Designs
+## 2. Design
 
 
 
-## 3. Source Files
+## 3. Implementation
 ### 3.1. Market
-#### [`core/market/ConsumerChannel.ts`](https://github.com/samchon/tgrid.projects.fog-computing/blob/master/src/core/market/ConsumerChannel.ts)
+#### [`core/market/ConsumerChannel.ts`](https://github.com/samchon/tgrid.projects.grid-market/blob/master/src/core/market/ConsumerChannel.ts)
 ```typescript
 import { WebAcceptor } from "tgrid/protocols/web";
 import { SharedWorkerAcceptor } from "tgrid/protocols/workers";
@@ -189,7 +189,7 @@ export namespace ConsumerChannel
 type Acceptor = WebAcceptor<ConsumerChannel.Provider> | SharedWorkerAcceptor<ConsumerChannel.Provider>;
 ```
 
-#### [`core/market/SupplierChannel.ts`](https://github.com/samchon/tgrid.projects.fog-computing/blob/master/src/core/market/SupplierChannel.ts)
+#### [`core/market/SupplierChannel.ts`](https://github.com/samchon/tgrid.projects.grid-market/blob/master/src/core/market/SupplierChannel.ts)
 ```typescript
 import { WebAcceptor } from "tgrid/protocols/web";
 import { SharedWorkerAcceptor } from "tgrid/protocols/workers";
@@ -380,7 +380,7 @@ export namespace SupplierChannel
 type Acceptor = WebAcceptor<SupplierChannel.Provider> | SharedWorkerAcceptor<SupplierChannel.Provider>;
 ```
 
-#### [`core/market/Market.ts`](https://github.com/samchon/tgrid.projects.fog-computing/blob/master/src/core/market/Market.ts)
+#### [`core/market/Market.ts`](https://github.com/samchon/tgrid.projects.grid-market/blob/master/src/core/market/Market.ts)
 ```typescript
 import { HashMap } from "tstl/container/HashMap";
 import { WebServer, WebAcceptor } from "tgrid/protocols/web";
@@ -653,7 +653,7 @@ const enum Actor
 ```
 
 ### 3.2. Consumer
-#### [`core/consumer/Servant.ts`](https://github.com/samchon/tgrid.projects.fog-computing/blob/master/src/core/consumer/Servant.ts)
+#### [`core/consumer/Servant.ts`](https://github.com/samchon/tgrid.projects.grid-market/blob/master/src/core/consumer/Servant.ts)
 ```typescript
 import { ISupplier } from "../supplier/ISupplier";
 import { ICommunicator, Driver } from "tgrid/basic";
@@ -805,7 +805,7 @@ export namespace Servant
 }
 ```
 
-#### [`core/consumer/Consumer.ts`](https://github.com/samchon/tgrid.projects.fog-computing/blob/master/src/core/consumer/Consumer.ts)
+#### [`core/consumer/Consumer.ts`](https://github.com/samchon/tgrid.projects.grid-market/blob/master/src/core/consumer/Consumer.ts)
 ```typescript
 import { ISupplier } from "../supplier/ISupplier";
 import { ICommunicator, Driver } from "tgrid/basic";
@@ -960,8 +960,8 @@ export namespace Servant
 #### [`apps/ConsumerApplication.tsx`]()
 
 ### 3.3. Supplier
-#### [`core/supplier/ISupplier.ts`](https://github.com/samchon/tgrid.projects.fog-computing/blob/master/src/core/supplier/ISupplier.ts)
-#### [`core/supplier/Supplier.ts`](https://github.com/samchon/tgrid.projects.fog-computing/blob/master/src/core/supplier/Supplier.ts)
+#### [`core/supplier/ISupplier.ts`](https://github.com/samchon/tgrid.projects.grid-market/blob/master/src/core/supplier/ISupplier.ts)
+#### [`core/supplier/Supplier.ts`](https://github.com/samchon/tgrid.projects.grid-market/blob/master/src/core/supplier/Supplier.ts)
 ```typescript
 import { EventEmitter } from "events";
 
@@ -1175,7 +1175,7 @@ window.onload = main;
 ```
 
 ### 3.4. Monitor
-#### [`core/monitor/ConsumerNode.ts`](https://github.com/samchon/tgrid.projects.fog-computing/blob/master/src/core/monitor/ConsumerNode.ts)
+#### [`core/monitor/ConsumerNode.ts`](https://github.com/samchon/tgrid.projects.grid-market/blob/master/src/core/monitor/ConsumerNode.ts)
 ```typescript
 import { HashMap } from "tstl/container/HashMap";
 import { SupplierNode } from "./SupplierNode";
@@ -1193,7 +1193,7 @@ export class ConsumerNode
 }
 ```
 
-#### [`core/monitor/SupplierNode.ts`](https://github.com/samchon/tgrid.projects.fog-computing/blob/master/src/core/monitor/SupplierNode.ts)
+#### [`core/monitor/SupplierNode.ts`](https://github.com/samchon/tgrid.projects.grid-market/blob/master/src/core/monitor/SupplierNode.ts)
 ```typescript
 import { ConsumerNode } from "./ConsumerNode";
 
@@ -1224,7 +1224,7 @@ export class SupplierNode
 }
 ```
 
-#### [`core/monitor/Monitor.ts](https://github.com/samchon/tgrid.projects.fog-computing/blob/master/src/core/monitor/Monitor.ts)
+#### [`core/monitor/Monitor.ts](https://github.com/samchon/tgrid.projects.grid-market/blob/master/src/core/monitor/Monitor.ts)
 ```typescript
 import { WebConnector } from "tgrid/protocols/web";
 import { SharedWorkerConnector } from "tgrid/protocols/workers";

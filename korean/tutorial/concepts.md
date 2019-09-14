@@ -205,6 +205,8 @@ main();
 
 
 ## 2. Components
+![Sequence Diagram](../../assets/images/diagrams/sequence.png)
+
 > ```typescript
 > // ACCESS FROM NAMESPACES
 > import tgrid = require("tgrid");
@@ -407,7 +409,7 @@ type Driver<ISomething> =
   - 데모 프로젝트
     - [Chat Application](projects/chat-application.md)
     - [Omok Game](projects/omok-game.md)
-    - [Fog Computing](projects/fog-computing.md)
+    - [Grid Market](projects/grid-market.md)
 
 #### 3.1.3. Module
  Class           | Web Browser | NodeJS | Usage
@@ -460,7 +462,7 @@ type Driver<ISomething> =
     - [Object Oriented Network](examples.md#3-object-oriented-network)
     - [Remote Critical Section](examples.md#4-remote-critical-section)
   - 데모 프로젝트
-    - [Fog Computing](projects/fog-computing.md)
+    - [Grid Market](projects/grid-market.md)
 
 #### 3.2.3. Module
  Class                    | Web Browser | NodeJS | Usage

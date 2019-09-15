@@ -10,6 +10,9 @@ gitbook build
 # RENAME DIRECTORY
 mv _book docs
 
+# ADD CNAME FILE
+echo "tgrid.dev" > ./docs/CNAME
+
 # REMOVE ALL MARKDOWN FILES
 find ./docs -type f -name "*.md" -delete
 

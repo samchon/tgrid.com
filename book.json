@@ -3,6 +3,7 @@
     "description": "Guide Documents for TGrid",
     "author": "Jeongho Nam",
 
+    "output": "./docs",
     "pdf": {
         "fontSize": 12,
         "footerTemplate": null,
@@ -16,6 +17,7 @@
         "pageNumbers": false,
         "paperSize": "a4"
     },
+
     "plugins": [
         "-highlight",
         "addcssjs",

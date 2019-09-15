@@ -1,1 +1,6 @@
 assets/designs/
+
+.bookignore
+.gitignore
+build.sh
+LICENSE

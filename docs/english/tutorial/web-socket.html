@@ -1,0 +1,916 @@
+
+<!DOCTYPE HTML>
+<html lang="english" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Web Socket · TGrid</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Jeongho Nam">
+        
+        
+    
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-codegroup/code.group.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-disqus/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-hide-navigation-buttons/index.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-panel/icons.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-panel/panel.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-theme-github/style.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="workers.html" />
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Outline</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../">
+            
+                <a href="../#installation">
+            
+                    
+                    Installation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../">
+            
+                <a href="../#references">
+            
+                    
+                    References
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Tutorial</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="basic-concepts.html">
+            
+                <a href="basic-concepts.html">
+            
+                    
+                    Basic Concepts
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="basic-concepts.html">
+            
+                <a href="basic-concepts.html#1-concepts">
+            
+                    
+                    Concepts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="basic-concepts.html">
+            
+                <a href="basic-concepts.html#2-remote-function-call">
+            
+                    
+                    Remote Function Call
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="basic-concepts.html">
+            
+                <a href="basic-concepts.html#3-remote-object-call">
+            
+                    
+                    Remote Object Call
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="basic-concepts.html">
+            
+                <a href="basic-concepts.html#4-object-oriented-network">
+            
+                    
+                    Object Oriented Network
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" >
+            
+                <span>
+            
+                    
+                    Protocols
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="2.2.1" data-path="web-socket.html">
+            
+                <a href="web-socket.html">
+            
+                    
+                    Web Socket
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2" data-path="workers.html">
+            
+                <a href="workers.html">
+            
+                    
+                    Workers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.3" >
+            
+                <span>
+            
+                    
+                    Custom Protocol
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="template.html">
+            
+                <a href="template.html">
+            
+                    
+                    Template
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="template.html">
+            
+                <a href="template.html#parallel-system">
+            
+                    
+                    Parallel System
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.2" data-path="template.html">
+            
+                <a href="template.html#distributed-system">
+            
+                    
+                    Distributed System
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.3" data-path="template.html">
+            
+                <a href="template.html#example---interaction">
+            
+                    
+                    Example - Interaction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Appendix</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" >
+            
+                <a target="_blank" href="https://github.com/samchon/tgrid/projects">
+            
+                    
+                    Roadmap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" >
+            
+                <a target="_blank" href="https://github.com/samchon/tgrid/releases">
+            
+                    
+                    Release Notes
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Web Socket</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+  <section class="normal markdown-body">
+  
+  <h2 id="1-outline">1. Outline</h2>
+<p><strong>TGrid</strong> supports Web Socket Protocol.</p>
+<p>Web Socket Protocol is the only one which is supported in the standard Web Browser, as a real-time network communication protocol. How can <strong>TGrid</strong> not support such unique protocol?</p>
+<h2 id="2-components">2. Components</h2>
+<p><img src="../../assets/images/diagrams/protocols.web.png" alt="Class Diagram"></p>
+<table>
+<thead>
+<tr>
+<th>Supports</th>
+<th style="text-align:center">Web Browser</th>
+<th style="text-align:center">NodeJS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#21-webserver">WebServer</a></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td><a href="#22-webacceptor">WebAcceptor</a></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">O</td>
+</tr>
+<tr>
+<td><a href="#23-webconnector">WebConnector</a></td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">O</td>
+</tr>
+</tbody>
+</table>
+<h3 id="21-webserver">2.1. <a href="https://tgrid.dev/api/classes/tgrid_protocols_web.webserver.html" target="_blank"><code>WebServer</code></a></h3>
+<p>Web Socket Server</p>
+<ul>
+<li>available only in <em>NodeJS</em></li>
+</ul>
+<p>The <code>WebServer</code> is a class who can open an websocket server. Clients connecting to the <code>WebServer</code> would communicate with this server through <a href="#22-webacceptor">WebAcceptor</a> objects using RFC (Remote Function Call).</p>
+<p>To open websocket server, call the <a href="https://tgrid.dev/api/classes/tgrid_protocols_web.webserver.html#open" target="_blank">WebServer.open()</a> method with a callback function which would be called whenever a client has been connected.</p>
+<h3 id="22-webacceptor">2.2. <a href="https://tgrid.dev/api/classes/tgrid_protocols_web.webacceptor.html" target="_blank"><code>WebAcceptor</code></a></h3>
+<p>Web Socket Acceptor</p>
+<ul>
+<li>available only in <em>NodeJS</em></li>
+</ul>
+<p>The <code>WebAcceptor</code> is a communicator class interacting with the remote (web socket) client using RFC (Remote Function Call). The <code>WebAcceptor</code> objects are always created by the <a href="#21-webserver">WebServer</a> class whenever a remote client connects to its server.</p>
+<p>To accept connection and start interaction with the remote client, call the <a href="https://tgrid.dev/api/classes/tgrid_protocols_web.webacceptor.html#accept" target="_blank">WebAcceptor.accept()</a> method with special <a href="Basic-Concepts#12-provider">Provider</a>. Also, don&apos;t forget to closing the connection after your busines has been completed.</p>
+<h3 id="23-webconnector">2.3. <a href="https://tgrid.dev/api/classes/tgrid_protocols_web.webconnector.html" target="_blank"><code>WebConnector</code></a></h3>
+<p>Web Socket Connector.</p>
+<p>The <code>WebConnector</code> is a communicator class who can connect to websocket server and interact with it using RFC (Remote Function Call).</p>
+<p>You can connect to the websocket server using <a href="https://tgrid.dev/api/classes/tgrid_protocols_web.webconnector.html#connect" target="_blank">WebConnector.connect()</a> method. The interaction would be started if the server is opened by <a href="https://tgrid.dev/api/classes/tgrid_protocols_web.webserver.html#open" target="_blank">WebServer.open()</a> and the server accepts your connection by <a href="https://tgrid.dev/api/classes/tgrid_protocols_web.webacceptor.html#accept" target="_blank">WebAcceptor.accept()</a>.</p>
+<p>Note that, after you business has been completed, please close the connection using <a href="https://tgrid.dev/api/classes/tgrid_protocols_web.webacceptor.html#close" target="_blank">WebConnector.close()</a> or let the server to close itself. If you don&apos;t close the connection in time, it may waste vulnerable resources of the server.</p>
+<h2 id="3-examples">3. Examples</h2>
+<h3 id="31-composite-calculator">3.1. Composite Calculator</h3>
+<p>The composite-calculator had handled in the <a href="Basic-Concepts#3-remote-object-call">Basic Concepts - Remote Object Call</a> subject. Repeating the example, let&apos;s review how to use Websocket with <a href="Basic-Concepts#2-remote-function-call">RFC</a> &amp; <a href="Basic-Concepts#3-remote-object-call">ROC</a>.</p>
+<h4 id="controllersicalculatorts"><a href="https://github.com/samchon/tgrid.examples/blob/master/src/controllers/ICalculator.ts" target="_blank"><code>../controllers/ICalculator.ts</code></a></h4>
+<p>As you&apos;ve seen in the <a href="Basic-Concepts">Basic Concepts</a>, <code>ICompositeCalculator</code> would be <a href="Basic-Concepts#13-controller">Controller</a> who defines provided features from the server and the features have composite structure.</p>
+<p>Look at the below definition. Every functions, provided from server to client, are not placed in the root scope (<code>ICompositeCalculator</code>). Some functions are placed in child scoped objects like <code>ICompositeCalculator.scientific</code> and <code>ICompositeCalculator.statistics</code>.</p>
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">ICompositeCalculator</span> 
+    <span class="token keyword">extends</span> <span class="token class-name">ISimpleCalculator</span>
+<span class="token punctuation">{</span>
+    scientific<span class="token punctuation">:</span> IScientific<span class="token punctuation">;</span>
+    statistics<span class="token punctuation">:</span> IStatistics<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">ISimpleCalculator</span>
+<span class="token punctuation">{</span>
+    <span class="token function">plus</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    <span class="token function">minus</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    <span class="token function">multiplies</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    <span class="token function">divides</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">IScientific</span>
+<span class="token punctuation">{</span>
+    <span class="token function">pow</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    <span class="token function">sqrt</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    <span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">IStatistics</span>
+<span class="token punctuation">{</span>
+    <span class="token function">mean</span><span class="token punctuation">(</span><span class="token operator">...</span>elems<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    <span class="token function">stdev</span><span class="token punctuation">(</span><span class="token operator">...</span>elems<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="composite-calculatorserverts"><a href="https://github.com/samchon/tgrid.examples/blob/master/src/projects/composite-calculator/server.ts" target="_blank"><code>composite-calculator/server.ts</code></a></h4>
+<p>Server provides <code>Calculator</code> to clients.</p>
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WebServer<span class="token punctuation">,</span> WebAcceptor <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/web&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> CompositeCalculator <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../../providers/Calculator&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">let</span> server<span class="token punctuation">:</span> WebServer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">await</span> server<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token number">10102</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">acceptor<span class="token punctuation">:</span> WebAcceptor</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">await</span> acceptor<span class="token punctuation">.</span><span class="token function">accept</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">CompositeCalculator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h4 id="composite-calculatorclientts"><a href="https://github.com/samchon/tgrid.examples/blob/master/src/projects/composite-calculator/client.ts" target="_blank"><code>composite-calculator/client.ts</code></a></h4>
+<p>Client connects to <a href="#composite-calculatorserverts">websocket server</a> and call remote functions. The provided features are defined in the <a href="#controllersicalculatorts">ICompositeCalculator</a> and client calls those features through <code>Driver<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Controller</span><span class="token punctuation">&gt;</span></span></code>.</p>
+<p>As you can see, it&apos;s not a matter for RFC (Remote Function Call) whether the provided features are complicated or not.</p>
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WebConnector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/web&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Driver <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/components&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ICompositeCalculator <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../../controllers/ICalculator&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">//----</span>
+    <span class="token comment">// PREPARES</span>
+    <span class="token comment">//----</span>
+    <span class="token comment">// DO CONNECT</span>
+    <span class="token keyword">let</span> connector<span class="token punctuation">:</span> WebConnector <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebConnector</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">await</span> connector<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span><span class="token string">&quot;ws://127.0.0.1:10102&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// GET DRIVER</span>
+    <span class="token keyword">let</span> calc<span class="token punctuation">:</span> Driver<span class="token operator">&lt;</span>ICompositeCalculator<span class="token operator">&gt;</span> <span class="token operator">=</span> connector<span class="token punctuation">.</span>getDriver<span class="token operator">&lt;</span>ICompositeCalculator<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">//----</span>
+    <span class="token comment">// CALL FUNCTIONS</span>
+    <span class="token comment">//----</span>
+    <span class="token comment">// FUNCTIONS IN THE ROOT SCOPE</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;1 + 6 =&quot;</span><span class="token punctuation">,</span> <span class="token keyword">await</span> calc<span class="token punctuation">.</span><span class="token function">plus</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;7 * 2 =&quot;</span><span class="token punctuation">,</span> <span class="token keyword">await</span> calc<span class="token punctuation">.</span><span class="token function">multiplies</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// FUNCTIONS IN AN OBJECT (SCIENTIFIC)</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;3 ^ 4 =&quot;</span><span class="token punctuation">,</span> <span class="token keyword">await</span> calc<span class="token punctuation">.</span>scientific<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;log (2, 32) =&quot;</span><span class="token punctuation">,</span> <span class="token keyword">await</span> calc<span class="token punctuation">.</span>scientific<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">try</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// TO CATCH EXCEPTION IS STILL POSSIBLE</span>
+        <span class="token keyword">await</span> calc<span class="token punctuation">.</span>scientific<span class="token punctuation">.</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">catch</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;SQRT (-4) -&gt; Error:&quot;</span><span class="token punctuation">,</span> err<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// FUNCTIONS IN AN OBJECT (STATISTICS)</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;Mean (1, 2, 3, 4) =&quot;</span><span class="token punctuation">,</span> <span class="token keyword">await</span> calc<span class="token punctuation">.</span>statistics<span class="token punctuation">.</span><span class="token function">mean</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;Stdev. (1, 2, 3, 4) =&quot;</span><span class="token punctuation">,</span> <span class="token keyword">await</span> calc<span class="token punctuation">.</span>statistics<span class="token punctuation">.</span><span class="token function">stdev</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">//----</span>
+    <span class="token comment">// TERMINATE</span>
+    <span class="token comment">//----</span>
+    <span class="token keyword">await</span> connector<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="32-console-chat">3.2. Console Chat</h3>
+<p>Bi-directional network application; <code>console</code> version.</p>
+<p>We&apos;ve only handled uni-directional network applications that server only provide features and client only utilize them through RFC (Remote Function Call).</p>
+<p>From now on, let&apos;s make an application that server and client are providing features to each other. Chat application always be the best practice for such bi-directional network application. As <strong>TGrid</strong> is not a type of front-end library, the example would be run on <code>console</code>.</p>
+<h4 id="controllers--providers"><a href="https://github.com/samchon/tgrid.examples/tree/master/src/controllers" target="_blank"><code>../controllers</code></a> &amp; <a href="https://github.com/samchon/tgrid.examples/tree/master/src/providers" target="_blank"><code>../providers</code></a></h4>
+<p>Two <a href="Basic-Concepts#12-provider">Providers</a> and <a href="Basic-Concepts#13-controller">Controllers</a>.</p>
+<p>The chat application is a type of bi-directional network application. Thus, the chat application demans two types of providers and controllers. <strong>Server</strong> requires <code>Controller</code> of the client&apos;s <code>Provider</code>. The <strong>Client</strong> also needs <code>Controller</code> of server&apos;s <code>Provider</code>, too.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Server</th>
+<th>Client</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Provider</strong></td>
+<td><a href="https://github.com/samchon/tgrid.examples/blob/master/src/providers/ChatService.ts" target="_blank">ChatService</a></td>
+<td><a href="https://github.com/samchon/tgrid.examples/blob/master/src/projects/console-chat/client.ts#L8-L14" target="_blank">ChatPrinter</a></td>
+</tr>
+<tr>
+<td><strong>Controller</strong></td>
+<td><a href="https://github.com/samchon/tgrid.examples/blob/master/src/controllers/IChatPrinter.ts" target="_blank"><code>IChatPrinter</code></a></td>
+<td><a href="https://github.com/samchon/tgrid.examples/blob/master/src/controllers/IChatService.ts" target="_blank"><code>IChatService</code></a></td>
+</tr>
+</tbody>
+</table>
+<pre class="language-"><code class="lang-typescript"><span class="token comment">//----</span>
+<span class="token comment">// IChatPrinter.ts</span>
+<span class="token comment">//    - client provides to server</span>
+<span class="token comment">//    - server calls through RFC</span>
+<span class="token comment">//----</span>
+<span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">IChatPrinter</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * Print message to client&apos;s console.
+     */</span>
+    <span class="token function">print</span><span class="token punctuation">(</span>name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> content<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//----</span>
+<span class="token comment">// IChatService.ts</span>
+<span class="token comment">//    - server provides to clients</span>
+<span class="token comment">//    - clients call through RFC</span>
+<span class="token comment">//----</span>
+<span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">IChatService</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * Set my name.
+     * 
+     * If duplicated name exists in the remote server, return false.
+     * 
+     * @return Whether the name is unique in the server or not.
+     */</span>
+    <span class="token function">setName</span><span class="token punctuation">(</span>val<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">boolean</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/**
+     * Talk to everyone who are participating in the server.
+     */</span>
+    <span class="token function">talk</span><span class="token punctuation">(</span>str<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="providerschatservicets"><a href="https://github.com/samchon/tgrid.examples/blob/master/src/providers/ChatService.ts" target="_blank"><code>../providers/ChatService.ts</code></a></h4>
+<ul>
+<li><code>ChatService</code> would be <code>Provider</code>.<ul>
+<li><code>ChatService</code> manages <em>participants</em>.</li>
+<li>When disconnected, the participant would be <em>erased</em>.</li>
+<li>When clients <em>talk</em>,</li>
+</ul>
+</li>
+<li>Server would inform the messages to clients through <code>Driver<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>IChatPrinter</span><span class="token punctuation">&gt;</span></span></code>.</li>
+</ul>
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> IChatService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../controllers/IChatService&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Driver <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/components&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> HashMap <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tstl/container/HashMap&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> IChatPrinter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../controllers/IChatPrinter&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">ChatService</span> <span class="token keyword">implements</span> <span class="token class-name">IChatService</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> participants_<span class="token punctuation">:</span> HashMap<span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token punctuation">,</span> Driver<span class="token operator">&lt;</span>IChatPrinter<span class="token operator">&gt;&gt;</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> driver_<span class="token punctuation">:</span> Driver<span class="token operator">&lt;</span>IChatPrinter<span class="token operator">&gt;</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> name_<span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">assign</span><span class="token punctuation">(</span>driver<span class="token punctuation">:</span> Driver<span class="token operator">&lt;</span>IChatPrinter<span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>driver_ <span class="token operator">=</span> driver<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name_ <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+            ChatService<span class="token punctuation">.</span>participants_<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name_<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">setName</span><span class="token punctuation">(</span>str<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">boolean</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>ChatService<span class="token punctuation">.</span>participants_<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token comment">// DUPLICATED NAME</span>
+
+        <span class="token comment">// SET NAME AND ENROLL IT TO DICTIONARY</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name_ <span class="token operator">=</span> str<span class="token punctuation">;</span>
+        ChatService<span class="token punctuation">.</span>participants_<span class="token punctuation">.</span><span class="token function">emplace</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>driver_<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// INFORMS TRUE TO CLIENT</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">talk</span><span class="token punctuation">(</span>content<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// INFORM TO EVERYBODY</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> it <span class="token keyword">of</span> ChatService<span class="token punctuation">.</span>participants_<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">let</span> driver<span class="token punctuation">:</span> Driver<span class="token operator">&lt;</span>IChatPrinter<span class="token operator">&gt;</span> <span class="token operator">=</span> it<span class="token punctuation">.</span>second<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>driver <span class="token operator">===</span> <span class="token keyword">this</span><span class="token punctuation">.</span>driver_<span class="token punctuation">)</span>
+                <span class="token keyword">continue</span><span class="token punctuation">;</span> <span class="token comment">// SKIP HIMSELF</span>
+
+            <span class="token comment">// INFORM IT TO CLIENT</span>
+            <span class="token keyword">let</span> promise<span class="token punctuation">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span> <span class="token operator">=</span> driver<span class="token punctuation">.</span><span class="token function">talk</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name_<span class="token punctuation">,</span> content<span class="token punctuation">)</span>
+
+            <span class="token comment">// DISCONNECTION WHILE TALKING MAY POSSIBLE</span>
+            promise<span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+        <span class="token punctuation">}</span>
+        <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name_ <span class="token operator">+</span> <span class="token string">&quot;: &quot;</span> <span class="token operator">+</span> content<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="console-chatserverts"><a href="https://github.com/samchon/tgrid.examples/blob/master/src/projects/console-chat/server.ts" target="_blank"><code>console-chat/server.ts</code></a></h4>
+<ul>
+<li>Server provides <code>ChatService</code>.<ul>
+<li><code>ChatService</code> manages <em>participants</em>.</li>
+<li>When disconnection with client, <em>erase</em> the participant.</li>
+<li>When clients <em>talk</em>,</li>
+</ul>
+</li>
+<li>Server informs chat messages to clients through <code>Driver<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>IChatPrinter</span><span class="token punctuation">&gt;</span></span></code>.</li>
+</ul>
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WebServer<span class="token punctuation">,</span> WebAcceptor <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/web&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Driver <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/components&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ChatService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../../providers/ChatService&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> IChatPrinter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../../controllers/IChatPrinter&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">let</span> server<span class="token punctuation">:</span> WebServer<span class="token operator">&lt;</span>ChatService<span class="token operator">&gt;</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">await</span> server<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token number">10103</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">acceptor<span class="token punctuation">:</span> WebAcceptor<span class="token operator">&lt;</span>ChatService<span class="token operator">&gt;</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// PREPARE DRIVER</span>
+        <span class="token keyword">let</span> driver<span class="token punctuation">:</span> Driver<span class="token operator">&lt;</span>IChatPrinter<span class="token operator">&gt;</span> <span class="token operator">=</span> acceptor<span class="token punctuation">.</span>getDriver<span class="token operator">&lt;</span>IChatPrinter<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> service<span class="token punctuation">:</span> ChatService <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatService</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        service<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>driver<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// HANDSHAKE</span>
+        <span class="token keyword">await</span> acceptor<span class="token punctuation">.</span><span class="token function">accept</span><span class="token punctuation">(</span>service<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// DESTRUCTOR</span>
+        <span class="token keyword">await</span> acceptor<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        service<span class="token punctuation">.</span><span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h4 id="console-chatclientts"><a href="https://github.com/samchon/tgrid.examples/blob/master/src/projects/console-chat/client.ts" target="_blank"><code>console-chat/client.ts</code></a></h4>
+<ul>
+<li>Client participates in chatting service through <code>Driver<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>IChatService</span><span class="token punctuation">&gt;</span></span></code>.<ul>
+<li>When connected, <em>inform</em> server its <em>name</em>.</li>
+<li>Repeat <em>talking</em> until break.</li>
+</ul>
+</li>
+<li>Client provides <code>ChatPrinter</code> to server.</li>
+</ul>
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WebConnector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/web&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Driver <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/components&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Scanner <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../../utils/Scanner&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> IChatService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../../controllers/IChatService&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> IChatPrinter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../../controllers/IChatPrinter&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">ChatPrinter</span> <span class="token keyword">implements</span> <span class="token class-name">IChatPrinter</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token function">talk</span><span class="token punctuation">(</span>name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> content<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span>
+    <span class="token punctuation">{</span>
+        <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>content<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">//----</span>
+    <span class="token comment">// PREPARATIONS</span>
+    <span class="token comment">//----</span>
+    <span class="token comment">// CONNECT WITH LISTENER</span>
+    <span class="token keyword">let</span> connector<span class="token punctuation">:</span> WebConnector <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebConnector</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ChatPrinter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">await</span> connector<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span><span class="token string">&quot;ws://127.0.0.1:10103&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// SPECIFY CONTROLLER</span>
+    <span class="token keyword">let</span> service<span class="token punctuation">:</span> Driver<span class="token operator">&lt;</span>IChatService<span class="token operator">&gt;</span> <span class="token operator">=</span> connector<span class="token punctuation">.</span>getDriver<span class="token operator">&lt;</span>IChatService<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">//----</span>
+    <span class="token comment">// DO CHAT</span>
+    <span class="token comment">//----</span>
+    <span class="token comment">// SET MY NAME</span>
+    <span class="token keyword">let</span> nickname<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        nickname <span class="token operator">=</span> <span class="token keyword">await</span> Scanner<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token string">&quot;Insert your nickname: &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">await</span> service<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span>nickname<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// TALK UNTIL QUIT</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> content<span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token keyword">await</span> Scanner<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>nickname <span class="token operator">+</span> <span class="token string">&quot;: &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>content <span class="token operator">==</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">await</span> service<span class="token punctuation">.</span><span class="token function">talk</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// QUIT</span>
+    <span class="token keyword">await</span> connector<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token parameter">exp</span> <span class="token operator">=&gt;</span>
+<span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>exp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="33-chat-application">3.3. Chat Application</h3>
+
+  
+  </section>
+
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                
+                <a href="workers.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Workers">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Web Socket","level":"2.2.1","depth":2,"next":{"title":"Workers","level":"2.2.2","depth":2,"path":"tutorial/workers.md","ref":"tutorial/workers.md","articles":[]},"previous":{"title":"Protocols","level":"2.2","depth":1,"ref":"","articles":[{"title":"Web Socket","level":"2.2.1","depth":2,"path":"tutorial/web-socket.md","ref":"tutorial/web-socket.md","articles":[]},{"title":"Workers","level":"2.2.2","depth":2,"path":"tutorial/workers.md","ref":"tutorial/workers.md","articles":[]},{"title":"Custom Protocol","level":"2.2.3","depth":2,"ref":"","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-highlight","addcssjs","code","codegroup","disqus","github","hide-navigation-buttons","hide-published-with","panel","prism","theme-darkblue","theme-github","sitemap-general"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"disqus":{"useIdentifier":false,"shortName":"tgrid"},"github":{"url":"https://github.com/samchon/tgrid"},"panel":{},"theme-github":{},"search":{},"addcssjs":{"css":[],"js":[]},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-published-with":{},"sitemap-general":{"prefix":"https://tgrid.dev/"},"codegroup":{"defaultTabName":"Code","rememberTabs":true,"tabNameSeperator":"::"},"fontsettings":{"theme":"white","family":"sans","size":2},"hide-navigation-buttons":{},"theme-darkblue":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Jeongho Nam","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":56,"bottom":56},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":true},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"TGrid","language":"english","gitbook":"*","description":"Guide Documents for TGrid"},"file":{"path":"tutorial/web-socket.md","mtime":"2019-09-15T10:02:58.848Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-15T10:24:57.563Z"},"basePath":"..","book":{"language":"english"}});
+        });
+    </script>
+</div>
+
+        
+    
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-codegroup/code.group.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-hide-published-with/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    
+
+    </body>
+</html>
+

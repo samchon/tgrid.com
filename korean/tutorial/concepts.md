@@ -54,8 +54,8 @@ Hierarchical | Composite | Single
 
 {% codegroup  %}
 ```typescript::Hierarchical
-import { WorkerConnector } from "tgrid/protocols/workers";
-import { Driver } from "tgrid/components";
+import { WorkerConnector } from "tgrid/protocols/workers/WorkerConnector";
+import { Driver } from "tgrid/components/Driver";
 
 import { ICompositeCalculator } from "../../controllers/ICalculator";
 
@@ -106,8 +106,8 @@ main().catch(exp =>
 });
 ```
 ```typescript::Composite
-import { WebConnector } from "tgrid/protocols/web";
-import { Driver } from "tgrid/components";
+import { WebConnector } from "tgrid/protocols/web/WebConnector";
+import { Driver } from "tgrid/components/Driver";
 
 import { ICompositeCalculator } from "../../controllers/ICalculator";
 
@@ -233,7 +233,8 @@ Communicates with Remote System.
 
 {% codegroup %}
 ```typescript::Server
-import { WebServer, WebAcceptor } from "tgrid/protocols/web";
+import { WebServer } from "tgrid/protocols/web/WebServer";
+import { WebAcceptor } from "tgrid/protocols/web/WebAcceptor";
 import { Calculator } from "../providers/Calculator";
 
 async function main(): Promise<void>
@@ -249,8 +250,8 @@ async function main(): Promise<void>
 }
 ```
 ```typescript::Client
-import { WebConnector } from "tgrid/protocols/web";
-import { Driver } from "tgrid/components";
+import { WebConnector } from "tgrid/protocols/web/WebConnector";
+import { Driver } from "tgrid/components/Driver";
 import { ICalculator } from "../controllers/ICalculator";
 
 async function main(): Promise<void>

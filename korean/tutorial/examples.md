@@ -555,8 +555,9 @@ main();
 
 {% codegroup %}
 ```typescript::Object Oriented Network
-import { WorkerServer, WorkerConnector } from "tgrid/protocols/workers";
-import { Driver } from "tgrid/components";
+import { WorkerServer } from "tgrid/protocols/workers/WorkerServer";
+import { WorkerConnector } from "tgrid/protocols/workers/WorkerConnector
+import { Driver } from "tgrid/components/Driver";
 
 import { SimpleCalculator } from "../../providers/Calculator";
 import { IScientific, IStatistics } from "../../controllers/ICalculator";
@@ -594,7 +595,8 @@ async function main(): Promise<void>
 main();
 ```
 ```typescript::Remote Object Call
-import { WebServer, WebAcceptor } from "tgrid/protocols/web";
+import { WebServer } from "tgrid/protocols/web/WebServer";
+import { WebAcceptor } from "tgrid/protocols/web/WebAcceptor";
 import { CompositeCalculator } from "../../providers/Calculator";
 
 async function main(): Promise<void>
@@ -627,8 +629,8 @@ main();
 #### [`hierarchical-calculator/index.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/hierarchical-calculator/index.ts)
 {% codegroup %}
 ```typescript::Object Oriented Network
-import { WorkerConnector } from "tgrid/protocols/workers";
-import { Driver } from "tgrid/components";
+import { WorkerConnector } from "tgrid/protocols/workers/WorkerConnector";
+import { Driver } from "tgrid/components/Driver";
 
 import { ICompositeCalculator } from "../../controllers/ICalculator";
 
@@ -679,8 +681,8 @@ main().catch(exp =>
 });
 ```
 ```typescript::Remote Object Call
-import { WebConnector } from "tgrid/protocols/web";
-import { Driver } from "tgrid/components";
+import { WebConnector } from "tgrid/protocols/web/WebConnector";
+import { Driver } from "tgrid/components/Driver";
 
 import { ICompositeCalculator } from "../../controllers/ICalculator";
 
@@ -830,7 +832,7 @@ interface IMutex
 }
 ```
 ```typescript::index.ts - Provider
-import { Mutex } from "tstl/thread";
+import { Mutex } from "tstl/thread/Mutex";
 
 export class CriticalSection
 {
@@ -853,9 +855,9 @@ export class CriticalSection
 
 #### [`thread/index.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/thread/index.ts)
 ```typescript
-import { WorkerConnector } from "tgrid/protocols/workers";
+import { WorkerConnector } from "tgrid/protocols/workers/WorkerConnector";
 
-import { Mutex } from "tstl/thread";
+import { Mutex } from "tstl/thread/Mutex";
 
 class CriticalSection
 {
@@ -905,8 +907,8 @@ main();
 
 #### [`thread/child.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/thread/child.ts)
 ```typescript
-import { WorkerServer } from "tgrid/protocol/worker";
-import { Driver } from "tgrid/components";
+import { WorkerServer } from "tgrid/protocol/worker/WorkerServer";
+import { Driver } from "tgrid/components/Driver";
 
 import { Mutex, sleep_for } from "tstl/thread";
 import { randint } from "tstl/algorithm";

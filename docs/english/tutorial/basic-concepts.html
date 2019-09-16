@@ -26,6 +26,10 @@
                 
             
                 
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-collapse/collapse.css">
+                
+            
+                
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-disqus/plugin.css">
                 
             
@@ -488,14 +492,14 @@
 <li><code>ISimpleCalculator</code> -&gt; be <a href="#13-controller">Controller</a></li>
 <li><code>SimpleCalculator</code> -&gt; be <a href="#12-provider">Provider</a></li>
 </ul>
-<p><div id="e88d9622ce72018cc9d4683a2e048588" class="gbcg gbcg-codegroup" data-remember-tabs="true">
+<p><div id="45de64659238902e6cf428e174f8e1d8" class="gbcg gbcg-codegroup" data-remember-tabs="true">
   <div class="gbcg-tab-selectors">
-    <a id="select-typescript-0-de7db0c515b03ba3b3f419a9df321e84" class="gbcg-selector gbcg-active" data-tab="typescript-0-de7db0c515b03ba3b3f419a9df321e84">Controller</a>
-    <a id="select-typescript-1-d29c5051c725f48d1f78b89de9e14a58" class="gbcg-selector" data-tab="typescript-1-d29c5051c725f48d1f78b89de9e14a58">Provider</a>
+    <a id="select-typescript-0-0ccb560aa74abe1ea2f0c485ab3074e0" class="gbcg-selector gbcg-active" data-tab="typescript-0-0ccb560aa74abe1ea2f0c485ab3074e0">Controller</a>
+    <a id="select-typescript-1-8343f996563451c571ca2b52c8b02f56" class="gbcg-selector" data-tab="typescript-1-8343f996563451c571ca2b52c8b02f56">Provider</a>
   </div>
   <div class="gbcg-tab-contents">
     <div id="gbcg-tab-container">
-      <div id="typescript-0-de7db0c515b03ba3b3f419a9df321e84" class="gbcg-tab-item gbcb-Controller">
+      <div id="typescript-0-0ccb560aa74abe1ea2f0c485ab3074e0" class="gbcg-tab-item gbcb-Controller">
         <pre class="language-"><code class="lang-typescript"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">ISimpleCalculator</span>
 <span class="token punctuation">{</span>
     <span class="token function">plus</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
@@ -508,8 +512,8 @@
     </div>
     <div class="gbcg-tab-item-cntr">
       <div>
-        <h3 class="gbcg-tabname typescript-0-de7db0c515b03ba3b3f419a9df321e84" id="controller">Controller</h3>
-        <div id="typescript-0-de7db0c515b03ba3b3f419a9df321e84" class="gbcg-tab-item gbcb-Controller">
+        <h3 class="gbcg-tabname typescript-0-0ccb560aa74abe1ea2f0c485ab3074e0" id="controller">Controller</h3>
+        <div id="typescript-0-0ccb560aa74abe1ea2f0c485ab3074e0" class="gbcg-tab-item gbcb-Controller">
           <pre class="language-"><code class="lang-typescript"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">ISimpleCalculator</span>
 <span class="token punctuation">{</span>
     <span class="token function">plus</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
@@ -521,8 +525,8 @@
         </div>
       </div>
       <div>
-        <h3 class="gbcg-tabname typescript-1-d29c5051c725f48d1f78b89de9e14a58" id="provider">Provider</h3>
-        <div id="typescript-1-d29c5051c725f48d1f78b89de9e14a58" class="gbcg-tab-item gbcb-Provider">
+        <h3 class="gbcg-tabname typescript-1-8343f996563451c571ca2b52c8b02f56" id="provider">Provider</h3>
+        <div id="typescript-1-8343f996563451c571ca2b52c8b02f56" class="gbcg-tab-item gbcb-Provider">
           <pre class="language-"><code class="lang-typescript"><span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">SimpleCalculator</span> <span class="token keyword">implements</span> <span class="token class-name">ISimpleCalculator</span>
 <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token function">plus</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span>
@@ -624,14 +628,14 @@
 <h3 id="31-interface">3.1. Interface</h3>
 <p>To demonstrate the composite call, we&apos;ll evolve the previous <em>Remote Calculator</em>. In addition to the ordinary (four arithmetic) operations, we&apos;ll add <code>scientific</code> and <code>statistics</code> operations. Of course, those operations would be placed in composite scopes. </p>
 <p>Look at the interface <code>ICompositeCalculator</code> and find what has been changed.</p>
-<p><div id="85c6cde7f042e2df3d71aafeedeaa62a" class="gbcg gbcg-codegroup" data-remember-tabs="true">
+<p><div id="be0b53b913acb051d0b034552bcffc02" class="gbcg gbcg-codegroup" data-remember-tabs="true">
   <div class="gbcg-tab-selectors">
-    <a id="select-typescript-0-631cb7f0e89e6adaf0425b3128b16429" class="gbcg-selector gbcg-active" data-tab="typescript-0-631cb7f0e89e6adaf0425b3128b16429">ICalculator.ts</a>
-    <a id="select-typescript-1-0737a9163dde85e56a168c83282a9648" class="gbcg-selector" data-tab="typescript-1-0737a9163dde85e56a168c83282a9648">Calculator.ts</a>
+    <a id="select-typescript-0-5fbe514cbdb6b7a22fc91efda8d3f1a1" class="gbcg-selector gbcg-active" data-tab="typescript-0-5fbe514cbdb6b7a22fc91efda8d3f1a1">ICalculator.ts</a>
+    <a id="select-typescript-1-bacf4e27ec6613cf1502aba4dde3e9af" class="gbcg-selector" data-tab="typescript-1-bacf4e27ec6613cf1502aba4dde3e9af">Calculator.ts</a>
   </div>
   <div class="gbcg-tab-contents">
     <div id="gbcg-tab-container">
-      <div id="typescript-0-631cb7f0e89e6adaf0425b3128b16429" class="gbcg-tab-item gbcb-ICalculator.ts">
+      <div id="typescript-0-5fbe514cbdb6b7a22fc91efda8d3f1a1" class="gbcg-tab-item gbcb-ICalculator.ts">
         <pre class="language-"><code class="lang-typescript"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">ICompositeCalculator</span> 
     <span class="token keyword">extends</span> <span class="token class-name">ISimpleCalculator</span>
 <span class="token punctuation">{</span>
@@ -662,8 +666,8 @@
     </div>
     <div class="gbcg-tab-item-cntr">
       <div>
-        <h3 class="gbcg-tabname typescript-0-631cb7f0e89e6adaf0425b3128b16429" id="icalculatorts">ICalculator.ts</h3>
-        <div id="typescript-0-631cb7f0e89e6adaf0425b3128b16429" class="gbcg-tab-item gbcb-ICalculator.ts">
+        <h3 class="gbcg-tabname typescript-0-5fbe514cbdb6b7a22fc91efda8d3f1a1" id="icalculatorts">ICalculator.ts</h3>
+        <div id="typescript-0-5fbe514cbdb6b7a22fc91efda8d3f1a1" class="gbcg-tab-item gbcb-ICalculator.ts">
           <pre class="language-"><code class="lang-typescript"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">ICompositeCalculator</span> 
     <span class="token keyword">extends</span> <span class="token class-name">ISimpleCalculator</span>
 <span class="token punctuation">{</span>
@@ -693,8 +697,8 @@
         </div>
       </div>
       <div>
-        <h3 class="gbcg-tabname typescript-1-0737a9163dde85e56a168c83282a9648" id="calculatorts">Calculator.ts</h3>
-        <div id="typescript-1-0737a9163dde85e56a168c83282a9648" class="gbcg-tab-item gbcb-Calculator.ts">
+        <h3 class="gbcg-tabname typescript-1-bacf4e27ec6613cf1502aba4dde3e9af" id="calculatorts">Calculator.ts</h3>
+        <div id="typescript-1-bacf4e27ec6613cf1502aba4dde3e9af" class="gbcg-tab-item gbcb-Calculator.ts">
           <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> 
     ICompositeCalculator<span class="token punctuation">,</span> 
     ISimpleCalculator<span class="token punctuation">,</span> IScientific<span class="token punctuation">,</span> IStatistics
@@ -876,14 +880,14 @@ Stdev. (1, 2, 3, 4) = 1.118033988749895
 </tbody>
 </table>
 <h3 id="41-internal-files">4.1. Internal Files</h3>
-<p><div id="63f07385681e8a91e3b36829b03a0cd2" class="gbcg gbcg-codegroup" data-remember-tabs="true">
+<p><div id="2693377630bcfbb21047ee7eb1f800dc" class="gbcg gbcg-codegroup" data-remember-tabs="true">
   <div class="gbcg-tab-selectors">
-    <a id="select-typescript-0-631cb7f0e89e6adaf0425b3128b16429" class="gbcg-selector gbcg-active" data-tab="typescript-0-631cb7f0e89e6adaf0425b3128b16429">Controller</a>
-    <a id="select-typescript-1-0737a9163dde85e56a168c83282a9648" class="gbcg-selector" data-tab="typescript-1-0737a9163dde85e56a168c83282a9648">Controller</a>
+    <a id="select-typescript-0-5fbe514cbdb6b7a22fc91efda8d3f1a1" class="gbcg-selector gbcg-active" data-tab="typescript-0-5fbe514cbdb6b7a22fc91efda8d3f1a1">Controller</a>
+    <a id="select-typescript-1-bacf4e27ec6613cf1502aba4dde3e9af" class="gbcg-selector" data-tab="typescript-1-bacf4e27ec6613cf1502aba4dde3e9af">Controller</a>
   </div>
   <div class="gbcg-tab-contents">
     <div id="gbcg-tab-container">
-      <div id="typescript-0-631cb7f0e89e6adaf0425b3128b16429" class="gbcg-tab-item gbcb-Controller">
+      <div id="typescript-0-5fbe514cbdb6b7a22fc91efda8d3f1a1" class="gbcg-tab-item gbcb-Controller">
         <pre class="language-"><code class="lang-typescript"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">ICompositeCalculator</span> 
     <span class="token keyword">extends</span> <span class="token class-name">ISimpleCalculator</span>
 <span class="token punctuation">{</span>
@@ -914,8 +918,8 @@ Stdev. (1, 2, 3, 4) = 1.118033988749895
     </div>
     <div class="gbcg-tab-item-cntr">
       <div>
-        <h3 class="gbcg-tabname typescript-0-631cb7f0e89e6adaf0425b3128b16429" id="controller">Controller</h3>
-        <div id="typescript-0-631cb7f0e89e6adaf0425b3128b16429" class="gbcg-tab-item gbcb-Controller">
+        <h3 class="gbcg-tabname typescript-0-5fbe514cbdb6b7a22fc91efda8d3f1a1" id="controller">Controller</h3>
+        <div id="typescript-0-5fbe514cbdb6b7a22fc91efda8d3f1a1" class="gbcg-tab-item gbcb-Controller">
           <pre class="language-"><code class="lang-typescript"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">ICompositeCalculator</span> 
     <span class="token keyword">extends</span> <span class="token class-name">ISimpleCalculator</span>
 <span class="token punctuation">{</span>
@@ -945,8 +949,8 @@ Stdev. (1, 2, 3, 4) = 1.118033988749895
         </div>
       </div>
       <div>
-        <h3 class="gbcg-tabname typescript-1-0737a9163dde85e56a168c83282a9648" id="controller">Controller</h3>
-        <div id="typescript-1-0737a9163dde85e56a168c83282a9648" class="gbcg-tab-item gbcb-Controller">
+        <h3 class="gbcg-tabname typescript-1-bacf4e27ec6613cf1502aba4dde3e9af" id="controller">Controller</h3>
+        <div id="typescript-1-bacf4e27ec6613cf1502aba4dde3e9af" class="gbcg-tab-item gbcb-Controller">
           <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> 
     ICompositeCalculator<span class="token punctuation">,</span> 
     ISimpleCalculator<span class="token punctuation">,</span> IScientific<span class="token punctuation">,</span> IStatistics
@@ -1034,15 +1038,15 @@ Stdev. (1, 2, 3, 4) = 1.118033988749895
   </div>
 </div></p>
 <h3 id="42-remote-systems">4.2. Remote Systems</h3>
-<p><div id="49578754f839ee8e2b54e557081d7cd9" class="gbcg gbcg-codegroup" data-remember-tabs="true">
+<p><div id="edc6379ca7d245e05218a4be59f8f2d1" class="gbcg gbcg-codegroup" data-remember-tabs="true">
   <div class="gbcg-tab-selectors">
-    <a id="select-typescript-0-cd5a1cdbb45e6cfad767b6b037de1959" class="gbcg-selector gbcg-active" data-tab="typescript-0-cd5a1cdbb45e6cfad767b6b037de1959">calculator.ts</a>
-    <a id="select-typescript-1-18da7713451dc80e618249567dcb5393" class="gbcg-selector" data-tab="typescript-1-18da7713451dc80e618249567dcb5393">scientific.ts</a>
-    <a id="select-typescript-2-c1fd21fcb770a45ce2221d07bbfa356b" class="gbcg-selector" data-tab="typescript-2-c1fd21fcb770a45ce2221d07bbfa356b">statistics.ts</a>
+    <a id="select-typescript-0-18632855cb93f3f00021fc10aa7f984c" class="gbcg-selector gbcg-active" data-tab="typescript-0-18632855cb93f3f00021fc10aa7f984c">calculator.ts</a>
+    <a id="select-typescript-1-720913c8485e71decd89949730b10541" class="gbcg-selector" data-tab="typescript-1-720913c8485e71decd89949730b10541">scientific.ts</a>
+    <a id="select-typescript-2-4f2b2fdd3b6cbcc6393ba6c2f7376016" class="gbcg-selector" data-tab="typescript-2-4f2b2fdd3b6cbcc6393ba6c2f7376016">statistics.ts</a>
   </div>
   <div class="gbcg-tab-contents">
     <div id="gbcg-tab-container">
-      <div id="typescript-0-cd5a1cdbb45e6cfad767b6b037de1959" class="gbcg-tab-item gbcb-calculator.ts">
+      <div id="typescript-0-18632855cb93f3f00021fc10aa7f984c" class="gbcg-tab-item gbcb-calculator.ts">
         <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WorkerServer<span class="token punctuation">,</span> WorkerConnector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/workers&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> Driver <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/components&quot;</span><span class="token punctuation">;</span>
 
@@ -1084,8 +1088,8 @@ Stdev. (1, 2, 3, 4) = 1.118033988749895
     </div>
     <div class="gbcg-tab-item-cntr">
       <div>
-        <h3 class="gbcg-tabname typescript-0-cd5a1cdbb45e6cfad767b6b037de1959" id="calculatorts">calculator.ts</h3>
-        <div id="typescript-0-cd5a1cdbb45e6cfad767b6b037de1959" class="gbcg-tab-item gbcb-calculator.ts">
+        <h3 class="gbcg-tabname typescript-0-18632855cb93f3f00021fc10aa7f984c" id="calculatorts">calculator.ts</h3>
+        <div id="typescript-0-18632855cb93f3f00021fc10aa7f984c" class="gbcg-tab-item gbcb-calculator.ts">
           <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WorkerServer<span class="token punctuation">,</span> WorkerConnector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/workers&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> Driver <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/components&quot;</span><span class="token punctuation">;</span>
 
@@ -1126,8 +1130,8 @@ Stdev. (1, 2, 3, 4) = 1.118033988749895
         </div>
       </div>
       <div>
-        <h3 class="gbcg-tabname typescript-1-18da7713451dc80e618249567dcb5393" id="scientificts">scientific.ts</h3>
-        <div id="typescript-1-18da7713451dc80e618249567dcb5393" class="gbcg-tab-item gbcb-scientific.ts">
+        <h3 class="gbcg-tabname typescript-1-720913c8485e71decd89949730b10541" id="scientificts">scientific.ts</h3>
+        <div id="typescript-1-720913c8485e71decd89949730b10541" class="gbcg-tab-item gbcb-scientific.ts">
           <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WorkerServer <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/workers&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> Scientific <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../../providers/Calculator&quot;</span><span class="token punctuation">;</span>
 
@@ -1141,8 +1145,8 @@ Stdev. (1, 2, 3, 4) = 1.118033988749895
         </div>
       </div>
       <div>
-        <h3 class="gbcg-tabname typescript-2-c1fd21fcb770a45ce2221d07bbfa356b" id="statisticsts">statistics.ts</h3>
-        <div id="typescript-2-c1fd21fcb770a45ce2221d07bbfa356b" class="gbcg-tab-item gbcb-statistics.ts">
+        <h3 class="gbcg-tabname typescript-2-4f2b2fdd3b6cbcc6393ba6c2f7376016" id="statisticsts">statistics.ts</h3>
+        <div id="typescript-2-4f2b2fdd3b6cbcc6393ba6c2f7376016" class="gbcg-tab-item gbcb-statistics.ts">
           <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WorkerServer <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/workers&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> Statistics <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../../providers/Calculator&quot;</span><span class="token punctuation">;</span>
 
@@ -1338,7 +1342,7 @@ Stdev. <span class="token punctuation">(</span><span class="token number">1</spa
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Basic Concepts","level":"2.1","depth":1,"next":{"title":"Concepts","level":"2.1.1","depth":2,"anchor":"#1-concepts","path":"tutorial/basic-concepts.md","ref":"tutorial/basic-concepts.md#1-concepts","articles":[]},"previous":{"title":"References","level":"1.3","depth":1,"anchor":"#references","path":"README.md","ref":"README.md#references","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","addcssjs","code","codegroup","disqus","github","hide-navigation-buttons","hide-published-with","panel","prism","scroll-to-top","theme-darkblue","theme-github","sitemap-general"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"disqus":{"useIdentifier":false,"shortName":"tgrid"},"scroll-to-top":{},"github":{"url":"https://github.com/samchon/tgrid"},"panel":{},"theme-github":{},"search":{},"addcssjs":{"css":[],"js":[]},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-published-with":{},"sitemap-general":{"prefix":"https://tgrid.dev/"},"codegroup":{"defaultTabName":"Code","rememberTabs":true,"tabNameSeperator":"::"},"fontsettings":{"theme":"white","family":"sans","size":2},"hide-navigation-buttons":{},"theme-darkblue":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Jeongho Nam","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"TGrid","language":"english","gitbook":"*","description":"Guide Documents for TGrid"},"file":{"path":"tutorial/basic-concepts.md","mtime":"2019-09-16T01:21:47.407Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-16T08:49:11.365Z"},"basePath":"..","book":{"language":"english"}});
+            gitbook.page.hasChanged({"page":{"title":"Basic Concepts","level":"2.1","depth":1,"next":{"title":"Concepts","level":"2.1.1","depth":2,"anchor":"#1-concepts","path":"tutorial/basic-concepts.md","ref":"tutorial/basic-concepts.md#1-concepts","articles":[]},"previous":{"title":"References","level":"1.3","depth":1,"anchor":"#references","path":"README.md","ref":"README.md#references","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","addcssjs","code","codegroup","collapse","disqus","github","hide-navigation-buttons","hide-published-with","panel","prism","scroll-to-top","theme-darkblue","theme-github","sitemap-general"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"disqus":{"useIdentifier":false,"shortName":"tgrid"},"scroll-to-top":{},"github":{"url":"https://github.com/samchon/tgrid"},"panel":{},"theme-github":{},"search":{},"addcssjs":{"css":[],"js":[]},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"collapse":{},"hide-published-with":{},"sitemap-general":{"prefix":"https://tgrid.dev/"},"codegroup":{"defaultTabName":"Code","rememberTabs":true,"tabNameSeperator":"::"},"fontsettings":{"theme":"white","family":"sans","size":2},"hide-navigation-buttons":{},"theme-darkblue":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Jeongho Nam","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"TGrid","language":"english","gitbook":"*","description":"Guide Documents for TGrid"},"file":{"path":"tutorial/basic-concepts.md","mtime":"2019-09-15T10:02:58.846Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-16T15:48:06.577Z"},"basePath":"..","book":{"language":"english"}});
         });
     </script>
 </div>
@@ -1354,6 +1358,10 @@ Stdev. <span class="token punctuation">(</span><span class="token number">1</spa
     
         
         <script src="../../gitbook/gitbook-plugin-codegroup/code.group.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-collapse/collapse.js"></script>
         
     
         

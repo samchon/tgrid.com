@@ -84,9 +84,6 @@
 						method with special <code>Provider</code>. Also, don&#39;t forget to closing the connection after your
 					busines has been completed.</p>
 					<dl class="tsd-comment-tags">
-						<dt>wiki</dt>
-						<dd><p><a href="https://github.com/samchon/tgrid/wiki/Web-Socket">https://github.com/samchon/tgrid/wiki/Web-Socket</a></p>
-						</dd>
 						<dt>author</dt>
 						<dd><p>Jeongho Nam <a href="http://samchon.org">http://samchon.org</a></p>
 						</dd>
@@ -124,6 +121,7 @@
 				<ul class="tsd-hierarchy">
 					<li><a href="../interfaces/tgrid_protocols_web.iwebcommunicator.html" class="tsd-signature-type">IWebCommunicator</a></li>
 					<li><a href="../interfaces/tgrid_protocols.iacceptor.html" class="tsd-signature-type">IAcceptor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">WebAcceptor.State</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Provider</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li><a href="../interfaces/tgrid_protocols.ijoinable.html" class="tsd-signature-type">IJoinable</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -144,7 +142,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tgrid_protocols_web.webacceptor.html#accept" class="tsd-kind-icon">accept</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tgrid_protocols_web.webacceptor.html#close" class="tsd-kind-icon">close</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="tgrid_protocols_web.webacceptor.html#getdriver" class="tsd-kind-icon">get<wbr>Driver</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="tgrid_protocols_web.webacceptor.html#join" class="tsd-kind-icon">join</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tgrid_protocols_web.webacceptor.html#join" class="tsd-kind-icon">join</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tgrid_protocols_web.webacceptor.html#reject" class="tsd-kind-icon">reject</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="tgrid_protocols_web.webacceptor.html#replydata" class="tsd-kind-icon">reply<wbr>Data</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static"><a href="tgrid_protocols_web.webacceptor.html#create" class="tsd-kind-icon">create</a></li>
@@ -165,7 +163,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/7967934/src/protocols/web/WebAcceptor.ts#L188">protocols/web/WebAcceptor.ts:188</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/protocols/web/WebAcceptor.ts#L198">protocols/web/WebAcceptor.ts:198</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -183,7 +181,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="tgrid_components.communicator.html">Communicator</a>.<a href="tgrid_components.communicator.html#provider">provider</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/7967934/src/components/Communicator.ts#L138">components/Communicator.ts:138</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/components/Communicator.ts#L122">components/Communicator.ts:122</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -212,7 +210,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/7967934/src/protocols/web/WebAcceptor.ts#L196">protocols/web/WebAcceptor.ts:196</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/protocols/web/WebAcceptor.ts#L206">protocols/web/WebAcceptor.ts:206</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -242,7 +240,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/tgrid_protocols.iacceptor.html">IAcceptor</a>.<a href="../interfaces/tgrid_protocols.iacceptor.html#accept">accept</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/7967934/src/protocols/web/WebAcceptor.ts#L113">protocols/web/WebAcceptor.ts:113</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/protocols/web/WebAcceptor.ts#L123">protocols/web/WebAcceptor.ts:123</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -272,7 +270,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/tgrid_protocols_web.iwebcommunicator.html">IWebCommunicator</a>.<a href="../interfaces/tgrid_protocols_web.iwebcommunicator.html#close">close</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/7967934/src/protocols/web/WebAcceptor.ts#L74">protocols/web/WebAcceptor.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/protocols/web/WebAcceptor.ts#L82">protocols/web/WebAcceptor.ts:82</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -310,7 +308,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="tgrid_components.communicator.html">Communicator</a>.<a href="tgrid_components.communicator.html#getdriver">getDriver</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/7967934/src/components/Communicator.ts#L202">components/Communicator.ts:202</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/components/Communicator.ts#L146">components/Communicator.ts:146</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -341,10 +339,10 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="join" class="tsd-anchor"></a>
 					<h3>join</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 						<li class="tsd-signature tsd-kind-icon">join<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 						<li class="tsd-signature tsd-kind-icon">join<span class="tsd-signature-symbol">(</span>ms<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
 						<li class="tsd-signature tsd-kind-icon">join<span class="tsd-signature-symbol">(</span>at<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
@@ -352,9 +350,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="tgrid_components.communicator.html">Communicator</a>.<a href="tgrid_components.communicator.html#join">join</a></p>
+								<p>Implementation of <a href="../interfaces/tgrid_protocols.ijoinable.html">IJoinable</a>.<a href="../interfaces/tgrid_protocols.ijoinable.html#join">join</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/7967934/src/components/Communicator.ts#L149">components/Communicator.ts:149</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/protocols/web/WebAcceptor.ts#L214">protocols/web/WebAcceptor.ts:214</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -366,9 +364,9 @@
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="tgrid_components.communicator.html">Communicator</a>.<a href="tgrid_components.communicator.html#join">join</a></p>
+								<p>Implementation of <a href="../interfaces/tgrid_protocols.ijoinable.html">IJoinable</a>.<a href="../interfaces/tgrid_protocols.ijoinable.html#join">join</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/7967934/src/components/Communicator.ts#L157">components/Communicator.ts:157</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/protocols/web/WebAcceptor.ts#L219">protocols/web/WebAcceptor.ts:219</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -380,9 +378,6 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>ms: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The maximum milliseconds for joining.</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -390,9 +385,9 @@
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="tgrid_components.communicator.html">Communicator</a>.<a href="tgrid_components.communicator.html#join">join</a></p>
+								<p>Implementation of <a href="../interfaces/tgrid_protocols.ijoinable.html">IJoinable</a>.<a href="../interfaces/tgrid_protocols.ijoinable.html#join">join</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/7967934/src/components/Communicator.ts#L165">components/Communicator.ts:165</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/protocols/web/WebAcceptor.ts#L224">protocols/web/WebAcceptor.ts:224</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -404,9 +399,6 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>at: <span class="tsd-signature-type">Date</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The maximum time point to join.</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -424,7 +416,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/7967934/src/protocols/web/WebAcceptor.ts#L161">protocols/web/WebAcceptor.ts:161</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/protocols/web/WebAcceptor.ts#L171">protocols/web/WebAcceptor.ts:171</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -469,7 +461,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="tgrid_components.communicator.html">Communicator</a>.<a href="tgrid_components.communicator.html#replydata">replyData</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/7967934/src/components/Communicator.ts#L280">components/Communicator.ts:280</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/components/Communicator.ts#L224">components/Communicator.ts:224</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -504,7 +496,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/7967934/src/protocols/web/WebAcceptor.ts#L55">protocols/web/WebAcceptor.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/protocols/web/WebAcceptor.ts#L62">protocols/web/WebAcceptor.ts:62</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -582,7 +574,7 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
 								<a href="tgrid_protocols_web.webacceptor.html#getdriver" class="tsd-kind-icon">get<wbr>Driver</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="tgrid_protocols_web.webacceptor.html#join" class="tsd-kind-icon">join</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">

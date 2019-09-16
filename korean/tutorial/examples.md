@@ -93,7 +93,7 @@ main();
 
 #### [`simple-calculator/client.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/simple-calculator/client.ts)
 {% codegroup %}
-```typescript::Remote-Function-Call
+```typescript::Remote Function Call
 import { WebConnector } from "tgrid/protocols/web/WebConnector";
 import { Driver } from "tgrid/components/Driver";
 import { ISimpleCalculator } from "../../controllers/ICalculator";
@@ -134,7 +134,7 @@ async function main(): Promise<void>
 }
 main();
 ```
-```typescript::Single-Program
+```typescript::Single Program
 import { SimpleCalculator } from "../../providers/Calculator";
 
 function main(): void
@@ -310,7 +310,7 @@ export class Statistics implements IStatistics
 
 #### [`composite-calculator/server.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/composite-calculator/server.ts)
 {% codegroup %}
-```typescript::Remote-Object-Call
+```typescript::Remote Object Call
 import { WebServer, WebAcceptor } from "tgrid/protocols/web";
 import { CompositeCalculator } from "../../providers/Calculator";
 
@@ -324,7 +324,7 @@ async function main(): Promise<void>
 }
 main();
 ```
-```typescript::Remote-Function-Call
+```typescript::Remote Function Call
 import { WebServer, WebAcceptor } from "tgrid/protocols/web";
 import { SimpleCalculator } from "../../providers/Calculator";
 
@@ -349,7 +349,7 @@ main();
 
 #### [`composite-calculator/client.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/composite-calculator/client.ts)
 {% codegroup %}
-```typescript::Remote-Object-Call
+```typescript::Remote Object Call
 import { WebConnector } from "tgrid/protocols/web";
 import { Driver } from "tgrid/components";
 
@@ -398,7 +398,7 @@ async function main(): Promise<void>
 }
 main();
 ```
-```typescript::Single-Program
+```typescript::Single Program
 import { CompositeCalculator } from "../../providers/Calculator";
 
 function main(): void
@@ -554,7 +554,7 @@ main();
 이로써 `HierarchicalCalculator` 는, 이전 장의 [CompositeCalculator](#21-features) 와 논리적으로 완전히 동일해졌습니다. 이 둘의 세부 구현 코드는 서로 다를 지라도, 동일한 인터페이스를 지니며 마찬가지로 동일한 기능을 제공합니다. 이쯤되면 굳이 클라이언트 프로그램의 코드를 직접 보지 않더라도, 머리 속에서 그것의 구현체가 어떻게 생겼을지 슬슬 상상이 되지 않나요?
 
 {% codegroup %}
-```typescript::Object-Oriented-Network
+```typescript::Object Oriented Network
 import { WorkerServer } from "tgrid/protocols/workers/WorkerServer";
 import { WorkerConnector } from "tgrid/protocols/workers/WorkerConnector
 import { Driver } from "tgrid/components/Driver";
@@ -594,7 +594,7 @@ async function main(): Promise<void>
 }
 main();
 ```
-```typescript::Remote-Object-Call
+```typescript::Remote Object Call
 import { WebServer } from "tgrid/protocols/web/WebServer";
 import { WebAcceptor } from "tgrid/protocols/web/WebAcceptor";
 import { CompositeCalculator } from "../../providers/Calculator";
@@ -628,7 +628,7 @@ main();
 
 #### [`hierarchical-calculator/index.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/hierarchical-calculator/index.ts)
 {% codegroup %}
-```typescript::Object-Oriented-Network
+```typescript::Object Oriented Network
 import { WorkerConnector } from "tgrid/protocols/workers/WorkerConnector";
 import { Driver } from "tgrid/components/Driver";
 
@@ -680,7 +680,7 @@ main().catch(exp =>
     console.log(exp);
 });
 ```
-```typescript::Remote-Object-Call
+```typescript::Remote Object Call
 import { WebConnector } from "tgrid/protocols/web/WebConnector";
 import { Driver } from "tgrid/components/Driver";
 
@@ -729,7 +729,7 @@ async function main(): Promise<void>
 }
 main();
 ```
-```typescript::Single-Program
+```typescript::Single Program
 import { CompositeCalculator } from "../../providers/Calculator";
 
 function main(): void

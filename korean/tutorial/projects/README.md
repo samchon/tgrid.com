@@ -1,8 +1,13 @@
 # Tutorial Projects
 ## [1. Chat Application](chat-application.md)
+> - 데모 사이트: http://samchon.org/chat
+> - 코드 저장소: https://github.com/samchon/tgrid.projects.chat-application
+
+![Chat Application](../../../assets/images/projects/chat-application.png)
+
 간단한 채팅 어플리케이션을 만들어봅니다.
 
-어지간한 실시간 네트워크 통신 시스템의 첫 예제 프로젝트는 거진 채팅 어플리케이션부터 시작하더군요. 저희도 바로 그 채팅 어플리케이션에서부터 시작해 봅시다. 첫 예제 프로젝트 [Chat Application](chat-application.md) 는 매우 쉬우며 간소할 것입니다. 저희가 만들 서버에는 오로지 단 하나의 채팅방만이 존재할 것이며, 모든 참여자 (클라이언트) 들은 이 곳에서 서로 대화하게 될 것입니다.
+네트워크 프로그래밍의 첫 예제 프로젝트는 거진 다 실시간 채팅 어플리케이션부터 시작하더군요. 저희도 바로 그 실시간 채팅 어플리케이션에서부터 시작합니다. 첫 예제 프로젝트 [Chat Application](chat-application.md) 는 매우 쉬우며 간소합니다. 저희가 만들 서버에는 오로지 단 하나의 채팅방만이 존재할 것이며, 모든 참여자 (클라이언트) 들은 이 곳에서 서로 대화하게 될 것입니다.
 
 
 

@@ -6,7 +6,6 @@
     "plugins": [
         "-highlight",
         "addcssjs",
-        "code",
         "codegroup",
         "collapse",
         "disqus",

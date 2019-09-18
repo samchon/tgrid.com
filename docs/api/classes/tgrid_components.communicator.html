@@ -75,7 +75,7 @@
 						<p>The basic communicator.</p>
 					</div>
 					<p>The <code>Communicator</code> is an abstract class taking full charge of network communication.
-						Protocolized communicators like <a href="tgrid_protocols_web.webconnector.html">WebConnector</a> are realized by extending the
+						Protocolized communicators like <a href="tgrid_protocols_web.webconnector.html">WebConnector</a> are realized by extending this
 					<code>Communicator</code> class.</p>
 					<p>You want to make your own communicator using special protocol, extends this <code>Communicator</code>
 					class. After the extending, implement your special communicator by overriding those methods.</p>
@@ -143,19 +143,15 @@
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
-							<h3>Accessors</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="tgrid_components.communicator.html#provider" class="tsd-kind-icon">provider</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="tgrid_components.communicator.html#destructor" class="tsd-kind-icon">destructor</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="tgrid_components.communicator.html#getdriver" class="tsd-kind-icon">get<wbr>Driver</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tgrid_components.communicator.html#getprovider" class="tsd-kind-icon">get<wbr>Provider</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="tgrid_components.communicator.html#inspectready" class="tsd-kind-icon">inspect<wbr>Ready</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="tgrid_components.communicator.html#replydata" class="tsd-kind-icon">reply<wbr>Data</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="tgrid_components.communicator.html#senddata" class="tsd-kind-icon">send<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tgrid_components.communicator.html#setprovider" class="tsd-kind-icon">set<wbr>Provider</a></li>
 							</ul>
 						</section>
 					</div>
@@ -173,7 +169,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/components/Communicator.ts#L50">components/Communicator.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/cbbced6/src/components/Communicator.ts#L50">components/Communicator.ts:50</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -198,33 +194,6 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Accessors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
-					<a name="provider" class="tsd-anchor"></a>
-					<h3>provider</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> provider<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Provider</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/components/Communicator.ts#L122">components/Communicator.ts:122</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Current <code>Provider</code>.</p>
-								</div>
-								<p>An object providing features (functions &amp; objects) for remote system. The remote
-								system would call the features (<code>Provider</code>) by using its <code>Driver&lt;Controller&gt;</code>.</p>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Provider</span></h4>
-						</li>
-					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 					<a name="destructor" class="tsd-anchor"></a>
@@ -236,7 +205,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/components/Communicator.ts#L91">components/Communicator.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/cbbced6/src/components/Communicator.ts#L91">components/Communicator.ts:91</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -272,7 +241,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/components/Communicator.ts#L146">components/Communicator.ts:146</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/cbbced6/src/components/Communicator.ts#L155">components/Communicator.ts:155</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -303,6 +272,31 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getprovider" class="tsd-anchor"></a>
+					<h3>get<wbr>Provider</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Provider<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Provider</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/cbbced6/src/components/Communicator.ts#L134">components/Communicator.ts:134</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get current <code>Provider</code>.</p>
+								</div>
+								<p>Get an object providing features (functions &amp; objects) for remote system. The remote
+								system would call the features (<code>Provider</code>) by using its <code>Driver&lt;Controller&gt;</code>.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Provider</span></h4>
+							<p>Current <code>Provider</code> object</p>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 					<a name="inspectready" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagAbstract">Abstract</span> inspect<wbr>Ready</h3>
@@ -313,7 +307,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/components/Communicator.ts#L111">components/Communicator.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/cbbced6/src/components/Communicator.ts#L111">components/Communicator.ts:111</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -338,7 +332,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/components/Communicator.ts#L224">components/Communicator.ts:224</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/cbbced6/src/components/Communicator.ts#L233">components/Communicator.ts:233</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -373,7 +367,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/components/Communicator.ts#L304">components/Communicator.ts:304</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/cbbced6/src/components/Communicator.ts#L313">components/Communicator.ts:313</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -385,6 +379,37 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>invoke: <a href="../modules/tgrid_components.invoke.html" class="tsd-signature-type">Invoke</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setprovider" class="tsd-anchor"></a>
+					<h3>set<wbr>Provider</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Provider<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Provider</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/cbbced6/src/components/Communicator.ts#L121">components/Communicator.ts:121</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set <code>Provider</code></p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>obj: <span class="tsd-signature-type">Provider</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>An object would be provided for remote system.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -429,14 +454,14 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-protected">
 								<a href="tgrid_components.communicator.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
-								<a href="tgrid_components.communicator.html#provider" class="tsd-kind-icon">provider</a>
-							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="tgrid_components.communicator.html#destructor" class="tsd-kind-icon">destructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
 								<a href="tgrid_components.communicator.html#getdriver" class="tsd-kind-icon">get<wbr>Driver</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="tgrid_components.communicator.html#getprovider" class="tsd-kind-icon">get<wbr>Provider</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="tgrid_components.communicator.html#inspectready" class="tsd-kind-icon">inspect<wbr>Ready</a>
@@ -446,6 +471,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="tgrid_components.communicator.html#senddata" class="tsd-kind-icon">send<wbr>Data</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="tgrid_components.communicator.html#setprovider" class="tsd-kind-icon">set<wbr>Provider</a>
 							</li>
 						</ul>
 					</li>

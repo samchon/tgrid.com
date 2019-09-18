@@ -132,7 +132,6 @@
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="tgrid_protocols_workers.sharedworkeracceptor.html#arguments" class="tsd-kind-icon">arguments</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="tgrid_protocols_workers.sharedworkeracceptor.html#provider" class="tsd-kind-icon">provider</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="tgrid_protocols_workers.sharedworkeracceptor.html#state" class="tsd-kind-icon">state</a></li>
 							</ul>
 						</section>
@@ -143,8 +142,10 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tgrid_protocols_workers.sharedworkeracceptor.html#close" class="tsd-kind-icon">close</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="tgrid_protocols_workers.sharedworkeracceptor.html#destructor" class="tsd-kind-icon">destructor</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="tgrid_protocols_workers.sharedworkeracceptor.html#getdriver" class="tsd-kind-icon">get<wbr>Driver</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="tgrid_protocols_workers.sharedworkeracceptor.html#getprovider" class="tsd-kind-icon">get<wbr>Provider</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tgrid_protocols_workers.sharedworkeracceptor.html#reject" class="tsd-kind-icon">reject</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="tgrid_protocols_workers.sharedworkeracceptor.html#replydata" class="tsd-kind-icon">reply<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="tgrid_protocols_workers.sharedworkeracceptor.html#setprovider" class="tsd-kind-icon">set<wbr>Provider</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static"><a href="tgrid_protocols_workers.sharedworkeracceptor.html#create" class="tsd-kind-icon">create</a></li>
 							</ul>
 						</section>
@@ -163,7 +164,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/protocols/workers/SharedWorkerAcceptor.ts#L127">protocols/workers/SharedWorkerAcceptor.ts:127</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/cbbced6/src/protocols/workers/SharedWorkerAcceptor.ts#L127">protocols/workers/SharedWorkerAcceptor.ts:127</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -172,36 +173,6 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
-					<a name="provider" class="tsd-anchor"></a>
-					<h3>provider</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> provider<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Provider</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from <a href="tgrid_components.communicator.html">Communicator</a>.<a href="tgrid_components.communicator.html#provider">provider</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/components/Communicator.ts#L122">components/Communicator.ts:122</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Current <code>Provider</code>.</p>
-								</div>
-								<p>An object providing features (functions &amp; objects) for remote system. The remote
-								system would call the features (<code>Provider</code>) by using its <code>Driver&lt;Controller&gt;</code>.</p>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Provider</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">null</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
 						</li>
 					</ul>
 				</section>
@@ -215,7 +186,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/protocols/workers/SharedWorkerAcceptor.ts#L119">protocols/workers/SharedWorkerAcceptor.ts:119</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/cbbced6/src/protocols/workers/SharedWorkerAcceptor.ts#L119">protocols/workers/SharedWorkerAcceptor.ts:119</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -245,7 +216,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/tgrid_protocols.iacceptor.html">IAcceptor</a>.<a href="../interfaces/tgrid_protocols.iacceptor.html#accept">accept</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/protocols/workers/SharedWorkerAcceptor.ts#L138">protocols/workers/SharedWorkerAcceptor.ts:138</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/cbbced6/src/protocols/workers/SharedWorkerAcceptor.ts#L138">protocols/workers/SharedWorkerAcceptor.ts:138</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -275,7 +246,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/tgrid_protocols_workers.iworkersystem.html">IWorkerSystem</a>.<a href="../interfaces/tgrid_protocols_workers.iworkersystem.html#close">close</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/protocols/workers/SharedWorkerAcceptor.ts#L84">protocols/workers/SharedWorkerAcceptor.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/cbbced6/src/protocols/workers/SharedWorkerAcceptor.ts#L84">protocols/workers/SharedWorkerAcceptor.ts:84</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -302,7 +273,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="tgrid_components.communicator.html">Communicator</a>.<a href="tgrid_components.communicator.html#destructor">destructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/components/Communicator.ts#L91">components/Communicator.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/cbbced6/src/components/Communicator.ts#L91">components/Communicator.ts:91</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -339,7 +310,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="tgrid_components.communicator.html">Communicator</a>.<a href="tgrid_components.communicator.html#getdriver">getDriver</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/components/Communicator.ts#L146">components/Communicator.ts:146</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/cbbced6/src/components/Communicator.ts#L155">components/Communicator.ts:155</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -370,6 +341,37 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="getprovider" class="tsd-anchor"></a>
+					<h3>get<wbr>Provider</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Provider<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Provider</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="tgrid_components.communicator.html">Communicator</a>.<a href="tgrid_components.communicator.html#getprovider">getProvider</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/cbbced6/src/components/Communicator.ts#L134">components/Communicator.ts:134</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get current <code>Provider</code>.</p>
+								</div>
+								<p>Get an object providing features (functions &amp; objects) for remote system. The remote
+								system would call the features (<code>Provider</code>) by using its <code>Driver&lt;Controller&gt;</code>.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Provider</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">null</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">undefined</span>
+							</h4>
+							<p>Current <code>Provider</code> object</p>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="reject" class="tsd-anchor"></a>
 					<h3>reject</h3>
@@ -380,7 +382,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/protocols/workers/SharedWorkerAcceptor.ts#L169">protocols/workers/SharedWorkerAcceptor.ts:169</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/cbbced6/src/protocols/workers/SharedWorkerAcceptor.ts#L169">protocols/workers/SharedWorkerAcceptor.ts:169</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -413,7 +415,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="tgrid_components.communicator.html">Communicator</a>.<a href="tgrid_components.communicator.html#replydata">replyData</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/components/Communicator.ts#L224">components/Communicator.ts:224</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/cbbced6/src/components/Communicator.ts#L233">components/Communicator.ts:233</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -438,6 +440,38 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="setprovider" class="tsd-anchor"></a>
+					<h3>set<wbr>Provider</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Provider<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Provider</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="tgrid_components.communicator.html">Communicator</a>.<a href="tgrid_components.communicator.html#setprovider">setProvider</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/cbbced6/src/components/Communicator.ts#L121">components/Communicator.ts:121</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set <code>Provider</code></p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>obj: <span class="tsd-signature-type">Provider</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>An object would be provided for remote system.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
 					<a name="create" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> create</h3>
@@ -448,7 +482,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/b8632a9/src/protocols/workers/SharedWorkerAcceptor.ts#L59">protocols/workers/SharedWorkerAcceptor.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/cbbced6/src/protocols/workers/SharedWorkerAcceptor.ts#L59">protocols/workers/SharedWorkerAcceptor.ts:59</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -529,9 +563,6 @@
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="tgrid_protocols_workers.sharedworkeracceptor.html#arguments" class="tsd-kind-icon">arguments</a>
 							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
-								<a href="tgrid_protocols_workers.sharedworkeracceptor.html#provider" class="tsd-kind-icon">provider</a>
-							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="tgrid_protocols_workers.sharedworkeracceptor.html#state" class="tsd-kind-icon">state</a>
 							</li>
@@ -547,11 +578,17 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
 								<a href="tgrid_protocols_workers.sharedworkeracceptor.html#getdriver" class="tsd-kind-icon">get<wbr>Driver</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="tgrid_protocols_workers.sharedworkeracceptor.html#getprovider" class="tsd-kind-icon">get<wbr>Provider</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="tgrid_protocols_workers.sharedworkeracceptor.html#reject" class="tsd-kind-icon">reject</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 								<a href="tgrid_protocols_workers.sharedworkeracceptor.html#replydata" class="tsd-kind-icon">reply<wbr>Data</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="tgrid_protocols_workers.sharedworkeracceptor.html#setprovider" class="tsd-kind-icon">set<wbr>Provider</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
 								<a href="tgrid_protocols_workers.sharedworkeracceptor.html#create" class="tsd-kind-icon">create</a>

@@ -6,6 +6,9 @@
 
 ## 2. Tutorial
   - [2.1. Basic Concepts](tutorial/concepts.md)
+    - [2.1.1. Theory](tutorial/concepts.md#1-theory)
+    - [2.1.2. Components](tutorial/concepts.md#2-components)
+    - [2.1.3. Protocols](tutorial/concepts.md#3-protocols)
   - [2.2. Learn from Examples](tutorial/examples.md)
     - [2.2.1. Remote Function Call](tutorial/examples.md#1-remote-function-call)
     - [2.2.2. Remote Object Call](tutorial/examples.md#2-remote-object-call)

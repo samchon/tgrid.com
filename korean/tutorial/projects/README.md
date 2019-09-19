@@ -3,7 +3,7 @@
 > - 데모 사이트: http://samchon.org/chat
 > - 코드 저장소: https://github.com/samchon/tgrid.projects.chat-application
 
-![Chat Application](../../../assets/images/projects/chat-application.png)
+![Chat Application](../../../assets/images/projects/chat-application/demo.png)
 
 간단한 채팅 어플리케이션을 만들어봅니다.
 

@@ -22,7 +22,7 @@
   - [`../providers/Calculator.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/providers/Calculator.ts#L6-L28)
 
 {% codegroup %}
-```typescript::ICalculator.ts
+```typescript::Controller
 export interface ISimpleCalculator
 {
     plus(x: number, y: number): number;
@@ -31,7 +31,9 @@ export interface ISimpleCalculator
     divides(x: number, y: number): number;
 }
 ```
-```typescript::Calculator.ts
+```typescript::Provider
+import { ISimpleCalculator } from "../controllers/ICalculator";
+
 export class SimpleCalculator implements ISimpleCalculator
 {
     public plus(x: number, y: number): number
@@ -62,18 +64,7 @@ export class SimpleCalculator implements ISimpleCalculator
 
 #### [`simple-calculator/server.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/simple-calculator/server.ts)
 ```typescript
-import { WebServer, WebAcceptor } from "tgrid/protocols/web";
-import { SimpleCalculator } from "../../providers/Calculator";
-
-async function main(): Promise<void>
-{
-    let server: WebServer = new WebServer();
-    await server.open(10101, async (acceptor: WebAcceptor) =>
-    {
-        await acceptor.accept(new SimpleCalculator());
-    });
-}
-main();
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/projects/simple-calculator/server.ts") -->
 ```
 
 ### 1.3. Client
@@ -93,74 +84,11 @@ main();
 
 #### [`simple-calculator/client.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/simple-calculator/client.ts)
 {% codegroup %}
-```typescript::Remote Function Call
-import { WebConnector } from "tgrid/protocols/web/WebConnector";
-import { Driver } from "tgrid/components/Driver";
-import { ISimpleCalculator } from "../../controllers/ICalculator";
-
-async function main(): Promise<void>
-{
-    //----
-    // CONNECTION
-    //----
-    let connector: WebConnector = new WebConnector();
-    await connector.connect("ws://127.0.0.1:10101");
-
-    //----
-    // CALL REMOTE FUNCTIONS
-    //----
-    // GET DRIVER
-    let calc: Driver<ISimpleCalculator> = connector.getDriver<ISimpleCalculator>();
-
-    // CALL FUNCTIONS WITH AWAIT SYMBOL
-    console.log("1 + 3 =", await calc.plus(1, 3));
-    console.log("7 - 4 =", await calc.minus(7, 4));
-    console.log("8 x 9 =", await calc.multiplies(8, 9));
-
-    // TO CATCH EXCEPTION IS ALSO POSSIBLE
-    try 
-    {
-        await calc.divides(4, 0);
-    }
-    catch (err)
-    {
-        console.log("4 / 0 -> Error:", err.message);
-    }
-
-    //----
-    // TERMINATE
-    //----
-    await connector.close();
-}
-main();
+```typescript::Remote-Function-Call
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/projects/simple-calculator/client.ts") -->
 ```
-```typescript::Single Program
-import { SimpleCalculator } from "../../providers/Calculator";
-
-function main(): void
-{
-    //----
-    // CALL FUNCTIONS
-    //----
-    // CONSTRUCT CALCULATOR
-    let calc: SimpleCalculator = new SimpleCalculator();
-
-    // CALL FUNCTIONS DIRECTLY
-    console.log("1 + 3 =", calc.plus(1, 3));
-    console.log("7 - 4 =", calc.minus(7, 4));
-    console.log("8 x 9 =", calc.multiplies(8, 9));
-
-    // TO CATCH EXCEPTION
-    try 
-    {
-        calc.divides(4, 0);
-    }
-    catch (err)
-    {
-        console.log("4 / 0 -> Error:", err.message);
-    }
-}
-main();
+```typescript::Single-Program
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/projects/simple-calculator/single.ts") -->
 ```
 {% endcodegroup %}
 
@@ -194,114 +122,11 @@ main();
   - [`../providers/Calculator.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/providers/Calculator.ts)
 
 {% codegroup %}
-```typescript::ICalculator.ts
-export interface ICompositeCalculator 
-    extends ISimpleCalculator
-{
-    scientific: IScientific;
-    statistics: IStatistics;
-}
-
-export interface ISimpleCalculator
-{
-    plus(x: number, y: number): number;
-    minus(x: number, y: number): number;
-    multiplies(x: number, y: number): number;
-    divides(x: number, y: number): number;
-}
-export interface IScientific
-{
-    pow(x: number, y: number): number;
-    sqrt(x: number): number;
-    log(x: number, y: number): number;
-}
-export interface IStatistics
-{
-    mean(...elems: number[]): number;
-    stdev(...elems: number[]): number;
-}
+```typescript::Controller
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/controllers/ICalculator.ts") -->
 ```
-```typescript::Calculator.ts
-import { 
-    ICompositeCalculator, 
-    ISimpleCalculator, IScientific, IStatistics
-} from "../controllers/ICalculator";
-
-export class SimpleCalculator 
-    implements ISimpleCalculator
-{
-    public plus(x: number, y: number): number
-    {
-        return x + y;
-    }
-    public minus(x: number, y: number): number
-    {
-        return x - y;
-    }
-    
-    public multiplies(x: number, y: number): number
-    {
-        return x * y;
-    }
-    public divides(x: number, y: number): number
-    {
-        if (y === 0)
-            throw new Error("Divided by zero.");
-        return x / y;
-    }
-}
-
-export class CompositeCalculator
-    extends SimpleCalculator
-    implements ICompositeCalculator
-{
-    public scientific = new Scientific();
-    public statistics = new Statistics();
-}
-
-export class Scientific implements IScientific
-{
-    public pow(x: number, y: number): number
-    {
-        return Math.pow(x, y);
-    }
-
-    public log(x: number, y: number): number
-    {
-        if (x < 0 || y < 0)
-            throw new Error("Negative value on log.");
-        return Math.log(y) / Math.log(x);
-    }
-
-    public sqrt(x: number): number
-    {
-        if (x < 0)
-            throw new Error("Negative value on sqaure.");
-        return Math.sqrt(x);
-    }
-}
-
-export class Statistics implements IStatistics
-{
-    public mean(...elems: number[]): number
-    {
-        let ret: number = 0;
-        for (let val of elems)
-            ret += val;
-        return ret / elems.length;
-    }
-
-    public stdev(...elems: number[]): number
-    {
-        let mean: number = this.mean(...elems);
-        let ret: number = 0;
-
-        for (let val of elems)
-            ret += Math.pow(val - mean, 2);
-
-        return Math.sqrt(ret / elems.length);
-    }
-}
+```typescript::Provider
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/providers/Calculator.ts") -->
 ```
 {% endcodegroup %}
 
@@ -310,33 +135,11 @@ export class Statistics implements IStatistics
 
 #### [`composite-calculator/server.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/composite-calculator/server.ts)
 {% codegroup %}
-```typescript::Remote Object Call
-import { WebServer, WebAcceptor } from "tgrid/protocols/web";
-import { CompositeCalculator } from "../../providers/Calculator";
-
-async function main(): Promise<void>
-{
-    let server: WebServer = new WebServer();
-    await server.open(10102, async (acceptor: WebAcceptor) =>
-    {
-        await acceptor.accept(new CompositeCalculator());
-    });
-}
-main();
+```typescript::Remote-Object-Call
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/projects/composite-calculator/server.ts") -->
 ```
-```typescript::Remote Function Call
-import { WebServer, WebAcceptor } from "tgrid/protocols/web";
-import { SimpleCalculator } from "../../providers/Calculator";
-
-async function main(): Promise<void>
-{
-    let server: WebServer = new WebServer();
-    await server.open(10101, async (acceptor: WebAcceptor) =>
-    {
-        await acceptor.accept(new SimpleCalculator());
-    });
-}
-main();
+```typescript::Remote-Function-Call
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/projects/simple-calculator/server.ts") -->
 ```
 {% endcodegroup %}
 
@@ -349,89 +152,11 @@ main();
 
 #### [`composite-calculator/client.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/composite-calculator/client.ts)
 {% codegroup %}
-```typescript::Remote Object Call
-import { WebConnector } from "tgrid/protocols/web";
-import { Driver } from "tgrid/components";
-
-import { ICompositeCalculator } from "../../controllers/ICalculator";
-
-async function main(): Promise<void>
-{
-    //----
-    // CONNECTION
-    //----
-    let connector: WebConnector = new WebConnector();
-    await connector.connect("ws://127.0.0.1:10102");
-
-    //----
-    // CALL REMOTE FUNCTIONS
-    //----
-    // GET DRIVER
-    let calc: Driver<ICompositeCalculator> = connector.getDriver<ICompositeCalculator>();
-
-    // FUNCTIONS IN THE ROOT SCOPE
-    console.log("1 + 6 =", await calc.plus(1, 6));
-    console.log("7 * 2 =", await calc.multiplies(7, 2));
-
-    // FUNCTIONS IN AN OBJECT (SCIENTIFIC)
-    console.log("3 ^ 4 =", await calc.scientific.pow(3, 4));
-    console.log("log (2, 32) =", await calc.scientific.log(2, 32));
-
-    try
-    {
-        // TO CATCH EXCEPTION IS STILL POSSIBLE
-        await calc.scientific.sqrt(-4);
-    }
-    catch (err)
-    {
-        console.log("SQRT (-4) -> Error:", err.message);
-    }
-
-    // FUNCTIONS IN AN OBJECT (STATISTICS)
-    console.log("Mean (1, 2, 3, 4) =", await calc.statistics.mean(1, 2, 3, 4));
-    console.log("Stdev. (1, 2, 3, 4) =", await calc.statistics.stdev(1, 2, 3, 4));
-
-    //----
-    // TERMINATE
-    //----
-    await connector.close();
-}
-main();
+```typescript::Remote-Object-Call
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/projects/composite-calculator/client.ts") -->
 ```
-```typescript::Single Program
-import { CompositeCalculator } from "../../providers/Calculator";
-
-function main(): void
-{
-    //----
-    // CALL FUNCTIONS
-    //----
-    // CONSTRUCT CALCULATOR
-    let calc: CompositeCalculator = new CompositeCalculator();
-
-    // FUNCTIONS IN THE ROOT SCOPE
-    console.log("1 + 6 =", calc.plus(1, 6));
-    console.log("7 * 2 =", calc.multiplies(7, 2));
-
-    // FUNCTIONS IN AN OBJECT (SCIENTIFIC)
-    console.log("3 ^ 4 =", calc.scientific.pow(3, 4));
-    console.log("log (2, 32) =", calc.scientific.log(2, 32));
-
-    try
-    {
-        // TO CATCH EXCEPTION
-        calc.scientific.sqrt(-4);
-    }
-    catch (err)
-    {
-        console.log("SQRT (-4) -> Error:", err.message);
-    }
-
-    // FUNCTIONS IN AN OBJECT (STATISTICS)
-    console.log("Mean (1, 2, 3, 4) =", calc.statistics.mean(1, 2, 3, 4));
-    console.log("Stdev. (1, 2, 3, 4) =", calc.statistics.stdev(1, 2, 3, 4));
-}
-main();
+```typescript::Single-Program
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/projects/composite-calculator/single.ts") -->
 ```
 {% endcodegroup %}
 
@@ -470,34 +195,10 @@ Composite Calculator | Hierarchical Calculator
   - [`hierarchical-calculator/calculator.ts#L7-L13`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/hierarchical-calculator/calculator.ts#L7-L13)
 
 {% codegroup %}
-```typescript::ICalculator.ts
-export interface ICompositeCalculator 
-    extends ISimpleCalculator
-{
-    scientific: IScientific;
-    statistics: IStatistics;
-}
-
-export interface ISimpleCalculator
-{
-    plus(x: number, y: number): number;
-    minus(x: number, y: number): number;
-    multiplies(x: number, y: number): number;
-    divides(x: number, y: number): number;
-}
-export interface IScientific
-{
-    pow(x: number, y: number): number;
-    sqrt(x: number): number;
-    log(x: number, y: number): number;
-}
-export interface IStatistics
-{
-    mean(...elems: number[]): number;
-    stdev(...elems: number[]): number;
-}
+```typescript::Controller
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/controllers/ICalculator.ts") -->
 ```
-```typescript::HierarchicalCalculator
+```typescript::Provider
 import { Driver } from "tgrid/components";
 
 import { SimpleCalculator } from "../../providers/Calculator";
@@ -518,30 +219,14 @@ export class HierarchicalCalculator
 공학용 계산기 서버를 만듦니다. 참 쉽죠?
 
 ```typescript
-import { WorkerServer } from "tgrid/protocols/workers";
-import { Scientific } from "../../providers/Calculator";
-
-async function main(): Promise<void>
-{
-    let server: WorkerServer<Scientific> = new WorkerServer();
-    await server.open(new Scientific());
-}
-main();
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/projects/hierarchical-calculator/scientific.ts") -->
 ```
 
 #### [`hierarchical-calculator/statistics.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/hierarchical-calculator/statistics.ts)
 공학용 계산기 서버도 만들어줍니다. 이 역시 매우 간단합니다.
 
 ```typescript
-import { WorkerServer } from "tgrid/protocols/workers";
-import { Statistics } from "../../providers/Calculator";
-
-async function main(): Promise<void>
-{
-    let server: WorkerServer<Statistics> = new WorkerServer();
-    await server.open(new Statistics());
-}
-main();
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/projects/hierarchical-calculator/statistics.ts") -->
 ```
 
 ####  [`hierarchical-calculator/calculator.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/hierarchical-calculator/calculator.ts)
@@ -555,59 +240,10 @@ main();
 
 {% codegroup %}
 ```typescript::Object-Oriented-Network
-import { WorkerServer } from "tgrid/protocols/workers/WorkerServer";
-import { WorkerConnector } from "tgrid/protocols/workers/WorkerConnector
-import { Driver } from "tgrid/components/Driver";
-
-import { SimpleCalculator } from "../../providers/Calculator";
-import { IScientific, IStatistics } from "../../controllers/ICalculator";
-
-class HierarchicalCalculator 
-    extends SimpleCalculator
-{
-    // REMOTE CALCULATORS
-    public scientific: Driver<IScientific>;
-    public statistics: Driver<IStatistics>;
-}
-
-async function associate<Controller extends object>
-    (module: string): Promise<Driver<Controller>>
-{
-    // DO CONNECT
-    let connector: WorkerConnector = new WorkerConnector();
-    await connector.connect(`${__dirname}/${module}.js`);
-
-    // RETURN DRIVER
-    return connector.getDriver<Controller>();
-}
-
-async function main(): Promise<void>
-{
-    // PREPARE REMOTE CALCULATORS
-    let calc: HierarchicalCalculator = new HierarchicalCalculator();
-    calc.scientific = await associate<IScientific>("scientific");
-    calc.statistics = await associate<IStatistics>("statistics");
-
-    // OPEN SERVER
-    let server: WorkerServer<HierarchicalCalculator> = new WorkerServer();
-    await server.open(calc);
-}
-main();
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/projects/hierarchical-calculator/calculator.ts") -->
 ```
-```typescript::Remote Object Call
-import { WebServer } from "tgrid/protocols/web/WebServer";
-import { WebAcceptor } from "tgrid/protocols/web/WebAcceptor";
-import { CompositeCalculator } from "../../providers/Calculator";
-
-async function main(): Promise<void>
-{
-    let server: WebServer = new WebServer();
-    await server.open(10102, async (acceptor: WebAcceptor) =>
-    {
-        await acceptor.accept(new CompositeCalculator());
-    });
-}
-main();
+```typescript::Remote-Object-Call
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/projects/composite-calculator/server.ts") -->
 ```
 {% endcodegroup %}
 
@@ -629,140 +265,13 @@ main();
 #### [`hierarchical-calculator/index.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/hierarchical-calculator/index.ts)
 {% codegroup %}
 ```typescript::Object-Oriented-Network
-import { WorkerConnector } from "tgrid/protocols/workers/WorkerConnector";
-import { Driver } from "tgrid/components/Driver";
-
-import { ICompositeCalculator } from "../../controllers/ICalculator";
-
-async function main(): Promise<void>
-{
-    //----
-    // CONNECTION
-    //----
-    let connector: WorkerConnector = new WorkerConnector();
-    await connector.connect(__dirname + "/calculator.js");
-
-    //----
-    // CALL REMOTE FUNCTIONS
-    //----
-    // GET DRIVER
-    let calc: Driver<ICompositeCalculator> = connector.getDriver<ICompositeCalculator>();
-
-    // FUNCTIONS IN THE ROOT SCOPE
-    console.log("1 + 6 =", await calc.plus(1, 6));
-    console.log("7 * 2 =", await calc.multiplies(7, 2));
-
-    // FUNCTIONS IN AN OBJECT (SCIENTIFIC)
-    console.log("3 ^ 4 =", await calc.scientific.pow(3, 4));
-    console.log("log (2, 32) =", await calc.scientific.log(2, 32));
-
-    try
-    {
-        // TO CATCH EXCEPTION IS STILL POSSIBLE
-        await calc.scientific.sqrt(-4);
-    }
-    catch (err)
-    {
-        console.log("SQRT (-4) -> Error:", err.message);
-    }
-
-    // FUNCTIONS IN AN OBJECT (STATISTICS)
-    console.log("Mean (1, 2, 3, 4) =", await calc.statistics.mean(1, 2, 3, 4));
-    console.log("Stdev. (1, 2, 3, 4) =", await calc.statistics.stdev(1, 2, 3, 4));
-
-    //----
-    // TERMINATE
-    //----
-    await connector.close();
-}
-main().catch(exp =>
-{
-    console.log(exp);
-});
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/projects/hierarchical-calculator/index.ts") -->
 ```
-```typescript::Remote Object Call
-import { WebConnector } from "tgrid/protocols/web/WebConnector";
-import { Driver } from "tgrid/components/Driver";
-
-import { ICompositeCalculator } from "../../controllers/ICalculator";
-
-async function main(): Promise<void>
-{
-    //----
-    // CONNECTION
-    //----
-    let connector: WebConnector = new WebConnector();
-    await connector.connect("ws://127.0.0.1:10102");
-    
-    //----
-    // CALL REMOTE FUNCTIONS
-    //----
-    // GET DRIVER
-    let calc: Driver<ICompositeCalculator> = connector.getDriver<ICompositeCalculator>();
-
-    // FUNCTIONS IN THE ROOT SCOPE
-    console.log("1 + 6 =", await calc.plus(1, 6));
-    console.log("7 * 2 =", await calc.multiplies(7, 2));
-
-    // FUNCTIONS IN AN OBJECT (SCIENTIFIC)
-    console.log("3 ^ 4 =", await calc.scientific.pow(3, 4));
-    console.log("log (2, 32) =", await calc.scientific.log(2, 32));
-
-    try
-    {
-        // TO CATCH EXCEPTION IS STILL POSSIBLE
-        await calc.scientific.sqrt(-4);
-    }
-    catch (err)
-    {
-        console.log("SQRT (-4) -> Error:", err.message);
-    }
-
-    // FUNCTIONS IN AN OBJECT (STATISTICS)
-    console.log("Mean (1, 2, 3, 4) =", await calc.statistics.mean(1, 2, 3, 4));
-    console.log("Stdev. (1, 2, 3, 4) =", await calc.statistics.stdev(1, 2, 3, 4));
-
-    //----
-    // TERMINATE
-    //----
-    await connector.close();
-}
-main();
+```typescript::Remote-Object-Call
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/projects/composite-calculator/client.ts") -->
 ```
-```typescript::Single Program
-import { CompositeCalculator } from "../../providers/Calculator";
-
-function main(): void
-{
-    //----
-    // CALL FUNCTIONS
-    //----
-    // CONSTRUCT CALCULATOR
-    let calc: CompositeCalculator = new CompositeCalculator();
-
-    // FUNCTIONS IN THE ROOT SCOPE
-    console.log("1 + 6 =", calc.plus(1, 6));
-    console.log("7 * 2 =", calc.multiplies(7, 2));
-
-    // FUNCTIONS IN AN OBJECT (SCIENTIFIC)
-    console.log("3 ^ 4 =", calc.scientific.pow(3, 4));
-    console.log("log (2, 32) =", calc.scientific.log(2, 32));
-
-    try
-    {
-        // TO CATCH EXCEPTION
-        calc.scientific.sqrt(-4);
-    }
-    catch (err)
-    {
-        console.log("SQRT (-4) -> Error:", err.message);
-    }
-
-    // FUNCTIONS IN AN OBJECT (STATISTICS)
-    console.log("Mean (1, 2, 3, 4) =", calc.statistics.mean(1, 2, 3, 4));
-    console.log("Stdev. (1, 2, 3, 4) =", calc.statistics.stdev(1, 2, 3, 4));
-}
-main();
+```typescript::Single-Program
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/projects/composite-calculator/single.ts") -->
 ```
 {% endcodegroup %}
 
@@ -817,7 +326,7 @@ import {
 보시다시피 클라이언트와 서버가 공유하게 될 기능은 매우 간소합니다. 서버에서 클라이언트로의 원격 임계영역 제어에는 `IMutex` 객체가 쓰이겠죠? 마찬가지로 클라이언트가 서버에 제공하는 `print()` 함수는 당최 뭐에 쓰는 물건인지, 예제 코드를 보면서 천천히 알아봅시다.
 
 {% codegroup %}
-```typescript::child.ts - Controller
+```Controller
 export interface ICriticalSection
 {
     mutex: IMutex;
@@ -831,7 +340,7 @@ interface IMutex
     unlock(): void;
 }
 ```
-```typescript::index.ts - Provider
+```Provider
 import { Mutex } from "tstl/thread/Mutex";
 
 export class CriticalSection
@@ -855,45 +364,7 @@ export class CriticalSection
 
 #### [`thread/index.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/thread/index.ts)
 ```typescript
-import { WorkerConnector } from "tgrid/protocols/workers/WorkerConnector";
-
-import { Mutex } from "tstl/thread/Mutex";
-
-class CriticalSection
-{
-    public mutex: Mutex = new Mutex();
-
-    public print(str: string): void
-    {
-        process.stdout.write(str);
-    }
-}
-
-async function main(): Promise<void>
-{
-    let workers: WorkerConnector<CriticalSection>[] = [];
-    let provider: CriticalSection = new CriticalSection();
-
-    //----
-    // CREATE WORKERS
-    //----
-    for (let i: number = 0; i < 4; ++i)
-    {
-        // CONNECT TO WORKER
-        let w: WorkerConnector<CriticalSection> = new WorkerConnector(provider);
-        await w.connect(__dirname + "/child.js");
-
-        // ENROLL IT
-        workers.push_back(w);
-    }
-
-    //----
-    // WAIT THEM ALL TO BE CLOSED
-    //----
-    let promises: Promise<void>[] = workers.map(w => w.join());
-    await Promise.all(promises);
-}
-main();
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/projects/thread/index.ts") -->
 ```
 
 ### 4.3. Server
@@ -907,44 +378,7 @@ main();
 
 #### [`thread/child.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/thread/child.ts)
 ```typescript
-import { WorkerServer } from "tgrid/protocol/worker/WorkerServer";
-import { Driver } from "tgrid/components/Driver";
-
-import { Mutex, sleep_for } from "tstl/thread";
-import { randint } from "tstl/algorithm";
-
-interface ICriticalSection
-{
-    mutex: Mutex;
-    print(character: string): void;
-}
-
-async function main(character: string): Promise<void>
-{
-    // PREPARE SERVER & DRIVER
-    let server: WorkerServer = new WorkerServer();
-    let driver: Driver<ICriticalSection> = server.getDriver<ICriticalSection>();
-
-    // REMOTE FUNCTION CALLS
-    await driver.mutex.lock();
-    {
-        // RANDOM SLEEP -> SEQUENCE WOULD BE SHUFFLED
-        await sleep_for(randint(50, 100));
-
-        // PRINT A LINE WITH REPEATED LETTERS
-        for (let i: number = 0; i < 20; ++i)
-        {
-            await driver.print(character); // PRINT A LETTER
-            await sleep_for(randint(50, 100)); // RANDOM SLEEP
-        }
-        await driver.print("\n");
-    }
-    await driver.mutex.unlock();
-
-    // CLOSE THE SERVER (WORKER)
-    await server.close();
-}
-main(randint(0, 9) + "");
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/projects/thread/child.ts") -->
 ```
 
 > ```python

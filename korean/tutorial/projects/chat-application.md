@@ -1,13 +1,13 @@
 # Chat Application
 ## 1. Outline
-![Chat Application](../../../assets/images/projects/chat-application/demo.png)
+![Chat Application](../../../assets/images/projects/chat-application/chat-movie.png)
 
 간단한 실시간 채팅 어플리케이션을 만들어봅니다.
 
   - 데모 사이트: http://samchon.org/chat
   - 코드 저장소: https://github.com/samchon/tgrid.projects.chat-application
 
-네트워크 프로그래밍을 실습할 때, 대부분은 실시간 채팅 어플리케이션을 만드는 것에서부터 시작하더라구요. 저희도 그렇게 하겠습니다. **TGrid** 의 첫 예제 프로젝트로써, 실시간 채팅 서버 프로그램을 만들겠습니다. 해당 서버에 접속하여 채팅에 참여할 클라이언트 프로그램 (웹 어플리케이션) 역시 만들어볼 것입니다.
+네트워크 프로그래밍을 실습할 때, 대부분은 실시간 채팅 어플리케이션을 만드는 것에서부터 시작하더라구요. 저희도 그렇게 하겠습니다. **TGrid** 의 첫 예제 프로젝트로써, 실시간 채팅 서버 프로그램을 만들겠습니다. 채팅에 참여할 클라이언트 프로그램 (웹 어플리케이션) 역시 만들어볼 것입니다.
 
 단, *Chat Application* 은 **TGrid** 의 첫 예제 프로젝트인만큼, 난이도를 매우 낮춰 아주 간단하게 만들도록 하겠습니다. 서버에는 <u>오로지 단 하나의 채팅방</u>만이 존재할 것입니다. 따라서 해당 서버에 접속하는 모든 클라이언트들 다같이 모여 대화하게 됩니다. 클라이언트 어플리케이션 역시, [ReactJS](https://ko.reactjs.org/) 로 매우 간결하게 만들 것입니다.
 
@@ -17,9 +17,7 @@
 
 
 ## 2. Design
-![Symbol](../../../assets/images/projects/chat-application/symbol.svg)
-
-> [People Talking Vectors by Vecteezy](https://www.vecteezy.com/free-vector/people-talking)
+![Class Diagram](../../../assets/images/projects/chat-application/class-diagram.png)
 
 우리가 처음으로 만들어볼 *Chat Application* 은 매우 간단합니다. 서버에는 오로지 단 하나의 채팅방만이 존재하며, 해당 서버에 접속하는 모든 클라이언트는 오로지 이 곳에서 서로 대화하게 됩니다. 따라서 서버와 클라이언트가 각각 서로에게 제공해야 할 기능 또한 매우 간결합니다.
 
@@ -113,6 +111,12 @@ export interface IChatPrinter
 
 ### 3.2. Server Program
 #### [`providers/ChatService.ts`](https://github.com/samchon/tgrid.projects.chat-application/blob/master/src/providers/ChatService.ts)
+`ChatService` 는 서버가 클라이언트에게 제공하는 [Provider](../concepts.md#22-provider) 클래스입니다. 
+
+동시에 클라이언트가 [Driver](../concepts.md#24-driver)<[IChatService](#controllersichatservicets)> 를 사용하여 `ChatService` 의 메서드를 원격 호출할 때마다, `ChatService` 는 이를 모든 참여자 (클라이언트) 들에게 전파하는 역할도 맡고 있습니다. 이 때 사용하게 되는 멤버변수는 `participants_: HashMap<string, Driver<IChatPrinter>>` 입니다.
+
+클라이언트가 서버와의 접속을 종료하거든, 서버의 [메인 함수](#serverts)는 `ChatService.destructor()` 메서드를 호출함으로써, 클라이언트의 퇴장을 여타 모든 참여자들에게 알려주게 됩니다. 이 때에 사용하게 되는 멤버 변수도 역시 `participants_: HashMap<string, Driver<IChatPrinter>>` 입니다.
+
 ```typescript
 <!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.chat-application/master/src/providers/ChatService.ts") -->
 ```
@@ -120,16 +124,20 @@ export interface IChatPrinter
 #### [`server.ts`](https://github.com/samchon/tgrid.projects.chat-application/blob/master/src/server.ts)
 서버 프로그램의 메인 코드는 정말 간단합니다. 
 
-웹소켓 서버를 개설하고, 접속해오는 각 클라이언트들에게 [ChatService](#providerschatservicets) 객체를 [Provider](../concepts.md#22-provider) 로써 제공해주면 됩니다. 그리고 클라이언트가 접속을 종료했을 때, 해당 클라이언트를 채팅방의 참여자 목록에서 제거해주면 됩니다.
+웹소켓 서버를 개설하고, 접속해오는 각 클라이언트들에게 [ChatService](#providerschatservicets) 객체를 [Provider](../concepts.md#22-provider) 로써 제공해주면 됩니다. 그리고 클라이언트가 접속을 종료했을 때, [ChatService.destructor()](#providerschatservicets) 메서드를 호출하여, 해당 클라이언트를 채팅방의 참여자 목록에서 제거해주시면 됩니다.
 
 ```typescript
-<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.chat-application/blob/master/src/server.ts") -->
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.chat-application/master/src/server.ts") -->
 ```
 
 ### 3.3. Client Application
 #### [`providers/ChatPrinter.ts`](https://github.com/samchon/tgrid.projects.chat-application/blob/master/src/providers/ChatPrinter.ts)
+`ChatPrinter` 는 클라이언트가 서버에 제공하는 [Provider](../concepts.md#22-provider) 클래스입니다.
+
+ `ChatPrinter` 는 서버가 [Driver](../concepts.md#24-driver)<[IChatPrinter](#controllersichatprinter)> 를 사용하여 자신의 메서드를 원격 호출할 때마다, 해당 내역을 자신의 멤버 변수에 기록해둡니다. 그리고 자신에게 할당된 이벤트 리스너 (멤버변수 `listener_: ()=>void`, 메서드 `assign()` 을 통하여 등록할 수 있다) 를 호출하여, 채팅방에 무언가 변화가 있음을 [ChatMovie](#movieschatmovietsx) 에게 알려줍니다.
+
 ```typescript
-<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.chat-application/blob/master/src/providers/ChatPrinter.ts") -->
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.chat-application/master/src/providers/ChatPrinter.ts") -->
 ```
 
 #### [`app.tsx`](https://github.com/samchon/tgrid.projects.chat-application/blob/master/src/app.tsx)
@@ -138,15 +146,25 @@ export interface IChatPrinter
 일단 웹소켓 채팅 서버에 접속합니다. 그리고 [JoinMovie](#moviesjoinmovietsx) 를 이동합니다. [JoinMovie](#moviesjoinmovietsx) 에서는 채팅방에 참여하기 위하여 자신의 이름 (닉네임) 을 정하는 단계인데, 이 곳에서는 또 무슨 일이 일어나는지, 다음 절을 통해 한 번 알아볼까요?
 
 ```typescript
-<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.chat-application/blob/master/src/app.tsx") -->
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.chat-application/master/src/app.tsx") -->
 ```
 
 #### [`movies/JoinMovie.tsx`](https://github.com/samchon/tgrid.projects.chat-application/blob/master/src/movies/JoinMovie.tsx)
+`JoinMovie` 에서 사용자는 자신의 이름을 정합니다.
+
+사용자가 자신의 이름을 입력하고 "Participate in" 버튼을 누르거든, [Driver](../concepts.md#24-driver)<[IChatService](#controllersichatservicets)> 를 통하여 [ChatService.setName()](#providerschatservicets) 메서드를 원격 호출합니다. 리턴값의 타입이 기존의 채팅방 참여자들을 의미하는 `string` 배열이거든, 그 즉시로 [ChatMovie](#movieschatmovietsx) 로 화면을 전환합니다.
+
 ```typescript
 <!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.chat-application/master/src/movies/JoinMovie.tsx") -->
 ```
 
 #### [`movies/ChatMovie.tsx`](https://github.com/samchon/tgrid.projects.chat-application/blob/master/src/movies/ChatMovie.tsx)
+`ChatMovie` 에서 본격적으로 대화가 이루어집니다.
+
+이 곳에서 사용자가 대화를 입력하거나, 또는 특정 대상에게 귓속말로 속삭이거든, `ChatMovie` 는 그 즉시로 [Driver](../concepts.md#24-driver)<[IChatService](#controllersichatservicets)> 를 통하여 서버의 함수를 원격 호출합니다; [ChatService.talk()](#providerschatservicets) 또는 [ChatService.whisper()](#providerschatservicets).
+
+또한 `ChatMovie` 는 [ChatPrinter](#providerschatprinterts) 에 이벤트 리스너를 등록해놨습니다. 그리고 이벤트 리스너는 호출될 때마다, 그 즉시로 화면을 갱신합니다. 따라서 채팅 서버에 참여한 다른 이들의 유입/이탈 이나 대화내역도 [ChatPrinter](#providerschatprinterts) 를 통하여 실시간으로 인지, 가장 최신 상태의 화면을 지속적으로 유지할 수 있습니다.
+
 ```typescript
 <!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.chat-application/master/src/movies/ChatMovie.tsx") -->
 ```

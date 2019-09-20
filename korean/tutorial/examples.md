@@ -326,7 +326,7 @@ import {
 보시다시피 클라이언트와 서버가 공유하게 될 기능은 매우 간소합니다. 서버에서 클라이언트로의 원격 임계영역 제어에는 `IMutex` 객체가 쓰이겠죠? 마찬가지로 클라이언트가 서버에 제공하는 `print()` 함수는 당최 뭐에 쓰는 물건인지, 예제 코드를 보면서 천천히 알아봅시다.
 
 {% codegroup %}
-```Controller
+```typescript::Controller
 export interface ICriticalSection
 {
     mutex: IMutex;
@@ -340,7 +340,7 @@ interface IMutex
     unlock(): void;
 }
 ```
-```Provider
+```typescript::Provider
 import { Mutex } from "tstl/thread/Mutex";
 
 export class CriticalSection

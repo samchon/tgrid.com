@@ -1,0 +1,355 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>tgrid</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">tgrid</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> tgrid</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<h1 id="tgrid">TGrid</h1>
+				<h2 id="introduction">Introduction</h2>
+				<p><a href="https://github.com/samchon/tgrid/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="GitHub license"></a>
+					<a href="https://www.npmjs.com/package/tgrid"><img src="https://badge.fury.io/js/tgrid.svg" alt="npm version"></a>
+					<a href="https://www.npmjs.com/package/tgrid"><img src="https://img.shields.io/npm/dm/tgrid.svg" alt="Downloads"></a>
+					<a href="https://travis-ci.org/samchon/tgrid"><img src="https://travis-ci.org/samchon/tgrid.svg?branch=master" alt="Build Status"></a>
+					<a href="https://app.fossa.io/projects/git%2Bgithub.com%2Fsamchon%2Ftgrid?ref=badge_shield"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Fsamchon%2Ftgrid.svg?type=shield" alt="FOSSA Status"></a>
+				<a href="https://gitter.im/samchon/tgrid?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/samchon/tgrid.svg" alt="Chat on Gitter"></a></p>
+				<blockquote>
+					<pre><code class="language-bash">npm install --save tgrid</code></pre>
+				</blockquote>
+				<p>Full name of <strong>TGrid</strong> is <u>TypeScript Grid Computing Framework</u>.</p>
+				<p>As its name suggests, <strong>TGrid</strong> is a useful framework for implementating <a href="#12-grid-computing">Grid Computing</a> in the TypeScript. With <strong>TGrid</strong> and its core concept <a href="#13-remote-function-call">Remote Funtion Call</a>, you can make many computers to be <u>a virtual computer</u>.</p>
+				<p>To know more, refer below links. If you are the first comer to the <strong>TGrid</strong>, I strongly recommend you to read the <a href="https://tgrid.dev">Guide Documents</a>. In article level, <a href="https://tgrid.dev/english/tutorial/concepts.html">Basic Concepts</a> and <a href="https://tgrid.dev/english/tutorial/examples.html">Learn from Examples</a> sections would be good choices.</p>
+				<ul>
+					<li>Repositories<ul>
+							<li><a href="https://github.com/samchon/tgrid">GitHub Repository</a></li>
+							<li><a href="https://www.npmjs.com/package/tgrid">NPM Repository</a></li>
+						</ul>
+					</li>
+					<li>Documents<ul>
+							<li><a href="https://tgrid.dev/api">API Documents</a></li>
+							<li><strong>Guide Documents</strong><ul>
+									<li><a href="https://tgrid.dev/english">English</a></li>
+									<li><a href="https://tgrid.dev/korean">한국어</a></li>
+								</ul>
+							</li>
+							<li><a href="https://github.com/samchon/tgrid/releases">Release Notes</a></li>
+						</ul>
+					</li>
+				</ul>
+				<h3 id="1-2-grid-computing">1.2. Grid Computing</h3>
+				<p><img src="https://tgrid.dev/assets/images/concepts/grid-computing.png"
+				style="max-width: 563.4px" /></p>
+				<blockquote>
+					<p>Computers be a (virtual) computer</p>
+				</blockquote>
+				<p>As its name suggests, <strong>TGrid</strong> is a useful framework for <em>Grid Computing</em>. However, perpective of <em>Grid Computing</em> in <strong>TGrid</strong> is something different. It doesn&#39;t mean just combining multiple computers uinsg network communication. <strong>TGrid</strong> insists the real <em>Grid Computing</em> must be possible to turning multiple computers into <u>a virtual computer</u>.</p>
+				<p>Therefore, within framework of the <strong>TGrid</strong>, it must be possible to develop <em>Grid Computing</em> System as if there has been only a computer from the beginning. A program running on a computer and a Distributed
+				Processing System with millions, both of them must have <u>similar program code</u>. It&#39;s the real <em>Grid Computing</em>.</p>
+				<p>Do you agree with me?</p>
+				<h3 id="1-3-remote-function-call">1.3. Remote Function Call</h3>
+				<p><strong>TGrid</strong> realizes the <a href="#12-grid-computing">Grid Computing</a> through <em>Remote Function Call</em>. It literally calling remote system&#39;s functions are possible. With the <em>Remote Function Call</em>, you can access to objects of remote system as if they have been in my memory from the beginning.</p>
+				<p>With <strong>TGrid</strong> and <em>Remote Function Call</em>, it&#39;s possible to handle remote system&#39;s objects and functions as if they&#39;re mine from the beginning. Do you think what that sentence means? Right, being able to call objects and functions of the remote system, it means that current and remote system are integrated into a <u>single virtual computer</u>.</p>
+				<p>However, whatever <a href="#12-grid-computing">Grid Computing</a> and <em>Remote Function Call</em> are, you&#39;ve only heard theoretical stories. Now, it&#39;s time to see the real program code. Let&#39;s see the demonstration code and feel the <em>Remote Function Call</em>. If you want to know more about the below demonstration code, read a section <a href="https://tgrid.dev/english/tutorial/examples.html">Learn from Examples</a> wrote into the <a href="https://tgrid.dev">Guide Documents</a>.</p>
+				<h4 id="composite-calculator-server-ts"><a href="https://github.com/samchon/tgrid.examples/blob/master/src/projects/composite-calculator/server.ts"><code>composite-calculator/server.ts</code></a></h4>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { WebServer, WebAcceptor } <span class="hljs-keyword">from</span> <span class="hljs-string">"tgrid/protocols/web"</span>;
+<span class="hljs-keyword">import</span> { CompositeCalculator } <span class="hljs-keyword">from</span> <span class="hljs-string">"../../providers/Calculator"</span>;
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>): <span class="hljs-title">Promise</span>&lt;<span class="hljs-title">void</span>&gt;
+</span>{
+    <span class="hljs-keyword">let</span> server: WebServer = <span class="hljs-keyword">new</span> WebServer();
+    <span class="hljs-keyword">await</span> server.open(<span class="hljs-number">10102</span>, <span class="hljs-keyword">async</span> (acceptor: WebAcceptor) =&gt;
+    {
+        <span class="hljs-keyword">await</span> acceptor.accept(<span class="hljs-keyword">new</span> CompositeCalculator());
+    });
+}
+main();</code></pre>
+				<h4 id="composite-calculator-client-ts"><a href="https://github.com/samchon/tgrid.examples/blob/master/src/projects/composite-calculator/client.ts"><code>composite-calculator/client.ts</code></a></h4>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { WebConnector } <span class="hljs-keyword">from</span> <span class="hljs-string">"tgrid/protocols/web/WebConnector"</span>;
+<span class="hljs-keyword">import</span> { Driver } <span class="hljs-keyword">from</span> <span class="hljs-string">"tgrid/components/Driver"</span>;
+
+<span class="hljs-keyword">import</span> { ICalculator } <span class="hljs-keyword">from</span> <span class="hljs-string">"../../controllers/ICalculator"</span>;
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>): <span class="hljs-title">Promise</span>&lt;<span class="hljs-title">void</span>&gt;
+</span>{
+    <span class="hljs-comment">//----</span>
+    <span class="hljs-comment">// CONNECTION</span>
+    <span class="hljs-comment">//----</span>
+    <span class="hljs-keyword">let</span> connector: WebConnector = <span class="hljs-keyword">new</span> WebConnector();
+    <span class="hljs-keyword">await</span> connector.connect(<span class="hljs-string">"ws://127.0.0.1:10102"</span>);
+
+    <span class="hljs-comment">//----</span>
+    <span class="hljs-comment">// CALL REMOTE FUNCTIONS</span>
+    <span class="hljs-comment">//----</span>
+    <span class="hljs-comment">// GET DRIVER</span>
+    <span class="hljs-keyword">let</span> calc: Driver&lt;ICalculator&gt; = connector.getDriver&lt;ICalculator&gt;();
+
+    <span class="hljs-comment">// FUNCTIONS IN THE ROOT SCOPE</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"1 + 6 ="</span>, <span class="hljs-keyword">await</span> calc.plus(<span class="hljs-number">1</span>, <span class="hljs-number">6</span>));
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"7 * 2 ="</span>, <span class="hljs-keyword">await</span> calc.multiplies(<span class="hljs-number">7</span>, <span class="hljs-number">2</span>));
+
+    <span class="hljs-comment">// FUNCTIONS IN AN OBJECT (SCIENTIFIC)</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"3 ^ 4 ="</span>, <span class="hljs-keyword">await</span> calc.scientific.pow(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>));
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"log (2, 32) ="</span>, <span class="hljs-keyword">await</span> calc.scientific.log(<span class="hljs-number">2</span>, <span class="hljs-number">32</span>));
+
+    <span class="hljs-keyword">try</span>
+    {
+        <span class="hljs-comment">// TO CATCH EXCEPTION IS STILL POSSIBLE</span>
+        <span class="hljs-keyword">await</span> calc.scientific.sqrt(<span class="hljs-number">-4</span>);
+    }
+    <span class="hljs-keyword">catch</span> (err)
+    {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"SQRT (-4) -&gt; Error:"</span>, err.message);
+    }
+
+    <span class="hljs-comment">// FUNCTIONS IN AN OBJECT (STATISTICS)</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Mean (1, 2, 3, 4) ="</span>, <span class="hljs-keyword">await</span> calc.statistics.mean(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>));
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Stdev. (1, 2, 3, 4) ="</span>, <span class="hljs-keyword">await</span> calc.statistics.stdev(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>));
+
+    <span class="hljs-comment">//----</span>
+    <span class="hljs-comment">// TERMINATE</span>
+    <span class="hljs-comment">//----</span>
+    <span class="hljs-keyword">await</span> connector.close();
+}
+main();</code></pre>
+				<blockquote>
+					<pre><code class="language-python">1 + 6 = 7
+7 * 2 = 14
+3 ^ 4 = 81
+log (2, 32) = 5
+SQRT (-4) -&gt; Error: Negative value on sqaure.
+Mean (1, 2, 3, 4) = 2.5
+Stdev. (1, 2, 3, 4) = 1.118033988749895</code></pre>
+				</blockquote>
+				<h2 id="2-strengths">2. Strengths</h2>
+				<h3 id="2-1-easy-development">2.1. Easy Development</h3>
+				<p>Anyone can make a network system very easily.</p>
+				<h3 id="2-2-flexible-structure">2.2. Flexible Structure</h3>
+				<p>Significant changes to network systems can be handled very flexibly.</p>
+				<table>
+					<thead>
+						<tr>
+							<th align="center"><img src="https://tgrid.dev/assets/images/examples/composite-calculator.png" alt="Diagram of Composite Calculator"></th>
+							<th align="center"><img src="https://tgrid.dev/assets/images/examples/hierarchical-calculator.png" alt="Diagram of Hierarchical Calculator"></th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td align="center">Composite Calculator</td>
+							<td align="center">Hierarchical Calculator</td>
+						</tr>
+				</tbody></table>
+				<h3 id="2-3-safe-implementation">2.3. Safe Implementation</h3>
+				<p>Compilation and type checking help you to implement safe network system.</p>
+				<h2 id="3-block-chain">3. Block Chain</h2>
+				<h3 id="3-1-business-logic">3.1. Business Logic</h3>
+				<p>Principle components of Blockchain are simpler and easy to implement.</p>
+				<p>The core elements of Blockchain are &#39;Block&#39; and &#39;Chain&#39;. The first, &#39;Block&#39; is a data level issue. Considers how to design the data structure and how to archive them. The second, &#39;Chain&#39; is a policy issue that how to reach to an agreement when writing some data to &#39;Block&#39;.</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Component</th>
+							<th>Conception</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td> Block</td>
+							<td>Data Structure</td>
+							<td>Way to defining and storing data</td>
+						</tr>
+						<tr>
+							<td> Chain</td>
+							<td>Requirements</td>
+							<td>A policy for reaching to an agreement</td>
+						</tr>
+				</tbody></table>
+				<p>Let&#39;s imagine a situation that develop these &#39;Block&#39; and &#39;Chain&#39; onto not Network System but a single computer. In that case, those skills are required:</p>
+				<ul>
+					<li>Ability to design Data Structure</li>
+					<li>Ability to store Data on Device</li>
+					<li>Ability to analyze policy (requirements)</li>
+					<li>Ability to implement them</li>
+				</ul>
+				<p>Those skills are just the essentials for programmers. In other word, <em>Business Logic</em> of Blockchain is something that any skilled programmers can implement.</p>
+				<h3 id="3-2-network-system">3.2. Network System</h3>
+				<p>The real challenge to implementing Blockchain comes from the Distributed Processing System using Network Communication.</p>
+				<p>I said that <a href="#31-business-logic">Business Logic</a> of Blockchain is easy. However, it&#39;s a conditional story only when developing the Blockchain programming running on a single computer. The actual Blockchain projects, they&#39;re not running only on a single computer, but on very large Distributed Processing System. The Distributed Processing System is composed with over millions of computers and they&#39;re interacting through network communications.</p>
+				<p>Those enormous Distributed Processing Sytems always present us tremendous difficulties. Because over millions of computers are interacting together thorugh network communication, its architecutre design must be through and perfect. There must not be any contradiction and error. If there&#39;s an error on below step, you&#39;ve to roll back whole processes and start again.</p>
+				<ul>
+					<li>Read Path to Hell<ul>
+							<li><a href="https://tgrid.dev/english/appendix/swot.html#path-to-hell">English</a></li>
+							<li><a href="https://tgrid.dev/korean/appendix/swot.html#path-to-hell">한국어</a></li>
+						</ul>
+					</li>
+				</ul>
+				<p>It&#39;s tremendous difficult to develop such an actual Blockchain. No matter how simple the Business Logic is, behind it lies the path to heel, an enormous Distributed Processing System. If you want to develop a Blockchain, you&#39;ve hire the excellent architects and developers, who are in the genius level. </p>
+				<p>However, even those crazy architects and genius developers cannot assure the success. Even they can be fallen into the swamp due to incomplete requirement analyses or mistakes on architecture designs. I think those crazy difficulties may be a reason why many people and companies, who had made loud noises developing Blockchain, are quite in nowadays.</p>
+				<h3 id="3-3-conclusion">3.3. Conclusion</h3>
+				<p>Reading the stories, it can be summarized as &#39;<a href="#31-business-logic">Business Logic</a> of Blockchain is easy, however composing its <a href="#32-network-system">Network System</a> is extremely difficult&#39;.</p>
+				<p>Do you remember? With <strong>TGrid</strong> and <a href="#13-remote-function-call">Remote Function Call</a>, you can turn multiple computers into a single virtual computer. Also, program code running on the virtual computer is similar with which runs on only one computer. Only in <a href="#31-business-logic">Business Logic</a> level, two programs&#39; codes are perfectly same. Thus, following conclusions can be drawn:</p>
+				<ul>
+					<li>Blockchain&#39;s <a href="#31-business-logic">Business Logic</a> is not difficult.</li>
+					<li>With <strong>TGrid</strong>, you can concentrate only on the <a href="#31-business-logic">Business Logic</a>.</li>
+					<li>Thus, you can implement Blockchain easily through <strong>TGrid</strong>.</li>
+				</ul>
+				<p>Are you preparing a new Blockchain project? Then realize <a href="#12-grid-computing">Grid Computing</a> with <strong>TGrid</strong> and <a href="#13-remote-function-call">Remote Function Call</a>. Focus only on the essence of the Blockchain what you want to create, <a href="#31-business-logic">Business Logic</a> itself.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/tgrid.html">tgrid</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/tgrid_components.html">tgrid.components</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/tgrid_protocols.html">tgrid.protocols</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/tgrid_protocols_web.html">tgrid.protocols.web</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/tgrid_protocols_workers.html">tgrid.protocols.workers</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/tgrid_utils.html">tgrid.utils</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

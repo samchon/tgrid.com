@@ -1,6 +1,4 @@
 # Basic Concepts
-이번 단원에서는 **TGrid** 의 <u>기초 개념</u>에 대하여 알아볼 것입니다. 
-
 In this lesson, we learn about the <u>Basic Concepts</u> of the **TGrid**.
 
 The [1st chapter](#1-theory) will handle about the basic theories, what the true Grid Computing being supported by **TGrid** and what the Remote Function Call are. In the [2nd chapter](#2-components), we will learn about the basic components. Finally, the [last chapter](#3-protocols) discusses two protocols supported by **TGrid**: Web *Socket* and *Workers*.
@@ -15,11 +13,13 @@ If you like practice rather than theory and prefer one code reading rather than 
 Wekipedia says *Grid Computing* is:
 
 {% panel style="info", title="Wikipedia, Grid computing" %}
+
 https://en.wikipedia.org/wiki/Grid_computing
 
 Grid computing is the use of widely distributed computer resources to reach a common goal. A computing grid can be thought of as a distributed system with non-interactive workloads that involve many files. Grid computing is distinguished from conventional high-performance computing systems such as cluster computing in that grid computers have each node set to perform a different task/application. Grid computers also tend to be more heterogeneous and geographically dispersed (thus not physically coupled) than cluster computers. Although a single grid can be dedicated to a particular application, commonly a grid is used for a variety of purposes. Grids are often constructed with general-purpose grid middleware software libraries. Grid sizes can be quite large.
 
 Grids are a form of distributed computing whereby a "super virtual computer" is composed of many networked loosely coupled computers acting together to perform large tasks. For certain applications, distributed or grid computing can be seen as a special type of parallel computing that relies on complete computers (with onboard CPUs, storage, power supplies, network interfaces, etc.) connected to a computer network (private or public) by a conventional network interface, such as Ethernet. This is in contrast to the traditional notion of a supercomputer, which has many processors connected by a local high-speed computer bus.
+
 {% endpanel %}
 
 In the description of Wikipedia about *Grid Computing*, I want to emphasize the word, "one virtual computer". In my opinion, the true *Grid Computing* is not just binding multiple computers with network communication and performming common goal. I think that the true *Grid Computing* means makings computers to be a single virtual computer. A program running on a single computer and another program runninng on the Distributed Processing System with millions of computers, both of them must have <u>similar program code</u>. It's the true *Grid Computing*.
@@ -36,7 +36,7 @@ I think the real [Grid Computing](#11-grid-computing) means turning multiple com
 With **TGrid** and *Remote Function Call*, it's possible to handle remote system's objects and functions as if they're mine from the beginning. Do you think what that sentence means? Right, being able to call objects and functions of the remote system, it means that current and remote system are integrated into a <u>single virtual computer</u>.
 
 ### 1.3. Demonstration
-In the previous chapter, I mentioned that TGrid and [Remote Function Call](#12-remote-function-call) can turn multiple computers into a single virtual computer. Also, the program code of the virtual computer is similar with another program code running on a single physical computer.
+In the previous chapter, I mentioned that **TGrid** and [Remote Function Call](#12-remote-function-call) can turn multiple computers into a single virtual computer. Also, the program code of the virtual computer is similar with another program code running on a single physical computer.
 
 Thus, in this section, I will show you some brief demonstration codes. The demonstrations will proof the [Remote Function Call](#12-remote-function-call) can make multiple computers to be a single virtual computer. Also, we need to take a look at how the code using the [Remote Function Call](#12-remote-function-call).
 
@@ -114,7 +114,7 @@ In addition, `Communicator` is the top-level abstract class. All the classes res
 ### 2.2. Provider
 Object being provided for Remote System
 
-`Provider` 는 원격 시스템에 제공할 객체입니다. 상대방 시스템은 현 시스템이 `Provider` 로 등록한 객체에 정의된 함수들을, [Driver](#24-driver)<[Controller](#23-controller)> 를 이용해 원격으로 호출할 수 있습니다.
+`Provide` is an object provided for the remote system. The other system can remotely call the `Provider`'s functions through [Driver](#24-driver)<[Controller](#23-controller)>.
 
 ```typescript
 export class Calculator
@@ -132,7 +132,7 @@ export class Calculator
 ### 2.3. Controller
 Interface of [Provider](#22-provider)
 
-`Controller` 는 원격 시스템에서 제공하는 [Provider](#22-provider) 에 대한 인터페이스입니다.
+`Controller` is an interface of [Provider](#22-provider), provided from the remote system.
 
 ```typescript
 export interface ICalculator
@@ -148,11 +148,11 @@ export interface ICalculator
 ```
 
 ### 2.4. Driver
-`Driver` of [Controller](#23-controller) for [RFC](#12-remote-function-call)
+`Driver` of [Controller](#23-controller) for [Remote Function Call](#12-remote-function-call)
 
-`Driver` 는 원격 시스템의 함수를 호출할 때 사용하는 객체입니다. 제네릭 파라미터로써 [Controller](#23-controller) 를 지정하게 되어있으며, 바로 이 `Driver<Controller>` 객체를 통해, 원격 시스템에서 현 시스템을 위해 제공한 [Provider](#22-provider) 객체의, 함수를 원격 호출할 수 있습니다. 바로 이 `Driver<Controller>` 객체를 통해 이루어진 원격 함수 호출을 일컬어, [Remote Function Call](#12-remote-function-call) 라고 합니다.
+`Driver` is an object for calling functions of the remote system. It is designed to specify a generic parameter [Controller](#23-controller). Through the `Driver<Controller>`, you can call functions of the [Provider](#22-provider), provided from the remote system. In other words, [Remote Function Call](#12-remote-function-call) means to call functions of [Provider](#22-provider), provided from the remote system, through the `Driver<Controller>`.
 
-더불어 `Driver` 의 제네릭 타입에 [Controller](#23-controller) 를 할당하거든, 해당 [Controller](#23-controller) 에 정의된 모든 함수들의 리턴타입은 *Promise* 화 됩니다. 만약 대상 [Controller](#23-controller) 안에 내부 오브젝트가 정의되어있거든, 해당 오브젝트 역시 `Driver<object>` 타입으로 변환됩니다. 그리고 이는 재귀적으로 반복되기에 최종적으로 [Controller](#23-controller) 에 정의된 함수들은 모두, 그것의 계층 깊이에 상관없이, *Promise* 화 됩니다. 
+Also, when you assign a [Controller](#23-controller) into the generic parameter of `Driver`, the return type of all functions defined in the [Controller](#23-controller) would be promisified. If an internal object exists in the target [Controller](#23-controller), the object type would be converted as `Driver<object>`. Since those conversions are recursviely repeated, all the functions defined in the [Controller](#23-controller) would be promisified, regardless of their hierarchy depth.
 
 ```typescript
 type Driver<ICalculator> = 
@@ -167,11 +167,11 @@ type Driver<ICalculator> =
 };
 ```
 
-{% panel style="warning", title="Driver 는 원자 변수를 무시합니다" %}
+{% panel style="warning", title="Driver ignores atomic variables" %}
 
-`Driver<Controller>` 에서는 원자 변수 (*number* 나 *string* 등) 가 무시됩니다.
+In `Driver<Controller>`, all of the atomic variables like number and string are being ignored.
 
-아래 예제 코드에서 보실 수 있다시피, [Controller](#23-controller) 에 정의된 원자 변수들은 `Driver<Controller>` 에서 모두 사라지게 됩니다. 따라서 [Provider](#22-provider) 를 설계하실 때, 원격 시스템에게 원자 변수를 제공하시려거든, 아래 예제코드와 같이 *getter* 또는 *setter* 메서드를 정의하셔야 합니다.
+As you can see from the below code, all of the atomic variables defined in the [Controller](#23-controller) are disappeared. Therefore, when designing a [Provider](#22-provider) and you want to provide atomic variables to the remote system, you should define a getter or setter method like below.
 
   - *Something.getValue()*
   - *Something.setValue()*
@@ -212,15 +212,15 @@ type Driver<ISomething> =
 > ```
 
 #### 3.1.1. Outline
-**TGrid** 는 웹소켓 프로토콜을 지원합니다.
+**TGrid** supports Web Socket protocol.
 
 #### 3.1.2. Tutorials
-아래 리스트는 **TGrid** 에서 웹 소켓 프로토콜을 이용하여 만든 예제 코드와 데모 프로젝트입니다. **TGrid** 는 Web Socket 모듈의 세부 컴포넌트들에 대하여 [API 문서](#313-module)도 제공하지만, 아래 예제 코드와 데모 프로젝트들을 함께 보시면 훨씬 더 유익할 것입니다.
+**TGrid** provides detailed [API Documents](#313-module) for `protocols.web` module. Also, example codes and demo projects using *Web Socket* protocol are already prepared. I recommend you to utilze not only [API Documents](#313-module) but also below example codes and demo projects.
 
-  - 예제 코드
+  - Example Codes
     - [Remote Function Call](examples.md#1-remote-function-call)
     - [Remote Object Call](examples.md#2-remote-object-call)
-  - 데모 프로젝트
+  - Demo Projects
     - [Chat Application](projects/chat-application.md)
     - [Omok Game](projects/omok-game.md)
     - [Grid Market](projects/grid-market.md)
@@ -228,15 +228,13 @@ type Driver<ISomething> =
 #### 3.1.3. Module
  Class           | Web Browser | NodeJS | Usage
 -----------------|-------------|--------|---------------------------
-[WebServer](https://tgrid.dev/api/classes/tgrid_protocols_web.webserver.html)    | X           | O      | 웹소켓 서버 개설
-[WebAcceptor](https://tgrid.dev/api/classes/tgrid_protocols_web.webacceptor.html)  | X           | O      | 클라이언트와의 [RFC](#12-remote-function-call) 통신 담당
-[WebConnector](https://tgrid.dev/api/classes/tgrid_protocols_web.webconnector.html) | O           | O      | 웹소켓 서버로 접속하여 [RFC](#12-remote-function-call) 통신
+[WebServer](https://tgrid.dev/api/classes/tgrid_protocols_web.webserver.html)    | X           | O      | Opens a Web Socket Server
+[WebAcceptor](https://tgrid.dev/api/classes/tgrid_protocols_web.webacceptor.html)  | X           | O      | [RFC](#12-remote-function-call) communication with Client
+[WebConnector](https://tgrid.dev/api/classes/tgrid_protocols_web.webconnector.html) | O           | O      | [RFC](#12-remote-function-call) communication with Server
 
-**TGrid** 의 `protocols.web` 모듈에는 이처럼 딱 3 개의 클래스만이 존재합니다. 제일 먼저 웹소켓 서버를 개설하는 데 필요한 [WebServer](https://tgrid.dev/api/classes/tgrid_protocols_web.webserver.html) 클래스가 있으며, 웹소켓 서버에 접속한 각 클라이언트와의 [RFC](#12-remote-function-call) 통신을 담당하는 [WebAcceptor](https://tgrid.dev/api/classes/tgrid_protocols_web.webacceptor.html) 클래스가 있습니다. 그리고 마지막으로 클라이언트에서 웹소켓 서버에 접속할 때 사용하는 [WebConnector](https://tgrid.dev/api/classes/tgrid_protocols_web.webconnector.html) 클래스가 있습니다.
+There are only thress classes in the `protocols.web` module. The first is [WebServer](https://tgrid.dev/api/classes/tgrid_protocols_web.webserver.html) is a class, which is designed for opening a Web Socket server. The second is [WebAcceptor](https://tgrid.dev/api/classes/tgrid_protocols_web.webacceptor.html) class, which is created whenever a client connects to the [WebServer](https://tgrid.dev/api/classes/tgrid_protocols_web.webserver.html) and taking responsibility to [RFC](#12-remote-function-call) communication with the client. The last is [WebConnector](https://tgrid.dev/api/classes/tgrid_protocols_web.webconnector.html) class, which is designed for Web Socket client.
 
-이 중에 [Communicator](#21-communicator) 클래스는 [WebAcceptor](https://tgrid.dev/api/classes/tgrid_protocols_web.webacceptor.html) 와 [WebConnector](https://tgrid.dev/api/classes/tgrid_protocols_web.webconnector.html) 클래스입니다. [WebServer](https://tgrid.dev/api/classes/tgrid_protocols_web.webserver.html) 는 분명 웹소켓 서버를 개설할 수 있고 클라이언트가 접속할 때마다 매번 [WebAcceptor](https://tgrid.dev/api/classes/tgrid_protocols_web.webacceptor.html) 오브젝트를 새로이 생성해주기는 하지만, [Communicator](#21-communicator) 클래스는 결코 아닙니다.
-
-더불어 주의하셔야 할 게 하나 있습니다. 웹 브라우저는 스스로 웹소켓 서버를 개설할 수 없으며, 오로지 클라이언트의 역할만을 수행할 수 있다는 것입니다. 따라서 **TGrid** 를 이용하여 웹 어플리케이션을 만드실 경우, 오직 [WebConnector](https://tgrid.dev/api/classes/tgrid_protocols_web.webconnector.html) 클래스만을 사용할 수 있습니다.
+Between those classes, [Communicator](#21-communicator) classes are [WebAcceptor](https://tgrid.dev/api/classes/tgrid_protocols_web.webacceptor.html) and [WebConnector](https://tgrid.dev/api/classes/tgrid_protocols_web.webconnector.html). Of course, [WebServer](https://tgrid.dev/api/classes/tgrid_protocols_web.webserver.html) can certianly open a WebSocket server and creates [WebAcceptor](https://tgrid.dev/api/classes/tgrid_protocols_web.webacceptor.html) objects whenever client connects, however, it's never the [Communicator](#21-communicator) class using the [RFC](#12-remote-function-call).
 
 ### 3.2. Workers
 > ```typescript
@@ -255,47 +253,47 @@ type Driver<ISomething> =
 > ```
 
 #### 3.2.1. Outline
-**TGrid** 는 *Worker* 및 *SharedWorker* 프로토콜을 지원합니다.
+**TGrid** supports *Worker* and *SharedWorker* protocols.
 
-{% panel style="info", title="왜 Worker 가 네트워크 시스템의 범주에 드나요?" %}
+{% panel style="info", title="Why workers be categorized into network system" %}
 
 ![Worker like Network](../../assets/images/concepts/worker-like-network.png)
 
-*Worker* 는 웹 브라우저에서 멀티 스레딩을 지원하기 위하여 창안된 개념입니다. 하지만, 일반적인 프로그램의 스레드와는 달리, *Worker* 는 메모리 변수를 공유할 수 없습니다. 표준적인 스레드 모델과는 달리 메모리 변수를 공유할 수 없는 *Worker* 이기에, 웹 브라우저와 Worker 간의 연동 (또는 *Worker* 인스턴스들 간의 상호 연동) 은 오로지 [MessageChannel](https://developer.mozilla.org/en-US/docs/Web/API/MessageChannel) 을 통해 바이너리 데이터를 송수신하는 방식으로밖에 구현할 수 없습니다.
+*Worker* is invented for supporting multi-threading in the web browsers. However, unlike threads in normal programming languages, *workers* cannot share memory variables. As *workers* cannot share memory variables, interactions with web browser and *worker* (or with *worker* and *worker*) are implemented by [MessageChannel] which utilizes binary data communication.
 
-인스턴스간에 연동을 꾀함에 있어 메모리 변수를 공유하는게 아니라, 상호간 바이너리 데이터를 송수신한다구요? 이거 어디서 많이 듣던 이야기 아닌가요? 맞습니다, 네트워크 통신을 이용한 분산처리시스템의 가장 전형적인 모습입니다. 즉, *Worker* 가 사용하는 [MessageChannel](https://developer.mozilla.org/en-US/docs/Web/API/MessageChannel) 은 개념적으로 <u>Network Communication</u> 과 완전히 일치합니다.
+Interactions are done by not sharing memory variables but binary communcation? Isn't this where you heard a lot? That's right, it's the most typical form of distributed processing system using network communication. In other words, [MessageChannel](https://developer.mozilla.org/en-US/docs/Web/API/MessageChannel) used by *workers* is same with the network communication, in the conceptual level.
 
-다시 한 번 정리하자면, Worker 는 물리적으로는 스레드 레벨에서 생성되는 인스턴스이나, 그 원리나 작동되는 방식으로 보건데 개념적으로는 한없이 네트워크 시스템에 가깝습니다. 저는 바로 이 부분에 주목하여 *Worker* 도 Network Protocol 의 일종으로 해석하고 간주하였습니다. 따라서 **TGrid** 는 Worker Protocol 에 대하여도 [Remote Function Call](#12-remote-function-call) 을 지원합니다.
+Let's review the *workers*. *Workers* are physically created in the thread level. However, in conceptual level and considering how they interact, workers are a type of network system. In such reason, **TGrid** interpretes *Worker* and *SharedWorker* as network protocols and supports [Remote Function Call](#12-remote-function-call) for those protocols.
 
 {% endpanel %}
 
 #### 3.2.2. Tutorials
-아래 리스트는 **TGrid** 에서 Worker 프로토콜을 이용하여 만든 예제 코드와 데모 프로젝트입니다. **TGrid** 는 Workers 모듈의 세부 컴포넌트들에 대하여 [API 문서](#323-module)도 제공하지만, 아래 예제 코드와 데모 프로젝트들을 함께 보시면 훨씬 더 유익할 것입니다.
+**TGrid** provides detailed [API Documents](#323-module) for `protocols.workers` module. Also, example codes and demo projects using *Worker* protocol are already prepared. I recommend you to utilze not only [API Documents](#323-module) but also below example codes and demo projects.
 
-  - 예제 코드
+  - Example Codes
     - [Object Oriented Network](examples.md#3-object-oriented-network)
     - [Remote Critical Section](examples.md#4-remote-critical-section)
-  - 데모 프로젝트
+  - Demo Project
     - [Grid Market](projects/grid-market.md)
 
 #### 3.2.3. Module
  Class                    | Web Browser | NodeJS | Usage
 --------------------------|-------------|--------|---------------------------
-[WorkerConnector](https://tgrid.dev/api/classes/tgrid_protocols_workers.workerconnector.html)       | O           | O      | Worker 를 생성하고 이에 접속하여 [RFC](#12-remote-function-call) 통신
-[WorkerServer](https://tgrid.dev/api/classes/tgrid_protocols_workers.workerserver.html)          | O           | O      | Worker 그 자체. 클라이언트와 [RFC](#12-remote-function-call) 통신
-[SharedWorkerConnector](https://tgrid.dev/api/classes/tgrid_protocols_workers.sharedworkerconnector.html) | O           | X      | SharedWorker 에 접속하여 [RFC](#12-remote-function-call) 통신
-[SharedWorkerServer](https://tgrid.dev/api/classes/tgrid_protocols_workers.sharedworkerserver.html)    | O           | X      | SharedWorker 그 자체, 서버 개설
-[SharedWorkerAcceptor](https://tgrid.dev/api/classes/tgrid_protocols_workers.sharedworkeracceptor.html)  | O           | X      | 클라이언트와의 [RFC](#12-remote-function-call) 통신을 담당
+[WorkerConnector](https://tgrid.dev/api/classes/tgrid_protocols_workers.workerconnector.html)       | O           | O      | Creates *Worker* and [RFC](#12-remote-function-call) communication
+[WorkerServer](https://tgrid.dev/api/classes/tgrid_protocols_workers.workerserver.html)          | O           | O      | *Worker* itself. [RFC](#12-remote-function-call) communication with client
+[SharedWorkerConnector](https://tgrid.dev/api/classes/tgrid_protocols_workers.sharedworkerconnector.html) | O           | X      | Create or connect to *SharedWorker* and [RFC](#12-remote-function-call) communication
+[SharedWorkerServer](https://tgrid.dev/api/classes/tgrid_protocols_workers.sharedworkerserver.html)    | O           | X      | *SharedWorker* itself. Creates server
+[SharedWorkerAcceptor](https://tgrid.dev/api/classes/tgrid_protocols_workers.sharedworkeracceptor.html)  | O           | X      | [RFC](#12-remote-function-call) communication with client
 
-**TGrid** 의 `protocols.workers` 모듈에 속한 클래스들은 크게 두 가지 주제로 나눌 수 있습니다. 첫 번째 주제는 *Worker* 이고, 두 번째 주제는 *SharedWorker* 입니다. 이 둘의 가장 핵심되는 차이점은 *Worker*  는 서버와 클라이언트의 대수관계가 1:1 이고, *SharedWorker* 는 1:N 이라는 것입니다.
+Classes in the `protocols.workers` module can be divided into two categories. The first is *Worker* and the other is *SharedWorker*. The key differences of two categories are their cardinalities between server and clients; *Worker* is 1: 1 and *SharedWorker* is 1: N.
 
-[WorkerConnector](https://tgrid.dev/api/classes/tgrid_protocols_workers.workerconnector.html) 는 *Worker* 인스턴스를 생성하고, 해당 *Worker* 인스턴스가 개설한 [WorkerServer](https://tgrid.dev/api/classes/tgrid_protocols_workers.workerserver.html) 에 접속하여 [RFC](#12-remote-function-call) 통신을 행할 수 있습니다. 그리고 [WorkerServer](https://tgrid.dev/api/classes/tgrid_protocols_workers.workerserver.html) 는 그 고유한 특성상, 오로지 단 하나의 클라이언트만을 상대할 수 있습니다. 때문에 [WorkerServer](https://tgrid.dev/api/classes/tgrid_protocols_workers.workerserver.html) 다른 여타 서버 클래스들과는 달리, 그 스스로가 [Communicator](#21-communicator) 클래스로써, 클라이언트 프로그램과 직접 [RFC](#12-remote-function-call) 통신을 수행합니다.
+[WorkerConnector](https://tgrid.dev/api/classes/tgrid_protocols_workers.workerconnector.html)  creates a *Worker* instance and the *Worker* instances opens [WorkerServer](https://tgrid.dev/api/classes/tgrid_protocols_workers.workerserver.html). After the instance creation, [WorkerConnector](https://tgrid.dev/api/classes/tgrid_protocols_workers.workerconnector.html)  connects to the [WorkerServer](https://tgrid.dev/api/classes/tgrid_protocols_workers.workerserver.html) directly and communicates with [Remote Function Call](#12-remote-function-call). Note that, the [WorkerServer](https://tgrid.dev/api/classes/tgrid_protocols_workers.workerserver.html) can accept only a connection, a [WorkerConnector](https://tgrid.dev/api/classes/tgrid_protocols_workers.workerconnector.html) who created the *Worker* instance.
 
-  - [WorkerConnector](https://tgrid.dev/api/classes/tgrid_protocols_workers.workerconnector.html) creates a new *Worker* instance
-  - The new *Worker* instance opens WorkerServer
-  - [WorkerConnector](https://tgrid.dev/api/classes/tgrid_protocols_workers.workerconnector.html) and [WorkerServer](https://tgrid.dev/api/classes/tgrid_protocols_workers.workerserver.html) interact with [RFC](#12-remote-function-call)
+  - [WorkerConnector](https://tgrid.dev/api/classes/tgrid_protocols_workers.workerconnector.html)  creates a new *Worker* instance
+  - The new *Worker* instance opens [WorkerServer](https://tgrid.dev/api/classes/tgrid_protocols_workers.workerserver.html)
+  - [WorkerConnector](https://tgrid.dev/api/classes/tgrid_protocols_workers.workerconnector.html)  and [WorkerServer](https://tgrid.dev/api/classes/tgrid_protocols_workers.workerserver.html) interact with [RFC](#12-remote-function-call)
 
-[SharedWorkerConnector](https://tgrid.dev/api/classes/tgrid_protocols_workers.sharedworkerconnector.html) 의 경우에는 좀 특이합니다. 지정된 파일 경로를 따라 *SharedWorker* 인스턴스를 생성하기도 하고, 먼저 생성된 *SharedWorker* 인스턴스가 존재하거든 기존의 것을 사용하기도 합니다. 어쨋든 [SharedWorkerServer](https://tgrid.dev/api/classes/tgrid_protocols_workers.sharedworkerserver.html) 는, 이러한 고유 특성 덕분에, 여러 클라이언트의 접속을 동시에 받아낼 수 있습니다. 따라서 *SharedWorker* 의 경우에는 앞서 [웹소켓](#31-web-socket) 때와 마찬가지로, 상호간 [RFC](#12-remote-function-call) 통신을 담당하는 [Communicator](#21-communicator) 클래스는 [SharedWorkerConnector](https://tgrid.dev/api/classes/tgrid_protocols_workers.sharedworkerconnector.html) 와 [SharedWorkerAcceptor](https://tgrid.dev/api/classes/tgrid_protocols_workers.sharedworkeracceptor.html) 입니다.
+It is a bit unusual for the [SharedWorkerConnector](https://tgrid.dev/api/classes/tgrid_protocols_workers.sharedworkerconnector.html). [SharedWorkerConnector](https://tgrid.dev/api/classes/tgrid_protocols_workers.sharedworkerconnector.html) create a new *SharedWorker* instance before connection if target file has not mounted yet, otherwise just connects to ordinary *SharedWorker* instance if target file has already been mounted. By such characteristics, [SharedWorkerServer](https://tgrid.dev/api/classes/tgrid_protocols_workers.sharedworkerserver.html) can accept multiple connections like [WebServer](https://tgrid.dev/api/classes/tgrid_protocols_web.webserver.html). Of course, [Communicator](#21-communicator) classes, reponsible for RFC communication, of the *SharedWorker* are [SharedWorkerConnector](https://tgrid.dev/api/classes/tgrid_protocols_workers.sharedworkerconnector.html) and [SharedWorkerConnector](https://tgrid.dev/api/classes/tgrid_protocols_workers.sharedworkerconnector.html).
 
   - [SharedWorkerConnector](https://tgrid.dev/api/classes/tgrid_protocols_workers.sharedworkerconnector.html) creates a new or brings an existing *SharedWorker* instance.
   - The *SharedWorker* instance opens [SharedWorkerServer](https://tgrid.dev/api/classes/tgrid_protocols_workers.sharedworkerserver.html) if newly created.
@@ -303,11 +301,11 @@ type Driver<ISomething> =
 
 {% panel style="warning", title="SharedWorker for NodeJS" %}
 
-*SharedWorker* 는 오로지 웹 브라우저만이 지원하는 기술로써, NodeJS 에서는 이를 사용할 수 없습니다. 
+SharedWorker is a technology that only web browsers support, and NodeJS cannot use it.
 
-하지만, 이 *SharedWorker* 라는 기술도 사용하기에 따라서는 매우 강력한 무기가 될 수 있습니다. 제 생각에 NodeJS 로 웹소켓 서버를 실제 구현할 때, 사전 테스트 및 시뮬레이션 용도로 이 *SharedWorker* 만큼 제격인 게 또 어디 있을까 싶습니다. 또한 NodeJS 로 프로그램을 만들다보면, 공통 백그라운드 프로세스가 절실히 필요할 때가 종종 있습니다. 그 때에도 역시 도통 *SharedWorker* 만한게 없습니다.
+However, *SharedWorker* can be very powerful weapon. In my opinion, *SharedWorker* can be a great solution for simulating the *Web Socket* server. Also, developing NodeJS program, I often desire the *SharedWorker* to develop common background process.
 
-이에 본인은 NodeJS 에서 *SharedWorker* 를 사용할 수 있는 `polyfill` 라이브러리를 제작해 볼 생각입니다. 하지만, 저는 아직 이를 어떻게 구현해야 하는 지 모릅니다. 혹 이 글을 읽는 분들 중에 *SharedWorker* 의 `polyfill` 라이브러리를 구현할 수 있다거나, 구현할 수 있는 방법을 아는 분이 계시다면, 꼭 좀 도와주시기 바랍니다.
+So I'm planning to build a `polyfill` library that can use *SharedWorker* in the *NodeJS*. However, I still don't know how to implement it. If anyone reading this article knows how to build the `polyfill` library, please help me.
 
   - https://github.com/samchon/tgrid/issues
 

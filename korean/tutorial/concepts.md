@@ -208,7 +208,7 @@ export interface ICalculator
 ```
 
 ### 2.4. Driver
-`Driver` of [Controller](#23-controller) for [RFC](#12-remote-function-call)
+`Driver` of [Controller](#23-controller) for [Remote Function Call](#12-remote-function-call)
 
 `Driver` 는 원격 시스템의 함수를 호출할 때 사용하는 객체입니다. 제네릭 파라미터로써 [Controller](#23-controller) 를 지정하게 되어있으며, 바로 이 `Driver<Controller>` 객체를 통해, 원격 시스템에서 현 시스템을 위해 제공한 [Provider](#22-provider) 객체의, 함수를 원격 호출할 수 있습니다. 바로 이 `Driver<Controller>` 객체를 통해 이루어진 원격 함수 호출을 일컬어, [Remote Function Call](#12-remote-function-call) 라고 합니다.
 

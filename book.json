@@ -6,6 +6,7 @@
     "plugins": [
         "-highlight",
         "addcssjs",
+        "back-to-top-button",
         "codegroup",
         "collapse",
         "disqus",

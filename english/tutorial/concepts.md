@@ -1,56 +1,54 @@
 # Basic Concepts
 이번 단원에서는 **TGrid** 의 <u>기초 개념</u>에 대하여 알아볼 것입니다. 
 
-이번 단원의 [제 1 장 Theory](#1-theory) 에서는 기초 이론을 배웁니다. **TGrid** 가 주창하는 진정한 Grid Computing 이 무엇이며, *Remote Function Call* 은 어떤 개념인지 알아볼 것입니다. [제 2 장 Components](#2-components) 에서는 TGrid 의 가장 핵심이 되는 기초 컴포넌트들을 익힐 것입니다. 마지막으로 [제 3 장 Protocols](#3-protocols) 에서는 TGrid 가 지원하는 두 가지 프로토콜, *Web Socket* 과 *Workers* 대하여 알아봅니다.
+In this lesson, we learn about the <u>Basic Concepts</u> of the **TGrid**.
 
-만약, 이 글을 읽으시는 여러분께서 이론보다는 실전을 선호하시며 백 번의 설명보다는 한 번의 코드 읽기를 추구하시는 성향이시라면, 이 단원은 과감히 건너뛰셔도 좋습니다. 이런 분들께는, 바로 이 다음 단원인, [Learn from Examples](examples.md) 부터 읽으시기를 권해드립니다.
+The [1st chapter](#1-theory) will handle about the basic theories, what the true Grid Computing being supported by **TGrid** and what the Remote Function Call are. In the [2nd chapter](#2-components), we will learn about the basic components. Finally, the [last chapter](#3-protocols) discusses two protocols supported by **TGrid**: Web *Socket* and *Workers*.
+
+If you like practice rather than theory and prefer one code reading rather than hundreds description listenings, just skip this lesson. For those of you, I recommend you to read the next lesson, [Learn from Examples](examples.md), first.
 
 
 
 
 ## 1. Theory
 ### 1.1. Grid Computing
-그리드 컴퓨팅에 대한 위키백과의 설명은 이러합니다.
+Wekipedia says *Grid Computing* is:
 
-{% panel style="info", title="위키백과, 그리드 컴퓨팅" %}
+{% panel style="info", title="Wikipedia, Grid computing" %}
+https://en.wikipedia.org/wiki/Grid_computing
 
-https://ko.wikipedia.org/wiki/그리드_컴퓨팅
+Grid computing is the use of widely distributed computer resources to reach a common goal. A computing grid can be thought of as a distributed system with non-interactive workloads that involve many files. Grid computing is distinguished from conventional high-performance computing systems such as cluster computing in that grid computers have each node set to perform a different task/application. Grid computers also tend to be more heterogeneous and geographically dispersed (thus not physically coupled) than cluster computers. Although a single grid can be dedicated to a particular application, commonly a grid is used for a variety of purposes. Grids are often constructed with general-purpose grid middleware software libraries. Grid sizes can be quite large.
 
-그리드 컴퓨팅(영어: grid computing)은 최근 활발히 연구가 진행되고 있는 분산 병렬 컴퓨팅의 한 분야로서, 원거리 통신망(WAN, Wide Area Network)으로 연결된 서로 다른 기종의(heterogeneous) 컴퓨터들을 하나로 묶어 가상의 대용량 고성능 컴퓨터(영어: super virtual computer)를 구성하여 고도의 연산 작업(computation intensive jobs) 혹은 대용량 처리(data intensive jobs)를 수행하는 것을 일컫는다. 모든 컴퓨터를 하나의 초고속 네트워크(광통신)로 연결하여 계산능력을 극대화시키는 차세대 디지털 신경망 서비스를 말한다. 여러 컴퓨터를 가상으로 연결해서 공동으로 연산작업을 수행하게 하는 것이며 분산 컴퓨팅이라고도 한다.
-
-그리드는 대용량 데이터에 대한 연산을 작은 소규모 연산들로 나누어 작은 여러대의 컴퓨터들로 분산시켜 수행한다는 점에서 클러스터 컴퓨팅의 확장된 개념으로 볼 수 있으나, WAN 상에서 서로 다른 기종의 머신들을 연결한다는 점으로 인해 클러스터 컴퓨팅에서는 고려되지 않았던 여러 가지 표준 규약들이 필요해졌고, 현재 글로버스(Globus) 프로젝트를 중심으로 표준들이 정립되고 있는 중이다. 또한 다양한 플랫폼을 서로 연결한다는 점에서 클러스터 컴퓨팅과 차이가 있다.
-
+Grids are a form of distributed computing whereby a "super virtual computer" is composed of many networked loosely coupled computers acting together to perform large tasks. For certain applications, distributed or grid computing can be seen as a special type of parallel computing that relies on complete computers (with onboard CPUs, storage, power supplies, network interfaces, etc.) connected to a computer network (private or public) by a conventional network interface, such as Ethernet. This is in contrast to the traditional notion of a supercomputer, which has many processors connected by a local high-speed computer bus.
 {% endpanel %}
 
-저는 Grid Computing 에 대한 위키백과의 설명 중에, <u>하나의 가상 컴퓨터</u> 라는 단어를 특히 강조하고 싶습니다. 제가 생각하는 Grid Computing 이란, 단순히 여러 대의 컴퓨터를 네트워크로 묶어 공통의 작업을 수행하기만 해서 되는 게 아닙니다. 제가 원하는 진정한 Grid Computing 기술이란, 여러 대의 컴퓨터를 단 한 대의 가상 컴퓨터로 만들어줄 수 있는 것입니다. 
+In the description of Wikipedia about *Grid Computing*, I want to emphasize the word, "one virtual computer". In my opinion, the true *Grid Computing* is not just binding multiple computers with network communication and performming common goal. I think that the true *Grid Computing* means makings computers to be a single virtual computer. A program running on a single computer and another program runninng on the Distributed Processing System with millions of computers, both of them must have <u>similar program code</u>. It's the true *Grid Computing*.
 
-따라서 제 기준에서의 Grid Computing 시스템이란, 그것을 구성하는 컴퓨터가 수백만 대라도, 처음부터 단 한대의 컴퓨터만 있었던 것인냥 개발할 수 있어야 합니다. 단 <u>한 대</u>에서 컴퓨터에서 동작하는 프로그램과, <u>수백만 대</u>를 이용한 분산병렬처리시스템이 모두 <u>동일한 프로그램 코드</u>를 사용할 수 있어야, 그것이 진정 Grid Computing 입니다.
-
-여러분도 그렇게 생각하시나요?
+Do you agree with me?
 
 ### 1.2. Remote Function Call
 <img src="../../assets/images/concepts/grid-computing.png" style="max-width: 563.4px" />
 
-제가 생각하는 진정한 Grid Computing 이란, 여러 대의 컴퓨터를 하나의 가상 컴퓨터로 만드는 것입니다. 그리고 Grid Computing 으로 만든 가상 컴퓨터에 탑재될 프로그램의 코드는, 실제로 하나의 컴퓨터에서 동작하는 프로그램의 코드와 동일해야 합니다.
+I think the real [Grid Computing](#11-grid-computing) means turning multiple computers into a single virtual computer. Also, code of the program mounted on the virtual computer must be similar with the code running on a single physical computer.
 
-**TGrid** 가, 바로 이 진정한 Grid Computing 을 실현하기 위하여, 제공하는 솔루션은 `Remote Function Call` 입니다. `Remote Function Call` 은 문자 그대로 원격 시스템의 함수를 호출한다는 뜻입니다. `Remote Function Call` 을 이용하면 여러분은 원격 시스템이 가진 객체를 마치 내 메모리 객체인 양 사용하실 수 있습니다. 원격 시스템에 정의된 함수가 마치 내 프로그램의 함수인 양 호출할 수 있구요.
+**TGrid** realizes the true [Grid Computing](#11-grid-computing) through *Remote Function Call*. It literally calling remote system's functions are possible. With the *Remote Function Call*, you can access to objects of remote system as if they have been in my memory from the beginning.
 
-**TGrid** 와 `Remote Function Call` 을 이용하면 원격 시스템의 객체와 함수를 마치 내 것인양 사용할 수 있다, 이 문장이 무엇을 의미할까요? 맞습니다, 원격 시스템의 객체와 함수를 직접 호출할 수 있다는 것은 곧, 현 시스템과 원격 시스템이 <u>하나의 가상 컴퓨터로 통합</u>되었다는 것을 의미합니다. 하나의 컴퓨터에 탑재된 <u>단일 프로그램</u>이니까, 객체간 함수도 호출할 수 있고 뭐 그런 것 아니겠습니까?
+With **TGrid** and *Remote Function Call*, it's possible to handle remote system's objects and functions as if they're mine from the beginning. Do you think what that sentence means? Right, being able to call objects and functions of the remote system, it means that current and remote system are integrated into a <u>single virtual computer</u>.
 
 ### 1.3. Demonstration
-이 앞 절에서 저는 **TGrid** 와 [Remote Function Call](#12-remote-function-call) 울 이용하면 여러 대의 컴퓨터를 하나의 가상 컴퓨터로 만들 수 있다고 하였습니다. 그리고 이렇게 만든 가상 컴퓨터의 프로그램 코드는 실제 단일 컴퓨터로 만든 프로그램의 코드와 동일하다고도 하였구요. 
+In the previous chapter, I mentioned that TGrid and [Remote Function Call](#12-remote-function-call) can turn multiple computers into a single virtual computer. Also, the program code of the virtual computer is similar with another program code running on a single physical computer.
 
-때문에 이번 절은 [Remote Function Call](#12-remote-function-call) 이 정말로 그러한지, 여러 대의 컴퓨터를 하나의 가상 컴퓨터로 만들어줄 수 있는지, 간략한 증명을 해 보일 것입니다. 더불어 [Remote Function Call](#12-remote-function-call) 을 사용하는 코드는 실제로 어떻게 생겨먹었는지도 미리 한 번 봐 두어야지 않겠습니까?
+Thus, in this section, I will show you some brief demonstration codes. The demonstrations will proof the [Remote Function Call](#12-remote-function-call) can make multiple computers to be a single virtual computer. Also, we need to take a look at how the code using the [Remote Function Call](#12-remote-function-call).
 
 ![Hierarchical](../../assets/images/concepts/hierarchical.png) | ![Composite](../../assets/images/concepts/composite.png) | ![Single](../../assets/images/concepts/single.jpg)
 :-----------:|:---------:|:------:
 Hierarchical | Composite | Single
 
-아래의 세 예제 코드는 모두 [2.2. Learn from Examples](examples.md) 단원에서 다루는 내용입니다. 아래 예제 코드에 대한 자세한 설명은 해당 단원을 참고해주세요. 지금 우리는 딱 하나만 집중해서 보고자 합니다. 그것은 바로 세 프로젝트의 <u>비지니스 로직 코드가 모두 동일</u>하다는 것입니다.
+Three demonstration codes are all come from the [2.2. Learn from Examples](examples.md) lesson. Read the lesson if you want to know more about those demonstration codes. At now, we'll only concentrate one thing. That is, <u>business code</u> of those demonstration codes <u>are all similar</u>.
 
-만들고자 하는 프로그램이 Grid Computing 으로 만들어졌던, 혹은 단일 컴퓨터에서 동작하는 것이던, 비지니스 로직 코드에는 일절 변화가 없습니다. 심지어 Grid Computing 을 구성하는 컴퓨터가 2 대이던 혹은 4 대이던, 여전히 비지니스 로직 코드에는 아무런 변화가 없습니다. 왜냐하면 이들은 모두 하나의 (가상) 컴퓨터로 통합된 상태니까요. 하나의 컴퓨터에 완전히 똑같은 용도의 프로그램을 세 벌 만드는데, 이들의 코드가 어찌 같이 않을 수 있겠나요?
+Whether the program you want to create is built with Grid Computing or runs on a single computer, there is no change in the business logic code. Even if you have two or four computers that make up Grid Computing, there is still no change in your business logic code. Because they are all integrated into one (virtual) computer. How can you make different programs for the same purpose running on a single computer?
 
-마지막으로 이 말과 함께 이번 장을 마치겠습니다. This is **TGrid**. This is [Remote Function Call](#12-remote-function-call).
+I'll conclude this chapter with these words, "This is **TGrid**. This is [Remote Function Call](#12-remote-function-call)".
 
 {% codegroup  %}
 ```typescript::Hierarchical
@@ -98,76 +96,18 @@ Hierarchical | Composite | Single
 ### 2.1. Communicator
 Communicates with Remote System.
 
-`Communicator` 는 원격 시스템과의 네트워크 통신을 전담하는 객체입니다. 이 `Communicator` 에 상대방 시스템에게 제공할 [Provider](#22-provider) 를 등록할 수 있습니다. 상대방 시스템이 제공한 [Provider](#22-provider) 를 사용할 수 있는 [Driver](#24-driver)<[Controller](#23-controller)> 역시, 이 `Communicator` 를 통해 생성할 수 있습니다.
+`Communicator` is a class taking full responsibility to network communication with remote system. You can register a [Provider](#22-provider), an object would be provided to remote system, thorugh this `Communicator`. Also, [Driver](#24-driver)<[Controller](#23-controller)>, who can use remote system's [Provider](#22-provider), is created by this `Communicator`.
 
 > `Communicator.getDriver<Controller>`
 
-더불어 `Communicator` 는 최상위 추상 클래스로써, **TGrid** 에서 네트워크 통신을 담당하는 클래스들은 모두 이 `Communicator` 클래스를 상속하고 있습니다. 이에 관한 자세한 내용은 [3. Protocols](#3-protocols) 단원을 참고해주세요.
+In addition, `Communicator` is the top-level abstract class. All the classes responsible for network communication in **TGrid** inherit this `Communicator` class. If you want to know more, go to the [3. Protocols](#3-protocols) chapter.
 
 {% codegroup %}
 ```typescript::Server
-import { WebServer } from "tgrid/protocols/web/WebServer";
-import { WebAcceptor } from "tgrid/protocols/web/WebAcceptor";
-import { Calculator } from "../providers/Calculator";
-
-async function main(): Promise<void>
-{
-    let server: WebServer = new WebServer();
-    let provider: Calculator = new Calculator();
-
-    await server.open(10101, async (acceptor: WebAcceptor) =>
-    {
-        // PROVIDE CALCULATOR
-        await accept.accept(provider);
-    });
-}
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/projects/composite-calculator/server.ts") -->
 ```
 ```typescript::Client
-import { WebConnector } from "tgrid/protocols/web/WebConnector";
-import { Driver } from "tgrid/components/Driver";
-import { ICalculator } from "../controllers/ICalculator";
-
-async function main(): Promise<void>
-{
-    //----
-    // DO CONNECT
-    //----
-    let connector: WebConnector = new WebConnector();
-    await connector.connect("http://127.0.0.1:10101");
-
-    //----
-    // CALL REMOTE FUNCTIONS
-    //----
-    // GET DRIVER PROVIDED BY SERVER
-    let calc: Driver<ICalculator> = connector.getDriver<ICalculator>();
-
-    // FUNCTIONS IN THE ROOT SCOPE
-    console.log("1 + 6 =", await calc.plus(1, 6));
-    console.log("7 * 2 =", await calc.multiplies(7, 2));
-
-    // FUNCTIONS IN AN OBJECT (SCIENTIFIC)
-    console.log("3 ^ 4 =", await calc.scientific.pow(3, 4));
-    console.log("log (2, 32) =", await calc.scientific.log(2, 32));
-
-    try
-    {
-        // TO CATCH EXCEPTION IS ALSO POSSIBLE
-        await calc.scientific.sqrt(-4);
-    }
-    catch (err)
-    {
-        console.log("SQRT (-4) -> Error:", err.message);
-    }
-
-    // FUNCTIONS IN AN OBJECT (STATISTICS)
-    console.log("Mean (1, 2, 3, 4) =", await calc.statistics.mean(1, 2, 3, 4));
-    console.log("Stdev. (1, 2, 3, 4) =", await calc.statistics.stdev(1, 2, 3, 4));
-
-    //----
-    // CLOSE CONNETION
-    //----
-    await connector.close();
-}
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/projects/composite-calculator/client.ts") -->
 ```
 {% endcodegroup %}
 

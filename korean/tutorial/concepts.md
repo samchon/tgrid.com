@@ -29,7 +29,7 @@ https://ko.wikipedia.org/wiki/그리드_컴퓨팅
 여러분도 그렇게 생각하시나요?
 
 ### 1.2. Remote Function Call
-<img src="../../assets/images/concepts/grid-computing.png" style="max-width: 563.4px" />
+![Grid Computing](../../assets/images/concepts/grid-computing.png)
 
 제가 생각하는 진정한 Grid Computing 이란, 여러 대의 컴퓨터를 하나의 가상 컴퓨터로 만드는 것입니다. 그리고 Grid Computing 으로 만든 가상 컴퓨터에 탑재될 프로그램의 코드는, 실제로 하나의 컴퓨터에서 동작하는 프로그램의 코드와 동일해야 합니다.
 

@@ -27,7 +27,7 @@ In the description of Wikipedia about *Grid Computing*, I want to emphasize the 
 Do you agree with me?
 
 ### 1.2. Remote Function Call
-<img src="../../assets/images/concepts/grid-computing.png" style="max-width: 563.4px" />
+![Grid Computing](../../assets/images/concepts/grid-computing.png)
 
 I think the real [Grid Computing](#11-grid-computing) means turning multiple computers into a single virtual computer. Also, code of the program mounted on the virtual computer must be similar with the code running on a single physical computer.
 

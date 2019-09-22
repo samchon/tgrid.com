@@ -1,13 +1,13 @@
 # Tutorial Projects
 ## [1. Chat Application](chat-application.md)
-> - Demo Site: http://samchon.org/chat
-> - Code Repository: https://github.com/samchon/tgrid.projects.chat-application
+> - Demo site: http://samchon.org/chat
+> - Code repository: https://github.com/samchon/tgrid.projects.chat-application
 
 ![Chat Application](../../../assets/images/projects/chat-application/chat-movie.png)
 
-Make a simple chat application.
+Make a simple live chat application.
 
-Most of the first projects for network communication start from the real time chat application. We'll also follow the custom. The first tutorial project [Chat Application](chat-application.md) is very easy and simple. There is only a chat room on the server and all participants are paritipated in there.
+When practicing network programming, most of them start from creating live chat application. We'll also follow the custom. The first tutorial project [Chat Application](chat-application.md) is very easy and simple. There is only a chat room on the server and all participants are paritipated in there.
 
 
 

@@ -40,7 +40,7 @@
 #### [`controllers/IChatService.ts`](https://github.com/samchon/tgrid.projects.chat-application/blob/master/src/controllers/IChatService.ts)
 `IChatService` 는 서버가 클라이언트에게 제공하는 기능들을 정의한 인터페이스로써, 클라이언트에서 [Controller](../concepts.md#23-controller) 로 사용됩니다. 정확히는 클라이언트 프로그램이 [Driver](../concepts.md#24-driver)<`IChatService`> 객체를 사용하여 서버의 [함수들을 원격 호출](../concepts.md#13-remote-function-call)하게 됩니다.
 
-자, 그럼 서버에 접속한 클라이언트가 제일 먼저 해야할 일은 무엇일까요? 그것은 바로 자신의 이름을 정하는 일입니다 (*setName*). 이후에 클라이언트는 채팅방에 참여한 모두에게 이야기하거나 (*talk*), 특정한 누군가에게 귓속말로 속삭이거나 하겠지요 (*whisper*). `IChatService` 는 이처럼 클라이언에서 서버로 [호출하는 원격 함수](../concepts.md#13-remote-function-call)들을 정의한 인터페이스입니디.
+자, 그럼 서버에 접속한 클라이언트가 제일 먼저 해야할 일은 무엇일까요? 그것은 바로 자신의 이름을 정하는 일입니다 (*setName*). 이후에 클라이언트는 채팅방에 참여한 모두에게 이야기하거나 (*talk*), 특정한 누군가에게 귓속말로 속삭이거나 하겠지요 (*whisper*).
 
 ```typescript
 export interface IChatService

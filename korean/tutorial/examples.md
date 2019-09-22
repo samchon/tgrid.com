@@ -76,9 +76,9 @@ export class SimpleCalculator implements ISimpleCalculator
 
 {% panel style="warning", title="여기서 잠깐! 꼭 알아두세요." %}
 
-17 번째 라인에서 클라이언트가 서버로의 접속을 마친 후, 원격 함수를 호출하기 위해 [Communicator](concepts.md#21-communicator) 로부터 `connector.getDriver<ISimpleCalculator>()` 메서드를 호출함으로써 [Driver](concepts.md#23-driver)<[Controller](concepts.md#24-controller)> 객체를 구성한 것을 보실 수 있습니다. 
+17 번째 라인에서 클라이언트가 서버로의 접속을 마친 후, 원격 함수를 호출하기 위해 [Communicator](concepts.md#21-communicator) 로부터 `connector.getDriver<ISimpleCalculator>()` 메서드를 호출함으로써 [Driver](concepts.md#24-driver)<[Controller](concepts.md#23-controller)> 객체를 구성한 것을 보실 수 있습니다. 
 
-이처럼 원격 시스템이 제공하는 [Provider](concepts.md#22-provider) 에 대한 모든 원격 함수 호출은 언제나 이 [Driver](concepts.md#23-driver)<[Controller](concepts.md#24-controller)> 를 통해 이루어집니다. 이 부분은 앞으로 모든 튜토리얼에서 계속하여 반복하게 될 내용입니다. 꼭 숙지해주세요.
+이처럼 원격 시스템이 제공하는 [Provider](concepts.md#22-provider) 에 대한 모든 원격 함수 호출은 언제나 이 [Driver](concepts.md#24-driver)<[Controller](concepts.md#23-controller)> 를 통해 이루어집니다. 이 부분은 앞으로 모든 튜토리얼에서 계속하여 반복하게 될 내용입니다. 꼭 숙지해주세요.
 
 {% endpanel %}
 
@@ -116,7 +116,7 @@ export class SimpleCalculator implements ISimpleCalculator
 ### 2.1. Features
 이번 장에서 복합 구조체 호출 (Remote Object Call) 에 대한 예증을 위해 사용할 객체는 `CompositeCalculator` 입니다. 이 클래스는 이전 장에서 사용했던 [SimpleCalculator](#11-features) 의 사칙연산에 더하여, 내부 객체로써 공학용 계산기 (`scientific`) 와 통계용 계산기 (`statistics`) 가 추가된 복합 구조체의 형태를 띄고 있습니다.
 
-뭐 이미 다 아시리라 생각됩니다만, 우리가 이번에 만들 (원격 복합 계산기) 예제에서 `ICompositeCalculator` 는 [Controller](#23-controller) 의 역할을 수행하게 될 것입니다. 그리고 `CompositeCalculator` 는 [Provider](#22-provider) 가 되겠죠.
+뭐 이미 다 아시리라 생각됩니다만, 우리가 이번에 만들 (원격 복합 계산기) 예제에서 `ICompositeCalculator` 는 [Controller](concepts.md#23-controller) 의 역할을 수행하게 될 것입니다. 그리고 `CompositeCalculator` 는 [Provider](concepts.md#22-provider) 가 되겠죠.
 
   - [`../controllers/ICalculator.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/controllers/ICalculator.ts)
   - [`../providers/Calculator.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/providers/Calculator.ts)
@@ -189,7 +189,7 @@ Composite Calculator | Hierarchical Calculator
 
 마찬가지로 공학용 계산기와 통계용 계산기가 메인프레임 서버에 제공할 [Provider](concepts.md#22-provider) 는 각각 `Scientific` 와 `Statistics` 클래스이며, 메인프레임 서버가 클라이언트에게 제공할 [Provider](concepts.md#22-provider) 는 `HierarchicalCalculator` 클래스입니다. 이 `HierarchicalCalculator` 를 보고 있노라면, 뭔가 느껴지는 바가 있지 않으십니까? 
 
-혹여 *계층형 계산기* 시스템을 구성하는 각 인스턴스가 사용할 [Controller](concepts.md#23-controller) 와 [Provider](concepts.md#22-provider) 를 본 것만으로도, 프로그램 코드를 어떻게 구현해야 할 지 감이 잡히신 분이라면, 축하드립니다. 당신은 이미 **TGrid** 에 대한 모든 것을 이해하신 겁니다.
+혹여 *계층형 계산기* 시스템을 구성하는 각 인스턴스가 사용할 [Controller](concepts.md#23-controller) 들을 본 것만으로도, 프로그램 코드를 어떻게 구현해야 할 지 감이 잡히신 분이라면, 축하드립니다. 당신은 이미 **TGrid** 에 대한 모든 것을 이해하신 겁니다.
 
   - [`../controllers/ICalculator.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/controllers/ICalculator.ts)
   - [`hierarchical-calculator/calculator.ts#L7-L13`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/hierarchical-calculator/calculator.ts#L7-L13)
@@ -223,7 +223,7 @@ export class HierarchicalCalculator
 ```
 
 #### [`hierarchical-calculator/statistics.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/hierarchical-calculator/statistics.ts)
-공학용 계산기 서버도 만들어줍니다. 이 역시 매우 간단합니다.
+통계용 계산기 서버도 만들어줍니다. 이 역시 매우 간단합니다.
 
 ```typescript
 <!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/projects/hierarchical-calculator/statistics.ts") -->
@@ -250,7 +250,7 @@ export class HierarchicalCalculator
 ### 3.3. Client
 메인프레임 서버에서 클라이언트를 위하여 [Provider](concepts.md#22-provider) 로 제공하는 `HierarchicalCalculator` 클래스는, 이전 장의 [CompositeCalculator](#21-features) 와 논리적으로 완전히 동일합니다. 이 둘의 세부 구현코드는 비록 서로 다를지라도, 클라이언트에게 제공하는 인터페이스는 완벽하게 똑같습니다.
 
-즉, 이번 장에서 클라이언트 프로그램은, (이전 장에서 사용했던) `ICompositeCalculator` 를 다시 사용하게 됩니다. 사용하는 [Controller](concepts.md#24-controller) 가 이전과 같으며, 구현해야 될 비지니스 로직도 이전과 같다면, 결국에는 두 클라이언트 프로그램의 코드가 유사해지지 않겠습니까? 아래 코드를 보시면 실제로도 그러합니다. 두 코드는 너무나도 비슷하여, 무엇이 다른지조차 쉬이 찾기 힘듭니다.
+즉, 이번 장에서 클라이언트 프로그램은, (이전 장에서 사용했던) `ICompositeCalculator` 를 다시 사용하게 됩니다. 사용하는 [Controller](concepts.md#23-controller) 가 이전과 같으며, 구현해야 될 비지니스 로직도 이전과 같다면, 결국에는 두 클라이언트 프로그램의 코드가 유사해지지 않겠습니까? 아래 코드를 보시면 실제로도 그러합니다. 두 코드는 너무나도 비슷하여, 무엇이 다른지조차 쉬이 찾기 힘듭니다.
 
 {% panel style="warning", title="혹시 무엇이 다른지 못 찾으셨나요?" %}
 
@@ -260,7 +260,7 @@ export class HierarchicalCalculator
 
 바로 이 것이 **TGrid** 입니다. 만들고자 하는 시스템이 단일 컴퓨터에서 동작하는 프로그램이던, 네트워크 통신을 이용한 분산처리시스템이던 상관 없습니다. 심지어 같은 네트워크 시스템이라는 범주 안에서도, 그것의 분산처리 구조가 어찌 구성되는 지 또한 아무런 문제가 되지 않습니다. 그저 이것 하나만 기억하십시오.
 
-(**TGrid** 와 함께라면) 어떠한 경우에도, 여러분의 비지니스 로직 코드는 항상 동일할 것입니다.
+**TGrid** 와 함께라면 그 어떠한 경우에도, 여러분의 비지니스 로직 코드는 항상 동일할 것입니다.
 
 #### [`hierarchical-calculator/index.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/hierarchical-calculator/index.ts)
 {% codegroup %}

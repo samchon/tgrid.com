@@ -1,5 +1,5 @@
 # TGrid
-## Introduction
+## 1. Introduction
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/tgrid/blob/master/LICENSE)
 [![npm version](https://badge.fury.io/js/tgrid.svg)](https://www.npmjs.com/package/tgrid)
 [![Downloads](https://img.shields.io/npm/dm/tgrid.svg)](https://www.npmjs.com/package/tgrid)
@@ -31,12 +31,11 @@ To know more, refer below links. If you are the first comer to the **TGrid**, I 
 
 
 ### 1.2. Grid Computing
-<img src="https://tgrid.dev/assets/images/concepts/grid-computing.png" 
-     style="max-width: 563.4px" />
+![Grid Computing](../assets/images/concepts/grid-computing.png)
 
 > Computers be a (virtual) computer
 
-As its name suggests, **TGrid** is a useful framework for *Grid Computing*. However, perpective of *Grid Computing* in **TGrid** is something different. It doesn't mean just combining multiple computers uinsg network communication. **TGrid** insists the real *Grid Computing* must be possible to turning multiple computers into <u>a virtual computer</u>.
+As its name suggests, **TGrid** is a useful framework for *Grid Computing*. However, perspective of *Grid Computing* in **TGrid** is something different. It doesn't mean just combining multiple computers uinsg network communication. **TGrid** insists the real *Grid Computing* must be possible to turning multiple computers into <u>a virtual computer</u>.
 
 Therefore, within framework of the **TGrid**, it must be possible to develop *Grid Computing* System as if there has been only a computer from the beginning. A program running on a single computer and another program runninng on the Distributed Processing System with millions of computers, both of them must have <u>similar program code</u>. It's the real *Grid Computing*.
 

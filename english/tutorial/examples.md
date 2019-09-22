@@ -1,7 +1,7 @@
 # Learn from Examples
 > https://github.com/samchon/tgrid.examples
 
-이번 장에서는 간단한 예제 코드를 통해, **TGrid** 에 대해 심도 있게 공부해보는 시간을 갖도록 하겠습니다. 더불어 **TGrid** 가 말하는 *Remote Function Call* 이 어떻게 생겨먹었는지, 왜 이를 사용하면 *Computers be a Computer* 가 되는지 또한 예증해보는 시간을 갖도록 하겠습니다.
+In this lesson, we'll learn about **TGrid** in depth with simple examples. Also, let's take a look at the code of *Remote Function Call* and demonstrate how the *Remote Function Call* come true the word: *computers to be a computer*. 
 
   - Demonstration of **TGrid**, who makes <u>computers to be a computer</u>
     - [1. Remote Function Call](#1-remote-function-call)
@@ -10,13 +10,13 @@
     - [4. Remote Critical Section](#4-remote-critical-section)
 
 ## 1. Remote Function Call
-*Remote Function Call* 이 무엇인지, 그리고 어떻게 사용하는 것인지, 아래 예제 코드를 통해 알아봅시다. 우리가 이번에 예제로 만들어볼 것은 원격 계산기로써, 서버는 간단한 사칙연산 계산기를 제공할 것이며 (provides), 클라이언트는 이를 사용하여 계산을 수행할 (remote function calls) 것입니다.
+Let's see what *Remote Function Call* and how to use it with the below example code. What we're going to implement in this chapter is a remote calculator. The server *provides* a simple arithmetic calculator and client uses it ti perform calculations through the *Remote Function Call*.
 
-  - 서버: 사칙연산 제공
-  - 클라이언트: 사칙연산 사용
+  - Server: Provides arithmetic operations
+  - Client: Use it
 
 ### 1.1. Features
-`ISimpleCalculator` 는 서버로부터 클라이언트에게 제공되는 함수들을 정의한 인터페이스입니다. 혹 벌써 눈치채신 분들도 계실 겁니다. 그렇습니다, `ISimpleCalculator` 는 바로 [Controller](concepts.md#23-controller) 가 될 녀석입니다. 그렇다면, `SimpleCalculator` 의 역할은 무얼까요? 맞습니다, 서버에서 사용할 [Provider](concepts.md#22-provider) 를 구현한 클래스입니다.
+`ISimpleCalculator` is an interface that defines the functions provided to client from the server. Some of you may have noticed already. Ues, `ISimpleCalculator` is the [Controller](concepts.md#23-controller). Then, what is the role of `SimpleCalculator`? Right, it's the [Provider](concepts.md#22-provider) class provided from server to client.
 
   - [`../controllers/ICalculator.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/controllers/ICalculator.ts#L8-L14)
   - [`../providers/Calculator.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/providers/Calculator.ts#L6-L28)
@@ -60,7 +60,7 @@ export class SimpleCalculator implements ISimpleCalculator
 {% endcodegroup %}
 
 ### 1.2. Server
-앞서 얘기하기를, 이번 예제에서 서버의 역할이란, 클라이언트에게 사칙연산 계산기를 제공한다는 것이었습니다. 그렇다면, 서버 프로그램에 작성해야 할 코드는 간단합니다. 서버를 개설하고, 해당 서버로 접속해오는 클라이언트들에게 사칙연산 계산기 `SimpleCalculator` (be [Provider](concepts.md#22-provider)) 를 제공하는 것입니다.
+As I mentioned, the role of server in this example is to *providing* arithmetic calculator for the client. Therefore, server program code is very simple. Just opens a server and provides arithmetic calculator `SimpleCalculator` (be [Provider](concepts.md#22-provider)) to clients who access to server.
 
 #### [`simple-calculator/server.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/simple-calculator/server.ts)
 ```typescript
@@ -68,17 +68,17 @@ export class SimpleCalculator implements ISimpleCalculator
 ```
 
 ### 1.3. Client
-드디어 대망의 클라이언트 프로그램을 만들 차례가 다가왔습니다. 대체 그놈의 *Remote Function Call* 이 무엇인지, 아래 두 코드를 비교해보시면 단박에 이해하실 수 있으실 겁니다. 두 코드를 비교해보면, 클라이언트가 서버로부터 제공되는 원격 계산기를 사용하는 코드와, 단일 프로그램에서 자체 계산기 클래스를 사용하는 코드가 비슷함을 확인하실 수 있습니다.
+Finally, the time to make the long-awaited client program has come. If you compare two example codes, you may find a fact: Two codes are similar. You can see that (a program code connecting to server and using remote calculator provided from server as a client) and (another program code using its own calculator as a single program), both of them have similar program code.
 
-이를 전문적인 용어로, 비지니스 로직 (Business Logic) 코드가 완전히 유사하다고 말합니다. 물론, 두 코드가 완벽하게 100 % 일치하지는 않습니다. 도메인 로직으로써 클라이언트가 서버에 접속을 해야 한다던가, 비지니스 로직 코드부에 원격 함수를 호출할 때마다 `await` 이라는 심벌이 추가로 붙는다던가 하는 등의 소소한 차이점들은 존재하기 때문입니다. 하지만, 근본적으로 두 코드의 비지니스 로직부는 완벽하게 동질의 것이며, 이로써 비지니스 로직을 네트워크 시스템으로부터 완벽하게 분리해낼 수 있었습니다. 동의하십니까?
+In technical terms, it's considered as "Bsuiness Logic code is perfectly similar". Of course, two program codes are not 100% matched, because of domain logics like client should connect to server or an extra symbol `await` is required for the *Remote Function Call*. However, the Business Logic portion of the two codes is completely homogeneous in fundamental level. Therefore, it helps us to separating Business Logic from Network System perfectly. do you agree?
 
-네트워크로 연결되어있는 원격 시스템을, 처음부터 내 메모리 객체였던 거마냥, 자유로이 그것의 함수들을 호출할 수 있는 것. 이 것이 바로 *Remote Function Call* 입니다.
+The ability to call a networked remote system freely of its functions, just like it was my memory object from the beginning. This is the *Remote Function Call*.
 
-{% panel style="warning", title="여기서 잠깐! 꼭 알아두세요." %}
+{% panel style="warning", title="Something to be aware of" %}
 
-17 번째 라인에서 클라이언트가 서버로의 접속을 마친 후, 원격 함수를 호출하기 위해 [Communicator](concepts.md#21-communicator) 로부터 `connector.getDriver<ISimpleCalculator>()` 메서드를 호출함으로써 [Driver](concepts.md#23-driver)<[Controller](concepts.md#24-controller)> 객체를 구성한 것을 보실 수 있습니다. 
+On the 17 th line, you can see that after the client has finished connecting to the server, it constructs a [Driver](concepts.md#24-driver)<[Controller](concepts.md#23-controller)> object, by calling the `connector.getDriver<ISimpleCalculator>()` method from [Communicator](concepts.md#21-communicator), for preparing the *remote function calls*.
 
-이처럼 원격 시스템이 제공하는 [Provider](concepts.md#22-provider) 에 대한 모든 원격 함수 호출은 언제나 이 [Driver](concepts.md#23-driver)<[Controller](concepts.md#24-controller)> 를 통해 이루어집니다. 이 부분은 앞으로 모든 튜토리얼에서 계속하여 반복하게 될 내용입니다. 꼭 숙지해주세요.
+As you can see, all of the remote function calls to remote system's [Provider](concepts.md#22-provider) are always done through this [Driver](concepts.md#24-driver)<[Controller](concepts.md#23-controller)> object. It would be repeated in all tutorial lessons. Thus, please be aware of it, the [Driver](concepts.md#24-driver)<[Controller](concepts.md#23-controller)>.
 
 {% endpanel %}
 
@@ -103,20 +103,20 @@ export class SimpleCalculator implements ISimpleCalculator
 
 
 ## 2. Remote Object Call
-우리는 지난 장 [1. Remote Function Call](#1-remote-function-call) 을 통하여 원격 시스템의 함수를 호출하는 방법을 알아봤습니다. 하지만, 여지껏 다루었던 것들은 어디까지나 단순 구조체 (Singular Structure) 로써 모든 함수들은 최상위 객체로써 정의되어있었을 뿐, 단 한 번도 <u>복합 구조체</u> (Composite Structure) 를 다루었던 적이 없습니다.
+In the previous chapter, we've learned how to call functions of remote system. However, the previous chapter handled only singular structured object which defined all functions in its root scope. Therefore, we've never handled the composite structure.
 
-만일 여러분께서 사용하시려는 원격 객체 ([Provider](concepts.md#22-provider)) 가 복합 구조체라면 어떻게 하시겠습니까? 호출하고자 하는 최종 함수가 여러 객체들로 쌓여있어서, 객체에 객체의 꼬리를 물며 타고들어가야 비로소 접근할 수 있는 성질의 것이라면요? 이럴 때 **TGrid** 의 답변은 간단하고 명쾌합니다.
+What if the remote object you want to use is a composite structure? What if the final remote function you want to call is placed into deep depth hierarchy with stack of objects? In this case, **TGrid**'s answer is simple and clear.
 
-{% panel style="success", title="TGrid 의 한 마디" %}
+{% panel style="success", title="TGrid says" %}
 
-그냥 쓰세요~!
+Just use it~!
 
 {% endpanel %}
 
 ### 2.1. Features
-이번 장에서 복합 구조체 호출 (Remote Object Call) 에 대한 예증을 위해 사용할 객체는 `CompositeCalculator` 입니다. 이 클래스는 이전 장에서 사용했던 [SimpleCalculator](#11-features) 의 사칙연산에 더하여, 내부 객체로써 공학용 계산기 (`scientific`) 와 통계용 계산기 (`statistics`) 가 추가된 복합 구조체의 형태를 띄고 있습니다.
+In this chapter, we'll demonstrate the *Remote Object Call* using `CompositeCalculator`. The `CompositeCalculator` class extends the [SimpleCalculator](#11-features) to keep supporting four arithmetic operations continuosly. Also, supports `scientific` and `statistics` calculators with internal objects. Therefore, `CompositeCalculator` is a typical of composite structured class.
 
-뭐 이미 다 아시리라 생각됩니다만, 우리가 이번에 만들 (원격 복합 계산기) 예제에서 `ICompositeCalculator` 는 [Controller](#23-controller) 의 역할을 수행하게 될 것입니다. 그리고 `CompositeCalculator` 는 [Provider](#22-provider) 가 되겠죠.
+I think you may already know that, the `CompositeCalculator` would be Provider in the server. Also, `ICompositeCalculator` would be a [Controller](concepts.md#23-controller) in the client.
 
   - [`../controllers/ICalculator.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/controllers/ICalculator.ts)
   - [`../providers/Calculator.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/providers/Calculator.ts)
@@ -131,7 +131,7 @@ export class SimpleCalculator implements ISimpleCalculator
 {% endcodegroup %}
 
 ### 2.2. Server
-서버 코드, 달리 설명할 게 있나요? 이전 [1. Remote Function Call](#11-server) 때와 달라진 것은 오로지 단 하나, 클라이언트에게 제공할 [Provider](concepts.md#22-provider) 가 `SimpleCalculator` 에서 `CompositeCalculator` 로 바뀌었다는 것 뿐입니다. 아, 그리고보니 포트 번호도 바뀌긴 했네요.
+Need any explanation about this server code? Only difference between [1. Remote Function Call](#11-server) is [Provider](#concepts.md#22-provider) has been changed from `SimpleCalculator` to `CompositeCalculator`. Oh, and ports number also has been changed.
 
 #### [`composite-calculator/server.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/composite-calculator/server.ts)
 {% codegroup %}
@@ -144,11 +144,9 @@ export class SimpleCalculator implements ISimpleCalculator
 {% endcodegroup %}
 
 ### 2.3. Client
-클라이언트 프로그램에서도 [Controller](concepts.md#23-controller) 가 `ISimpleCalculator` 에서 `ICompositeCalculator` 로 바뀌었습니다. 그리고 호출하게 되는 대상 함수들의 범위도 *root scope* 에서 *composite scope* 로 변화했구요. 하지만, 보시다시피 원격 함수를 호출하는 데에는 아무런 문제가 없습니다.
+In the client program, [Controller](concepts.md#23-controller) has been changed from `ISimpleCalculator` to `ICompositeCalculator`. Also, scopes of target functions have been changed from root scope to composite scope. But as you can see, no problem on the *remote function calls*.
 
-구태여 제가 composite scope 형태의 원격 함수 호출을 것을 일컬어 *Remote Object Call* 이라 이름지었지만, 이는 근본적으로 이전의 [Remote Function Call](#13-client) 과 완전히 같습니다. 원격 시스템을 위해 제공되는 [Provider](concepts.md#22-provider) 와, 이를 사용하기 위한 [Controller](concepts.md#23-controller) 는 단순 구조체에서 복합 구조체로 바뀌었습니다. 그러함에도 여전히, <u>비지니스 로직 코드</u>는 네트워크 시스템을 구성할 때와 단일 프로그램을 만들 때가 <u>완전히 유사</u>합니다.
-
-네트워크로 연결되어있는 원격 시스템을, 처음부터 내 메모리 객체였던 거마냥, 자유로이 그것의 메서드들을 호출할 수 있는 것. 이 것이 바로 Remote Object Call 입니다.
+I named remote function calls to composite scoped objects as *"Remote Object Call"* and distinguished it from [Remote Function Call](#13-client). However, they're same in the fundamental level. Despite Provider and Controller have been changed from singular object to composite object, Business Logic codes between network system and single program are still the same.
 
 #### [`composite-calculator/client.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/composite-calculator/client.ts)
 {% codegroup %}
@@ -174,22 +172,20 @@ export class SimpleCalculator implements ISimpleCalculator
 
 
 ## 3. Object Oriented Network
-이번 장에서는 이전 장 [2. Remote Object Call](#2-remote-object-call) 에서 만들었던 원격 복합 계산기를 다시, 하지만 조금 다르게 만들어볼 것입니다; *계층형 계산기*. 이전의 복합 계산기 `CompositeCalculator` 는 그 내부에 멤버객체로써, 공학용 계산기와 통계용 계산기를 가지고 있습니다. 이번 장에서 새로이 만들어 볼 *계층형 계산기* 에서는, 이들 공학용 계산기와 통계용 계산기가 별도 서버로 분리됩니다.
+In this chapter, we'll re-make the *Composite Calculaotr* created in the previous chapter [2. Remote Object Call](#2-remote-object-call) again but with a little bit different; *Hierarchical Calculator*. Previous `CompositeCalculator` has a *scientific* and *statistics* calculators as internal member objects. In the new *HierarchicalCalculator*, we would create in this chapter, those *scientific* and *statistics* calculators would be separated into independent servers.
 
-즉, 이번 장에서는 기존의 단일 복합 계산기 서버가 총 세 대로 서버로 분리되어야 합니다. 제일 먼저 공학용 계산을 전담하는 `scientific` 서버와 통계용 계산을 전담하는 `statistics` 서버를 새로이 만들 것입니다. 그리고 스스로는 사칙연산을 전담하며, 여타 계산에 대해서는 *scientific* 및 *statistics* 서버들에게 대신 맡기는 메인프레임 서버 `calculator` 를 구성할 것입니다.
+It means that we need split one calculator server into three different servers. At first, we'll create two new servers responsible for `scientific` and `statistics` calculations. At last, we'll make a mainframe server responsible for 4 arithmetic operations itself and shifting responsibilities to related servers about *scientific* and *statistics* operations; `calculator`.
 
-서버를 모두 제작한 뒤에는, 마지막으로 이들 계층형 계산기를 사용할 클라이언트 프로그램을 만들어야겠죠? 자, 과연 네트워크 시스템의 구조가 이처럼 크게 변화해도, 비지니스 로직 코드는 여전히 이전과 유사할까요? 한 번 프로그램을 직접 만들어보며 알아봅시다.
+After we've built all of the servers, we should make the client program using the *Hierarchical Calculator*. Would the Business Logic be kept despite of critical change on the network system's structure? Let's demonstrate it.
 
 ![Diagram of Composite Calculator](../../assets/images/examples/composite-calculator.png) | ![Diagram of Hierarchical Calculator](../../assets/images/examples/hierarchical-calculator.png)
 :-------------------:|:-----------------------:
 Composite Calculator | Hierarchical Calculator
 
 ### 3.1. Features
-이번 장에서 메인프레임 서버가 사용할 [Controller](concepts.md#23-controller) 는 `IScientific` 와 `ISatistics` 이며, 클라이언트가 사용할 [Controller](concepts.md#23-controller) 는 `ICompositeCalculator` 입니다. 그런데 잠깐! 클라이언트가 사용하는 [Controller](concepts.md#23-controller) 는 이전 장 [2. Remote Object Call](#2-remote-object-call) 때와 완전히 동일하네요? 혹시 감이 오시나요?
+In this section, [Controller](concepts.md#23-controller)s used by mainframe server are `IScientific` and `ISatistics`. Also, [Controller](concepts.md#23-controller) used by the client program is `ICompositeCalculator`. Wait a minute! [Controller](concepts.md#23-controller) of the client program is exactly same with the previous chapter [2. Remote Object Call](#2-remote-object-call). Have you noticed or felt something? 
 
-마찬가지로 공학용 계산기와 통계용 계산기가 메인프레임 서버에 제공할 [Provider](concepts.md#22-provider) 는 각각 `Scientific` 와 `Statistics` 클래스이며, 메인프레임 서버가 클라이언트에게 제공할 [Provider](concepts.md#22-provider) 는 `HierarchicalCalculator` 클래스입니다. 이 `HierarchicalCalculator` 를 보고 있노라면, 뭔가 느껴지는 바가 있지 않으십니까? 
-
-혹여 *계층형 계산기* 시스템을 구성하는 각 인스턴스가 사용할 [Controller](concepts.md#23-controller) 와 [Provider](concepts.md#22-provider) 를 본 것만으로도, 프로그램 코드를 어떻게 구현해야 할 지 감이 잡히신 분이라면, 축하드립니다. 당신은 이미 **TGrid** 에 대한 모든 것을 이해하신 겁니다.
+Congratulations if you've understood how to implement the *Hierarchical Calculator*, just by looking at the [Controller](concepts.md#23-controller)s. You've already understood everything about the **TGrid**.
 
   - [`../controllers/ICalculator.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/controllers/ICalculator.ts)
   - [`hierarchical-calculator/calculator.ts#L7-L13`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/hierarchical-calculator/calculator.ts#L7-L13)
@@ -216,27 +212,25 @@ export class HierarchicalCalculator
 
 ### 3.2. Servers
 #### [`hierarchical-calculator/scientific.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/hierarchical-calculator/scientific.ts)
-공학용 계산기 서버를 만듦니다. 참 쉽죠?
+Let's create *scientific* calculator server. It seems very easy, isn't it?
 
 ```typescript
 <!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/projects/hierarchical-calculator/scientific.ts") -->
 ```
 
 #### [`hierarchical-calculator/statistics.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/hierarchical-calculator/statistics.ts)
-공학용 계산기 서버도 만들어줍니다. 이 역시 매우 간단합니다.
+Implementing *statistics* calculator server is also very easy, too.
 
 ```typescript
 <!-- @import("https://raw.githubusercontent.com/samchon/tgrid.examples/master/src/projects/hierarchical-calculator/statistics.ts") -->
 ```
 
 ####  [`hierarchical-calculator/calculator.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/hierarchical-calculator/calculator.ts)
-자, 이제 메인프레임 서버를 만들 차례입니다. 
+Now, it's time to create the mainframe server.
 
-메인프레임 서버는 사칙연산은 스스로 수행하되, 공학용 계산이나 통계용 서버는 별도의 서버에 맡기고 자신은 그 연산결과만을 중개합니다. 이는 곧 메인프레임 서버가 클라이언트에게 제공하는 [Provider](concepts.md#22-provider) 는 사칙연산에 대해서는 스스로 구현체를 가지고 있으되, 공학용 계산기와 통계용 계산기는 원격 시스템들로부터 [Driver](concepts.md#24-driver)<[Controller](concepts.md#23-controller)> 를 받아 클라이언트에게 우회 제공함을 의미합니다.
+Mainframe server computes four arithmetic operations by itself. The *scientific* and *statistics* operations are shifted to related servers and the mainframe server only intermediates computation results. It means that mainframe server has implementation code about the four arthmetic operations and *scientific* and *statistics* operations are done by [Driver](concepts.md#24-driver)<[Controller](concepts.md#23-controller)> objects interacting with related servers.
 
-따라서 아래 메인프레임 서버의 코드를 보시면, 메인프레임 서버가 클라이언트에게 제공하는 [Provider](concepts.md#22-provider) 인, `HierarchicalCalculator` 클래스는 `SimpleCalculator` 를 상속함으로써 사칙연산에 대하여 스스로 구현체를 가지고 있습니다. 그리고 공학용 계산기와 통계용 계산기는 각각 해당 서버로부터 `Driver<IScientific>` 과 `Driver<IStatistics>` 를 받아와 이를 클라이언트에게 우회 제공하고 있음을 알 수 있습니다.
-
-이로써 `HierarchicalCalculator` 는, 이전 장의 [CompositeCalculator](#21-features) 와 논리적으로 완전히 동일해졌습니다. 이 둘의 세부 구현 코드는 서로 다를 지라도, 동일한 인터페이스를 지니며 마찬가지로 동일한 기능을 제공합니다. 이쯤되면 굳이 클라이언트 프로그램의 코드를 직접 보지 않더라도, 머리 속에서 그것의 구현체가 어떻게 생겼을지 슬슬 상상이 되지 않나요?
+As a result, the `HierarchicalCalculator` is same with previous chapter's [CompositeCalculator](#21-features) in logically. Although detailed implementation codes of two classes are something different, they have same interface and also provide same features. Now, can't you imagine the client's implementation code, even if you haven't seen the example code?
 
 {% codegroup %}
 ```typescript::Object-Oriented-Network
@@ -248,19 +242,20 @@ export class HierarchicalCalculator
 {% endcodegroup %}
 
 ### 3.3. Client
-메인프레임 서버에서 클라이언트를 위하여 [Provider](concepts.md#22-provider) 로 제공하는 `HierarchicalCalculator` 클래스는, 이전 장의 [CompositeCalculator](#21-features) 와 논리적으로 완전히 동일합니다. 이 둘의 세부 구현코드는 비록 서로 다를지라도, 클라이언트에게 제공하는 인터페이스는 완벽하게 똑같습니다.
+The Provider class HierarchicalCaluclator is same with previous chapter's [CompositeCalculator](#21-features) in logically. Also, they have same interface although their detailed implementation codes are slightly different.
 
-즉, 이번 장에서 클라이언트 프로그램은, (이전 장에서 사용했던) `ICompositeCalculator` 를 다시 사용하게 됩니다. 사용하는 [Controller](concepts.md#24-controller) 가 이전과 같으며, 구현해야 될 비지니스 로직도 이전과 같다면, 결국에는 두 클라이언트 프로그램의 코드가 유사해지지 않겠습니까? 아래 코드를 보시면 실제로도 그러합니다. 두 코드는 너무나도 비슷하여, 무엇이 다른지조차 쉬이 찾기 힘듭니다.
+It means that the client program of this chapter can re-use the `ICompositeCalculator`, which had been used in the previous chapter [2. Remote Object Call](#23-client). [Controller](concepts.md#23-controller) is same with previous chapter and Business Logic is also same. Therefore, these two client programs would have similar implementation code. Le'ts looko at the below codes and find what is different.
 
-{% panel style="warning", title="혹시 무엇이 다른지 못 찾으셨나요?" %}
+{% panel style="warning", title="
+Have you ever found anything different?" %}
 
-11~12 번째 라인이 살짝 다릅니다. 접속해야 할 대상 서버 주소가 서로 다르거든요.
+The 11th to 12th lines are slightly different. The server address to connect is different.
 
 {% endpanel %}
 
-바로 이 것이 **TGrid** 입니다. 만들고자 하는 시스템이 단일 컴퓨터에서 동작하는 프로그램이던, 네트워크 통신을 이용한 분산처리시스템이던 상관 없습니다. 심지어 같은 네트워크 시스템이라는 범주 안에서도, 그것의 분산처리 구조가 어찌 구성되는 지 또한 아무런 문제가 되지 않습니다. 그저 이것 하나만 기억하십시오.
+This is the **TGrid**. It's not a matter whether the system you want to imlement is a program that runs on a single computer or a distributed processing system using network communications. Even within the same network system category, it's no problem how its distributed architecture is constructed. Just remember this one.
 
-(**TGrid** 와 함께라면) 어떠한 경우에도, 여러분의 비지니스 로직 코드는 항상 동일할 것입니다.
+With **TGrid**, your Business Logic codes are always similar in any situation.
 
 #### [`hierarchical-calculator/index.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/hierarchical-calculator/index.ts)
 {% codegroup %}
@@ -289,23 +284,23 @@ export class HierarchicalCalculator
 
 
 ## 4. Remote Critical Section
-**TGrid** 를 사용하면, 여러 대의 컴퓨터를 사용하여 통신하는 네트워크 시스템도, 논리적으로 단 한대의 컴퓨터에서 동작하는 <u>단일 프로그램</u>처럼 만들 수 있습니다. 제가 이 장을 통하여 여러분께 보여드렸던 예제 코드들은 모두, 이러한 개념의 증명을 위함이기도 합니다. 
+With **TGrid**, multiple computers using entwork communication can be turned into A <u>single program</u> running on </u>a virtual computer</u>. The example codes I've shown you throughout this lesson are also intended to demonstrate such concept.
 
-하지만, TGrid 가 네트워크 시스템을 논리적으로 단 한대의 컴퓨터에서 동작하는 단일 프로그램으로 만들어줄 수는 있어도, 이것이 곧 싱글 스레드 프로그램을 의미하는 것은 아닙니다. 오히려 논리적으로는 <u>멀티 스레드</u>에 훨씬 가깝습니다. 즉, 우리가 **TGrid** 를 통해 만드는 모든 시스템은, 논리적으로 (하나의 컴퓨터에서 동작하는) 멀티 스레드 프로그램인 셈입니다.
+However, the the <u>single virtual program</u> doens't mean the single-threaded program. Rather, it is more like a multi-threading (or multi-processing) program in logically. In other words, all of the systems made by **TGrid** are a type of virtual multi-threading programs.
 
-그렇다면, '멀티 스레드' 라는 단어를 들으셨을 때, 여러분은 제일 먼저 무엇이 떠오르나요? 아마 십중팔구 임계영역에 대한 제어문제가 아닐까 합니다. 보다 쉽게 와닿는 단어로는 *mutex* 가 있습니다. 멀티 스레드 프로그램을 만들 때 제일 중요한 게 바로 이 임계영역을 잘~ 제어해야 한다는 것입니다. 
+So, what do you imagine when you hear the word *multi-thread*? Perhaps most of you thought about the *critical sections* like mutex or semaphore. Yes, the most important thing for multi-threading program is to controll these *critical sections* carefully.
 
-기껏 **TGrid** 를 통해 분산처리 네트워크 시스템을 논리적으로 (하나의 컴퓨터에서 동작하는) 멀티 스레딩 프로그램으로 만들었는데, 임계영역 제어가 안 된다면 무슨 의미가 있겠습니까? 따라서 이번 장에서 알아볼 것은 바로 네트워크 수준의 임계영역을 제어하는 방법입니다. **TGrid** 에서는 네트워크 수준의 임계영역 제어라고 해봐야 특별히 어려운 것은 없습니다. 이 또한 그저 *Remote Function Call* 을 통하여, 원격 시스템에서 제공해준 함수를 호출해주기만 하면 끝나니까요.
+Although you succeeded to turn multiple computers using network communications into a single virtual computer through TGrid, it doesn't mean anything if cannot controll those *critical sections*. Thus, in this chapter, we will learn how to control these *critical sections* in network system. However, do not worry, it's never difficult. Controlling network level's *critical sections* are also done by the *Remote Function Call*.
 
-{% panel style="info", title="라이브러리 추천" %}
+{% panel style="info", title="Recommend a Library" %}
 
 ### TSTL
 TypeScript Standard Template Library
   - https://tstl.dev
 
-임계영역을 제어하기 위한 라이브러리로, [TSTL](https://tstl.dev) 에서 지원하는 `<thread>` 모듈을 추천합니다. 여기서 지원하는 임계영역 제어에 관한 클래스들은 개별 프로그램에서도 사용할 수 있지만, **TGrid** 에서 네트워크 수준으로 원격 임계영역을 제어하고자 할 때 특히 유용합니다.
+I strongly recommend a library named [TSTL](https://tstl.dev), which supports controlling *critical sections* through `<thread>` module. The classes implemented in the `<thread>` module can be used not only in the single program level, but also in the network level.
 
-이번 장의 예제코드에서 사용하는 `Mutex` 역시, [TSTL](https://tstl.dev) 의 것을 사용합니다.
+`Mutex` used in this chapter is also imported from the [TSTL](https://tstl.dev).
 
 ```typescript
 import {
@@ -321,9 +316,9 @@ import {
 {% endpanel %}
 
 ### 4.1. Features
-이번 원격 임계영역 제어에 사용할 [Controller](concepts.md#23-controller) 와 [Provider](concepts.md#22-provider) 는 아래와 같습니다. 클라이언트는 서버에게 [Provider](concepts.md#22-provider) 로써 `CriticalSection` 클래스를 제공할 것이며, 서버는 [Controller](concepts.md#23-controller) 인 `ICriticalSection` 을 [Driver](concepts.md#24-driver) 로 랩핑하여 사용할 것입니다.
+Controller and Provider to be used for controlling remote section are as follows. The client program provides the `CriticalSection` object as a [Provider](concepts.md#22-provider). Also, the server program utilizes the remote [Provider](concepts.md#22-provider) through [Driver](concepts.md#24-driver)<[Controller](concepts.md#23-controller)> with `ICriticalSection`.
 
-보시다시피 클라이언트와 서버가 공유하게 될 기능은 매우 간소합니다. 서버에서 클라이언트로의 원격 임계영역 제어에는 `IMutex` 객체가 쓰이겠죠? 마찬가지로 클라이언트가 서버에 제공하는 `print()` 함수는 당최 뭐에 쓰는 물건인지, 예제 코드를 보면서 천천히 알아봅시다.
+As you can see, the features are very simple. `IMutex` would be used to control critical section in the server program. Also, server program would utilize the `ICriticalSection.print()` method. Let's take a look what the method is for.
 
 {% codegroup %}
 ```typescript::Controller
@@ -358,9 +353,9 @@ export class CriticalSection
 ### 4.2. Client
 ![Diagram of Remote Critical Section](../../assets/images/examples/remote-critical-section.png)
 
-클라이언트 프로그램은 총 4 개의 `WorkerServer` 들을 개설합니다. 그리고 각 서버들에게 [Provider](concepts.md#22-provider) 로써 `CriticalSection` 클래스를 제공합니다. 마지막으로 각 서버 인스턴스들에 대하여, 그들이 모두 자신의 작업을 마치기를 기다렸다가 프로그램을 종료합니다.
+The client program creates 4 *Worker* instances and the 4 *Worker* instances construct 4 `WorkerServers` objects. Also, provides `CriticalSection` classes to each server as a [Provider](concepts.md#22-provider). After the construction, client program waits until 4 `WorkerServer`s to be closed.
 
-보시다시피 클라이언트 프로그램이 하는 일은 간단합니다. 그저 서버 프로그램들에게, 클라이언트 자신의 임계영역을 제어할 수 있는 [Provider](concepts.md#22-provider) 를 제공할 뿐입니다. 중요한 것은 각 서버 프로그램들이 이를 어떻게 사용하냐, 그리고 **TGrid** 에서 *Remote Function Call* 을 사용하면 정말 네트워크 수준에서 임계영역을 제어할 수 있으냐가 아닐까요?
+As you can see, the actions of the client program is simple. It just provides `CriticalSection` object to each server. The important is how each server controls the *critical section* in network level using the *Remote Function Call*.
 
 #### [`thread/index.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/thread/index.ts)
 ```typescript
@@ -368,13 +363,13 @@ export class CriticalSection
 ```
 
 ### 4.3. Server
-서버 프로그램은 클라이언트가 제공해 준 Mutex 를 사용, 네트워크 레벨에서 임계 영역을 제어합니다. 
+Server program controls the *critical section* in network level through the Mutex which is provided from the client program.
 
-아래 코드에서 보시다시피, 서버 프로그램은 제일 먼저 임의의 글자를 하나 만듦니다 (38 번째 라인). 그리고 약 1 ~ 2 초에 걸쳐 전 네트워크 시스템의 임계영역를 독점적으로 점유하며, 아까 만들어두었던 임의의 문자를 클라이언트의 콘솔에 반복하여 출력해줍니다 (19 ~ 33 번째 라인).
+As you can see, the server programs picks a random character up (line #38). After that, monopolizes critical section for 1 to 2 seconds and prints the picked up character repeatedly,  (line #19 to #33).
 
-만약 **TGrid** 에서 말하는 *Remote Function Call* 이 네트워크 수준의 임계영역 제어마저 가능하다면, 콘솔에는 각 라인마다 동일한 글자가 반복될 것입니다. 반면에 **TGrid** 와 TSTL 이 네트워크 수준의 임계영역 제어에 실패한다면, 콘솔에는 서로 다른 글자가 혼란스럽게 뒤섞여있을 것입니다.
+If the *Remote Function Call* can control the *critical sections* even in the network level, the console will repeat the same characters on each line. Otherwise the **TGrid** and [TSTL](https://tstl.dev) failed to control the *critical sections* in network level, the console will print dirty characters.
 
-자, 과연 **TGrid** 는 네트워크 수준의 임계영역 마저도 구현해낼 수 있을까요? 아래 코드와 그 출력 결과를 함께 보시죠.
+Now, let's see what happend to the console. The TGrid even can implement the *remote critical section*?
 
 #### [`thread/child.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/thread/child.ts)
 ```typescript

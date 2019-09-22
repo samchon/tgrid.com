@@ -29,7 +29,7 @@
     - [Release Notes](https://github.com/samchon/tgrid/releases)
 
 ### 1.2. Grid Computing
-<img src="../assets/images/concepts/grid-computing.png" style="max-width: 563.4px" />
+![Grid Computing](../assets/images/concepts/grid-computing.png)
 
 > Computers be a (virtual) computer
 

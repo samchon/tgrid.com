@@ -1,8 +1,5 @@
 ## 1. Introduction
   - [1.1. README](README.md)
-    - [1.1.1. Outline](README.md#1-outline)
-    - [1.1.2. Strengths](README.md#2-strengths)
-    - [1.1.3. Block Chain](README.md#3-block-chain)
 
 ## 2. Tutorial
   - [2.1. Basic Concepts](tutorial/concepts.md)
@@ -15,11 +12,10 @@
     - [2.2.3. Object Oriented Network](tutorial/examples.md#3-object-oriented-network)
     - [2.2.4. Remote Critical Section](tutorial/examples.md#4-remote-critical-section)
   - [2.3. Learn from Projects](tutorial/projects/README.md)
-    - [2.3.1. Chat Application](tutorial/projects/chat-application.md)
-    - [2.3.2. Omok Game](tutorial/projects/omok-game.md)
+    - [2.3.1. Chat Application](tutorial/projects/chat.md)
+    - [2.3.2. Othello Game](tutorial/projects/othello.md)
     - [2.3.3. Grid Market](tutorial/projects/grid-market.md)
 
 ## 3. Appendix
   - [3.1. SWOT Analysis](appendix/swot.md)
-  - [3.2. Release Notes](https://github.com/samchon/tgrid/releases)
-  - [3.3. Roadmap](https://github.com/samchon/tgrid/projects)
+  - [3.2. Blockchain](appendix/blockchain.md)

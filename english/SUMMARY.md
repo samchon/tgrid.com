@@ -15,8 +15,8 @@
     - [2.2.3. Object Oriented Network](tutorial/examples.md#3-object-oriented-network)
     - [2.2.4. Remote Critical Section](tutorial/examples.md#4-remote-critical-section)
   - [2.3. Learn from Projects](tutorial/projects/README.md)
-    - [2.3.1. Chat Application](tutorial/projects/chat-application.md)
-    - [2.3.2. Omok Game](tutorial/projects/omok-game.md)
+    - [2.3.1. Chat Application](tutorial/projects/chat.md)
+    - [2.3.2. Othello Game](tutorial/projects/othello.md)
     - [2.3.3. Grid Market](tutorial/projects/grid-market.md)
 
 ## 3. Appendix

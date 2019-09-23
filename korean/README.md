@@ -14,7 +14,7 @@
 
 **TGrid** 의 풀네임은 TypeScript Grid Computing Framework 입니다.
 
-**TGrid** 는 그 이름 그대로, TypeScript 에서 [Grid Computing](#12-grid-computing) 시스템을 구현하는 데 유용하게 사용할 수 있는 Framework 입니다. **TGrid** 와 그것의 핵심 개념인 [Remote Function Call](#13-remote-function-call) 사용하시거든, 여러분께서는 여러 대의 컴퓨터를 <u>단 한 대의 가상 컴퓨터</u>로 만드실 수 있습니다. 그것이 비록 수천 ~ 수만 대에 달할 지라도 말입니다.
+**TGrid** 는 그 이름 그대로, TypeScript 에서 [Grid Computing](#12-grid-computing) 시스템을 구현하는 데 유용하게 사용할 수 있는 Framework 입니다. **TGrid** 와 그것의 핵심 개념인 [Remote Function Call](#13-remote-function-call) 을 사용하시거든, 여러분께서는 여러 대의 컴퓨터를 <u>단 한 대의 가상 컴퓨터</u>로 만드실 수 있습니다. 그것이 비록 수천 ~ 수만 대에 달할 지라도 말입니다.
 
 여타 **TGrid** 에 대한 자세한 내용은 아래 링크들을 참고해주세요. 특히 아래 링크 중에서 [가이드 문서](https://tgrid.dev/korean) 의 [Basic Concepts](https://tgrid.dev/korean/tutorial/concepts.html) 나 [Learn from Examples](https://tgrid.dev/korean/tutorial/examples.html) 단원만큼은, **TGrid** 를 처음 접하시는 분이시라면, 꼭 한 번 읽어보시기를 권해드립니다.
 
@@ -113,12 +113,12 @@ main();
 ### 2.1. Easy Development
 누구나 쉽게 네트워크 연동시스템을 만들 수 있습니다.
 
-### 2.2. Flexible Structure
+### 2.2. Easy Extension
 네트워크 시스템에의 중대 변화도 매우 유연하게 대처할 수 있습니다.
 
 ![Diagram of Composite Calculator](../assets/images/examples/composite-calculator.png) | ![Diagram of Hierarchical Calculator](../assets/images/examples/hierarchical-calculator.png)
 :-------------------:|:-----------------------:
-Composite Calculator | Hierarchical Calculator
+[Composite Calculator](tutorial/examples.md#22-remote-object-call) | [Hierarchical Calculator](tutorial/examples.md#23-object-oriented-network)
 
 ### 2.3. Safe Implementation
 컴파일과 타입 검사를 통해 안전한 네트워크 시스템을 만들 수 있습니다.
@@ -164,7 +164,7 @@ Composite Calculator | Hierarchical Calculator
 > 수집한 요구사항을 철저하게 분석한 후, 모든 유즈케이스를 완벽하게 발굴해내야 합니다. 그리고 확정한 유즈케이스에 맞추어, 개념 설계도를 새로이 작성합니다. 만약 이전에 행하였던 요구사항 분석에 미진함이 있거나 모순점이 있거든, 다시 [1 Requirements](#1-requirements) 로 돌아가 처음부터 다시 시작해야합니다.
 > 
 > #### 3 Designs
-> 개념 아키텍처를 완벽하게 설계했다면 이어서 다음 설계도들을 그려야 합니다.
+> 개념 아키텍처를 완벽하게 설계했다면, 이어서 다음 설계도들을 그려야 합니다.
 > 
 >  - Data Architecture
 >  - Network Architecture

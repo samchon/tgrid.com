@@ -281,8 +281,8 @@ type Driver<ISomething> =
     - [Remote Function Call](examples.md#1-remote-function-call)
     - [Remote Object Call](examples.md#2-remote-object-call)
   - 데모 프로젝트
-    - [Chat Application](projects/chat-application.md)
-    - [Omok Game](projects/omok-game.md)
+    - [Chat Application](projects/chat.md)
+    - [Othello Game](projects/othello.md)
     - [Grid Market](projects/grid-market.md)
 
 #### 3.1.3. Module

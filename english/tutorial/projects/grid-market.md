@@ -1,4 +1,4 @@
-# Fog Computing
+# Grid Market
 > https://github.com/samchon/tgrid.projects.grid-market
 
 ## 1. Outline

@@ -1,21 +1,21 @@
 # Tutorial Projects
-## [1. Chat Application](chat-application.md)
+## [1. Chat Application](chat.md)
 > - Demo site: http://samchon.org/chat
-> - Code repository: https://github.com/samchon/tgrid.projects.chat-application
+> - Code repository: https://github.com/samchon/tgrid.projects.chat
 
-![Chat Application](../../../assets/images/projects/chat-application/chat-movie.png)
+![Chat Application](../../../assets/images/projects/chat/chat-movie.png)
 
 Make a simple live chat application.
 
-When practicing network programming, most of them start from creating live chat application. We'll also follow the custom. The first tutorial project [Chat Application](chat-application.md) is very easy and simple. There is only a chat room on the server and all participants are paritipated in there.
+When practicing network programming, most of them start from creating live chat application. We'll also follow the custom. The first tutorial project [Chat Application](chat.md) is very easy and simple. There is only a chat room on the server and all participants are paritipated in there.
 
 
 
 
-## [2. Omok Game](omok-game.md)
-Make an online Omok game.
+## [2. Othello Game](othello.md)
+Make an online Othello game.
 
-However, we'll not create a simple game only can play an Omok game. The difficulty would be higher than previous lesson [1. Chat Application](#1-chat-application), so multiple game rooms would be existed. People can participate in each room as a game player or observer watching players' game. Also, partipants in each room can conversate with each other.
+However, we'll not create a simple game only can play an Othello game. The difficulty would be higher than previous lesson [1. Chat Application](#1-chat), so multiple game rooms would be existed. People can participate in each room as a game player or observer watching players' game. Also, partipants in each room can conversate with each other.
 
 
   - Multiple Games Rooms

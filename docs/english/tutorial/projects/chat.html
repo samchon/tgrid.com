@@ -360,9 +360,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3.3" data-path="grid-market.html">
+        <li class="chapter " data-level="2.3.3" data-path="market.md">
             
-                <a href="grid-market.html">
+                <span>
             
                     
                     2.3.3. Grid Market
@@ -503,47 +503,585 @@
 <h4 id="controllersichatservicets"><a href="https://github.com/samchon/tgrid.projects.chat/blob/master/src/controllers/IChatService.ts" target="_blank"><code>controllers/IChatService.ts</code></a></h4>
 <p><code>IChatService</code> is a <a href="../concepts.html#23-controller">Controller</a> defining provided freatures from server to clients. Precisely, the client programs <a href="../concepts.html#13-remote-function-call">call remote functions</a> using the <a href="../concepts.html#24-driver">Driver</a>&lt;<code>IChatService</code>&gt; object.</p>
 <p>So what&apos;s the first thing a client connecting to a server should do? It&apos;s just naming itself (<em>setName</em>). After that, the client will talk to everyone (<em>talk</em>) or whisper to a special participant (<em>whisper</em>).</p>
-<pre class="language-"><code class="lang-typescript"><span class="token number">404</span><span class="token punctuation">:</span> Not Found
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">IChatService</span>
+<span class="token punctuation">{</span>
+    <span class="token function">setName</span><span class="token punctuation">(</span>name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">|</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token function">talk</span><span class="token punctuation">(</span>content<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+    <span class="token function">whisper</span><span class="token punctuation">(</span>name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> content<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h4 id="controllersichatprinterts"><a href="https://github.com/samchon/tgrid.projects.chat/blob/master/src/controllers/IChatPrinter.ts" target="_blank"><code>controllers/IChatPrinter.ts</code></a></h4>
 <p><code>IChatPrinter</code> is a <a href="../concepts.html#23-controller">Controller</a> defining provided features from client to server. Precisely, the server program <a href="../concepts.html#13-remote-function-call">call remote functions</a> using the <a href="../concepts.html#24-driver">Driver</a>&lt;<code>IChatPrinter</code>&gt; object.</p>
 <p>Also, looking at the functions defined in the IChatPrinter, its purpose is clearly shown up. The purpose is, the client wants server to inform it what is happening in the chat room.</p>
 <p>Server informs clients which participants are nelwy come and which participants are existed by calling <em>insert</em> or <em>erase</em> methods of <a href="../concepts.html#24-driver">Driver</a>&lt;<code>IChatPrinter</code>&gt; object. Also, server delivers conversations by calling <em>talk</em> and <em>whisper</em> methods of the <a href="../concepts.html#24-driver">Driver</a>&lt;<code>IChatPrinter</code>&gt; object.</p>
-<pre class="language-"><code class="lang-typescript"><span class="token number">404</span><span class="token punctuation">:</span> Not Found
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">IChatPrinter</span>
+<span class="token punctuation">{</span>
+    <span class="token function">insert</span><span class="token punctuation">(</span>name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+    <span class="token function">erase</span><span class="token punctuation">(</span>name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+
+    <span class="token function">talk</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> content<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+    <span class="token function">whisper</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> to<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> content<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h3 id="32-server-program">3.2. Server Program</h3>
 <h4 id="providerschatservicets"><a href="https://github.com/samchon/tgrid.projects.chat/blob/master/src/providers/ChatService.ts" target="_blank"><code>providers/ChatService.ts</code></a></h4>
 <p><code>ChatService</code> is a <a href="../concepts.html#22-provider">Provider</a> class provided from server to client. </p>
 <p>At the same time, <code>ChatService</code> has a responsibility to propagating events from chat room to all participants. Whenever client remotely call functions of <code>ChatService</code> using <a href="../concepts.html#24-driver">Driver</a>&lt;<a href="#controllersichatservicets">IChatService</a>, the <code>ChatService</code> object delivers the event to all of the participants using <code>participants_: HashMap<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>string,</span> <span class="token attr-name">Driver&lt;IChatPrinter</span><span class="token punctuation">&gt;</span></span>&gt;</code>.</p>
 <p>When a client has ben disconnected, main function of the server program calls <code>ChatService.destructor()</code> to inform other participants. Of course, same member variable <code>participants_: HashMap<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>string,</span> <span class="token attr-name">Driver&lt;IChatPrinter</span><span class="token punctuation">&gt;</span></span>&gt;</code> would be used again.</p>
-<pre class="language-"><code class="lang-typescript"><span class="token number">404</span><span class="token punctuation">:</span> Not Found
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Driver <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/components/Driver&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> HashMap <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tstl/container/HashMap&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> IChatService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../controllers/IChatService&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> IChatPrinter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../controllers/IChatPrinter&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">ChatService</span> <span class="token keyword">implements</span> <span class="token class-name">IChatService</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> participants_<span class="token punctuation">:</span> HashMap<span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token punctuation">,</span> Driver<span class="token operator">&lt;</span>IChatPrinter<span class="token operator">&gt;&gt;</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> printer_<span class="token punctuation">:</span> Driver<span class="token operator">&lt;</span>IChatPrinter<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> name_<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+    <span class="token comment">//----------------------------------------------------------------</span>
+    <span class="token comment">//  CONSTRUCTORS</span>
+    <span class="token comment">//----------------------------------------------------------------</span>
+    <span class="token keyword">public</span> <span class="token keyword">constructor</span>
+        <span class="token punctuation">(</span>
+            <span class="token parameter">participants<span class="token punctuation">:</span> HashMap<span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token punctuation">,</span> Driver<span class="token operator">&lt;</span>IChatPrinter<span class="token operator">&gt;&gt;</span><span class="token punctuation">,</span> 
+            printer<span class="token punctuation">:</span> Driver<span class="token operator">&lt;</span>IChatPrinter<span class="token operator">&gt;</span></span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>participants_ <span class="token operator">=</span> participants<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>printer_ <span class="token operator">=</span> printer<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">destructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name_ <span class="token operator">===</span> undefined<span class="token punctuation">)</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// ERASE FROM PARTICIPANTS</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>participants_<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name_<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// INFORM TO OTHERS</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> it <span class="token keyword">of</span> <span class="token keyword">this</span><span class="token punctuation">.</span>participants_<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">let</span> p<span class="token punctuation">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span> <span class="token operator">=</span> it<span class="token punctuation">.</span>second<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name_<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            p<span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">//----------------------------------------------------------------</span>
+    <span class="token comment">//  INTERACTIONS</span>
+    <span class="token comment">//---------------------------------------------------------------- */</span>
+    <span class="token keyword">public</span> <span class="token function">setName</span><span class="token punctuation">(</span>name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">|</span> <span class="token boolean">false</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>participants_<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// ASSIGN MEMBER</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name_ <span class="token operator">=</span> name<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>participants_<span class="token punctuation">.</span><span class="token function">emplace</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>printer_<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// INFORM TO PARTICIPANTS</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> it <span class="token keyword">of</span> <span class="token keyword">this</span><span class="token punctuation">.</span>participants_<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">let</span> printer<span class="token punctuation">:</span> Driver<span class="token operator">&lt;</span>IChatPrinter<span class="token operator">&gt;</span> <span class="token operator">=</span> it<span class="token punctuation">.</span>second<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>printer <span class="token operator">===</span> <span class="token keyword">this</span><span class="token punctuation">.</span>printer_<span class="token punctuation">)</span>
+                <span class="token keyword">continue</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">let</span> promise<span class="token punctuation">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span> <span class="token operator">=</span> printer<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            promise<span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token operator">...</span><span class="token keyword">this</span><span class="token punctuation">.</span>participants_<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">it</span> <span class="token operator">=&gt;</span> it<span class="token punctuation">.</span>first<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">talk</span><span class="token punctuation">(</span>content<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// MUST BE NAMED</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name_ <span class="token operator">===</span> undefined<span class="token punctuation">)</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">&quot;Name is not specified yet.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// INFORM TO PARTICIPANTS</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> it <span class="token keyword">of</span> <span class="token keyword">this</span><span class="token punctuation">.</span>participants_<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">let</span> p<span class="token punctuation">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span> <span class="token operator">=</span> it<span class="token punctuation">.</span>second<span class="token punctuation">.</span><span class="token function">talk</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name_<span class="token punctuation">,</span> content<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            p<span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">whisper</span><span class="token punctuation">(</span>to<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> content<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// MUST BE NAMED</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name_ <span class="token operator">===</span> undefined<span class="token punctuation">)</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">&quot;Name is not specified yet.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>participants_<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>to<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">&quot;Unable to find the matched name&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//----</span>
+        <span class="token comment">// INFORM TO PARTICIPANTS</span>
+        <span class="token comment">//----</span>
+        <span class="token comment">// TO SPEAKER</span>
+        <span class="token keyword">let</span> <span class="token keyword">from</span><span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name_<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>printer_<span class="token punctuation">.</span><span class="token function">whisper</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">,</span> to<span class="token punctuation">,</span> content<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// TO LISTENER</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">from</span> <span class="token operator">!==</span> to<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">let</span> target<span class="token punctuation">:</span> Driver<span class="token operator">&lt;</span>IChatPrinter<span class="token operator">&gt;</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>participants_<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>to<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            target<span class="token punctuation">.</span><span class="token function">whisper</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">,</span> to<span class="token punctuation">,</span> content<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h4 id="serverts"><a href="https://github.com/samchon/tgrid.projects.chat/blob/master/src/server.ts" target="_blank"><code>server.ts</code></a></h4>
 <p>The main code of the server program is really simple.</p>
 <p>You can create a <em>websocket</em> server and provide a <a href="#providerschatservicets">ChatService</a> object as a <a href="../concepts.html#22-provider">Provider</a> to each client . When the client closes the connection, call the <code>ChatService.destructor()</code> method to remove the client from the chat room&apos;s participants list.</p>
-<pre class="language-"><code class="lang-typescript"><span class="token number">404</span><span class="token punctuation">:</span> Not Found
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WebServer<span class="token punctuation">,</span> WebAcceptor <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/web&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Driver <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/components/Driver&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> HashMap <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tstl/container/HashMap&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> IChatPrinter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./controllers/IChatPrinter&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ChatService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./providers/ChatService&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">let</span> server<span class="token punctuation">:</span> WebServer<span class="token operator">&lt;</span>ChatService<span class="token operator">&gt;</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> participants<span class="token punctuation">:</span> HashMap<span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token punctuation">,</span> Driver<span class="token operator">&lt;</span>IChatPrinter<span class="token operator">&gt;&gt;</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">await</span> server<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token number">10103</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">acceptor<span class="token punctuation">:</span> WebAcceptor<span class="token operator">&lt;</span>ChatService<span class="token operator">&gt;</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// PROVIDE SERVICE</span>
+        <span class="token keyword">let</span> driver<span class="token punctuation">:</span> Driver<span class="token operator">&lt;</span>IChatPrinter<span class="token operator">&gt;</span> <span class="token operator">=</span> acceptor<span class="token punctuation">.</span>getDriver<span class="token operator">&lt;</span>IChatPrinter<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> service<span class="token punctuation">:</span> ChatService <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatService</span><span class="token punctuation">(</span>participants<span class="token punctuation">,</span> driver<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">await</span> acceptor<span class="token punctuation">.</span><span class="token function">accept</span><span class="token punctuation">(</span>service<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// DESTRUCTOR</span>
+        <span class="token keyword">await</span> acceptor<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        service<span class="token punctuation">.</span><span class="token function">destructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <h3 id="33-client-application">3.3. Client Application</h3>
 <h4 id="providerschatprinterts"><a href="https://github.com/samchon/tgrid.projects.chat/blob/master/src/providers/ChatPrinter.ts" target="_blank"><code>providers/ChatPrinter.ts</code></a></h4>
 <p><code>ChatPrinter</code> is a <a href="../concepts.html#22-provider">Provider</a> class provided from client to server .</p>
 <p>Whenever server remotely calls function of <code>ChatPrinter</code> using <a href="../concepts.html#24-driver">Driver</a>&lt;<a href="#controllersichatprinter">IChatPrinter</a>&gt;, <code>ChatPrinter</code> archives writes it into its member variables. After the archiving, <code>ChatPrinter</code> calls the event listener (which registerted into <code>listener_: ()=&gt;void</code> through <code>assign()</code> method) to inform <a href="#movieschatmovietsx">ChatMovie</a> that something has been changed in the chat room.</p>
-<pre class="language-"><code class="lang-typescript"><span class="token number">404</span><span class="token punctuation">:</span> Not Found
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> IChatPrinter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../controllers/IChatPrinter&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> HashSet <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tstl/container/HashSet&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">ChatPrinter</span> <span class="token keyword">implements</span> <span class="token class-name">IChatPrinter</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> listener_<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token keyword">void</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">readonly</span> name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">readonly</span> participants<span class="token punctuation">:</span> HashSet<span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">readonly</span> messages<span class="token punctuation">:</span> ChatPrinter<span class="token punctuation">.</span>IMessage<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token comment">//----------------------------------------------------------------</span>
+    <span class="token comment">//  CONSTRUCTOR</span>
+    <span class="token comment">//----------------------------------------------------------------</span>
+    <span class="token keyword">public</span> <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> participants<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>participants <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashSet</span><span class="token punctuation">(</span>participants<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>messages <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">assign</span><span class="token punctuation">(</span><span class="token function-variable function">listener</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>listener_ <span class="token operator">=</span> listener<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token function">_Inform</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>listener_<span class="token punctuation">)</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">listener_</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">//----------------------------------------------------------------</span>
+    <span class="token comment">//  METHODS FOR REMOTE FUNCTION CALL</span>
+    <span class="token comment">//----------------------------------------------------------------</span>
+    <span class="token keyword">public</span> <span class="token function">insert</span><span class="token punctuation">(</span>name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>participants<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_Inform</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">erase</span><span class="token punctuation">(</span>name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>participants<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_Inform</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">talk</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> content<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>messages<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+            <span class="token keyword">from</span><span class="token punctuation">:</span> <span class="token keyword">from</span><span class="token punctuation">,</span> 
+            content<span class="token punctuation">:</span> content 
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_Inform</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">whisper</span><span class="token punctuation">(</span><span class="token keyword">from</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> to<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> content<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>messages<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
+            <span class="token keyword">from</span><span class="token punctuation">:</span> <span class="token keyword">from</span><span class="token punctuation">,</span> 
+            to<span class="token punctuation">:</span> to<span class="token punctuation">,</span>
+            content<span class="token punctuation">:</span> content 
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_Inform</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">namespace</span> ChatPrinter
+<span class="token punctuation">{</span>
+    <span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">IMessage</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">from</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+        content<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+        to<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h4 id="apptsx"><a href="https://github.com/samchon/tgrid.projects.chat/blob/master/src/app.tsx" target="_blank"><code>app.tsx</code></a></h4>
 <p>The main function code of the client program is also very short and simple.</p>
 <p>The main function connects to the websocket chat server and moves to the <a href="#moviesjoinmovietsx">JoinMovie</a>. <a href="#moviesjoinmovietsx">JoinMovie</a> is designed to set your name to join the chat room, but it would be much better to see its detailed code by yourself.</p>
-<pre class="language-"><code class="lang-typescript"><span class="token number">404</span><span class="token punctuation">:</span> Not Found
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">&quot;react&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">&quot;react-dom&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> WebConnector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/web/WebConnector&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> JoinMovie <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./movies/JoinMovie&quot;</span><span class="token punctuation">;</span>
+
+window<span class="token punctuation">.</span><span class="token function-variable function">onload</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">let</span> connector<span class="token punctuation">:</span> WebConnector <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebConnector</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">await</span> connector<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">ws://</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>window<span class="token punctuation">.</span>location<span class="token punctuation">.</span>hostname<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">:10103</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    ReactDOM<span class="token punctuation">.</span><span class="token function">render</span>
+    <span class="token punctuation">(</span>
+        <span class="token operator">&lt;</span>JoinMovie connector<span class="token operator">=</span><span class="token punctuation">{</span>connector<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">,</span> 
+        document<span class="token punctuation">.</span>body
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h4 id="moviesjoinmovietsx"><a href="https://github.com/samchon/tgrid.projects.chat/blob/master/src/movies/JoinMovie.tsx" target="_blank"><code>movies/JoinMovie.tsx</code></a></h4>
 <p>In <code>JoinMovie</code> is desinged to set name and inform it to server.</p>
 <p>When user inputs its name and clicks the &quot;Participate in&quot; button, JoinMovie remotely calls <a href="#providerschatservicets">ChatService.setName()</a> method using <a href="../concepts.html#24-driver">Driver</a>&lt;<a href="#controllersichatservicets">IChatService</a>&gt; object. If returned type is Array of <code>string</code> which means participants of the chat room, then <code>JoinMovie</code> converts screen to <a href="#movieschatmovietsx">ChatMovie</a> directly.</p>
-<pre class="language-"><code class="lang-typescript"><span class="token number">404</span><span class="token punctuation">:</span> Not Found
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">&quot;react&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">&quot;react-dom&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Panel<span class="token punctuation">,</span> Button<span class="token punctuation">,</span> Glyphicon <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;react-bootstrap&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> WebConnector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/web/WebConnector&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Driver <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/components/Driver&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> IChatService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../controllers/IChatService&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ChatPrinter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../providers/ChatPrinter&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ChatMovie <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./ChatMovie&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">JoinMovie</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span><span class="token operator">&lt;</span>JoinMovie<span class="token punctuation">.</span>IProps<span class="token operator">&gt;</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">//----------------------------------------------------------------</span>
+    <span class="token comment">//  CONSTRUCTOR</span>
+    <span class="token comment">//----------------------------------------------------------------</span>
+    <span class="token keyword">public</span> <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> input<span class="token punctuation">:</span> HTMLInputElement <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">&quot;name_input&quot;</span><span class="token punctuation">)</span> <span class="token keyword">as</span> HTMLInputElement<span class="token punctuation">;</span>
+        input<span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">//----------------------------------------------------------------</span>
+    <span class="token comment">//  EVENT HANDLERS</span>
+    <span class="token comment">//----------------------------------------------------------------</span>
+    <span class="token keyword">private</span> <span class="token function">_Handle_keyUp</span><span class="token punctuation">(</span>event<span class="token punctuation">:</span> React<span class="token punctuation">.</span>KeyboardEvent<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>keyCode <span class="token operator">===</span> <span class="token number">13</span><span class="token punctuation">)</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_Participate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">async</span> <span class="token function">_Participate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> input<span class="token punctuation">:</span> HTMLInputElement <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">&quot;name_input&quot;</span><span class="token punctuation">)</span> <span class="token keyword">as</span> HTMLInputElement<span class="token punctuation">;</span>
+        <span class="token keyword">let</span> name<span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> input<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>name <span class="token operator">===</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">&quot;Name cannot be empty&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">let</span> connector<span class="token punctuation">:</span> WebConnector <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>connector<span class="token punctuation">;</span>
+        <span class="token keyword">let</span> service<span class="token punctuation">:</span> Driver<span class="token operator">&lt;</span>IChatService<span class="token operator">&gt;</span> <span class="token operator">=</span> connector<span class="token punctuation">.</span>getDriver<span class="token operator">&lt;</span>IChatService<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> participants<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">|</span> <span class="token boolean">false</span> <span class="token operator">=</span> <span class="token keyword">await</span> service<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>participants <span class="token operator">===</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">&quot;Duplicated name&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">let</span> printer<span class="token punctuation">:</span> ChatPrinter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChatPrinter</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> participants<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        connector<span class="token punctuation">.</span><span class="token function">setProvider</span><span class="token punctuation">(</span>printer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>ChatMovie service<span class="token operator">=</span><span class="token punctuation">{</span>service<span class="token punctuation">}</span> printer<span class="token operator">=</span><span class="token punctuation">{</span>printer<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">,</span> document<span class="token punctuation">.</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">//----------------------------------------------------------------</span>
+    <span class="token comment">//  RENDERER</span>
+    <span class="token comment">//----------------------------------------------------------------</span>
+    <span class="token keyword">public</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token constant">JSX</span><span class="token punctuation">.</span>Element
+    <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> <span class="token constant">TGRID</span> <span class="token operator">=</span> <span class="token string">&quot;https://tgrid.dev&quot;</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> <span class="token constant">GITHUB</span> <span class="token operator">=</span> <span class="token string">&quot;https://github.com/samchon/tgrid.projects.chat-application&quot;</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> <span class="token constant">GUIDE_EN</span> <span class="token operator">=</span> <span class="token string">&quot;https://tgrid.dev/english/tutorial/projects/chat-application.html&quot;</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> <span class="token constant">GUIDE_KR</span> <span class="token operator">=</span> <span class="token string">&quot;https://tgrid.dev/korean/tutorial/projects/chat-application.html&quot;</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token operator">&lt;</span>Panel<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>Panel<span class="token punctuation">.</span>Heading<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>Panel<span class="token punctuation">.</span>Title<span class="token operator">&gt;</span> 
+                    <span class="token operator">&lt;</span>Glyphicon glyph<span class="token operator">=</span><span class="token string">&quot;list&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+                    <span class="token punctuation">{</span><span class="token string">&quot; Chat Application &quot;</span><span class="token punctuation">}</span>
+                <span class="token operator">&lt;</span><span class="token operator">/</span>Panel<span class="token punctuation">.</span>Title<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>Panel<span class="token punctuation">.</span>Heading<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>Panel<span class="token punctuation">.</span>Body<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>h1<span class="token operator">&gt;</span> Chat Application <span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span> Demo Project <span class="token keyword">of</span> <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_Render_link</span><span class="token punctuation">(</span><span class="token constant">TGRID</span><span class="token punctuation">,</span> <span class="token string">&quot;TGrid&quot;</span><span class="token punctuation">)</span><span class="token punctuation">}</span> <span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>ul<span class="token operator">&gt;</span>
+                    <span class="token operator">&lt;</span>li<span class="token operator">&gt;</span> <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_Render_link</span><span class="token punctuation">(</span><span class="token constant">GITHUB</span><span class="token punctuation">,</span> <span class="token string">&quot;Github Repository&quot;</span><span class="token punctuation">)</span><span class="token punctuation">}</span> <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+                    <span class="token operator">&lt;</span>li<span class="token operator">&gt;</span> Guide Documents <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+                    <span class="token operator">&lt;</span>ul<span class="token operator">&gt;</span>
+                        <span class="token operator">&lt;</span>li<span class="token operator">&gt;</span> <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_Render_link</span><span class="token punctuation">(</span><span class="token constant">GUIDE_EN</span><span class="token punctuation">,</span> <span class="token string">&quot;English&quot;</span><span class="token punctuation">)</span><span class="token punctuation">}</span> <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+                        <span class="token operator">&lt;</span>li<span class="token operator">&gt;</span> <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_Render_link</span><span class="token punctuation">(</span><span class="token constant">GUIDE_KR</span><span class="token punctuation">,</span> <span class="token string">&quot;&#xD55C;&#xAD6D;&#xC5B4;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">}</span> <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+                    <span class="token operator">&lt;</span><span class="token operator">/</span>ul<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span><span class="token operator">/</span>ul<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>
+                    Insert your name<span class="token punctuation">:</span> 
+                    <span class="token operator">&lt;</span>input id<span class="token operator">=</span><span class="token string">&quot;name_input&quot;</span> 
+                        <span class="token keyword">type</span><span class="token operator">=</span><span class="token string">&quot;text&quot;</span> 
+                        onKeyUp<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_Handle_keyUp</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>Panel<span class="token punctuation">.</span>Body<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>Panel<span class="token punctuation">.</span>Footer<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>Button bsStyle<span class="token operator">=</span><span class="token string">&quot;primary&quot;</span>
+                        onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_Participate</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&gt;</span> 
+                    <span class="token operator">&lt;</span>Glyphicon glyph<span class="token operator">=</span><span class="token string">&quot;share-alt&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+                    <span class="token punctuation">{</span><span class="token string">&quot; Participate in&quot;</span><span class="token punctuation">}</span>
+                <span class="token operator">&lt;</span><span class="token operator">/</span>Button<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>Panel<span class="token punctuation">.</span>Footer<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>Panel<span class="token operator">&gt;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token function">_Render_link</span><span class="token punctuation">(</span>url<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> text<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token constant">JSX</span><span class="token punctuation">.</span>Element
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token punctuation">{</span>url<span class="token punctuation">}</span> target<span class="token operator">=</span><span class="token string">&quot;_blank&quot;</span><span class="token operator">&gt;</span><span class="token punctuation">{</span>text<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">namespace</span> JoinMovie
+<span class="token punctuation">{</span>
+    <span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">IProps</span>
+    <span class="token punctuation">{</span>
+        connector<span class="token punctuation">:</span> WebConnector<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h4 id="movieschatmovietsx"><a href="https://github.com/samchon/tgrid.projects.chat/blob/master/src/movies/ChatMovie.tsx" target="_blank"><code>movies/ChatMovie.tsx</code></a></h4>
 <p>Conversations are done in the <code>ChatMovie</code>.</p>
 <p>When user inputs conversation or whisper to someone, ChatMovie remotely calls server&apos;s method through <a href="../concepts.html#24-driver">Driver</a>&lt;<a href="#controllersichatservicets">IChatService</a>&gt;; <a href="#providerschatservicets">ChatService.talk()</a> or <a href="#providerschatservicets">ChatService.whisper()</a>.</p>
 <p>Also, <code>ChatMovie</code> registers an event listeners to the <a href="#providerschatprinterts">ChatPrinter</a>. Therefore, whenever the event listener is called, <code>ChatMovie</code> refreshes the screen immediately and it helps <code>ChatMovie</code> to keep the most-up-date screen of the chat room continuosly.</p>
-<pre class="language-"><code class="lang-typescript"><span class="token number">404</span><span class="token punctuation">:</span> Not Found
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">&quot;react&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Panel<span class="token punctuation">,</span> 
+    ListGroup<span class="token punctuation">,</span> ListGroupItem<span class="token punctuation">,</span> 
+    Button<span class="token punctuation">,</span> FormControl<span class="token punctuation">,</span> InputGroup<span class="token punctuation">,</span> 
+    Glyphicon 
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;react-bootstrap&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Driver <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/components/Driver&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> IChatService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../controllers/IChatService&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ChatPrinter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../providers/ChatPrinter&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">ChatMovie</span>
+    <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span><span class="token operator">&lt;</span>ChatMovie<span class="token punctuation">.</span>IProps<span class="token operator">&gt;</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> whisper_to_<span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token operator">|</span> <span class="token keyword">null</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">get</span> <span class="token function">input_</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> HTMLInputElement
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">&quot;message_input&quot;</span><span class="token punctuation">)</span> <span class="token keyword">as</span> HTMLInputElement<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">//----------------------------------------------------------------</span>
+    <span class="token comment">//  CONSTRUCTOR</span>
+    <span class="token comment">//----------------------------------------------------------------</span>
+    <span class="token keyword">public</span> <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">props<span class="token punctuation">:</span> ChatMovie<span class="token punctuation">.</span>IProps</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// WHENEVER EVENT COMES</span>
+        <span class="token keyword">let</span> printer<span class="token punctuation">:</span> ChatPrinter <span class="token operator">=</span> props<span class="token punctuation">.</span>printer<span class="token punctuation">;</span>
+        printer<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> 
+        <span class="token punctuation">{</span>
+            <span class="token comment">// ERASE WHISPER TARGET</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>whisper_to_ <span class="token operator">!==</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> printer<span class="token punctuation">.</span>participants<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>whisper_to_<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span>whisper_to_ <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// REFRESH PAGE</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> input<span class="token punctuation">:</span> HTMLInputElement <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">&quot;message_input&quot;</span><span class="token punctuation">)</span> <span class="token keyword">as</span> HTMLInputElement<span class="token punctuation">;</span>
+        input<span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">componentDidUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> element<span class="token punctuation">:</span> HTMLElement <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">&quot;message_body&quot;</span><span class="token punctuation">)</span><span class="token operator">!</span><span class="token punctuation">;</span>
+        element<span class="token punctuation">.</span>scrollTop <span class="token operator">=</span> element<span class="token punctuation">.</span>scrollHeight <span class="token operator">-</span> element<span class="token punctuation">.</span>clientHeight<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">//----------------------------------------------------------------</span>
+    <span class="token comment">//  EVENT HANDLERS</span>
+    <span class="token comment">//----------------------------------------------------------------</span>
+    <span class="token keyword">private</span> <span class="token function">_Handle_keyUp</span><span class="token punctuation">(</span>event<span class="token punctuation">:</span> React<span class="token punctuation">.</span>KeyboardEvent<span class="token operator">&lt;</span>FormControl<span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>keyCode <span class="token operator">===</span> <span class="token number">13</span><span class="token punctuation">)</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_Send_message</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token function">_Send_message</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> content<span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>input_<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+        <span class="token keyword">let</span> service<span class="token punctuation">:</span> Driver<span class="token operator">&lt;</span>IChatService<span class="token operator">&gt;</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>service<span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>whisper_to_ <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+            service<span class="token punctuation">.</span><span class="token function">talk</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span>
+            service<span class="token punctuation">.</span><span class="token function">whisper</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>whisper_to_<span class="token punctuation">,</span> content<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">this</span><span class="token punctuation">.</span>input_<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>input_<span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token function">_Select_participant</span><span class="token punctuation">(</span>name<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>whisper_to_ <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>whisper_to_ <span class="token operator">===</span> name<span class="token punctuation">)</span>
+            <span class="token operator">?</span> <span class="token keyword">null</span>
+            <span class="token punctuation">:</span> name<span class="token punctuation">;</span>
+
+        <span class="token keyword">this</span><span class="token punctuation">.</span>input_<span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">//----------------------------------------------------------------</span>
+    <span class="token comment">//  RENDERER</span>
+    <span class="token comment">//----------------------------------------------------------------</span>
+    <span class="token keyword">public</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token constant">JSX</span><span class="token punctuation">.</span>Element
+    <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> printer<span class="token punctuation">:</span> ChatPrinter <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>printer<span class="token punctuation">;</span>
+
+        <span class="token keyword">let</span> myName<span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> printer<span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+        <span class="token keyword">let</span> participants<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span>printer<span class="token punctuation">.</span>participants<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> messages<span class="token punctuation">:</span> ChatPrinter<span class="token punctuation">.</span>IMessage<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> printer<span class="token punctuation">.</span>messages<span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">&quot;main&quot;</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>Panel bsStyle<span class="token operator">=</span><span class="token string">&quot;info&quot;</span> 
+                   className<span class="token operator">=</span><span class="token string">&quot;participants&quot;</span><span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>Panel<span class="token punctuation">.</span>Heading className<span class="token operator">=</span><span class="token string">&quot;panel-pincer&quot;</span><span class="token operator">&gt;</span>
+                    <span class="token operator">&lt;</span>Panel<span class="token punctuation">.</span>Title<span class="token operator">&gt;</span> 
+                        <span class="token operator">&lt;</span>Glyphicon glyph<span class="token operator">=</span><span class="token string">&quot;user&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+                        <span class="token punctuation">{</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string"> Participants: #</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>participants<span class="token punctuation">.</span>length<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span>
+                    <span class="token operator">&lt;</span><span class="token operator">/</span>Panel<span class="token punctuation">.</span>Title<span class="token operator">&gt;</span> 
+                <span class="token operator">&lt;</span><span class="token operator">/</span>Panel<span class="token punctuation">.</span>Heading<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>Panel<span class="token punctuation">.</span>Body className<span class="token operator">=</span><span class="token string">&quot;panel-body&quot;</span><span class="token operator">&gt;</span>
+                    <span class="token operator">&lt;</span>ListGroup<span class="token operator">&gt;</span>
+                    <span class="token punctuation">{</span>participants<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">name</span> <span class="token operator">=&gt;</span> 
+                    <span class="token punctuation">{</span>
+                        <span class="token keyword">return</span> <span class="token operator">&lt;</span>ListGroupItem active<span class="token operator">=</span><span class="token punctuation">{</span>name <span class="token operator">===</span> myName<span class="token punctuation">}</span> 
+                                              bsStyle<span class="token operator">=</span><span class="token punctuation">{</span>name <span class="token operator">===</span> <span class="token keyword">this</span><span class="token punctuation">.</span>whisper_to_ <span class="token operator">?</span> <span class="token string">&quot;warning&quot;</span> <span class="token punctuation">:</span> undefined<span class="token punctuation">}</span>
+                                              onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_Select_participant</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>
+                        <span class="token punctuation">{</span>name <span class="token operator">===</span> <span class="token keyword">this</span><span class="token punctuation">.</span>whisper_to_
+                            <span class="token operator">?</span> <span class="token string">&quot;&gt; &quot;</span> <span class="token operator">+</span> name
+                            <span class="token punctuation">:</span> name
+                        <span class="token punctuation">}</span>
+                        <span class="token operator">&lt;</span><span class="token operator">/</span>ListGroupItem<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+                    <span class="token operator">&lt;</span><span class="token operator">/</span>ListGroup<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span><span class="token operator">/</span>Panel<span class="token punctuation">.</span>Body<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>Panel<span class="token punctuation">.</span>Footer className<span class="token operator">=</span><span class="token string">&quot;panel-pincer&quot;</span><span class="token operator">&gt;</span>
+                    Demo Project <span class="token keyword">of</span> <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">&quot;https://tgrid.dev&quot;</span> target<span class="token operator">=</span><span class="token string">&quot;_blank&quot;</span><span class="token operator">&gt;</span>TGrid<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span><span class="token operator">/</span>Panel<span class="token punctuation">.</span>Footer<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>Panel<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>Panel bsStyle<span class="token operator">=</span><span class="token string">&quot;primary&quot;</span>
+                   className<span class="token operator">=</span><span class="token string">&quot;messages&quot;</span><span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>Panel<span class="token punctuation">.</span>Heading className<span class="token operator">=</span><span class="token string">&quot;panel-pincer&quot;</span><span class="token operator">&gt;</span>
+                    <span class="token operator">&lt;</span>Panel<span class="token punctuation">.</span>Title<span class="token operator">&gt;</span> 
+                        <span class="token operator">&lt;</span>Glyphicon glyph<span class="token operator">=</span><span class="token string">&quot;list&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+                        <span class="token punctuation">{</span><span class="token string">&quot; Message&quot;</span><span class="token punctuation">}</span>
+                    <span class="token operator">&lt;</span><span class="token operator">/</span>Panel<span class="token punctuation">.</span>Title<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span><span class="token operator">/</span>Panel<span class="token punctuation">.</span>Heading<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>Panel<span class="token punctuation">.</span>Body id<span class="token operator">=</span><span class="token string">&quot;message_body&quot;</span> 
+                            className<span class="token operator">=</span><span class="token string">&quot;panel-body&quot;</span><span class="token operator">&gt;</span>
+                    <span class="token punctuation">{</span>messages<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">msg</span> <span class="token operator">=&gt;</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token keyword">let</span> fromMe<span class="token punctuation">:</span> <span class="token builtin">boolean</span> <span class="token operator">=</span> <span class="token punctuation">(</span>msg<span class="token punctuation">.</span><span class="token keyword">from</span> <span class="token operator">===</span> myName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token keyword">let</span> style<span class="token punctuation">:</span> React<span class="token punctuation">.</span>CSSProperties <span class="token operator">=</span> <span class="token punctuation">{</span>
+                            textAlign<span class="token punctuation">:</span> fromMe <span class="token operator">?</span> <span class="token string">&quot;right&quot;</span> <span class="token punctuation">:</span> undefined<span class="token punctuation">,</span>
+                            fontStyle<span class="token punctuation">:</span> msg<span class="token punctuation">.</span>to <span class="token operator">?</span> <span class="token string">&quot;italic&quot;</span> <span class="token punctuation">:</span> undefined<span class="token punctuation">,</span>
+                            color<span class="token punctuation">:</span> msg<span class="token punctuation">.</span>to <span class="token operator">?</span> <span class="token string">&quot;gray&quot;</span> <span class="token punctuation">:</span> undefined
+                        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+                        <span class="token keyword">let</span> content<span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> msg<span class="token punctuation">.</span>content<span class="token punctuation">;</span>
+
+                        <span class="token keyword">if</span> <span class="token punctuation">(</span>msg<span class="token punctuation">.</span>to<span class="token punctuation">)</span>
+                        <span class="token punctuation">{</span>
+                            <span class="token keyword">let</span> head<span class="token punctuation">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token punctuation">(</span>msg<span class="token punctuation">.</span><span class="token keyword">from</span> <span class="token operator">===</span> myName<span class="token punctuation">)</span>
+                                <span class="token operator">?</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">(whisper to </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>msg<span class="token punctuation">.</span>to<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">)</span><span class="token template-punctuation string">`</span></span>
+                                <span class="token punctuation">:</span> <span class="token string">&quot;(whisper)&quot;</span><span class="token punctuation">;</span>
+                            content <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>head<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>content<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+                        <span class="token punctuation">}</span>
+
+                        <span class="token keyword">return</span> <span class="token operator">&lt;</span>p style<span class="token operator">=</span><span class="token punctuation">{</span>style<span class="token punctuation">}</span><span class="token operator">&gt;</span>
+                            <span class="token operator">&lt;</span>b style<span class="token operator">=</span><span class="token punctuation">{</span> <span class="token punctuation">{</span> fontSize<span class="token punctuation">:</span> <span class="token number">18</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>msg<span class="token punctuation">.</span><span class="token keyword">from</span><span class="token punctuation">}</span> <span class="token operator">&lt;</span><span class="token operator">/</span>b<span class="token operator">&gt;</span>
+                            <span class="token operator">&lt;</span>br<span class="token operator">/</span><span class="token operator">&gt;</span>
+                            <span class="token punctuation">{</span>content<span class="token punctuation">}</span>
+                        <span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+                <span class="token operator">&lt;</span><span class="token operator">/</span>Panel<span class="token punctuation">.</span>Body<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>Panel<span class="token punctuation">.</span>Footer className<span class="token operator">=</span><span class="token string">&quot;panel-pincer&quot;</span><span class="token operator">&gt;</span>
+                    <span class="token operator">&lt;</span>InputGroup<span class="token operator">&gt;</span>
+                        <span class="token operator">&lt;</span>FormControl id<span class="token operator">=</span><span class="token string">&quot;message_input&quot;</span> 
+                                     <span class="token keyword">type</span><span class="token operator">=</span><span class="token string">&quot;text&quot;</span>
+                                     onKeyUp<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_Handle_keyUp</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+                        <span class="token operator">&lt;</span>InputGroup<span class="token punctuation">.</span>Button<span class="token operator">&gt;</span>
+                            <span class="token operator">&lt;</span>Button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_Send_message</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>
+                            <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>whisper_to_ <span class="token operator">===</span> <span class="token keyword">null</span>
+                                <span class="token operator">?</span> <span class="token operator">&lt;</span>React<span class="token punctuation">.</span>Fragment<span class="token operator">&gt;</span>
+                                    <span class="token operator">&lt;</span>Glyphicon glyph<span class="token operator">=</span><span class="token string">&quot;bullhorn&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+                                    <span class="token punctuation">{</span><span class="token string">&quot; Talk to everyone&quot;</span><span class="token punctuation">}</span>
+                                <span class="token operator">&lt;</span><span class="token operator">/</span>React<span class="token punctuation">.</span>Fragment<span class="token operator">&gt;</span>
+                                <span class="token punctuation">:</span> <span class="token operator">&lt;</span>React<span class="token punctuation">.</span>Fragment<span class="token operator">&gt;</span>
+                                    <span class="token operator">&lt;</span>Glyphicon glyph<span class="token operator">=</span><span class="token string">&quot;screenshot&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+                                    <span class="token punctuation">{</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string"> Whisper to </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>whisper_to_<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span>
+                                <span class="token operator">&lt;</span><span class="token operator">/</span>React<span class="token punctuation">.</span>Fragment<span class="token operator">&gt;</span>
+                            <span class="token punctuation">}</span>
+                            <span class="token operator">&lt;</span><span class="token operator">/</span>Button<span class="token operator">&gt;</span>
+                        <span class="token operator">&lt;</span><span class="token operator">/</span>InputGroup<span class="token punctuation">.</span>Button<span class="token operator">&gt;</span>
+                    <span class="token operator">&lt;</span><span class="token operator">/</span>InputGroup<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span><span class="token operator">/</span>Panel<span class="token punctuation">.</span>Footer<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>Panel<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token keyword">namespace</span> ChatMovie
+<span class="token punctuation">{</span>
+    <span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">IProps</span>
+    <span class="token punctuation">{</span>
+        service<span class="token punctuation">:</span> Driver<span class="token operator">&lt;</span>IChatService<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+        printer<span class="token punctuation">:</span> ChatPrinter<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 
   
@@ -588,7 +1126,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"2.3.1. Chat Application","level":"2.3.1","depth":2,"next":{"title":"2.3.2. Othello Game","level":"2.3.2","depth":2,"path":"tutorial/projects/othello.md","ref":"tutorial/projects/othello.md","articles":[]},"previous":{"title":"2.3. Learn from Projects","level":"2.3","depth":1,"path":"tutorial/projects/README.md","ref":"tutorial/projects/README.md","articles":[{"title":"2.3.1. Chat Application","level":"2.3.1","depth":2,"path":"tutorial/projects/chat.md","ref":"tutorial/projects/chat.md","articles":[]},{"title":"2.3.2. Othello Game","level":"2.3.2","depth":2,"path":"tutorial/projects/othello.md","ref":"tutorial/projects/othello.md","articles":[]},{"title":"2.3.3. Grid Market","level":"2.3.3","depth":2,"path":"tutorial/projects/grid-market.md","ref":"tutorial/projects/grid-market.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-highlight","addcssjs","back-to-top-button","codegroup","collapse","disqus","github","hide-navigation-buttons","hide-published-with","import","panel","prism","scroll-to-top","theme-darkblue","theme-github","sitemap-general"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"disqus":{"useIdentifier":false,"shortName":"tgrid"},"scroll-to-top":{},"github":{"url":"https://github.com/samchon/tgrid"},"panel":{},"import":{},"theme-github":{},"search":{},"addcssjs":{"css":[],"js":[]},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"collapse":{},"hide-published-with":{},"sitemap-general":{"prefix":"https://tgrid.dev/"},"codegroup":{"defaultTabName":"Code","rememberTabs":true,"tabNameSeperator":"::"},"fontsettings":{"theme":"white","family":"sans","size":2},"hide-navigation-buttons":{},"theme-darkblue":{},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Jeongho Nam","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"TGrid","language":"english","gitbook":"*","description":"Guide Documents for TGrid"},"file":{"path":"tutorial/projects/chat.md","mtime":"2019-09-23T08:55:55.686Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-23T08:56:21.061Z"},"basePath":"../..","book":{"language":"english"}});
+            gitbook.page.hasChanged({"page":{"title":"2.3.1. Chat Application","level":"2.3.1","depth":2,"next":{"title":"2.3.2. Othello Game","level":"2.3.2","depth":2,"path":"tutorial/projects/othello.md","ref":"tutorial/projects/othello.md","articles":[]},"previous":{"title":"2.3. Learn from Projects","level":"2.3","depth":1,"path":"tutorial/projects/README.md","ref":"tutorial/projects/README.md","articles":[{"title":"2.3.1. Chat Application","level":"2.3.1","depth":2,"path":"tutorial/projects/chat.md","ref":"tutorial/projects/chat.md","articles":[]},{"title":"2.3.2. Othello Game","level":"2.3.2","depth":2,"path":"tutorial/projects/othello.md","ref":"tutorial/projects/othello.md","articles":[]},{"title":"2.3.3. Grid Market","level":"2.3.3","depth":2,"path":"tutorial/projects/market.md","ref":"tutorial/projects/market.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-highlight","addcssjs","back-to-top-button","codegroup","collapse","disqus","github","hide-navigation-buttons","hide-published-with","import","panel","prism","scroll-to-top","theme-darkblue","theme-github","sitemap-general"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"disqus":{"useIdentifier":false,"shortName":"tgrid"},"scroll-to-top":{},"github":{"url":"https://github.com/samchon/tgrid"},"panel":{},"import":{},"theme-github":{},"search":{},"addcssjs":{"css":[],"js":[]},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"collapse":{},"hide-published-with":{},"sitemap-general":{"prefix":"https://tgrid.dev/"},"codegroup":{"defaultTabName":"Code","rememberTabs":true,"tabNameSeperator":"::"},"fontsettings":{"theme":"white","family":"sans","size":2},"hide-navigation-buttons":{},"theme-darkblue":{},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Jeongho Nam","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"TGrid","language":"english","gitbook":"*","description":"Guide Documents for TGrid"},"file":{"path":"tutorial/projects/chat.md","mtime":"2019-09-23T08:55:55.686Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-24T08:54:11.363Z"},"basePath":"../..","book":{"language":"english"}});
         });
     </script>
 </div>

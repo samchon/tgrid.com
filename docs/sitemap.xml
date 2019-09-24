@@ -6,7 +6,6 @@
 <url> <loc>https://tgrid.dev/english/tutorial/projects/</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://tgrid.dev/english/tutorial/projects/chat.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://tgrid.dev/english/tutorial/projects/othello.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
-<url> <loc>https://tgrid.dev/english/tutorial/projects/grid-market.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://tgrid.dev/english/appendix/swot.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://tgrid.dev/korean/</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://tgrid.dev/korean/tutorial/concepts.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
@@ -14,7 +13,7 @@
 <url> <loc>https://tgrid.dev/korean/tutorial/projects/</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://tgrid.dev/korean/tutorial/projects/chat.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://tgrid.dev/korean/tutorial/projects/othello.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
-<url> <loc>https://tgrid.dev/korean/tutorial/projects/grid-market.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>https://tgrid.dev/korean/tutorial/projects/market.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://tgrid.dev/korean/appendix/swot.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>https://tgrid.dev/korean/appendix/blockchain.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 </urlset>

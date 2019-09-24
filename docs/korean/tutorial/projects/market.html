@@ -137,6 +137,51 @@
             
 
             
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../../">
+            
+                <a href="../../#1-outline">
+            
+                    
+                    1.1.1. Outline
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../../">
+            
+                <a href="../../#2-strengths">
+            
+                    
+                    1.1.2. Strengths
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="../../">
+            
+                <a href="../../#3-opportunities">
+            
+                    
+                    1.1.3. Opportunities
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
         </li>
     
 
@@ -315,9 +360,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.3.3" data-path="grid-market.html">
+        <li class="chapter active" data-level="2.3.3" data-path="market.html">
             
-                <a href="grid-market.html">
+                <a href="market.html">
             
                     
                     2.3.3. Grid Market
@@ -413,13 +458,13 @@
   
   <h1 id="grid-market">Grid Market</h1>
 <blockquote>
-<p><a href="https://github.com/samchon/tgrid.projects.grid-market" target="_blank">https://github.com/samchon/tgrid.projects.grid-market</a></p>
+<p><a href="https://github.com/samchon/tgrid.projects.market" target="_blank">https://github.com/samchon/tgrid.projects.market</a></p>
 </blockquote>
 <h2 id="1-outline">1. Outline</h2>
 <h2 id="2-design">2. Design</h2>
 <h2 id="3-implementation">3. Implementation</h2>
 <h3 id="31-market">3.1. Market</h3>
-<h4 id="coremarketconsumerchannelts"><a href="https://github.com/samchon/tgrid.projects.grid-market/blob/master/src/core/market/ConsumerChannel.ts" target="_blank"><code>core/market/ConsumerChannel.ts</code></a></h4>
+<h4 id="coremarketconsumerchannelts"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/market/ConsumerChannel.ts" target="_blank"><code>core/market/ConsumerChannel.ts</code></a></h4>
 <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WebAcceptor <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/web&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> SharedWorkerAcceptor <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/workers&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> HashMap <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tstl/container/HashMap&quot;</span><span class="token punctuation">;</span>
@@ -595,7 +640,7 @@
  */</span>
 <span class="token keyword">type</span> Acceptor <span class="token operator">=</span> WebAcceptor<span class="token operator">&lt;</span>ConsumerChannel<span class="token punctuation">.</span>Provider<span class="token operator">&gt;</span> <span class="token operator">|</span> SharedWorkerAcceptor<span class="token operator">&lt;</span>ConsumerChannel<span class="token punctuation">.</span>Provider<span class="token operator">&gt;</span><span class="token punctuation">;</span>
 </code></pre>
-<h4 id="coremarketsupplierchannelts"><a href="https://github.com/samchon/tgrid.projects.grid-market/blob/master/src/core/market/SupplierChannel.ts" target="_blank"><code>core/market/SupplierChannel.ts</code></a></h4>
+<h4 id="coremarketsupplierchannelts"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/market/SupplierChannel.ts" target="_blank"><code>core/market/SupplierChannel.ts</code></a></h4>
 <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WebAcceptor <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/web&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> SharedWorkerAcceptor <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/workers&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> Mutex <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tstl/thread/Mutex&quot;</span><span class="token punctuation">;</span>
@@ -784,7 +829,7 @@
  */</span>
 <span class="token keyword">type</span> Acceptor <span class="token operator">=</span> WebAcceptor<span class="token operator">&lt;</span>SupplierChannel<span class="token punctuation">.</span>Provider<span class="token operator">&gt;</span> <span class="token operator">|</span> SharedWorkerAcceptor<span class="token operator">&lt;</span>SupplierChannel<span class="token punctuation">.</span>Provider<span class="token operator">&gt;</span><span class="token punctuation">;</span>
 </code></pre>
-<h4 id="coremarketmarketts"><a href="https://github.com/samchon/tgrid.projects.grid-market/blob/master/src/core/market/Market.ts" target="_blank"><code>core/market/Market.ts</code></a></h4>
+<h4 id="coremarketmarketts"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/market/Market.ts" target="_blank"><code>core/market/Market.ts</code></a></h4>
 <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> HashMap <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tstl/container/HashMap&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> WebServer<span class="token punctuation">,</span> WebAcceptor <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/web&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> SharedWorkerServer<span class="token punctuation">,</span> SharedWorkerAcceptor <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/workers&quot;</span><span class="token punctuation">;</span>
@@ -1055,7 +1100,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <h3 id="32-consumer">3.2. Consumer</h3>
-<h4 id="coreconsumerservantts"><a href="https://github.com/samchon/tgrid.projects.grid-market/blob/master/src/core/consumer/Servant.ts" target="_blank"><code>core/consumer/Servant.ts</code></a></h4>
+<h4 id="coreconsumerservantts"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/consumer/Servant.ts" target="_blank"><code>core/consumer/Servant.ts</code></a></h4>
 <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> ISupplier <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../supplier/ISupplier&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> ICommunicator<span class="token punctuation">,</span> Driver <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/basic&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> ConditionVariable <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tstl/thread&quot;</span><span class="token punctuation">;</span>
@@ -1205,7 +1250,7 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h4 id="coreconsumerconsumerts"><a href="https://github.com/samchon/tgrid.projects.grid-market/blob/master/src/core/consumer/Consumer.ts" target="_blank"><code>core/consumer/Consumer.ts</code></a></h4>
+<h4 id="coreconsumerconsumerts"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/consumer/Consumer.ts" target="_blank"><code>core/consumer/Consumer.ts</code></a></h4>
 <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> ISupplier <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../supplier/ISupplier&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> ICommunicator<span class="token punctuation">,</span> Driver <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/basic&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> ConditionVariable <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tstl/thread&quot;</span><span class="token punctuation">;</span>
@@ -1357,8 +1402,8 @@
 </code></pre>
 <h4 id="appsconsumerapplicationtsx"><a href=""><code>apps/ConsumerApplication.tsx</code></a></h4>
 <h3 id="33-supplier">3.3. Supplier</h3>
-<h4 id="coresupplierisupplierts"><a href="https://github.com/samchon/tgrid.projects.grid-market/blob/master/src/core/supplier/ISupplier.ts" target="_blank"><code>core/supplier/ISupplier.ts</code></a></h4>
-<h4 id="coresuppliersupplierts"><a href="https://github.com/samchon/tgrid.projects.grid-market/blob/master/src/core/supplier/Supplier.ts" target="_blank"><code>core/supplier/Supplier.ts</code></a></h4>
+<h4 id="coresupplierisupplierts"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/supplier/ISupplier.ts" target="_blank"><code>core/supplier/ISupplier.ts</code></a></h4>
+<h4 id="coresuppliersupplierts"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/supplier/Supplier.ts" target="_blank"><code>core/supplier/Supplier.ts</code></a></h4>
 <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> EventEmitter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;events&quot;</span><span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> <span class="token punctuation">{</span> WebConnector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/web&quot;</span><span class="token punctuation">;</span>
@@ -1568,7 +1613,7 @@
 window<span class="token punctuation">.</span>onload <span class="token operator">=</span> main<span class="token punctuation">;</span>
 </code></pre>
 <h3 id="34-monitor">3.4. Monitor</h3>
-<h4 id="coremonitorconsumernodets"><a href="https://github.com/samchon/tgrid.projects.grid-market/blob/master/src/core/monitor/ConsumerNode.ts" target="_blank"><code>core/monitor/ConsumerNode.ts</code></a></h4>
+<h4 id="coremonitorconsumernodets"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/monitor/ConsumerNode.ts" target="_blank"><code>core/monitor/ConsumerNode.ts</code></a></h4>
 <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> HashMap <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tstl/container/HashMap&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> SupplierNode <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./SupplierNode&quot;</span><span class="token punctuation">;</span>
 
@@ -1584,7 +1629,7 @@ window<span class="token punctuation">.</span>onload <span class="token operator
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h4 id="coremonitorsuppliernodets"><a href="https://github.com/samchon/tgrid.projects.grid-market/blob/master/src/core/monitor/SupplierNode.ts" target="_blank"><code>core/monitor/SupplierNode.ts</code></a></h4>
+<h4 id="coremonitorsuppliernodets"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/monitor/SupplierNode.ts" target="_blank"><code>core/monitor/SupplierNode.ts</code></a></h4>
 <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> ConsumerNode <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./ConsumerNode&quot;</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">SupplierNode</span>
@@ -1613,7 +1658,7 @@ window<span class="token punctuation">.</span>onload <span class="token operator
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h4 id="coremonitormonitorts"><a href="https://github.com/samchon/tgrid.projects.grid-market/blob/master/src/core/monitor/Monitor.ts" target="_blank">`core/monitor/Monitor.ts</a></h4>
+<h4 id="coremonitormonitorts"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/monitor/Monitor.ts" target="_blank">`core/monitor/Monitor.ts</a></h4>
 <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WebConnector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/web&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> SharedWorkerConnector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/workers&quot;</span><span class="token punctuation">;</span>
 
@@ -1893,7 +1938,7 @@ window<span class="token punctuation">.</span>onload <span class="token operator
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"2.3.3. Grid Market","level":"2.3.3","depth":2,"next":{"title":"3.1. SWOT Analysis","level":"3.1","depth":1,"path":"appendix/swot.md","ref":"appendix/swot.md","articles":[]},"previous":{"title":"2.3.2. Othello Game","level":"2.3.2","depth":2,"path":"tutorial/projects/othello.md","ref":"tutorial/projects/othello.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","addcssjs","back-to-top-button","codegroup","collapse","disqus","github","hide-navigation-buttons","hide-published-with","import","panel","prism","scroll-to-top","theme-darkblue","theme-github","sitemap-general"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"disqus":{"useIdentifier":false,"shortName":"tgrid"},"scroll-to-top":{},"github":{"url":"https://github.com/samchon/tgrid"},"panel":{},"import":{},"theme-github":{},"search":{},"addcssjs":{"css":[],"js":[]},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"collapse":{},"hide-published-with":{},"sitemap-general":{"prefix":"https://tgrid.dev/"},"codegroup":{"defaultTabName":"Code","rememberTabs":true,"tabNameSeperator":"::"},"fontsettings":{"theme":"white","family":"sans","size":2},"hide-navigation-buttons":{},"theme-darkblue":{},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Jeongho Nam","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"TGrid","language":"korean","gitbook":"*","description":"Guide Documents for TGrid"},"file":{"path":"tutorial/projects/grid-market.md","mtime":"2019-09-23T08:55:55.679Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-23T08:56:21.061Z"},"basePath":"../..","book":{"language":"korean"}});
+            gitbook.page.hasChanged({"page":{"title":"2.3.3. Grid Market","level":"2.3.3","depth":2,"next":{"title":"3.1. SWOT Analysis","level":"3.1","depth":1,"path":"appendix/swot.md","ref":"appendix/swot.md","articles":[]},"previous":{"title":"2.3.2. Othello Game","level":"2.3.2","depth":2,"path":"tutorial/projects/othello.md","ref":"tutorial/projects/othello.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","addcssjs","back-to-top-button","codegroup","collapse","disqus","github","hide-navigation-buttons","hide-published-with","import","panel","prism","scroll-to-top","theme-darkblue","theme-github","sitemap-general"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"disqus":{"useIdentifier":false,"shortName":"tgrid"},"scroll-to-top":{},"github":{"url":"https://github.com/samchon/tgrid"},"panel":{},"import":{},"theme-github":{},"search":{},"addcssjs":{"css":[],"js":[]},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"collapse":{},"hide-published-with":{},"sitemap-general":{"prefix":"https://tgrid.dev/"},"codegroup":{"defaultTabName":"Code","rememberTabs":true,"tabNameSeperator":"::"},"fontsettings":{"theme":"white","family":"sans","size":2},"hide-navigation-buttons":{},"theme-darkblue":{},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Jeongho Nam","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"TGrid","language":"korean","gitbook":"*","description":"Guide Documents for TGrid"},"file":{"path":"tutorial/projects/market.md","mtime":"2019-09-24T08:53:54.044Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-24T08:54:11.363Z"},"basePath":"../..","book":{"language":"korean"}});
         });
     </script>
 </div>

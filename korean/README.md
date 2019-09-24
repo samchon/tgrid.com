@@ -1,6 +1,8 @@
 # Introduction
 ## 1. Outline
 ### 1.1. TGrid
+![Slogan Flag](../assets/images/flag.png)
+
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/tgrid/blob/master/LICENSE)
 [![npm version](https://badge.fury.io/js/tgrid.svg)](https://www.npmjs.com/package/tgrid)
 [![Downloads](https://img.shields.io/npm/dm/tgrid.svg)](https://www.npmjs.com/package/tgrid)

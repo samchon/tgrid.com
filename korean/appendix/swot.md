@@ -3,7 +3,13 @@
 ### 1.1. Easy Development
 누구나 쉽게 네트워크 연동 시스템을 만들 수 있습니다.
 
-**TGrid** 와 [Remote Function Call](../tutorial/concepts.md#12-remote-function-call) 을 이용하면, 진정한 [Grid Computing](../tutorial/concepts.md#11-grid-computing) 을 실현할 수 있습니다. 네트워크로 연동된 여러 대의 컴퓨터들은 단 <u>하나의 가상 컴퓨터</u>로 치환됩니다. 심지어 이렇게 만들어진 가상 컴퓨터에서 동작하는 프로그램의 *비지니스 로직* 코드는, 실제로 단일 컴퓨터에서 동작하는 단일 프로그램의 *비지니스 로직* 코드와 동일하기까지 합니다.
+본래 네트워크 통신을 이용한 연동시스템을 만드는 것은 제법 어려운 일입니다. 여러 대의 컴퓨터가 어우러져 공통의 작업을 해내야 하기 때문입니다. 따라서 네트워크 연동 시스템을 개발할 때는 (요구사항을 완벽하게 분석해야 하고, 유즈케이스를 완벽하게 파악해야 하며, 데이터와 네트워크 아키텍처를 완벽하게 설계해야 하고, 상호 연동 테스트를 완벽하게 해야 하는 하는등) 프로세스의 온갖 곳에 '완벽' 이라는 무시무시한 전제 수식어가 따라다닙니다.
+
+{% panel style="info", title="Something to Read" %}
+[블록체인의 Network System, 지옥으로의 발걸음](blockchain.md#steps-to-hell)
+{% endpanel %}
+
+하지만, **TGrid** 와 [Remote Function Call](../tutorial/concepts.md#12-remote-function-call) 을 이용하면, 진정한 [Grid Computing](../tutorial/concepts.md#11-grid-computing) 을 실현할 수 있습니다. 네트워크로 연동된 여러 대의 컴퓨터들은 단 <u>하나의 가상 컴퓨터</u>로 치환됩니다. 심지어 이렇게 만들어진 가상 컴퓨터에서 동작하는 프로그램의 *비지니스 로직* 코드는, 실제로 단일 컴퓨터에서 동작하는 단일 프로그램의 *비지니스 로직* 코드와 동일하기까지 합니다.
 
 따라서 **TGrid** 를 이용하시거든 네트워크 연동 시스템을 매우 쉽게 만드실 수 있습니다. 복잡하고 어려운 네트워크 프로토콜이니 메시지 구조 설계니 하는 것들은 모두 잊어버리십시오. 오로지 여러분께서 만들고자 하는 것의 본질, *비지니스 로직*, 그 자체에만 집중하십시오. **TGrid** 를 사용하시는 이상, 여러분은 단지 한 대의 (가상) 컴퓨터에서 동작하는 단일 프로그램을 개발하는 것일 뿐입니다.
 
@@ -86,9 +92,9 @@ main();
 
 이 performance 이슈로 인한 *네트워크 리팩토링* 에 대해, 간단한 예시를 들어 설명하도록 하겠습니다. 어떤 분산처리시스템에, 계산기 역할을 수행하는 서버가 한 대 있었습니다. 그런데 이 시스템을 운영해보니, 연산량이 워낙 막중하여 도저히 단 한 대의 서버로는 감당이 안 되었고, 따라서 해당 서버를 총 세 대의 서버로 분할하기로 결심합니다.
 
-  - [`scientific`](): 공학용 계산기 서버
-  - [`statistics`](): 통계용 계산기 서버
-  - [`calculator`](): 메인 프레임 서버
+  - [`scientific`](../tutorial/examples.md#hierarchical-calculatorscientificts): 공학용 계산기 서버
+  - [`statistics`](../tutorial/examples.md#hierarchical-calculatorstatisticsts): 통계용 계산기 서버
+  - [`calculator`](../tutorial/examples.md#hierarchical-calculatorcalculatorts): 메인 프레임 서버
     - 사칙 연산은 스스로 수행하고
     - 공학용과 통계용은 다른 서버에게 전달하고 그 결과값만을 중개
 
@@ -98,14 +104,14 @@ main();
 >  - 네트워크 아키텍처
 >  - 메시지 프로토콜
 >  - 이벤트 핸들링
->  - 비지니스 로직 코드 (비지니스 로직 그 자체가 변하는 것은 아닙니다)
+>  - *비지니스 로직* 코드
 
 하지만 **TGrid** 와 [Remote Function Call](../tutorial/concepts.md#12-remote-function-call) 을 이용하면 이러한 이슈는 아무런 문젯거리도 되지 못합니다. TGrid 에서는 네트워크 시스템을 구성하는 각 서버도, 단지 일개 객체일 뿐입니다. 원격 계산기를 한 대의 서버로 만들던, 세 대의 서버에 나누어 처리하던, 그것의 비지니스 로직 코드는 모두 동일할 것입니다.
 
 이를 가장 잘 보여주는 게 아래 두 예제입니다. 첫 번째는 단일 계산기의 코드이며, 두 번째는 해당 계산기 서버를 세 대의 서버로 분할했을 때의 코드입니다. 이를 보시면 쉬이 알 수 있듯이, **TGrid** 와 [Remote Function Call](../tutorial/concepts.md#12-remote-function-call) 을 사용하시거든 네트워크 시스템 구조가 대거 변하더라도, 여러분께선 아무 염려하지 않으셔도 됩니다.
 
   - [Demonstration - Remote Object Call](../tutorial/examples.md#22-remote-object-call)
-  - [Demonstration - Object Oriented Networkr](../tutorial/examples.md#23-object-oriented-network)
+  - [Demonstration - Object Oriented Network](../tutorial/examples.md#23-object-oriented-network)
 
 
 
@@ -124,9 +130,9 @@ main();
 
 
 ## 3. Opportunities
-### 3.1. Business Logic
-### 3.2. Economic Business
-### 3.3. Block Chain
+### 3.1. Block Chain
+### 3.2. Expansions
+### 3.3. Fog Computing
 
 
 

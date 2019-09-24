@@ -223,7 +223,7 @@ type Driver<ISomething> =
   - Demo Projects
     - [Chat Application](projects/chat.md)
     - [Othello Game](projects/othello.md)
-    - [Grid Market](projects/grid-market.md)
+    - [Grid Market](projects/market.md)
 
 #### 3.1.3. Module
  Class           | Web Browser | NodeJS | Usage
@@ -274,7 +274,7 @@ Let's review the *workers*. *Workers* are physically created in the thread level
     - [Object Oriented Network](examples.md#3-object-oriented-network)
     - [Remote Critical Section](examples.md#4-remote-critical-section)
   - Demo Project
-    - [Grid Market](projects/grid-market.md)
+    - [Grid Market](projects/market.md)
 
 #### 3.2.3. Module
  Class                    | Web Browser | NodeJS | Usage

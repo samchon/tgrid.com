@@ -25,8 +25,8 @@
 
 
 
-## [3. Grid Market](grid-market.md)
-![Actors](../../../assets/images/projects/grid-market/actors.png)
+## [3. Grid Market](market.md)
+![Actors](../../../assets/images/projects/market/actors.png)
 
 Grid Computing 시스템을 구축하는 데 필요한 연산력을 매매할 수 있는 온라인 시장, Market 을 만듦니다. 그리고 그 시장에 참여하여 연산력을 거래하는 수요자 Consumer 와 공급자 Supplier 시스템을 각각 만들어봅니다. 마지막으로 시장에서 이루어지는 모든 매매행위를 들여다 볼 수 있는 Monitor 시스템을 만들 것입니다.
 

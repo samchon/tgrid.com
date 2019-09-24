@@ -26,8 +26,8 @@ However, we'll not create a simple game only can play an Othello game. The diffi
 
 
 
-## [3. Grid Market](grid-market.md)
-![Actors](../../../assets/images/projects/grid-market/actors.png)
+## [3. Grid Market](market.md)
+![Actors](../../../assets/images/projects/market/actors.png)
 
 Create an online *Market* which intermediates computing resources for *Grid Computing*. Also, creates participants of the *Market*, *Consumer* and *Supplier* who can trade the computing powers. At last, makes the Monitor who can observe all of transactions occured in the *Market*.
 

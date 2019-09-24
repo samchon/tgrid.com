@@ -14,6 +14,7 @@
         "hide-navigation-buttons",
         "hide-published-with",
         "import",
+        "meta",
         "panel",
         "prism",
         "scroll-to-top",
@@ -30,6 +31,15 @@
         },
         "github": {
             "url": "https://github.com/samchon/tgrid"
+        },
+        "meta": {
+            "data": [
+                { "name": "og:url", "content": "https://tgrid.dev" },
+                { "name": "og:type", "content": "website" },
+                { "name": "og:title", "content": "TGrid Guide Documents" },
+                { "name": "og:description", "content": "TypeScript Grid Computing Framework" },
+                { "name": "og:images", "content": "https://tgrid.dev/assets/images/flag.png" }
+            ]
         },
         "sitemap-general": {
             "prefix": "https://tgrid.dev/"

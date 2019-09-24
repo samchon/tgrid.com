@@ -38,7 +38,7 @@
                 { "name": "og:type", "content": "website" },
                 { "name": "og:title", "content": "TGrid Guide Documents" },
                 { "name": "og:description", "content": "TypeScript Grid Computing Framework" },
-                { "name": "og:images", "content": "https://tgrid.dev/assets/images/flag.png" }
+                { "name": "og:image", "content": "https://tgrid.dev/assets/images/flag.png" }
             ]
         },
         "sitemap-general": {

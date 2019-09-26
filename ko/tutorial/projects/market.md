@@ -2,7 +2,8 @@
 > https://github.com/samchon/tgrid.projects.market
 
 ## 1. Outline
-
+  - 데모 사이트: http://samchon.org/market
+  - 코드 저장소: https://github.com/samchon/tgrid.projects.market
 
 
 ## 2. Design

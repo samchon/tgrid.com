@@ -242,7 +242,7 @@ struct candle
 ### 3.1. Block Chain
 > 자세한 내용: [**Appendix** > **Blockchain**](blockchain.md)
 
-**TGrid** 를 이용하면, 블록체인 프로젝트를 쉽게 개발할 수 있습니다.
+**TGrid** 를 이용하면, 블록체인 프로젝트를 보다 쉽게 개발할 수 있습니다.
 
 블록체인 프로젝트의 개발 난이도가 높다는 것은 매우 유명한 이야기입니다. 구태여 블록체인 개발자들의 몸값이 다락같이 높아서 그런 것만이 아닙니다. 순 기술적인 관점에서 보더라도, 블록체인은 그 자체로 난이도가 매우 높습니다. 단, 기술적으로 무엇이 그렇게 어렵냐고 물었을 때, 저는 이렇게 말하고 싶습니다. 진정 어려운 것은 [Network System](blockchain.md#3-network-system) 때문이지, [Business Logic](blockchain.md#2-business-logic) 때문은 아니라고 말입니다.
 

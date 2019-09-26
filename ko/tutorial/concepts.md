@@ -31,9 +31,9 @@ https://ko.wikipedia.org/wiki/그리드_컴퓨팅
 ### 1.2. Remote Function Call
 ![Grid Computing](../../assets/images/concepts/grid-computing.png)
 
-제가 생각하는 진정한 Grid Computing 이란, 여러 대의 컴퓨터를 하나의 가상 컴퓨터로 만드는 것입니다. 그리고 Grid Computing 으로 만든 가상 컴퓨터에 탑재될 프로그램의 코드는, 실제로 하나의 컴퓨터에서 동작하는 프로그램의 코드와 동일해야 합니다.
+제가 생각하는 진정한 [Grid Computing](#11-grid-computing) 이란, 여러 대의 컴퓨터를 하나의 가상 컴퓨터로 만드는 것입니다. 그리고 [Grid Computing](#11-grid-computing) 으로 만든 가상 컴퓨터에 탑재될 프로그램의 코드는, 실제로 하나의 컴퓨터에서 동작하는 프로그램의 코드와 동일해야 합니다.
 
-**TGrid** 가, 바로 이 진정한 Grid Computing 을 실현하기 위하여, 제공하는 솔루션은 `Remote Function Call` 입니다. `Remote Function Call` 은 문자 그대로 원격 시스템의 함수를 호출한다는 뜻입니다. `Remote Function Call` 을 이용하면 여러분은 원격 시스템이 가진 객체를 마치 내 메모리 객체인 양 사용하실 수 있습니다. 원격 시스템에 정의된 함수가 마치 내 프로그램의 함수인 양 호출할 수 있구요.
+**TGrid** 가, 바로 이 진정한 [Grid Computing](#11-grid-computing) 을 실현하기 위하여, 제공하는 솔루션은 `Remote Function Call` 입니다. `Remote Function Call` 은 문자 그대로 원격 시스템의 함수를 호출한다는 뜻입니다. `Remote Function Call` 을 이용하면 여러분은 원격 시스템이 가진 객체를 마치 내 메모리 객체인 양 사용하실 수 있습니다. 원격 시스템에 정의된 함수가 마치 내 프로그램의 함수인 양 호출할 수 있구요.
 
 **TGrid** 와 `Remote Function Call` 을 이용하면 원격 시스템의 객체와 함수를 마치 내 것인양 사용할 수 있다, 이 문장이 무엇을 의미할까요? 맞습니다, 원격 시스템의 객체와 함수를 직접 호출할 수 있다는 것은 곧, 현 시스템과 원격 시스템이 <u>하나의 가상 컴퓨터로 통합</u>되었다는 것을 의미합니다. 하나의 컴퓨터에 탑재된 <u>단일 프로그램</u>이니까, 객체간 함수도 호출할 수 있고 뭐 그런 것 아니겠습니까?
 
@@ -48,9 +48,9 @@ Hierarchical | Composite | Single
 
 아래의 세 예제 코드는 모두 [2.2. Learn from Examples](examples.md) 단원에서 다루는 내용입니다. 아래 예제 코드에 대한 자세한 설명은 해당 단원을 참고해주세요. 지금 우리는 딱 하나만 집중해서 보고자 합니다. 그것은 바로 세 프로젝트의 <u>비지니스 로직 코드가 모두 동일</u>하다는 것입니다.
 
-만들고자 하는 프로그램이 Grid Computing 으로 만들어졌던, 혹은 단일 컴퓨터에서 동작하는 것이던, 비지니스 로직 코드에는 일절 변화가 없습니다. 심지어 Grid Computing 을 구성하는 컴퓨터가 2 대이던 혹은 4 대이던, 여전히 비지니스 로직 코드에는 아무런 변화가 없습니다. 왜냐하면 이들은 모두 하나의 (가상) 컴퓨터로 통합된 상태니까요. 하나의 컴퓨터에 완전히 똑같은 용도의 프로그램을 세 벌 만드는데, 이들의 코드가 어찌 같이 않을 수 있겠나요?
+만들고자 하는 프로그램이 [Grid Computing](#11-grid-computing) 으로 만들어졌던, 혹은 단일 컴퓨터에서 동작하는 것이던, 비지니스 로직 코드에는 일절 변화가 없습니다. 심지어 [Grid Computing](#11-grid-computing) 을 구성하는 컴퓨터가 2 대이던 혹은 4 대이던, 여전히 비지니스 로직 코드에는 아무런 변화가 없습니다. 왜냐하면 이들은 모두 하나의 (가상) 컴퓨터로 통합된 상태니까요. 하나의 컴퓨터에 완전히 똑같은 용도의 프로그램을 세 벌 만드는데, 이들의 코드가 어찌 같이 않을 수 있겠나요?
 
-마지막으로 이 말과 함께 이번 장을 마치겠습니다. This is **TGrid**. This is [Remote Function Call](#12-remote-function-call).
+마지막으로 이 말과 함께 이번 장을 마치겠습니다. This is **TGrid**. This is the [Remote Function Call](#12-remote-function-call).
 
 {% codegroup  %}
 ```typescript::Hierarchical

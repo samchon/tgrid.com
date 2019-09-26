@@ -120,7 +120,7 @@ main();
 > #### 읽어볼거리
 >   - [블록체인의 Network System, 지옥으로의 발걸음](blockchain.md#steps-to-hell)
 
-하지만, **TGrid** 와 [Remote Function Call](13-remote-function-call) 을 이용하면, 진정한 [Grid Computing](12-grid-computing) 을 실현할 수 있습니다. 네트워크로 연동된 여러 대의 컴퓨터들은 단 <u>하나의 가상 컴퓨터</u>로 치환됩니다. 심지어 이렇게 만들어진 가상 컴퓨터에서 동작하는 프로그램의 *비지니스 로직* 코드는, 실제로 단일 컴퓨터에서 동작하는 단일 프로그램의 *비지니스 로직* 코드와 동일하기까지 합니다.
+하지만, **TGrid** 와 [Remote Function Call](#13-remote-function-call) 을 이용하면, 진정한 [Grid Computing](#12-grid-computing) 을 실현할 수 있습니다. 네트워크로 연동된 여러 대의 컴퓨터들은 단 <u>하나의 가상 컴퓨터</u>로 치환됩니다. 심지어 이렇게 만들어진 가상 컴퓨터에서 동작하는 프로그램의 *비지니스 로직* 코드는, 실제로 단일 컴퓨터에서 동작하는 단일 프로그램의 *비지니스 로직* 코드와 동일하기까지 합니다.
 
 따라서 **TGrid** 를 이용하시거든 네트워크 연동 시스템을 매우 쉽게 만드실 수 있습니다. 복잡하고 어려운 네트워크 프로토콜이니 메시지 구조 설계니 하는 것들은 모두 잊어버리십시오. 오로지 여러분께서 만들고자 하는 것의 본질, *비지니스 로직*, 그 자체에만 집중하십시오. **TGrid** 를 사용하시는 이상, 여러분은 단지 한 대의 (가상) 컴퓨터에서 동작하는 단일 프로그램을 개발하는 것일 뿐입니다.
 
@@ -133,7 +133,7 @@ main();
 
 **TGrid** 는 네트워크 분산처리시스템의 이러한 컴파일 이슈에 대하여 정확한 솔루션을 제공합니다. **TGrid** 는 진정한 [Grid Computing](#12-grid-computing) 을 구현하기 위하여, 네트워크 통신에 [Remote Function Call](#13-remote-function-call) 이란 개념을 도입하였습니다. [Remote Function Call](#13-remote-function-call) 이란 무엇입니까? 함수 호출 그 자체 아니던가요? 당연하게도 TypeScript Compiler 의 보호를 받아, 타입 안정성을 보장받는 대상입니다.
 
-즉, **TGrid** 와 [Remote Function Call](#13-remote-function-call) 를 사용하시거든, 무려 네트워크 시스템에 컴파일과 타입 검사라는 개념을 도입하실 수 있습니다. 그리고 이를 통해 안전하고 편안한 네트워크 시스템 구축이 가능해지죠. 백문이 불여일견, **TGrid** 를 이용한 *Safe Implementation* 의 사례를 보면서, 이번 장을 마치겠습니다.
+즉, **TGrid** 와 [Remote Function Call](#13-remote-function-call) 을 사용하시거든, 무려 네트워크 시스템에 컴파일과 타입 검사라는 개념을 도입하실 수 있습니다. 그리고 이를 통해 안전하고 편안한 네트워크 시스템 구축이 가능해지죠. 백문이 불여일견, **TGrid** 를 이용한 *Safe Implementation* 의 사례를 보면서, 이번 장을 마치겠습니다.
 
 ```typescript
 import { WebConnector } from "tgrid/protocols/web/WebConnector"
@@ -244,16 +244,16 @@ main();
  Block     | Data Structure | 데이터를 저장하는 방법
  Chain     | Requirements   | 합의 도출에 관한 정책
 
-만일 이 Block 과 Chain 을 단 한대의 컴퓨터에서 동작하는 단일 프로그램으로 개발한다고 생각해봅시다. 이 경우에는 그저 자료구조를 설계하여 이를 디스크에 저장할 수 있고, 정책 (요구사항) 을 분석하여 코드로 구현할 수만 있으면 됩니다. 소양있는 개발자라면 누구나 만들 수 있는 것, 그것이 바로 블록체인의 [Remote Function Call](13-remote-function-call) 입니다. 여러분도 얼마든지 해내실 수 있습니다.
+만일 이 Block 과 Chain 을 단 한대의 컴퓨터에서 동작하는 단일 프로그램으로 개발한다고 생각해봅시다. 이 경우에는 그저 자료구조를 설계하여 이를 디스크에 저장할 수 있고, 정책 (요구사항) 을 분석하여 코드로 구현할 수만 있으면 됩니다. 소양있는 개발자라면 누구나 만들 수 있는 것, 그것이 바로 블록체인의 [Remote Function Call](#13-remote-function-call) 입니다. 여러분도 얼마든지 해내실 수 있습니다.
 
-그리고 **TGrid** 와 [Remote Function Call](13-remote-function-call) 을 이용하면, 진정한 [Grid Computing](12-grid-computing) 을 실현할 수 있습니다. 네트워크로 연동된 여러 대의 컴퓨터들은 단 하나의 가상 컴퓨터로 치환됩니다. 그리고 이렇게 만든 <u>가상 컴퓨터</u>에서 동작하는 코드는, 실제 단 한 대의 컴퓨터에서 동작하는 프로그램과 그 [Business Logic](appendix/blockchain.md#3-network-system) 코드가 동일합니다.
+그리고 **TGrid** 와 [Remote Function Call](#13-remote-function-call) 을 이용하면, 진정한 [Grid Computing](#12-grid-computing) 을 실현할 수 있습니다. 네트워크로 연동된 여러 대의 컴퓨터들은 단 하나의 가상 컴퓨터로 치환됩니다. 그리고 이렇게 만든 <u>가상 컴퓨터</u>에서 동작하는 코드는, 실제 단 한 대의 컴퓨터에서 동작하는 프로그램과 그 [Business Logic](appendix/blockchain.md#3-network-system) 코드가 동일합니다.
 
-따라서 **TGrid** 와 [Remote Function Call](13-remote-function-call) 을 사용하면, 블록체인 프로젝트의 개발 난이도는 Network System 이 아닌 [Business Logic](appendix/blockchain.md#3-network-system) 수준으로 확 떨어집니다. 여러분께서는 복잡한 [Network System](appendix/blockchain.md#3-network-system) 따위 잊어버리시고, 그저 여러분이 만들고자 하시는 것의 본질, [Business Logic](appendix/blockchain.md#2-business-logic) 그 자체에만 집중하십시오.
+따라서 **TGrid** 와 [Remote Function Call](#13-remote-function-call) 을 사용하면, 블록체인 프로젝트의 개발 난이도는 Network System 이 아닌 [Business Logic](appendix/blockchain.md#3-network-system) 수준으로 확 떨어집니다. 여러분께서는 복잡한 [Network System](appendix/blockchain.md#3-network-system) 따위 잊어버리시고, 그저 여러분이 만들고자 하시는 것의 본질, [Business Logic](appendix/blockchain.md#2-business-logic) 그 자체에만 집중하십시오.
 
-### 3.2. Economic Resources
+### 3.2. Public Grid
 > 관련 프로젝트: [**Tutorial** > **Projects** > **Grid Market**](tutorial/projects/market.md)
 
-**TGrid** 를 사용하면, [Grid Computing](#12-grid-computing) 에 필요한 자원을 매우 쉽게, 그리고 저렴하게 조달할 수 있습니다.
+**TGrid** 를 사용하면, [Grid Computing](#12-grid-computing) 에 필요한 자원을 불특정 다수로부터 매우 쉽게, 그리고 저렴하게 조달할 수 있습니다.
 
 [Grid Computing](#12-grid-computing) 을 구성할 때는 당연하게도 여러 대의 컴퓨터가 필요합니다. 이 때 필요한 컴퓨터 대수가 많아지면 많아질수록, 이를 조달하기 위해 갖춰야 하는 인프라와 제반 비용도 덩달아 올라가기 시작합니다. 게다가 이렇게 조달한 각 컴퓨터에 일일히 필요한 프로그램을 설치하고, 네트워크 통신을 위한 다양한 설정을 해야 하는 등, 그 수고로움 또한 무던히 증가하게 됩니다. 뭐 너무나도 당연한 얘기인가요? 
 
@@ -271,7 +271,7 @@ How  | 각 *Supplier* 가 구동할 프로그램 코드 제공  | 인터넷 브�
 
 ![Grid Market](../assets/images/projects/market/actors.png)
 
-그리고 이러한 *Economic Resources* 의 가장 전형적인 사례 중 하나가 바로, TGrid 에서 데모 프로젝트로 제공하는 [Grid Market](tutorial/projects/market.md) 입니다. 이 데모 프로젝트에서도 *Consumer* 는 Grid Computing 시스템을 구성하기 위하여 *Supplier* 의 자원을 빌려다 쓰며, *Supplier* 는 인터넷 브라우저의 특정 URL 에 접속하는 것만으로도 *Consumer* 에게 자신의 자원을 제공할 수 있습니다. 
+그리고 이러한 *Public Grid* 의 가장 전형적인 사례 중 하나가 바로, TGrid 에서 데모 프로젝트로 제공하는 [Grid Market](tutorial/projects/market.md) 입니다. 이 데모 프로젝트에서도 *Consumer* 는 Grid Computing 시스템을 구성하기 위하여 *Supplier* 의 자원을 빌려다 쓰며, *Supplier* 는 인터넷 브라우저의 특정 URL 에 접속하는 것만으로도 *Consumer* 에게 자신의 자원을 제공할 수 있습니다. 
 물론 [Grid Market](tutorial/projects/market.md) 에서도 여전히, *Supplier* 가 실행할 프로그램은 *Consumer* 가 제공합니다.
 
 다만, [Grid Market](tutorial/projects/market.md) 에 특이사항이 하나 있다면, 그것은 바로 *Consumer* 가 *Supplier* 의 자원을 가져다 쓰는 데에 대가가 따른다는 것입니다. 더불어 중개시장 *Market* 이 존재하여, *Consumer* 와 *Supplier* 간의 매칭을 알선하고 그 대가로 일정 수수료를 징수합니다.
@@ -280,7 +280,7 @@ How  | 각 *Supplier* 가 구동할 프로그램 코드 제공  | 인터넷 브�
   - `Consumer`: *Supplier* 의 자원을 구매하여 이를 사용함
   - `Supplier`: *Consumer* 에게 자신의 자원을 제공함
 
-### 3.3. Market Expansion
+### 3.3. Market Expansions
 [Grid Computing](#12-grid-computing) 에 관련된 시장은 나날이 성장해나갈 것입니다. 
 
 미래는 준비하는 자의 것입니다. **TGrid** 와 [Remote Function Call](#13-remote-function-call) 을 통하여, 다가오는 미래에 대비하시고, 나아가 한 몫 단단히 잡으시기를 바랍니다.

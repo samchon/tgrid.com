@@ -1,8 +1,8 @@
 <!-- @templates([
     ["Grid Computing", "[Grid Computing](../tutorial/concepts.md#11-grid-computing)"],
-    ["Remote Function Call", "[Remote Function Call](../tutorial/concepts.md#12-remote-function-call)"]
+    ["Remote Function Call", "[Remote Function Call](../tutorial/concepts.md#12-remote-function-call)"],
     ["Network System", "#2-network-system"],
-    ["Business Logic", #3-business-logic"]
+    ["Business Logic", "#3-business-logic"]
 ]) -->
 
 # Blockchain
@@ -105,4 +105,4 @@ Do you remember? With **TGrid** and ${{ Remote Function Call }}, you can come tr
   - With **TGrid**, you can concentrate only on the ${{ Business Logic }}.
   - So with **TGrid**, you can easily implement the blockchain.
 
-Thus, if you adapt the **TGrid** and ${{ Remote Function Call }}, difficulty of the blockchain development would be dropped to the level of ${{ Business Logic }} rather than ${{ Network System }}. Forget complex ${{ Network System }} and just focus on the essence of what you want to develop; the ${{ Business Logic }.
+Thus, if you adapt the **TGrid** and ${{ Remote Function Call }}, difficulty of the blockchain development would be dropped to the level of ${{ Business Logic }} rather than ${{ Network System }}. Forget complex ${{ Network System }} and just focus on the essence of what you want to develop; the ${{ Business Logic }}.

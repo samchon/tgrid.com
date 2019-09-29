@@ -11,7 +11,7 @@ must define those templates
 
 ## 3. Opportunities
 ### 3.1. Blockchain
-> Detailed Content: [**Appendix** > **Blockchain**](${{ blockchain.md }}})
+> Detailed Content: [**Appendix** > **Blockchain**](${{ blockchain.md }})
 
 With **TGrid**, you can develop *Blockchain* easily.
 

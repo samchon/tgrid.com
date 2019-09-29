@@ -184,10 +184,10 @@
     
         <li class="chapter " data-level="1.1.3" data-path="./">
             
-                <a href="./#3-block-chain">
+                <a href="./#3-opportunities">
             
                     
-                    1.1.3. Block Chain
+                    1.1.3. Opportunities
             
                 </a>
             
@@ -414,25 +414,12 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2" >
+        <li class="chapter " data-level="3.2" data-path="appendix/blockchain.html">
             
-                <a target="_blank" href="https://github.com/samchon/tgrid/releases">
-            
-                    
-                    3.2. Release Notes
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="3.3" >
-            
-                <a target="_blank" href="https://github.com/samchon/tgrid/projects">
+                <a href="appendix/blockchain.html">
             
                     
-                    3.3. Roadmap
+                    3.2. Blockchain
             
                 </a>
             
@@ -485,7 +472,11 @@
     
   <section class="normal markdown-body">
   
-  <h1 id="tgrid">TGrid</h1>
+  <!-- @templates([
+    [ "Grid Computing", "[Grid Computing](#12-grid-computing)" ],
+    [ "Remote Function Call", "[Remote Function Call](#13-remote-function-call)" ]
+]) -->
+<h1 id="tgrid">TGrid</h1>
 <h2 id="1-introduction">1. Introduction</h2>
 <p><a href="https://github.com/samchon/tgrid/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="GitHub license"></a>
 <a href="https://www.npmjs.com/package/tgrid" target="_blank"><img src="https://badge.fury.io/js/tgrid.svg" alt="npm version"></a>
@@ -498,7 +489,7 @@
 </code></pre>
 </blockquote>
 <p>Full name of <strong>TGrid</strong> is <u>TypeScript Grid Computing Framework</u>.</p>
-<p>As its name suggests, <strong>TGrid</strong> is a useful framework for implementating <a href="#12-grid-computing">Grid Computing</a> in the TypeScript. With <strong>TGrid</strong> and its core concept <a href="#13-remote-function-call">Remote Funtion Call</a>, you can make many computers to be <u>a virtual computer</u>.</p>
+<p>As its name suggests, <strong>TGrid</strong> is a useful framework for implementating <a href="#12-grid-computing">Grid Computing</a> in the TypeScript. With <strong>TGrid</strong> and its core concept <a href="#13-remote-function-call">Remote Function Call</a>, you can make many computers to be <u>a virtual computer</u>.</p>
 <p>To know more, refer below links. If you are the first comer to the <strong>TGrid</strong>, I strongly recommend you to read the <a href="https://tgrid.dev" target="_blank">Guide Documents</a>. In article level, <a href="https://tgrid.dev/en/tutorial/concepts.html" target="_blank">Basic Concepts</a> and <a href="https://tgrid.dev/en/tutorial/examples.html" target="_blank">Learn from Examples</a> sections would be good choices.</p>
 <ul>
 <li>Repositories<ul>
@@ -602,11 +593,94 @@ Mean <span class="token punctuation">(</span><span class="token number">1</span>
 Stdev<span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1.118033988749895</span>
 </code></pre>
 </blockquote>
+<!-- @templates([
+    ["chapter", "2"],
+    ["assets", "../assets/"],
+    ["blockchain.md", "appendix/blockchain.md"],
+    ["examples.md", "tutorial/examples.md"]
+]) -->
+<!-- 
+must define those templates
+
+  - chapter
+  - assets
+  - blockchain.md
+  - examples.md
+  - Grid Computing
+  - Remote Function Call
+
+-->
 <h2 id="2-strengths">2. Strengths</h2>
 <h3 id="21-easy-development">2.1. Easy Development</h3>
-<p>Anyone can make a network system very easily.</p>
-<h3 id="22-flexible-structure">2.2. Flexible Structure</h3>
-<p>Significant changes to network systems can be handled very flexibly.</p>
+<p>Anyone can easily make a network system.</p>
+<p>It&apos;s difficult to make network system because many of computers are interacting together to accomplish a common task. Therefore, the word &apos;perfect&apos; is inserted on every development processes; requirements must be analyzed perfectly, use-cases must be identified perfectly, data and network architectures must be designed, perfectly and mutual interaction test must be perfectly.</p>
+<p><div class="panel panel-info"><div class="panel-heading"><div class="panel-icon"><i class="icon-info"></i></div><div class="panel-title">Something to Read</div></div><div class="panel-content"><p><a href="appendix/blockchain.html#steps-to-hell">Blockchain&apos;s Network System, Steps to Hell</a></p>
+</div></div></p>
+<p>However, with TGrid and <a href="#13-remote-function-call">Remote Function Call</a>, you can come true the true <a href="#12-grid-computing">Grid Computing</a>. Many computers interacting with network communication are replaced by only <u>one virtual computer</u>. Even <em>Business Logic</em> code of the virtual computer is same with another <em>Business Logic</em> code running on a single physical computer.</p>
+<p>Thus, you can make a network system very easily if you use the <strong>TGrid</strong>. Forget everything about the network; protocolcs and designing message structures, etc. You only concentrate on the <em>Business Logic</em>, the essence of what you want to make. Remeber that, as long as you use the TGrid, you&apos;re just making a single program running on a single (virtual) computer.</p>
+<h3 id="22-safe-implementation">2.2. Safe Implementation</h3>
+<p>By compilation and type checking, you can make network system safe.</p>
+<p>When developing a distributed processing system with network communication, one of the most embarrassing thing for developers is the run-time error. Whether network messages are correctly constructed and exactly parsed, all can be detected at the run-time, not the compile-time.</p>
+<p>Let&apos;s assume a situation; There&apos;s a distributed processing system build by traditional method and there&apos;s a critical error on the system. Also, the critical error wouldn&apos;t be detected until the service starts. How terrible it is? To avoid such terrible situation, should we make a test program validating all of the network messages and all of the related scenarios? If compilation and type checking was supported, everything would be simple and clear.</p>
+<p><strong>TGrid</strong> provides exact solution about this compilation issue. TGrid has invented <a href="#13-remote-function-call">Remote Function Call</a> to come true the real <a href="#12-grid-computing">Grid Computing</a>. What the <a href="#13-remote-function-call">Remote Function Call</a> is? Calling functions remotly, isn&apos;t it a function call itself? Naturally, the function call is protected by <em>TypeScript Compilter</em>, therefore guarantees the <em>Type Safety</em>.</p>
+<p>Thus, with <strong>TGrid</strong> and <a href="#13-remote-function-call">Remote Function Call</a>, you can adapt compilation and type checking on the network system. It helps you to develop a network system safely and conveniently. Let&apos;s close this chapter with an example of <em>Safey Implementation</em>.</p>
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WebConnector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/web/WebConnector&quot;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Driver <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/components/Driver&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">ICalculator</span>
+<span class="token punctuation">{</span>
+    <span class="token function">plus</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    <span class="token function">minus</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+
+    <span class="token function">multiplies</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    <span class="token function">divides</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    <span class="token function">divides</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">never</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">//----</span>
+    <span class="token comment">// CONNECTION</span>
+    <span class="token comment">//----</span>
+    <span class="token keyword">let</span> connector<span class="token punctuation">:</span> WebConnector <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebConnector</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">await</span> connector<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span><span class="token string">&quot;ws://127.0.0.1:10101&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">//----</span>
+    <span class="token comment">// CALL REMOTE FUNCTIONS</span>
+    <span class="token comment">//----</span>
+    <span class="token comment">// GET DRIVER</span>
+    <span class="token keyword">let</span> calc<span class="token punctuation">:</span> Driver<span class="token operator">&lt;</span>ICalculator<span class="token operator">&gt;</span> <span class="token operator">=</span> connector<span class="token punctuation">.</span>getDriver<span class="token operator">&lt;</span>ICalculator<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// CALL FUNCTIONS REMOTELY</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;1 + 6 =&quot;</span><span class="token punctuation">,</span> <span class="token keyword">await</span> calc<span class="token punctuation">.</span><span class="token function">plus</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;7 * 2 =&quot;</span><span class="token punctuation">,</span> <span class="token keyword">await</span> calc<span class="token punctuation">.</span><span class="token function">multiplies</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// WOULD BE COMPILE ERRORS</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;1 ? 3&quot;</span><span class="token punctuation">,</span> <span class="token keyword">await</span> calc<span class="token punctuation">.</span><span class="token function">pliuowjhof</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;1 - &apos;second&apos;&quot;</span><span class="token punctuation">,</span> <span class="token keyword">await</span> calc<span class="token punctuation">.</span><span class="token function">minus</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">&quot;second&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;4 / 0&quot;</span><span class="token punctuation">,</span> <span class="token keyword">await</span> calc<span class="token punctuation">.</span><span class="token function">divides</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<blockquote>
+<pre class="language-"><code class="lang-bash">$ tsc
+src/index.ts:33:37 - error TS2339: Property <span class="token string">&apos;pliuowjhof&apos;</span> does not exist on <span class="token builtin class-name">type</span> <span class="token string">&apos;Driver&lt;ICalculator&gt;&apos;</span><span class="token builtin class-name">.</span>
+
+    console.log<span class="token punctuation">(</span><span class="token string">&quot;1 ? 3&quot;</span>, await calc.pliuowjhof<span class="token punctuation">(</span><span class="token number">1</span>, <span class="token number">3</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+
+src/index.ts:34:53 - error TS2345: Argument of <span class="token builtin class-name">type</span> <span class="token string">&apos;&quot;second&quot;&apos;</span> is not assignable to parameter of <span class="token builtin class-name">type</span> <span class="token string">&apos;number&apos;</span><span class="token builtin class-name">.</span>
+
+    console.log<span class="token punctuation">(</span><span class="token string">&quot;1 - &apos;second&apos;&quot;</span>, await calc.minus<span class="token punctuation">(</span><span class="token number">1</span>, <span class="token string">&quot;second&quot;</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+
+src/index.ts:35:32 - error TS2349: Cannot invoke an expression whose <span class="token builtin class-name">type</span> lacks a call signature. Type <span class="token string">&apos;never&apos;</span> has no compatible call signatures.
+
+    console.log<span class="token punctuation">(</span><span class="token string">&quot;4 / 0&quot;</span>, await calc.divides<span class="token punctuation">(</span><span class="token number">4</span>, <span class="token number">0</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+</code></pre>
+</blockquote>
+<h3 id="23-network-refactoring">2.3. Network Refactoring</h3>
+<p>Critical changes on network systems can be resolved flexibly.</p>
+<p>In most case of developing network distributed processing system, there can be an issue that, necessary to major change on the network system. In someday, neccessary to <em>refactoring</em> in network level would be come, like software refactoring.</p>
+<p>The most representative of that is the <em>performance</em> issue. For an example, there is a task and you estimated that the task can be done by one computer. However, when you actually started the service, the computation was so large that one computer was not enough. Thus, you should distribute the task to multiple computers. On contrary, you prepared multiple computers for a task. However, when you actually started the service, the computation was so small that just one computer is sufficient for the task. Sometimes, assigning a computer is even excessive, so you might need to merge the task into another computer.</p>
 <table>
 <thead>
 <tr>
@@ -616,17 +690,60 @@ Stdev<span class="token punctuation">.</span> <span class="token punctuation">(<
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">Composite Calculator</td>
-<td style="text-align:center">Hierarchical Calculator</td>
+<td style="text-align:center"><a href="tutorial/examples.html#22-remote-object-call">Composite Calculator</a></td>
+<td style="text-align:center"><a href="tutorial/examples.html#23-object-oriented-network">Hierarchical Calculator</a></td>
 </tr>
 </tbody>
 </table>
-<h3 id="23-safe-implementation">2.3. Safe Implementation</h3>
-<p>Compilation and type checking help you to implement safe network system.</p>
-<h2 id="3-block-chain">3. Block Chain</h2>
-<h3 id="31-business-logic">3.1. Business Logic</h3>
-<p>Principle components of Blockchain are simpler and easy to implement.</p>
-<p>The core elements of Blockchain are &apos;Block&apos; and &apos;Chain&apos;. The first, &apos;Block&apos; is a data level issue. Considers how to design the data structure and how to archive them. The second, &apos;Chain&apos; is a policy issue that how to reach to an agreement when writing some data to &apos;Block&apos;.</p>
+<p>I&apos;ll explain this <em>Network Refactoring</em>, caused by performance issue, through an example case that is very simple and clear. In a distributed processing system, there was a computer that providing a calculator. However, when this system was actually started, amount of the computations was so enormous that the single computer couldn&apos;t afford the computations. Thus, decided to separate the computer to three computers.</p>
+<ul>
+<li><a href="tutorial/examples.html#hierarchical-calculatorscientificts"><code>scientific</code></a>: scientific calculator server</li>
+<li><a href="tutorial/examples.html#hierarchical-calculatorstatisticsts"><code>statistics</code></a>: statistics calculator server</li>
+<li><a href="tutorial/examples.html#hierarchical-calculatorcalculatorts"><code>calculator</code></a>: mainframe server<ul>
+<li>four arithmetic operations are computed by itself</li>
+<li>scientific and statistics operations are shifted to another computers</li>
+<li>and intermediates the computation results to client</li>
+</ul>
+</li>
+</ul>
+<p>If you solve this <em>Network Refactoring</em> by traditional method, it would be a hardcore duty. At first, you&apos;ve to design a message protocol used for neetwork communication between those three computers. At next, you would write parsers for the designed network messges and reprocess the events according to the newly defined network architecture. Finally, you&apos;ve to also prepare the verifications for those developments.</p>
+<blockquote>
+<p>Things to be changed</p>
+<ul>
+<li>Network Architecture</li>
+<li>Message Protocol</li>
+<li>Event Handling</li>
+<li><em>Business Logic</em> Code</li>
+</ul>
+</blockquote>
+<p>However, if you use the <strong>TGrid</strong> and <a href="#13-remote-function-call">Remote Function Call</a>, the issue can&apos;t be a problem. In the <strong>TGrid</strong>, each computer in the network system is just one object. Whether you implement the remote calculator in one computer or distribute operations to three computers, its <em>Business Logic</em> code must be the same, in always.</p>
+<p>I also provide you the best example for this <em>performance</em> issue causing the <em>Network Refactoring</em>. The first demonstration code is an implementation of a single calculator server and the second demonstration code is an implementation of a system distributing operations to three servers. As you can see, although principle structure of network system has been changed, you don&apos;t need to worry about it if you&apos;re using the <strong>TGrid</strong> and <a href="#13-remote-function-call">Remote Function Call</a>.</p>
+<ul>
+<li><a href="tutorial/examples.html#22-remote-object-call">Demonstration - Remote Object Call</a></li>
+<li><a href="tutorial/examples.html#23-object-oriented-network">Demonstration - Object Oriented Network</a></li>
+</ul>
+<!-- @templates([
+    ["market.md", "tutorial/projects/market.md"]
+]) -->
+<!-- 
+must define those templates
+
+  - assets
+  - blockchain.md
+  - market.md
+  - Grid Computing
+  - Remote Function Call
+
+-->
+<h2 id="3-opportunities">3. Opportunities</h2>
+<h3 id="31-blockchain">3.1. Blockchain</h3>
+<blockquote>
+<p>Detailed Content: <a href="appendix/blockchain.md%7D"><strong>Appendix</strong> &gt; <strong>Blockchain</strong></a></p>
+</blockquote>
+<p>With <strong>TGrid</strong>, you can develop <em>Blockchain</em> easily.</p>
+<p>It&apos;s a famous story that difficulty of developing blockchain is very high. Not only because of the high wages of the blockchain developers, but also from a technical point of view, blockchain is actually very difficult to implement. But, if you ask me what is such difficult, I will answer that not Business Logic<em> but </em>Network System*.</p>
+<p>The <a href="appendix/blockchain.html#2-network-system">Network System</a> used by blockchain is a type of great distributed processing system, conostructed by millions of computers interacting with network communication. The great distributed processing systems like the blockchain always present us the tremendous difficulties. The word &apos;perfect&apos; is inserted on every development processes; requirements must be analyzed perfectly, use-cases must be identified perfectly, data and network architectures must be designed, perfectly and mutual interaction test must be perfectly.</p>
+<p>On contrary, <a href="appendix/blockchain.html#3-business-logic">Business Logic</a> of the blockchain is not such difficult. Core elements of the blockchain are, as the name suggest, the first is &apos;Block&apos; and the second is &apos;Chain&apos;. The &apos;Block&apos; is about defining and storing data and the &apos;Chain&apos; is about policy that how to reach to an agreement when writing data to the &apos;Block&apos;.</p>
 <table>
 <thead>
 <tr>
@@ -648,61 +765,66 @@ Stdev<span class="token punctuation">.</span> <span class="token punctuation">(<
 </tr>
 </tbody>
 </table>
-<p>Let&apos;s imagine a situation that develop these &apos;Block&apos; and &apos;Chain&apos; onto not Network System but a single computer. In that case, those skills are required:</p>
+<p>Let&apos;s assume that you are developing the &apos;Block&apos; and &apos;Chain&apos; as a program running only on a single computer. In this case, you just need to design the data structure and implement code storing the data on disk. Also, you would analyze the requirements (policy) and implement them. Those skills are just the essentials for programmers. In other word, <a href="appendix/blockchain.html#3-business-logic">Business Logic</a> of blockchain is something that any skilled programmers can implement.</p>
 <ul>
+<li>To develop the <em>Block</em> and <em>Chain</em>:<ul>
 <li>Ability to design Data Structure</li>
 <li>Ability to store Data on Device</li>
 <li>Ability to analyze policy (requirements)</li>
 <li>Ability to implement them</li>
 </ul>
-<p>Those skills are just the essentials for programmers. In other word, <em>Business Logic</em> of Blockchain is something that any skilled programmers can implement.</p>
-<h3 id="32-network-system">3.2. Network System</h3>
-<p>The real challenge to implementing Blockchain comes from the Distributed Processing System using Network Communication.</p>
-<p>I said that <a href="#31-business-logic">Business Logic</a> of Blockchain is easy. However, it&apos;s a conditional story only when developing the Blockchain programming running on a single computer. The actual Blockchain projects, they&apos;re not running only on a single computer, but on very large Distributed Processing System. The Distributed Processing System is composed with over millions of computers and they&apos;re interacting through network communications.</p>
-<p>Those enormous Distributed Processing Sytems always present us tremendous difficulties. Because over millions of computers are interacting together thorugh network communication, its architecutre design must be thorough and perfect. There must not be any contradiction and error. If there&apos;s an error on below step, you&apos;ve to roll back whole processes and start again.</p>
-<p><details><summary>Read Path to Hell</summary><blockquote>
-<h4 id="1-requirements">1 Requirements</h4>
-<p>To develop a Blockchain in the traditional way, you&apos;ve to hire an excellent architect.</p>
-<p>First of all, this architect collects and documets all of the requirements about the Blockchain to be newly created. If failed to discover some requirements or if some requirements are changed later, you&apos;ve to restart all the processes. Thus, discovering requirements must very meticulous and detail.</p>
-<h4 id="2-analyses">2 Analyses</h4>
-<p>Analyze collected requirements and discover all of the use cases perfectly. After determining these use cases, design a Conceptual Architecture. If any contraction or error was found on the collected requirements, turn back to the <a href="#1-requirements">1 Requirements</a> and start everything again.</p>
-<h4 id="3-designs">3 Designs</h4>
-<p>After Conceptual Architecture, design below architectures continuously.</p>
-<ul>
-<li>Data Architecture</li>
-<li>Network Architecture</li>
-<li>Software Architecture</li>
+</li>
 </ul>
-<p>The first thing to design is the Data Architecture. It means to design the Data Model that the new Blockchain project would use. The Data Models is correspond to the &apos;Block&apos;. If you&apos;ve mis-designed the Data Architecture, you&apos;ve retreat to current step and design it again. The step where you are, it&apos;s not a matter, so try to be sure the design it perfectly</p>
-<p>The second is Network Architecture, where the design of Network Distribution is done. At first, grant each role to every computers in the Distributed Processing System. After that, define all of the network communications between participated computers. This Network Architecture may be the most difficult stage in the development processes. Also, the Network Architecture must be more perfact than any other architectures.</p>
+<p>Do you remember? With <strong>TGrid</strong> and <a href="#13-remote-function-call">Remote Function Call</a>, you can come true the true <a href="#12-grid-computing">Grid Computing</a>. Many computers interacting with network communication are replaced by only <u>one virtual computer</u>. Even <a href="appendix/blockchain.html#2-network-system">Business Logic</a> code of the virtual computer is same with another <a href="appendix/blockchain.html#2-network-system">Business Logic</a> code running on a single physical computer.</p>
+<p>Thus, if you adapt the <strong>TGrid</strong> and <a href="#13-remote-function-call">Remote Function Call</a>, difficulty of the blockchain development would be dropped to the level of <a href="appendix/blockchain.md%20rather%20than%20[Network%20System](appendix/blockchain.md#2-network-system">Business Logic</a>. Forget complex <a href="appendix/blockchain.html#2-network-system">Network System</a> and just focus on the essence of what you want to develop; the [Business Logic](appendix/blockchain.md.</p>
+<h3 id="32-public-grid">3.2. Public Grid</h3>
 <blockquote>
-<ul>
-<li>Define every moment of network transmissions and receptions</li>
-<li>Define every network messages (maybe binary structure)</li>
-<li>Define implications of each network message means (commands tobe executed, etc.)</li>
-</ul>
+<p>Related Project: <a href="tutorial/projects/market.md"><strong>Tutorial</strong> &gt; <strong>Projects</strong> &gt; <strong>Grid Market</strong></a></p>
 </blockquote>
-<p>The last is Software Architecture for individual programs running on each computer. Refering Data Architecture and Network Architecture, you&apos;ll design the Software Architectures representing what each program should implement.</p>
-<h4 id="4-implementations">4 Implementations</h4>
-<p>This is the process implementing software programs for each computer participated in the Distributed Processing System. The implementation would reference pre-designed architectures. If you any error of Architecture Design was found on the implementation process, you&apos;ve to retreat to the step and retart all the processes again.</p>
-<p>If the error was caused by Requirements or Business Model...</p>
-<h4 id="5-conservations">5 Conservations</h4>
-<p>It&apos;s the last stage verifying the designs and implementations are perfect.</p>
-<p>Of course, if there are any omissionss or contradctions in the development process, you have to retreat and restart the process from the beginning. For example, if the Data Architecture is invalid, the majority of the Network Architecture must be destroyed and redesigned, resulting in Software Architecture and Program Code being affected.</p>
-<p>On the contrary, if the verification process confirms that all development is completed, then the Blockchain system can be operated.</p>
+<p>With <strong>TGrid</strong>, you can procure resources for <a href="#12-grid-computing">Grid Computing</a> from unspecified crowds, very easily and inexpensively.</p>
+<p>When composing <em>traditional Grid Computing</em>, of course, many computers should be prepared. As the number of computers required increases, so does the infrastructure and costs associated with procuring them. Also, you&apos;ve to install programs and configure settings for the network communication on the prepared computers. Such duties increase your efforts and let you to be tired. Is it so nature?</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Consumer</th>
+<th>Supplier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Who</td>
+<td>Developer of <a href="#12-grid-computing">Grid Computing</a></td>
+<td>Unspecified crowds connecting to the Internet</td>
+</tr>
+<tr>
+<td>What</td>
+<td>Consumes resources of the <em>Suppliers</em></td>
+<td>Provides resources to <em>Consumer</em></td>
+</tr>
+<tr>
+<td>How</td>
+<td>Deliver program code to <em>Suppliers</em></td>
+<td>Connect to special URL by Internet Browser</td>
+</tr>
+</tbody>
+</table>
+<p>However, TGrid even can economize such costs and efforts dramatically. You can procure resources for <a href="#12-grid-computing">Grid Computing</a> from the unspecified crowds. Those unspecified crowds do not need to prepare anything like installing some program or configuring some setting. The only need those unspecified crowds is just connecting to special URL by Internet Browser.</p>
+<p>The program that each <em>Supplier</em> should run is provided by the <em>Consumer</em> as JavaScript code. Each <em>Supplier</em> would act its role by the JavaScript code. Of course, interactions with <em>Supplier</em> and <em>Consumer</em> (or with a third-party computer) would use the <a href="#13-remote-function-call">Remote Function Call</a>, so they are just one virtual computer.</p>
+<blockquote>
+<p>Base language of the <strong>TGrid</strong> is <em>TypeScript</em> and compilation result of the TypeScript is the <em>JavaScript</em> file. As <em>JavaScript</em> is a type of script language, it can be executed dinamiccaly. Therefore, the <em>Supplier</em> can execute the program by script code delivered by the <em>Consumer</em>.</p>
 </blockquote>
-</details></p>
-<p>It&apos;s tremendous difficult to develop such an actual Blockchain. No matter how simple the Business Logic is, behind it lies the path to heel, an enormous Distributed Processing System. If you want to develop a Blockchain, you&apos;ve hire the excellent architects and developers, who are in the genius level. </p>
-<p>However, even those crazy architects and genius developers cannot assure the success. Even they can be fallen into the swamp due to incomplete requirement analyses or mistakes on architecture designs. I think those crazy difficulties may be a reason why many people and companies, who had made loud noises developing Blockchain, are quite in nowadays.</p>
-<h3 id="33-conclusion">3.3. Conclusion</h3>
-<p>Reading the stories, it can be summarized as &apos;<a href="#31-business-logic">Business Logic</a> of Blockchain is easy, however composing its <a href="#32-network-system">Network System</a> is extremely difficult&apos;.</p>
-<p>Do you remember? With <strong>TGrid</strong> and <a href="#13-remote-function-call">Remote Function Call</a>, you can turn multiple computers into a single virtual computer. Also, program code running on the virtual computer is similar with which runs on only one computer. Only in <a href="#31-business-logic">Business Logic</a> level, two programs&apos; codes are perfectly same. Thus, following conclusions can be drawn:</p>
+<p><img src="../assets/images/projects/market/actors.png" alt="Grid Market"></p>
+<p><a href="tutorial/projects/market.md">Grid Market</a> is one of the most typical example case for the <em>Public Grid</em>, a demo project for tutorial learning. In this demo project, <em>Consumer</em> also procures resources from the <em>Suppliers</em> for composing the <a href="#12-grid-computing">Grid Computing</a> system. <em>Supplier</em> also provides its resources just by connecting to the special URL by Internet Browser, too. Of course, in the <a href="tutorial/projects/market.md">Grid Market</a>, the program that <em>Supplier</em> would run still comes from the <em>Consumer</em>.</p>
+<p>However, there&apos;s a special thing about the <a href="tutorial/projects/market.md">Grid Market</a>, it is that there is a <em>cost</em> for the <em>Consumer</em> to procure the <em>Suppliers</em>&apos; resources. Also, intermediary <em>Market</em> exists and it charges fee for mediation between the <em>Consumer</em> and <em>Supplier</em>.</p>
 <ul>
-<li>Blockchain&apos;s <a href="#31-business-logic">Business Logic</a> is not difficult.</li>
-<li>With <strong>TGrid</strong>, you can concentrate only on the <a href="#31-business-logic">Business Logic</a>.</li>
-<li>Thus, you can implement Blockchain easily through <strong>TGrid</strong>.</li>
+<li><code>Market</code>: Intermediary market for the <em>Suppliers</em> and <em>Consumers</em>.</li>
+<li><code>Consumer</code>: Purchase resources from the *Suppliers.</li>
+<li><code>Supplier</code>: Sells its own resources to the <em>Consumer</em>.</li>
 </ul>
-<p>Are you preparing a new Blockchain project? Then realize <a href="#12-grid-computing">Grid Computing</a> with <strong>TGrid</strong> and <a href="#13-remote-function-call">Remote Function Call</a>. Focus only on the essence of the Blockchain what you want to create, <a href="#31-business-logic">Business Logic</a> itself.</p>
+<h3 id="33-market-expansions">3.3. Market Expansions</h3>
+<p>The <a href="#12-grid-computing">Grid Computing</a> market would be grown up day by day.</p>
+<p>The future belongs to those who prepare. Prepare the future by <strong>TGrid</strong> and <a href="#13-remote-function-call">Remote Function Call</a>. Also, I hope you to hold some changes from the future.</p>
 
   
   </section>
@@ -742,7 +864,7 @@ Stdev<span class="token punctuation">.</span> <span class="token punctuation">(<
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"1.1. README","level":"1.1","depth":1,"next":{"title":"1.1.1. Outline","level":"1.1.1","depth":2,"anchor":"#1-outline","path":"README.md","ref":"README.md#1-outline","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","addcssjs","back-to-top-button","codegroup","collapse","disqus","github","hide-navigation-buttons","hide-published-with","import","language-picker","meta","panel","prism","scroll-to-top","theme-darkblue","theme-github","sitemap-general"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"disqus":{"useIdentifier":false,"shortName":"tgrid"},"language-picker":{"grid-columns":3},"scroll-to-top":{},"github":{"url":"https://github.com/samchon/tgrid"},"panel":{},"meta":{"content":"","data":[{"name":"og:url","content":"https://tgrid.dev"},{"name":"og:type","content":"website"},{"name":"og:title","content":"TGrid Guide Documents"},{"name":"og:description","content":"TypeScript Grid Computing Framework"},{"name":"og:image","content":"https://tgrid.dev/assets/images/flag.png"}],"name":""},"import":{},"theme-github":{},"search":{},"addcssjs":{"css":[],"js":[]},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"collapse":{},"hide-published-with":{},"sitemap-general":{"prefix":"https://tgrid.dev/"},"codegroup":{"defaultTabName":"Code","rememberTabs":true,"tabNameSeperator":"::"},"fontsettings":{"theme":"white","family":"sans","size":2},"hide-navigation-buttons":{},"theme-darkblue":{},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Jeongho Nam","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"TGrid","language":"en","gitbook":"*","description":"Guide Documents for TGrid"},"file":{"path":"README.md","mtime":"2019-09-26T00:07:08.238Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-27T02:00:03.886Z"},"basePath":".","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"1.1. README","level":"1.1","depth":1,"next":{"title":"1.1.1. Outline","level":"1.1.1","depth":2,"anchor":"#1-outline","path":"README.md","ref":"README.md#1-outline","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","addcssjs","back-to-top-button","codegroup","collapse","disqus","github","hide-navigation-buttons","hide-published-with","import","language-picker","meta","panel","prism","scroll-to-top","theme-darkblue","theme-github","sitemap-general"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"disqus":{"useIdentifier":false,"shortName":"tgrid"},"language-picker":{"grid-columns":3},"scroll-to-top":{},"github":{"url":"https://github.com/samchon/tgrid"},"panel":{},"meta":{"content":"","data":[{"name":"og:url","content":"https://tgrid.dev"},{"name":"og:type","content":"website"},{"name":"og:title","content":"TGrid Guide Documents"},{"name":"og:description","content":"TypeScript Grid Computing Framework"},{"name":"og:image","content":"https://tgrid.dev/assets/images/flag.png"}],"name":""},"import":{},"theme-github":{},"search":{},"addcssjs":{"css":[],"js":[]},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"collapse":{},"hide-published-with":{},"sitemap-general":{"prefix":"https://tgrid.dev/"},"codegroup":{"defaultTabName":"Code","rememberTabs":true,"tabNameSeperator":"::"},"fontsettings":{"theme":"white","family":"sans","size":2},"hide-navigation-buttons":{},"theme-darkblue":{},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Jeongho Nam","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"TGrid","language":"en","gitbook":"*","description":"Guide Documents for TGrid"},"file":{"path":"README.md","mtime":"2019-09-29T05:35:50.450Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-29T05:50:51.185Z"},"basePath":".","book":{"language":"en"}});
         });
     </script>
 </div>

@@ -109,6 +109,8 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="blockchain.html" />
+    
     
     <link rel="prev" href="../tutorial/projects/market.md" />
     
@@ -184,10 +186,10 @@
     
         <li class="chapter " data-level="1.1.3" data-path="../">
             
-                <a href="../#3-block-chain">
+                <a href="../#3-opportunities">
             
                     
-                    1.1.3. Block Chain
+                    1.1.3. Opportunities
             
                 </a>
             
@@ -414,25 +416,12 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2" >
+        <li class="chapter " data-level="3.2" data-path="blockchain.html">
             
-                <a target="_blank" href="https://github.com/samchon/tgrid/releases">
-            
-                    
-                    3.2. Release Notes
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="3.3" >
-            
-                <a target="_blank" href="https://github.com/samchon/tgrid/projects">
+                <a href="blockchain.html">
             
                     
-                    3.3. Roadmap
+                    3.2. Blockchain
             
                 </a>
             
@@ -486,28 +475,371 @@
   <section class="normal markdown-body">
   
   <h1 id="swot-analysis">SWOT Analysis</h1>
+<!-- @templates([
+    ["chapter", "1"],
+    ["assets", "../../assets/"],
+    ["blockchain.md", "blockchain.md"],
+    ["examples.md", "../tutorial/examples.md"],
+    ["Grid Computing", "[Grid Computing](../tutorial/concepts.md#11-grid-computing)"],
+    ["Remote Function Call", "[Remote Function Call](../tutorial/concepts.md#12-remote-function-call)"],
+    ["TSTL", "[TSTL](https://github.com/samchon/tstl)"]
+]) -->
+<!-- 
+must define those templates
+
+  - chapter
+  - assets
+  - blockchain.md
+  - examples.md
+  - Grid Computing
+  - Remote Function Call
+
+-->
 <h2 id="1-strengths">1. Strengths</h2>
 <h3 id="11-easy-development">1.1. Easy Development</h3>
-<p>&#xB204;&#xAD6C;&#xB098; &#xC27D;&#xAC8C; &#xB124;&#xD2B8;&#xC6CC;&#xD06C; &#xC5F0;&#xB3D9;&#xC2DC;&#xC2A4;&#xD15C;&#xC744; &#xB9CC;&#xB4E4; &#xC218; &#xC788;&#xB2E4;.</p>
-<h3 id="12-flexible-structure">1.2. Flexible Structure</h3>
-<p>&#xB124;&#xD2B8;&#xC6CC;&#xD06C; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0;&#xC758; &#xC911;&#xB300; &#xBCC0;&#xD654;&#xB3C4; &#xB9E4;&#xC6B0; &#xC720;&#xC5F0;&#xD558;&#xAC8C; &#xB300;&#xCC98;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
-<h3 id="13-safe-implementation">1.3. Safe Implementation</h3>
-<p>&#xCEF4;&#xD30C;&#xC77C;&#xACFC; &#xD0C0;&#xC785; &#xAC80;&#xC0AC;&#xB85C; &#xC548;&#xC804;&#xD55C; &#xB124;&#xD2B8;&#xC6CC;&#xD06C; &#xC2DC;&#xC2A4;&#xD15C;&#xC744; &#xB9CC;&#xB4E4; &#xC218; &#xC788;&#xB2E4;.</p>
+<p>Anyone can easily make a network system.</p>
+<p>It&apos;s difficult to make network system because many of computers are interacting together to accomplish a common task. Therefore, the word &apos;perfect&apos; is inserted on every development processes; requirements must be analyzed perfectly, use-cases must be identified perfectly, data and network architectures must be designed, perfectly and mutual interaction test must be perfectly.</p>
+<p><div class="panel panel-info"><div class="panel-heading"><div class="panel-icon"><i class="icon-info"></i></div><div class="panel-title">Something to Read</div></div><div class="panel-content"><p><a href="blockchain.html#steps-to-hell">Blockchain&apos;s Network System, Steps to Hell</a></p>
+</div></div></p>
+<p>However, with TGrid and <a href="../tutorial/concepts.html#12-remote-function-call">Remote Function Call</a>, you can come true the true <a href="../tutorial/concepts.html#11-grid-computing">Grid Computing</a>. Many computers interacting with network communication are replaced by only <u>one virtual computer</u>. Even <em>Business Logic</em> code of the virtual computer is same with another <em>Business Logic</em> code running on a single physical computer.</p>
+<p>Thus, you can make a network system very easily if you use the <strong>TGrid</strong>. Forget everything about the network; protocolcs and designing message structures, etc. You only concentrate on the <em>Business Logic</em>, the essence of what you want to make. Remeber that, as long as you use the TGrid, you&apos;re just making a single program running on a single (virtual) computer.</p>
+<h3 id="12-safe-implementation">1.2. Safe Implementation</h3>
+<p>By compilation and type checking, you can make network system safe.</p>
+<p>When developing a distributed processing system with network communication, one of the most embarrassing thing for developers is the run-time error. Whether network messages are correctly constructed and exactly parsed, all can be detected at the run-time, not the compile-time.</p>
+<p>Let&apos;s assume a situation; There&apos;s a distributed processing system build by traditional method and there&apos;s a critical error on the system. Also, the critical error wouldn&apos;t be detected until the service starts. How terrible it is? To avoid such terrible situation, should we make a test program validating all of the network messages and all of the related scenarios? If compilation and type checking was supported, everything would be simple and clear.</p>
+<p><strong>TGrid</strong> provides exact solution about this compilation issue. TGrid has invented <a href="../tutorial/concepts.html#12-remote-function-call">Remote Function Call</a> to come true the real <a href="../tutorial/concepts.html#11-grid-computing">Grid Computing</a>. What the <a href="../tutorial/concepts.html#12-remote-function-call">Remote Function Call</a> is? Calling functions remotly, isn&apos;t it a function call itself? Naturally, the function call is protected by <em>TypeScript Compilter</em>, therefore guarantees the <em>Type Safety</em>.</p>
+<p>Thus, with <strong>TGrid</strong> and <a href="../tutorial/concepts.html#12-remote-function-call">Remote Function Call</a>, you can adapt compilation and type checking on the network system. It helps you to develop a network system safely and conveniently. Let&apos;s close this chapter with an example of <em>Safey Implementation</em>.</p>
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WebConnector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/web/WebConnector&quot;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Driver <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/components/Driver&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">ICalculator</span>
+<span class="token punctuation">{</span>
+    <span class="token function">plus</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    <span class="token function">minus</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+
+    <span class="token function">multiplies</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    <span class="token function">divides</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    <span class="token function">divides</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">never</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">//----</span>
+    <span class="token comment">// CONNECTION</span>
+    <span class="token comment">//----</span>
+    <span class="token keyword">let</span> connector<span class="token punctuation">:</span> WebConnector <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebConnector</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">await</span> connector<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span><span class="token string">&quot;ws://127.0.0.1:10101&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">//----</span>
+    <span class="token comment">// CALL REMOTE FUNCTIONS</span>
+    <span class="token comment">//----</span>
+    <span class="token comment">// GET DRIVER</span>
+    <span class="token keyword">let</span> calc<span class="token punctuation">:</span> Driver<span class="token operator">&lt;</span>ICalculator<span class="token operator">&gt;</span> <span class="token operator">=</span> connector<span class="token punctuation">.</span>getDriver<span class="token operator">&lt;</span>ICalculator<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// CALL FUNCTIONS REMOTELY</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;1 + 6 =&quot;</span><span class="token punctuation">,</span> <span class="token keyword">await</span> calc<span class="token punctuation">.</span><span class="token function">plus</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;7 * 2 =&quot;</span><span class="token punctuation">,</span> <span class="token keyword">await</span> calc<span class="token punctuation">.</span><span class="token function">multiplies</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// WOULD BE COMPILE ERRORS</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;1 ? 3&quot;</span><span class="token punctuation">,</span> <span class="token keyword">await</span> calc<span class="token punctuation">.</span><span class="token function">pliuowjhof</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;1 - &apos;second&apos;&quot;</span><span class="token punctuation">,</span> <span class="token keyword">await</span> calc<span class="token punctuation">.</span><span class="token function">minus</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">&quot;second&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;4 / 0&quot;</span><span class="token punctuation">,</span> <span class="token keyword">await</span> calc<span class="token punctuation">.</span><span class="token function">divides</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<blockquote>
+<pre class="language-"><code class="lang-bash">$ tsc
+src/index.ts:33:37 - error TS2339: Property <span class="token string">&apos;pliuowjhof&apos;</span> does not exist on <span class="token builtin class-name">type</span> <span class="token string">&apos;Driver&lt;ICalculator&gt;&apos;</span><span class="token builtin class-name">.</span>
+
+    console.log<span class="token punctuation">(</span><span class="token string">&quot;1 ? 3&quot;</span>, await calc.pliuowjhof<span class="token punctuation">(</span><span class="token number">1</span>, <span class="token number">3</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+
+src/index.ts:34:53 - error TS2345: Argument of <span class="token builtin class-name">type</span> <span class="token string">&apos;&quot;second&quot;&apos;</span> is not assignable to parameter of <span class="token builtin class-name">type</span> <span class="token string">&apos;number&apos;</span><span class="token builtin class-name">.</span>
+
+    console.log<span class="token punctuation">(</span><span class="token string">&quot;1 - &apos;second&apos;&quot;</span>, await calc.minus<span class="token punctuation">(</span><span class="token number">1</span>, <span class="token string">&quot;second&quot;</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+
+src/index.ts:35:32 - error TS2349: Cannot invoke an expression whose <span class="token builtin class-name">type</span> lacks a call signature. Type <span class="token string">&apos;never&apos;</span> has no compatible call signatures.
+
+    console.log<span class="token punctuation">(</span><span class="token string">&quot;4 / 0&quot;</span>, await calc.divides<span class="token punctuation">(</span><span class="token number">4</span>, <span class="token number">0</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+</code></pre>
+</blockquote>
+<h3 id="13-network-refactoring">1.3. Network Refactoring</h3>
+<p>Critical changes on network systems can be resolved flexibly.</p>
+<p>In most case of developing network distributed processing system, there can be an issue that, necessary to major change on the network system. In someday, neccessary to <em>refactoring</em> in network level would be come, like software refactoring.</p>
+<p>The most representative of that is the <em>performance</em> issue. For an example, there is a task and you estimated that the task can be done by one computer. However, when you actually started the service, the computation was so large that one computer was not enough. Thus, you should distribute the task to multiple computers. On contrary, you prepared multiple computers for a task. However, when you actually started the service, the computation was so small that just one computer is sufficient for the task. Sometimes, assigning a computer is even excessive, so you might need to merge the task into another computer.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><img src="../../assets/images/examples/composite-calculator.png" alt="Diagram of Composite Calculator"></th>
+<th style="text-align:center"><img src="../../assets/images/examples/hierarchical-calculator.png" alt="Diagram of Hierarchical Calculator"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><a href="../tutorial/examples.html#22-remote-object-call">Composite Calculator</a></td>
+<td style="text-align:center"><a href="../tutorial/examples.html#23-object-oriented-network">Hierarchical Calculator</a></td>
+</tr>
+</tbody>
+</table>
+<p>I&apos;ll explain this <em>Network Refactoring</em>, caused by performance issue, through an example case that is very simple and clear. In a distributed processing system, there was a computer that providing a calculator. However, when this system was actually started, amount of the computations was so enormous that the single computer couldn&apos;t afford the computations. Thus, decided to separate the computer to three computers.</p>
+<ul>
+<li><a href="../tutorial/examples.html#hierarchical-calculatorscientificts"><code>scientific</code></a>: scientific calculator server</li>
+<li><a href="../tutorial/examples.html#hierarchical-calculatorstatisticsts"><code>statistics</code></a>: statistics calculator server</li>
+<li><a href="../tutorial/examples.html#hierarchical-calculatorcalculatorts"><code>calculator</code></a>: mainframe server<ul>
+<li>four arithmetic operations are computed by itself</li>
+<li>scientific and statistics operations are shifted to another computers</li>
+<li>and intermediates the computation results to client</li>
+</ul>
+</li>
+</ul>
+<p>If you solve this <em>Network Refactoring</em> by traditional method, it would be a hardcore duty. At first, you&apos;ve to design a message protocol used for neetwork communication between those three computers. At next, you would write parsers for the designed network messges and reprocess the events according to the newly defined network architecture. Finally, you&apos;ve to also prepare the verifications for those developments.</p>
+<blockquote>
+<p>Things to be changed</p>
+<ul>
+<li>Network Architecture</li>
+<li>Message Protocol</li>
+<li>Event Handling</li>
+<li><em>Business Logic</em> Code</li>
+</ul>
+</blockquote>
+<p>However, if you use the <strong>TGrid</strong> and <a href="../tutorial/concepts.html#12-remote-function-call">Remote Function Call</a>, the issue can&apos;t be a problem. In the <strong>TGrid</strong>, each computer in the network system is just one object. Whether you implement the remote calculator in one computer or distribute operations to three computers, its <em>Business Logic</em> code must be the same, in always.</p>
+<p>I also provide you the best example for this <em>performance</em> issue causing the <em>Network Refactoring</em>. The first demonstration code is an implementation of a single calculator server and the second demonstration code is an implementation of a system distributing operations to three servers. As you can see, although principle structure of network system has been changed, you don&apos;t need to worry about it if you&apos;re using the <strong>TGrid</strong> and <a href="../tutorial/concepts.html#12-remote-function-call">Remote Function Call</a>.</p>
+<ul>
+<li><a href="../tutorial/examples.html#22-remote-object-call">Demonstration - Remote Object Call</a></li>
+<li><a href="../tutorial/examples.html#23-object-oriented-network">Demonstration - Object Oriented Network</a></li>
+</ul>
 <h2 id="2-weaknesses">2. Weaknesses</h2>
-<h3 id="21-low-performance">2.1. Low Performance</h3>
-<p>&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xC5B8;&#xC5B4;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294;&#xB9CC;&#xD07C; &#xD37C;&#xD3EC;&#xBA3C;&#xC2A4;&#xAC00; &#xB5A8;&#xC5B4;&#xC9C4;&#xB2E4;</p>
-<h3 id="22-high-traffic">2.2. High Traffic</h3>
-<p>&#xB124;&#xD2B8;&#xC6CC;&#xD06C; &#xD1B5;&#xC2E0;&#xC5D0;&#xC11C; &#xBCF4;&#xD3B8;&#xC131;&#xC758; &#xBC18;&#xB313;&#xB9D0;&#xC740; &#xD2B8;&#xB798;&#xD53D; &#xC99D;&#xAC00;</p>
+<h3 id="21-high-traffic">2.1. High Traffic</h3>
+<p>University in network system means the overhead, increase of traffic.</p>
+<blockquote>
+<p>But ignore the traffic. It&apos;s vulnerable in nowadays.</p>
+</blockquote>
+<p><strong>TGrid</strong> has invented <a href="../tutorial/concepts.html#12-remote-function-call">Remote Function Call</a> to come true the <a href="../tutorial/concepts.html#11-grid-computing">Grid Computing</a>, so we are enjoyings the <a href="#1-strengths">1. Strengths</a>. However, if there is light, there also be the darkness. To accomplish the <a href="../tutorial/concepts.html#12-remote-function-call">Remote Function Call</a>, the data structure used by <a href="../tutorial/concepts.html#21-communicator">Communicator</a> is JSON-string, who has not only high university but also high traffic.</p>
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">export</span> <span class="token keyword">type</span> Invoke <span class="token operator">=</span> IFunction <span class="token operator">|</span> IReturn<span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">IFunction</span>
+<span class="token punctuation">{</span>
+    uid<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    listener<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+    parameters<span class="token punctuation">:</span> IParamter<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">IParameter</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">type</span><span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+    value<span class="token punctuation">:</span> <span class="token builtin">any</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">IReturn</span>
+<span class="token punctuation">{</span>
+    uid<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    success<span class="token punctuation">:</span> <span class="token builtin">boolean</span><span class="token punctuation">;</span>
+    value<span class="token punctuation">:</span> <span class="token builtin">any</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>The most standard way to reduce data transfer in network communication is to design special data structure and use it. By designing and applying optimal and special binary structures for each feature who uses network communication, it&apos;s possible to reduce amount of data transmission dramatically. In the example below, the binary structure uses 28 bytes per a record, and general data (JSON-string) uses about 100 to 200 bytes.</p>
+<p><div id="f3d490706cb6c3d41b1ba361089d2f52" class="gbcg gbcg-codegroup" data-remember-tabs="true">
+  <div class="gbcg-tab-selectors">
+    <a id="select-c-0-0feb38e47e20b980d566b18aa3e5470c" class="gbcg-selector gbcg-active" data-tab="c-0-0feb38e47e20b980d566b18aa3e5470c">Binary-structure</a>
+    <a id="select-json-1-cbd087fb8315a461be37ad5bef88a4e4" class="gbcg-selector" data-tab="json-1-cbd087fb8315a461be37ad5bef88a4e4">JSON-string</a>
+  </div>
+  <div class="gbcg-tab-contents">
+    <div id="gbcg-tab-container">
+      <div id="c-0-0feb38e47e20b980d566b18aa3e5470c" class="gbcg-tab-item gbcb-Binary-structure">
+        <pre class="language-"><code class="lang-c"><span class="token keyword">struct</span> <span class="token class-name">candle</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">long</span> <span class="token keyword">long</span> date<span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> open<span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> close<span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> high<span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> low<span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> volume<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+      </div>
+    </div>
+    <div class="gbcg-tab-item-cntr">
+      <div>
+        <h3 class="gbcg-tabname c-0-0feb38e47e20b980d566b18aa3e5470c" id="binary-structure">Binary-structure</h3>
+        <div id="c-0-0feb38e47e20b980d566b18aa3e5470c" class="gbcg-tab-item gbcb-Binary-structure">
+          <pre class="language-"><code class="lang-c"><span class="token keyword">struct</span> <span class="token class-name">candle</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">long</span> <span class="token keyword">long</span> date<span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> open<span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> close<span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> high<span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> low<span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> volume<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+        </div>
+      </div>
+      <div>
+        <h3 class="gbcg-tabname json-1-cbd087fb8315a461be37ad5bef88a4e4" id="json-string">JSON-string</h3>
+        <div id="json-1-cbd087fb8315a461be37ad5bef88a4e4" class="gbcg-tab-item gbcb-JSON-string">
+          <pre class="language-"><code class="lang-json"><span class="token punctuation">{</span>
+    <span class="token property">&quot;date&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2019-01-05&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;open&quot;</span><span class="token operator">:</span> <span class="token number">300000</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;close&quot;</span><span class="token operator">:</span> <span class="token number">350000</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;high&quot;</span><span class="token operator">:</span> <span class="token number">370000</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;close&quot;</span><span class="token operator">:</span> <span class="token number">290000</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;volume&quot;</span><span class="token operator">:</span> <span class="token number">795041</span>
+<span class="token punctuation">}</span>
+</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></p>
+<p>However, I think so. Traffic means nothing in nowadays.</p>
+<p>Today&apos;s network communication technology has evolved from day to day, with the ability to transfer data in GB per a second. Design and utilize special binary structures for every features to reduce amount of data transmission... Well, I don&apos;t know if it was the past who can send data only KB per a second, should we do such vulnerable optimizations in nowadays?</p>
+<p>If me, I would just endure the traffic problem and enjoy the <a href="#1-strengths">1. Strengths</a>.</p>
+<h3 id="22-low-performance">2.2. Low Performance</h3>
+<p><strong>TGrid</strong> based on script language and it makes performance to be low.</p>
+<blockquote>
+<p>But I&apos;ve prepared the alternative solutions</p>
+<ul>
+<li>Nonetheless, <a href="#1-strengths">1. Strengths</a> are stronger.</li>
+<li>Infrastructure costs can be resolved by <a href="#32-public-grid">3.2. Public Grid</a>.</li>
+<li>Low performance can be resolved by partial optimization.</li>
+<li>Even if you should migrate to native language later, develop with <strong>TGrid</strong> first to make it faster and safer.</li>
+</ul>
+</blockquote>
+<h4 id="221-script-language">2.2.1. Script Language</h4>
+<p>The full name of Tgrid is the TypeScript Grid Computing Framework, which is based on the TypeScript. And compilation result of the TypeScript is the JavaScript file, which is obviously a script language. Also, all of the programmers may know that, script language is slower than native language. Thus, <a href="../tutorial/concepts.html#11-grid-computing">Grid Computing</a> system made with <strong>TGrid</strong> is slower than that made with native.</p>
+<p>So we should consider something when creating the <a href="../tutorial/concepts.html#11-grid-computing">Grid Computing</a> system, whether <a href="#1-strengths">1. Strengths</a> of the <strong>TGrid</strong> can offset the disadvantage <em>Low Performance</em> caused by the script language.</p>
+<p>Of course, if there&apos;s not the <em>performance</em> issue in your network system, or if you are tending to implement the <a href="../tutorial/concepts.html#11-grid-computing">Grid Computing</a> system not to distribute great operations but only by business logic like blockchain, you don&apos;t need to worry anything. Just close your eyes and select the <strong>TGrid</strong> and <a href="../tutorial/concepts.html#12-remote-function-call">Remote Function Call</a>.</p>
+<p><img src="../../assets/images/appendix/seesaw.gif" alt="seesaw"></p>
+<h4 id="222-partial-optimization">2.2.2. Partial Optimization</h4>
+<p>On the other hand, I never have given up the <em>Low Performance</em> issue without any alternative solution. The increasing infrastructure costs by <em>Low Performance</em> can be resolved by the <a href="#32-public-grid">3.2. Public Grid</a>.  I&apos;ll benchmark it laster, but in my suggestion, the costs may not only be just resolved but also be decreased dramatically.</p>
+<p>Also, there is another way to solve the <em>Low Performance</em> issue. Performance tuning starts from where the expected improvement is greatest. You don&apos;t have write all the program codes in C++. Write most of the program codes in TypeScript and implement with native language somewhere operations are concentrated (In NodeJS, interact with C++ directly and in Web Borwser, use Web Assembly).</p>
+<p><div class="panel panel-info"><div class="panel-heading"><div class="panel-icon"><i class="icon-info"></i></div><div class="panel-title">TypeScript Standard Template Library</div></div><div class="panel-content"><p><a href="https://github.com/samchon/tstl" target="_blank">TSTL</a> is an implementation of STL (Standard Template Library), defined by the C++ Standard Committee, in the <em>TypeScript</em>. If you develop a program with the $, it means that you&apos;re using the same data structures and interfaces with the C++ standard library. Therefore, programs written in the <a href="https://github.com/samchon/tstl" target="_blank">TSTL</a> are as easy to migrate to the C++.</p>
+<p>Do you think there would be a performance issue in your pgrogram? So is there a possibility of migrating to the C++ later? If so, use <a href="https://github.com/samchon/tstl" target="_blank">TSTL</a> without any hestitation. <a href="https://github.com/samchon/tstl" target="_blank">TSTL</a> would give you an amazing experience.</p>
+</div></div></p>
+<h4 id="223-full-migration">2.2.3. Full Migration</h4>
+<p>Although you want to make the entire <em>Grid Computing</em> system in C++. I still recommend you to use the <strong>TGrid</strong> and <a href="https://github.com/samchon/tstl" target="_blank">TSTL</a>. I&apos;m not saying you &quot;The <em>Low Performance</em> issue is nothing when comparing with <a href="#1-strengths">1. Strengths</a>. Even the <em>Low Performance</em> issue can be resolved by <a href="#222-partial-optimization">2.2.2. Partial Optimization</a>, so ignore the issue&quot;.</p>
+<p>Desining and implementing a <em>Grid Computing</em> system, with native language like C++, from the beginning is extremely difficult. Not only it is difficult to develop, but it is also impossible to guarantee stability and the development terms would be infinitely long. If what you&apos;re trying to make is for distributing extra-large computations, the difficulty level of development would uprise even rather than the <a href="blockchain.html#steps-to-hell">Blockchain System, Steps to the Hell</a>.</p>
+<p>So I recommend you. First, develop quickly and safely through the <strong>TGrid</strong> and <a href="../tutorial/concepts.html#12-remote-function-call">Remote Function Call</a>. At next, proceed your service quickly with focusing on the <em>Business Logic</em>. After confirming that the service is running stable, go ahead and proceed with the <em>Full Migration</em>. As there already has been the stable system, you just need to migrate them to C++ considering syntax.</p>
+<p>In my experience, when developing a <em>Grid Computing</em> system in a native language, it was much efficient to using the migration strategy I&apos;ve mentioned. The development terms was much shorter and system was much safer. </p>
+<p>Meanwhile, it&apos;s also possible to build a <a href="../tutorial/concepts.html#11-grid-computing">Grid Computing</a> system with <strong>TGrid</strong> first and understand something later; the <em>Full Migration</em> was not required at all, no performance issue or the issue can resolved by <a href="#222-partial-optimization">2.2.2. Partial Optimization</a>. In such case, should we sigh and say &quot;We were so lucky&quot;?</p>
 <h3 id="23-low-background">2.3. Low Background</h3>
-<p>&#xB9CC;&#xB4E0; &#xC9C0; &#xC5BC;&#xB9C8; &#xC548; &#xB418;&#xC5B4; &#xC800;&#xBCC0;&#xC774; &#xC595;&#xB2E4;.</p>
+<p><strong>TGrid</strong> is a young project, so its background is shallow.</p>
+<blockquote>
+<p>I&apos;ll try my best to overcome it. Please support me a lot.</p>
+</blockquote>
+<p>TGRid is a new framework just created. So no matter how plausible and roundbreaking the <a href="../tutorial/concepts.html#12-remote-function-call">Remote Function Call</a> is, number of projects using the <strong>TGrid</strong> is extremely small. Except for <a href="../tutorial/projects">demo projects</a> of tutorial or commercial projects that I&apos;ve made, the number would be much smaller. Thus, there are not enough commnities that can share informations and knowhows about the <strong>TGrid</strong>.</p>
+<p>The <a href="#31-block-chain">blockchain</a> project as an example, how can the blockchain can be easily developed by the <strong>TGrid</strong>, but havent&apos;t most of the blockchain projects been developed by the traditional method? It&apos;s hard to determine whether blockchain development using the <a href="../tutorial/concepts.html#12-remote-function-call">Remote Function Call</a> is easier than referencing legacy projects built by traditional method or not.</p>
+<blockquote>
+<p>But if you are building a blockchain project with a new kin of business logic, I condidently recommend you that <strong>TGrid</strong> is much easier.</p>
+</blockquote>
+<p>It&apos;s the well known truth that <strong>TGrid</strong> is a new borned project and it has shallow background in today. I feel sad but there&apos;s no amazing way resolve the problem. The only way to reolsve it is to keep trying best for a long time. I believe that the <a href="../tutorial/concepts.html#12-remote-function-call">Remote Function Call</a> would soon be the new trend of network system development. I believe that this is the future and would keep the development, so please help me a lot.</p>
+<p>In someday, <strong>TGrid</strong> will become famous. Maybe it doesn&apos;t take long.</p>
+<!-- @templates([
+    ["market.md", "../tutorial/projects/market.md"]
+]) -->
+<!-- 
+must define those templates
+
+  - assets
+  - blockchain.md
+  - market.md
+  - Grid Computing
+  - Remote Function Call
+
+-->
 <h2 id="3-opportunities">3. Opportunities</h2>
-<h3 id="31-business-logic">3.1. Business Logic</h3>
-<h3 id="32-economic-business">3.2. Economic Business</h3>
-<h3 id="33-block-chain">3.3. Block Chain</h3>
+<h3 id="31-blockchain">3.1. Blockchain</h3>
+<blockquote>
+<p>Detailed Content: <a href="blockchain.md%7D"><strong>Appendix</strong> &gt; <strong>Blockchain</strong></a></p>
+</blockquote>
+<p>With <strong>TGrid</strong>, you can develop <em>Blockchain</em> easily.</p>
+<p>It&apos;s a famous story that difficulty of developing blockchain is very high. Not only because of the high wages of the blockchain developers, but also from a technical point of view, blockchain is actually very difficult to implement. But, if you ask me what is such difficult, I will answer that not Business Logic<em> but </em>Network System*.</p>
+<p>The <a href="blockchain.html#2-network-system">Network System</a> used by blockchain is a type of great distributed processing system, conostructed by millions of computers interacting with network communication. The great distributed processing systems like the blockchain always present us the tremendous difficulties. The word &apos;perfect&apos; is inserted on every development processes; requirements must be analyzed perfectly, use-cases must be identified perfectly, data and network architectures must be designed, perfectly and mutual interaction test must be perfectly.</p>
+<p>On contrary, <a href="blockchain.html#3-business-logic">Business Logic</a> of the blockchain is not such difficult. Core elements of the blockchain are, as the name suggest, the first is &apos;Block&apos; and the second is &apos;Chain&apos;. The &apos;Block&apos; is about defining and storing data and the &apos;Chain&apos; is about policy that how to reach to an agreement when writing data to the &apos;Block&apos;.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Conception</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> Block</td>
+<td>Data Structure</td>
+<td>Way to defining and storing data</td>
+</tr>
+<tr>
+<td> Chain</td>
+<td>Requirements</td>
+<td>A policy for reaching to an agreement</td>
+</tr>
+</tbody>
+</table>
+<p>Let&apos;s assume that you are developing the &apos;Block&apos; and &apos;Chain&apos; as a program running only on a single computer. In this case, you just need to design the data structure and implement code storing the data on disk. Also, you would analyze the requirements (policy) and implement them. Those skills are just the essentials for programmers. In other word, <a href="blockchain.html#3-business-logic">Business Logic</a> of blockchain is something that any skilled programmers can implement.</p>
+<ul>
+<li>To develop the <em>Block</em> and <em>Chain</em>:<ul>
+<li>Ability to design Data Structure</li>
+<li>Ability to store Data on Device</li>
+<li>Ability to analyze policy (requirements)</li>
+<li>Ability to implement them</li>
+</ul>
+</li>
+</ul>
+<p>Do you remember? With <strong>TGrid</strong> and <a href="../tutorial/concepts.html#12-remote-function-call">Remote Function Call</a>, you can come true the true <a href="../tutorial/concepts.html#11-grid-computing">Grid Computing</a>. Many computers interacting with network communication are replaced by only <u>one virtual computer</u>. Even <a href="blockchain.html#2-network-system">Business Logic</a> code of the virtual computer is same with another <a href="blockchain.html#2-network-system">Business Logic</a> code running on a single physical computer.</p>
+<p>Thus, if you adapt the <strong>TGrid</strong> and <a href="../tutorial/concepts.html#12-remote-function-call">Remote Function Call</a>, difficulty of the blockchain development would be dropped to the level of <a href="blockchain.md%20rather%20than%20[Network%20System](blockchain.md#2-network-system">Business Logic</a>. Forget complex <a href="blockchain.html#2-network-system">Network System</a> and just focus on the essence of what you want to develop; the [Business Logic](blockchain.md.</p>
+<h3 id="32-public-grid">3.2. Public Grid</h3>
+<blockquote>
+<p>Related Project: <a href="../tutorial/projects/market.md"><strong>Tutorial</strong> &gt; <strong>Projects</strong> &gt; <strong>Grid Market</strong></a></p>
+</blockquote>
+<p>With <strong>TGrid</strong>, you can procure resources for <a href="../tutorial/concepts.html#11-grid-computing">Grid Computing</a> from unspecified crowds, very easily and inexpensively.</p>
+<p>When composing <em>traditional Grid Computing</em>, of course, many computers should be prepared. As the number of computers required increases, so does the infrastructure and costs associated with procuring them. Also, you&apos;ve to install programs and configure settings for the network communication on the prepared computers. Such duties increase your efforts and let you to be tired. Is it so nature?</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Consumer</th>
+<th>Supplier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Who</td>
+<td>Developer of <a href="../tutorial/concepts.html#11-grid-computing">Grid Computing</a></td>
+<td>Unspecified crowds connecting to the Internet</td>
+</tr>
+<tr>
+<td>What</td>
+<td>Consumes resources of the <em>Suppliers</em></td>
+<td>Provides resources to <em>Consumer</em></td>
+</tr>
+<tr>
+<td>How</td>
+<td>Deliver program code to <em>Suppliers</em></td>
+<td>Connect to special URL by Internet Browser</td>
+</tr>
+</tbody>
+</table>
+<p>However, TGrid even can economize such costs and efforts dramatically. You can procure resources for <a href="../tutorial/concepts.html#11-grid-computing">Grid Computing</a> from the unspecified crowds. Those unspecified crowds do not need to prepare anything like installing some program or configuring some setting. The only need those unspecified crowds is just connecting to special URL by Internet Browser.</p>
+<p>The program that each <em>Supplier</em> should run is provided by the <em>Consumer</em> as JavaScript code. Each <em>Supplier</em> would act its role by the JavaScript code. Of course, interactions with <em>Supplier</em> and <em>Consumer</em> (or with a third-party computer) would use the <a href="../tutorial/concepts.html#12-remote-function-call">Remote Function Call</a>, so they are just one virtual computer.</p>
+<blockquote>
+<p>Base language of the <strong>TGrid</strong> is <em>TypeScript</em> and compilation result of the TypeScript is the <em>JavaScript</em> file. As <em>JavaScript</em> is a type of script language, it can be executed dinamiccaly. Therefore, the <em>Supplier</em> can execute the program by script code delivered by the <em>Consumer</em>.</p>
+</blockquote>
+<p><img src="../../assets/images/projects/market/actors.png" alt="Grid Market"></p>
+<p><a href="../tutorial/projects/market.md">Grid Market</a> is one of the most typical example case for the <em>Public Grid</em>, a demo project for tutorial learning. In this demo project, <em>Consumer</em> also procures resources from the <em>Suppliers</em> for composing the <a href="../tutorial/concepts.html#11-grid-computing">Grid Computing</a> system. <em>Supplier</em> also provides its resources just by connecting to the special URL by Internet Browser, too. Of course, in the <a href="../tutorial/projects/market.md">Grid Market</a>, the program that <em>Supplier</em> would run still comes from the <em>Consumer</em>.</p>
+<p>However, there&apos;s a special thing about the <a href="../tutorial/projects/market.md">Grid Market</a>, it is that there is a <em>cost</em> for the <em>Consumer</em> to procure the <em>Suppliers</em>&apos; resources. Also, intermediary <em>Market</em> exists and it charges fee for mediation between the <em>Consumer</em> and <em>Supplier</em>.</p>
+<ul>
+<li><code>Market</code>: Intermediary market for the <em>Suppliers</em> and <em>Consumers</em>.</li>
+<li><code>Consumer</code>: Purchase resources from the *Suppliers.</li>
+<li><code>Supplier</code>: Sells its own resources to the <em>Consumer</em>.</li>
+</ul>
+<h3 id="33-market-expansions">3.3. Market Expansions</h3>
+<p>The <a href="../tutorial/concepts.html#11-grid-computing">Grid Computing</a> market would be grown up day by day.</p>
+<p>The future belongs to those who prepare. Prepare the future by <strong>TGrid</strong> and <a href="../tutorial/concepts.html#12-remote-function-call">Remote Function Call</a>. Also, I hope you to hold some changes from the future.</p>
 <h2 id="4-threats">4. Threats</h2>
-<h3 id="41-legacy-projects">4.1. Legacy Projects</h3>
-<h3 id="42-galapagos">4.2. Galapagos</h3>
-<h3 id="43-quantum-computer">4.3. Quantum Computer</h3>
+<p>What can threat the <strong>TGrid</strong> <a href="../tutorial/concepts.html#12-remote-function-call">Remote Function Call</a>? Writing the <em>Swot Analysis</em>, I don&apos;t have any idea yet. If you have any idea, please inform me.</p>
+<ul>
+<li><a href="https://github.com/samchon/tgrid/issues" target="_blank">https://github.com/samchon/tgrid/issues</a></li>
+</ul>
 
   
   </section>
@@ -535,10 +867,14 @@
 
             
                 
-                <a href="../tutorial/projects/market.md" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 2.3.3. Grid Market">
+                <a href="../tutorial/projects/market.md" class="navigation navigation-prev " aria-label="Previous page: 2.3.3. Grid Market">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="blockchain.html" class="navigation navigation-next " aria-label="Next page: 3.2. Blockchain">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -547,7 +883,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"3.1. SWOT Analysis","level":"3.1","depth":1,"next":{"title":"3.2. Release Notes","level":"3.2","depth":1,"url":"https://github.com/samchon/tgrid/releases","ref":"https://github.com/samchon/tgrid/releases","articles":[]},"previous":{"title":"2.3.3. Grid Market","level":"2.3.3","depth":2,"path":"tutorial/projects/market.md","ref":"tutorial/projects/market.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","addcssjs","back-to-top-button","codegroup","collapse","disqus","github","hide-navigation-buttons","hide-published-with","import","language-picker","meta","panel","prism","scroll-to-top","theme-darkblue","theme-github","sitemap-general"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"disqus":{"useIdentifier":false,"shortName":"tgrid"},"language-picker":{"grid-columns":3},"scroll-to-top":{},"github":{"url":"https://github.com/samchon/tgrid"},"panel":{},"meta":{"content":"","data":[{"name":"og:url","content":"https://tgrid.dev"},{"name":"og:type","content":"website"},{"name":"og:title","content":"TGrid Guide Documents"},{"name":"og:description","content":"TypeScript Grid Computing Framework"},{"name":"og:image","content":"https://tgrid.dev/assets/images/flag.png"}],"name":""},"import":{},"theme-github":{},"search":{},"addcssjs":{"css":[],"js":[]},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"collapse":{},"hide-published-with":{},"sitemap-general":{"prefix":"https://tgrid.dev/"},"codegroup":{"defaultTabName":"Code","rememberTabs":true,"tabNameSeperator":"::"},"fontsettings":{"theme":"white","family":"sans","size":2},"hide-navigation-buttons":{},"theme-darkblue":{},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Jeongho Nam","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"TGrid","language":"en","gitbook":"*","description":"Guide Documents for TGrid"},"file":{"path":"appendix/swot.md","mtime":"2019-09-26T00:07:08.238Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-27T02:00:03.886Z"},"basePath":"..","book":{"language":"en"}});
+            gitbook.page.hasChanged({"page":{"title":"3.1. SWOT Analysis","level":"3.1","depth":1,"next":{"title":"3.2. Blockchain","level":"3.2","depth":1,"path":"appendix/blockchain.md","ref":"appendix/blockchain.md","articles":[]},"previous":{"title":"2.3.3. Grid Market","level":"2.3.3","depth":2,"path":"tutorial/projects/market.md","ref":"tutorial/projects/market.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","addcssjs","back-to-top-button","codegroup","collapse","disqus","github","hide-navigation-buttons","hide-published-with","import","language-picker","meta","panel","prism","scroll-to-top","theme-darkblue","theme-github","sitemap-general"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"disqus":{"useIdentifier":false,"shortName":"tgrid"},"language-picker":{"grid-columns":3},"scroll-to-top":{},"github":{"url":"https://github.com/samchon/tgrid"},"panel":{},"meta":{"content":"","data":[{"name":"og:url","content":"https://tgrid.dev"},{"name":"og:type","content":"website"},{"name":"og:title","content":"TGrid Guide Documents"},{"name":"og:description","content":"TypeScript Grid Computing Framework"},{"name":"og:image","content":"https://tgrid.dev/assets/images/flag.png"}],"name":""},"import":{},"theme-github":{},"search":{},"addcssjs":{"css":[],"js":[]},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"collapse":{},"hide-published-with":{},"sitemap-general":{"prefix":"https://tgrid.dev/"},"codegroup":{"defaultTabName":"Code","rememberTabs":true,"tabNameSeperator":"::"},"fontsettings":{"theme":"white","family":"sans","size":2},"hide-navigation-buttons":{},"theme-darkblue":{},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Jeongho Nam","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"TGrid","language":"en","gitbook":"*","description":"Guide Documents for TGrid"},"file":{"path":"appendix/swot.md","mtime":"2019-09-29T05:35:50.457Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-29T05:50:51.185Z"},"basePath":"..","book":{"language":"en"}});
         });
     </script>
 </div>

@@ -90,6 +90,7 @@
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="tgrid_components.html#driver" class="tsd-kind-icon">Driver</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="tgrid_components.html#primitify" class="tsd-kind-icon">Primitify</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="tgrid_components.html#promisify" class="tsd-kind-icon">Promisify</a></li>
 							</ul>
 						</section>
@@ -104,8 +105,8 @@
 					<div class="tsd-signature tsd-kind-icon">Driver<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="tgrid_components.html#promisify" class="tsd-signature-type">Promisify</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Controller</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;Proxy</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/ad55848/src/components/Driver.ts#L20">components/Driver.ts:20</a></li>
-							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/ad55848/src/components/Driver.ts#L21">components/Driver.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/9daf39f/src/components/Driver.ts#L20">components/Driver.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/9daf39f/src/components/Driver.ts#L21">components/Driver.ts:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -129,12 +130,36 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="primitify" class="tsd-anchor"></a>
+					<h3>Primitify</h3>
+					<div class="tsd-signature tsd-kind-icon">Primitify<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Primitify&lt;T&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/9daf39f/src/components/Driver.ts#L60">components/Driver.ts:60</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Primitify a type.</p>
+						</div>
+						<p>If target type is an object, all methods defined in the object would be removed.</p>
+						<dl class="tsd-comment-tags">
+							<dt>typeparam</dt>
+							<dd><p>type to be primitive</p>
+							</dd>
+							<dt>author</dt>
+							<dd><p>Jeongho Nam <a href="http://samchon.org">http://samchon.org</a></p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
 					<a name="promisify" class="tsd-anchor"></a>
 					<h3>Promisify</h3>
 					<div class="tsd-signature tsd-kind-icon">Promisify<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promisify&lt;Instance&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/ad55848/src/components/Driver.ts#L35">components/Driver.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/9daf39f/src/components/Driver.ts#L35">components/Driver.ts:35</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -189,6 +214,9 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="tgrid_components.html#driver" class="tsd-kind-icon">Driver</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="tgrid_components.html#primitify" class="tsd-kind-icon">Primitify</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="tgrid_components.html#promisify" class="tsd-kind-icon">Promisify</a>

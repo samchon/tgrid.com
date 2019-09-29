@@ -5,16 +5,14 @@
     ["blockchain.md", "blockchain.md"],
     ["examples.md", "../tutorial/examples.md"],
     ["Grid Computing", "[Grid Computing](../tutorial/concepts.md#11-grid-computing)"],
-    ["Remote Function Call", "[Remote Function Call](../tutorial/concepts.md#12-remote-function-call)"]
+    ["Remote Function Call", "[Remote Function Call](../tutorial/concepts.md#12-remote-function-call)"],
+    ["TSTL", "[TSTL](https://github.com/samchon/tstl)"]
 ]) -->
 <!-- @import("internal/strengths.md") -->
 
 
 
 
-<!-- @templates([
-    ["TSTL", "[TSTL](https://github.com/samchon/tstl)"]
-]) -->
 ## 2. Weaknesses
 ### 2.1. High Traffic
 네트워크 통신에서 범용성의 동의어는 오버헤드, 즉 트래픽 증가입니다.
@@ -84,7 +82,7 @@ struct candle
 > 하지만 대책도 다 강구해두었습니다.
 > 
 >  - 그래도 [1. Strengths](#1-strengths) 의 이점이 더 크다
->  - 인프라 비용을 [3.2. Publish Grid](#32-publish-grid) 로 해소할 수 있습니다.
+>  - 인프라 비용을 [3.2. Public Grid](#32-public-grid) 로 해소할 수 있습니다.
 >  - *Low Performance* 는 부분 최적화로 해소할 수 있습니다.
 >  - 추후 네이티브 언어로 바꾸더라도, 일단 **TGrid** 로 빠르고 안정적으로 개발하세요.
 
@@ -98,7 +96,7 @@ struct candle
 ![seesaw](../../assets/images/appendix/seesaw.gif)
 
 #### 2.2.2. Partial Optimization
-한 편, **TGrid** 가 이 *Low Performance* 이슈에 대하여, 아무런 대응전략도 없이 손을 놓은 것은 결코 아닙니다. *Low Performance* 그 자체로 인해 증대하는 인프라 비용은 [3.2. Publish Grid](#32-public-grid) 를 통해 상쇄할 수 있습니다 (추후 통계를 내 볼 것인데, 아마 비용이 단순히 상쇄되는 수준이 아니라 오히려 대폭 절감될 것이라고 예상합니다). 
+한 편, **TGrid** 가 이 *Low Performance* 이슈에 대하여, 아무런 대응전략도 없이 손을 놓은 것은 결코 아닙니다. *Low Performance* 그 자체로 인해 증대하는 인프라 비용은 [3.2. Public Grid](#32-public-grid) 를 통해 상쇄할 수 있습니다 (추후 통계를 내 볼 것인데, 아마 비용이 단순히 상쇄되는 수준이 아니라 오히려 대폭 절감될 것이라고 예상합니다). 
 
 그리고 *Low Performance* 그 자체도 나름대로 해소할 수 있는 방법이 있습니다. Performance Tuning 은 기대효과가 가장 큰 곳에서부터 시작하라고 하지 않습니까? 모든 프로그램 코드를 C++ 로 짤 필요는 없습니다. 기본적으로는 TypeScript 를 사용하여 만들되, 연산이 집중되는 구간들만을 네이티브 언어로 제작하여 연동하면 됩니다 (NodeJS 에서는 C++ 과의 직접적인 연동을 하면 되며, Web Browser 에서는 Web Assembly 와 연동하면 됩니다).
 
@@ -126,7 +124,7 @@ ${{ Grid Computing }} 시스템을 처음부터 C++ 같은 네이티브 언어�
 
 **TGrid** 는 이제 막 만들어진 신생 프레임워크입니다. 따라서 그것이 주창하는 ${{ Remote Function Call }} 이 제 아무리 그럴싸하고 획기적이더라도, 이를 사용하여 만든 프로젝트의 수는 극히 적습니다. 기껏해야 제가 만든 [예제 프로젝트들](../tutorial/projects)이나, 혹은 제가 개발하여 적용한 일부 상용 프로젝트들에 불과할 뿐입니다. 따라서 **TGrid** 에 관한 정보와 노하우를 세간에 공유할 수 있는 창구도 별로 없습니다.
 
-가령 [블록체인](blockchain.md) 프로젝트를 예로 든다면, 제 아무리 **TGrid** 를 사용하여 블록체인을 쉽게 개발할 수 있다한들, 이미 기존의 블록체인 프로젝트들은 다 기존의 방법대로 개발이 되어있지 않습니까? 블록체인을 개발함에 있어 ${{ Remote Function Call }} 을 이용해 만드는 게 쉬울지, 아니면 기존의 프로젝트를 참고하고 개발자 커뮤니티와 그들의 노하우를 전수받는게 쉬울지는 모를 일입니다
+가령 [블록체인](#31-blockchain) 프로젝트를 예로 든다면, 제 아무리 **TGrid** 를 사용하여 블록체인을 쉽게 개발할 수 있다한들, 이미 기존의 블록체인 프로젝트들은 다 기존의 방법대로 개발이 되어있지 않습니까? 블록체인을 개발함에 있어 ${{ Remote Function Call }} 을 이용해 만드는 게 쉬울지, 아니면 기존의 프로젝트를 참고하고 개발자 커뮤니티와 그들의 노하우를 전수받는게 쉬울지는 모를 일입니다
 
 > 단 아예 새로운 종류의 비지니스 로직을 가진 블록체인이라면, 그 때는 자신있게 **TGrid** 가 훨씬 쉽다고 말할 수 있습니다.
 

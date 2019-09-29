@@ -96,8 +96,7 @@
 					</li>
 				</ul>
 				<h3 id="1-2-grid-computing">1.2. Grid Computing</h3>
-				<p><img src="https://tgrid.dev/assets/images/concepts/grid-computing.png"
-				style="max-width: 563.4px" /></p>
+				<p><img src="https://tgrid.dev/assets/images/concepts/grid-computing.png" alt="Grid Computing"></p>
 				<blockquote>
 					<p>Computers be a (virtual) computer</p>
 				</blockquote>
@@ -179,29 +178,135 @@ SQRT (-4) -&gt; Error: Negative value on sqaure.
 Mean (1, 2, 3, 4) = 2.5
 Stdev. (1, 2, 3, 4) = 1.118033988749895</code></pre>
 				</blockquote>
+				<!--
+must define those templates
+
+  - chapter
+  - assets
+  - blockchain.md
+  - examples.md
+  - Grid Computing
+  - Remote Function Call
+
+-->
 				<h2 id="2-strengths">2. Strengths</h2>
 				<h3 id="2-1-easy-development">2.1. Easy Development</h3>
-				<p>Anyone can make a network system very easily.</p>
-				<h3 id="2-2-flexible-structure">2.2. Flexible Structure</h3>
-				<p>Significant changes to network systems can be handled very flexibly.</p>
+				<p>Anyone can easily make a network system.</p>
+				<p>It&#39;s difficult to make network system because many of computers are interacting together to accomplish a common task. Therefore, the word &#39;perfect&#39; is inserted on every development processes; requirements must be analyzed perfectly, use-cases must be identified perfectly, data and network architectures must be designed, perfectly and mutual interaction test must be perfectly.</p>
+				<p>{% panel style=&quot;info&quot;, title=&quot;Something to Read&quot; %}
+					[Blockchain&#39;s Network System, Steps to Hell](${{ blockchain.md }}#steps-to-hell)
+				{% endpanel %}</p>
+				<p>However, with TGrid and ${{ Remote Function Call }}, you can come true the true <a href="#12-grid-computing">Grid Computing</a>. Many computers interacting with network communication are replaced by only <u>one virtual computer</u>. Even <em>Business Logic</em> code of the virtual computer is same with another <em>Business Logic</em> code running on a single physical computer.</p>
+				<p>Thus, you can make a network system very easily if you use the <strong>TGrid</strong>. Forget everything about the network; protocolcs and designing message structures, etc. You only concentrate on the <em>Business Logic</em>, the essence of what you want to make. Remeber that, as long as you use the TGrid, you&#39;re just making a single program running on a single (virtual) computer.</p>
+				<h3 id="2-2-safe-implementation">2.2. Safe Implementation</h3>
+				<p>By compilation and type checking, you can make network system safe.</p>
+				<p>When developing a distributed processing system with network communication, one of the most embarrassing thing for developers is the run-time error. Whether network messages are correctly constructed and exactly parsed, all can be detected at the run-time, not the compile-time.</p>
+				<p>Let&#39;s assume a situation; There&#39;s a distributed processing system build by traditional method and there&#39;s a critical error on the system. Also, the critical error wouldn&#39;t be detected until the service starts. How terrible it is? To avoid such terrible situation, should we make a test program validating all of the network messages and all of the related scenarios? If compilation and type checking was supported, everything would be simple and clear.</p>
+				<p><strong>TGrid</strong> provides exact solution about this compilation issue. TGrid has invented ${{ Remote Function Call }} to come true the real <a href="#12-grid-computing">Grid Computing</a>. What the ${{ Remote Function Call }} is? Calling functions remotly, isn&#39;t it a function call itself? Naturally, the function call is protected by <em>TypeScript Compilter</em>, therefore guarantees the <em>Type Safety</em>.</p>
+				<p>Thus, with <strong>TGrid</strong> and ${{ Remote Function Call }}, you can adapt compilation and type checking on the network system. It helps you to develop a network system safely and conveniently. Let&#39;s close this chapter with an example of <em>Safey Implementation</em>.</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { WebConnector } <span class="hljs-keyword">from</span> <span class="hljs-string">"tgrid/protocols/web/WebConnector"</span>
+<span class="hljs-keyword">import</span> { Driver } <span class="hljs-keyword">from</span> <span class="hljs-string">"tgrid/components/Driver"</span>;
+
+<span class="hljs-keyword">interface</span> ICalculator
+{
+    plus(x: <span class="hljs-built_in">number</span>, y: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">number</span>;
+    minus(x: <span class="hljs-built_in">number</span>, y: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">number</span>;
+
+    multiplies(x: <span class="hljs-built_in">number</span>, y: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">number</span>;
+    divides(x: <span class="hljs-built_in">number</span>, y: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">number</span>;
+    divides(x: <span class="hljs-built_in">number</span>, y: <span class="hljs-number">0</span>): never;
+}
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>): <span class="hljs-title">Promise</span>&lt;<span class="hljs-title">void</span>&gt;
+</span>{
+    <span class="hljs-comment">//----</span>
+    <span class="hljs-comment">// CONNECTION</span>
+    <span class="hljs-comment">//----</span>
+    <span class="hljs-keyword">let</span> connector: WebConnector = <span class="hljs-keyword">new</span> WebConnector();
+    <span class="hljs-keyword">await</span> connector.connect(<span class="hljs-string">"ws://127.0.0.1:10101"</span>);
+
+    <span class="hljs-comment">//----</span>
+    <span class="hljs-comment">// CALL REMOTE FUNCTIONS</span>
+    <span class="hljs-comment">//----</span>
+    <span class="hljs-comment">// GET DRIVER</span>
+    <span class="hljs-keyword">let</span> calc: Driver&lt;ICalculator&gt; = connector.getDriver&lt;ICalculator&gt;();
+
+    <span class="hljs-comment">// CALL FUNCTIONS REMOTELY</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"1 + 6 ="</span>, <span class="hljs-keyword">await</span> calc.plus(<span class="hljs-number">1</span>, <span class="hljs-number">6</span>));
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"7 * 2 ="</span>, <span class="hljs-keyword">await</span> calc.multiplies(<span class="hljs-number">7</span>, <span class="hljs-number">2</span>));
+
+    <span class="hljs-comment">// WOULD BE COMPILE ERRORS</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"1 ? 3"</span>, <span class="hljs-keyword">await</span> calc.pliuowjhof(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>));
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"1 - 'second'"</span>, <span class="hljs-keyword">await</span> calc.minus(<span class="hljs-number">1</span>, <span class="hljs-string">"second"</span>));
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"4 / 0"</span>, <span class="hljs-keyword">await</span> calc.divides(<span class="hljs-number">4</span>, <span class="hljs-number">0</span>));
+}
+main();</code></pre>
+				<blockquote>
+					<pre><code class="language-bash">$ tsc
+src/index.ts:33:37 - error TS2339: Property <span class="hljs-string">'pliuowjhof'</span> does not exist on <span class="hljs-built_in">type</span> <span class="hljs-string">'Driver&lt;ICalculator&gt;'</span>.
+
+    console.log(<span class="hljs-string">"1 ? 3"</span>, await calc.pliuowjhof(1, 3));
+
+src/index.ts:34:53 - error TS2345: Argument of <span class="hljs-built_in">type</span> <span class="hljs-string">'"second"'</span> is not assignable to parameter of <span class="hljs-built_in">type</span> <span class="hljs-string">'number'</span>.
+
+    console.log(<span class="hljs-string">"1 - 'second'"</span>, await calc.minus(1, <span class="hljs-string">"second"</span>));
+
+src/index.ts:35:32 - error TS2349: Cannot invoke an expression whose <span class="hljs-built_in">type</span> lacks a call signature. Type <span class="hljs-string">'never'</span> has no compatible call signatures.
+
+    console.log(<span class="hljs-string">"4 / 0"</span>, await calc.divides(4, 0));</code></pre>
+				</blockquote>
+				<h3 id="2-3-network-refactoring">2.3. Network Refactoring</h3>
+				<p>Critical changes on network systems can be resolved flexibly.</p>
+				<p>In most case of developing network distributed processing system, there can be an issue that, necessary to major change on the network system. In someday, neccessary to <em>refactoring</em> in network level would be come, like software refactoring.</p>
+				<p>The most representative of that is the <em>performance</em> issue. For an example, there is a task and you estimated that the task can be done by one computer. However, when you actually started the service, the computation was so large that one computer was not enough. Thus, you should distribute the task to multiple computers. On contrary, you prepared multiple computers for a task. However, when you actually started the service, the computation was so small that just one computer is sufficient for the task. Sometimes, assigning a computer is even excessive, so you might need to merge the task into another computer.</p>
 				<table>
 					<thead>
 						<tr>
-							<th align="center"><img src="https://tgrid.dev/assets/images/examples/composite-calculator.png" alt="Diagram of Composite Calculator"></th>
-							<th align="center"><img src="https://tgrid.dev/assets/images/examples/hierarchical-calculator.png" alt="Diagram of Hierarchical Calculator"></th>
+							<th align="center">![Diagram of Composite Calculator](${{ assets }}images/examples/composite-calculator.png)</th>
+							<th align="center">![Diagram of Hierarchical Calculator](${{ assets }}images/examples/hierarchical-calculator.png)</th>
 						</tr>
 					</thead>
 					<tbody><tr>
-							<td align="center">Composite Calculator</td>
-							<td align="center">Hierarchical Calculator</td>
+							<td align="center">[Composite Calculator](${{ examples.md }}#22-remote-object-call)</td>
+							<td align="center">[Hierarchical Calculator](${{ examples.md }}#23-object-oriented-network)</td>
 						</tr>
 				</tbody></table>
-				<h3 id="2-3-safe-implementation">2.3. Safe Implementation</h3>
-				<p>Compilation and type checking help you to implement safe network system.</p>
-				<h2 id="3-block-chain">3. Block Chain</h2>
-				<h3 id="3-1-business-logic">3.1. Business Logic</h3>
-				<p>Principle components of Blockchain are simpler and easy to implement.</p>
-				<p>The core elements of Blockchain are &#39;Block&#39; and &#39;Chain&#39;. The first, &#39;Block&#39; is a data level issue. Considers how to design the data structure and how to archive them. The second, &#39;Chain&#39; is a policy issue that how to reach to an agreement when writing some data to &#39;Block&#39;.</p>
+				<p>I&#39;ll explain this <em>Network Refactoring</em>, caused by performance issue, through an example case that is very simple and clear. In a distributed processing system, there was a computer that providing a calculator. However, when this system was actually started, amount of the computations was so enormous that the single computer couldn&#39;t afford the computations. Thus, decided to separate the computer to three computers.</p>
+				<ul>
+					<li>[<code>scientific</code>](${{ examples.md }}#hierarchical-calculatorscientificts): scientific calculator server</li>
+					<li>[<code>statistics</code>](${{ examples.md }}#hierarchical-calculatorstatisticsts): statistics calculator server</li>
+					<li>[<code>calculator</code>](${{ examples.md }}#hierarchical-calculatorcalculatorts): mainframe server<ul>
+							<li>four arithmetic operations are computed by itself</li>
+							<li>scientific and statistics operations are shifted to another computers</li>
+							<li>and intermediates the computation results to client</li>
+						</ul>
+					</li>
+				</ul>
+				<p>If you solve this <em>Network Refactoring</em> by traditional method, it would be a hardcore duty. At first, you&#39;ve to design a message protocol used for neetwork communication between those three computers. At next, you would write parsers for the designed network messges and reprocess the events according to the newly defined network architecture. Finally, you&#39;ve to also prepare the verifications for those developments.</p>
+				<blockquote>
+					<p>Things to be changed</p>
+					<ul>
+						<li>Network Architecture</li>
+						<li>Message Protocol</li>
+						<li>Event Handling</li>
+						<li><em>Business Logic</em> Code</li>
+					</ul>
+				</blockquote>
+				<p>However, if you use the <strong>TGrid</strong> and ${{ Remote Function Call }}, the issue can&#39;t be a problem. In the <strong>TGrid</strong>, each computer in the network system is just one object. Whether you implement the remote calculator in one computer or distribute operations to three computers, its <em>Business Logic</em> code must be the same, in always.</p>
+				<p>I also provide you the best example for this <em>performance</em> issue causing the <em>Network Refactoring</em>. The first demonstration code is an implementation of a single calculator server and the second demonstration code is an implementation of a system distributing operations to three servers. As you can see, although principle structure of network system has been changed, you don&#39;t need to worry about it if you&#39;re using the <strong>TGrid</strong> and ${{ Remote Function Call }}.</p>
+				<ul>
+					<li>[Demonstration - Remote Object Call](${{ examples.md }}#22-remote-object-call)</li>
+					<li>[Demonstration - Object Oriented Network](${{ examples.md }}#23-object-oriented-network)</li>
+				</ul>
+				<h2 id="3-opportunities">3. Opportunities</h2>
+				<h3 id="3-1-blockchain">3.1. Blockchain</h3>
+				<blockquote>
+					<p>Detailed Content: [<strong>Appendix</strong> &gt; <strong>Blockchain</strong>](${{ blockchain.md }}})</p>
+				</blockquote>
+				<p>With <strong>TGrid</strong>, you can develop <em>Blockchain</em> easily.</p>
+				<p>It&#39;s a famous story that difficulty of developing blockchain is very high. Not only because of the high wages of the blockchain developers, but also from a technical point of view, blockchain is actually very difficult to implement. But, if you ask me what is such difficult, I will answer that not Business Logic* but <em>Network System</em>.</p>
+				<p>The [Network System](${{ blockchain.md }}#2-network-system) used by blockchain is a type of great distributed processing system, conostructed by millions of computers interacting with network communication. The great distributed processing systems like the blockchain always present us the tremendous difficulties. The word &#39;perfect&#39; is inserted on every development processes; requirements must be analyzed perfectly, use-cases must be identified perfectly, data and network architectures must be designed, perfectly and mutual interaction test must be perfectly.</p>
+				<p>On contrary, [Business Logic](${{ blockchain.md }}#3-business-logic) of the blockchain is not such difficult. Core elements of the blockchain are, as the name suggest, the first is &#39;Block&#39; and the second is &#39;Chain&#39;. The &#39;Block&#39; is about defining and storing data and the &#39;Chain&#39; is about policy that how to reach to an agreement when writing data to the &#39;Block&#39;.</p>
 				<table>
 					<thead>
 						<tr>
@@ -221,36 +326,64 @@ Stdev. (1, 2, 3, 4) = 1.118033988749895</code></pre>
 							<td>A policy for reaching to an agreement</td>
 						</tr>
 				</tbody></table>
-				<p>Let&#39;s imagine a situation that develop these &#39;Block&#39; and &#39;Chain&#39; onto not Network System but a single computer. In that case, those skills are required:</p>
+				<p>Let&#39;s assume that you are developing the &#39;Block&#39; and &#39;Chain&#39; as a program running only on a single computer. In this case, you just need to design the data structure and implement code storing the data on disk. Also, you would analyze the requirements (policy) and implement them. Those skills are just the essentials for programmers. In other word, [Business Logic](${{ blockchain.md }}#3-business-logic) of blockchain is something that any skilled programmers can implement.</p>
 				<ul>
-					<li>Ability to design Data Structure</li>
-					<li>Ability to store Data on Device</li>
-					<li>Ability to analyze policy (requirements)</li>
-					<li>Ability to implement them</li>
-				</ul>
-				<p>Those skills are just the essentials for programmers. In other word, <em>Business Logic</em> of Blockchain is something that any skilled programmers can implement.</p>
-				<h3 id="3-2-network-system">3.2. Network System</h3>
-				<p>The real challenge to implementing Blockchain comes from the Distributed Processing System using Network Communication.</p>
-				<p>I said that <a href="#31-business-logic">Business Logic</a> of Blockchain is easy. However, it&#39;s a conditional story only when developing the Blockchain programming running on a single computer. The actual Blockchain projects, they&#39;re not running only on a single computer, but on very large Distributed Processing System. The Distributed Processing System is composed with over millions of computers and they&#39;re interacting through network communications.</p>
-				<p>Those enormous Distributed Processing Sytems always present us tremendous difficulties. Because over millions of computers are interacting together thorugh network communication, its architecutre design must be through and perfect. There must not be any contradiction and error. If there&#39;s an error on below step, you&#39;ve to roll back whole processes and start again.</p>
-				<ul>
-					<li>Read Path to Hell<ul>
-							<li><a href="https://tgrid.dev/english/appendix/swot.html#path-to-hell">English</a></li>
-							<li><a href="https://tgrid.dev/korean/appendix/swot.html#path-to-hell">한국어</a></li>
+					<li>To develop the <em>Block</em> and <em>Chain</em>:<ul>
+							<li>Ability to design Data Structure</li>
+							<li>Ability to store Data on Device</li>
+							<li>Ability to analyze policy (requirements)</li>
+							<li>Ability to implement them</li>
 						</ul>
 					</li>
 				</ul>
-				<p>It&#39;s tremendous difficult to develop such an actual Blockchain. No matter how simple the Business Logic is, behind it lies the path to heel, an enormous Distributed Processing System. If you want to develop a Blockchain, you&#39;ve hire the excellent architects and developers, who are in the genius level. </p>
-				<p>However, even those crazy architects and genius developers cannot assure the success. Even they can be fallen into the swamp due to incomplete requirement analyses or mistakes on architecture designs. I think those crazy difficulties may be a reason why many people and companies, who had made loud noises developing Blockchain, are quite in nowadays.</p>
-				<h3 id="3-3-conclusion">3.3. Conclusion</h3>
-				<p>Reading the stories, it can be summarized as &#39;<a href="#31-business-logic">Business Logic</a> of Blockchain is easy, however composing its <a href="#32-network-system">Network System</a> is extremely difficult&#39;.</p>
-				<p>Do you remember? With <strong>TGrid</strong> and <a href="#13-remote-function-call">Remote Function Call</a>, you can turn multiple computers into a single virtual computer. Also, program code running on the virtual computer is similar with which runs on only one computer. Only in <a href="#31-business-logic">Business Logic</a> level, two programs&#39; codes are perfectly same. Thus, following conclusions can be drawn:</p>
+				<p>Do you remember? With <strong>TGrid</strong> and ${{ Remote Function Call }}, you can come true the true <a href="#12-grid-computing">Grid Computing</a>. Many computers interacting with network communication are replaced by only <u>one virtual computer</u>. Even [Business Logic](${{ blockchain.md }}#2-network-system) code of the virtual computer is same with another [Business Logic](${{ blockchain.md }}#2-network-system) code running on a single physical computer.</p>
+				<p>Thus, if you adapt the <strong>TGrid</strong> and ${{ Remote Function Call }}, difficulty of the blockchain development would be dropped to the level of [Business Logic](${{ blockchain.md }} rather than [Network System](${{ blockchain.md }}#2-network-system). Forget complex [Network System](${{ blockchain.md }}#2-network-system) and just focus on the essence of what you want to develop; the [Business Logic](${{ blockchain.md }}.</p>
+				<h3 id="3-2-public-grid">3.2. Public Grid</h3>
+				<blockquote>
+					<p>Related Project: <a href="https://tgrid.dev/en/tutorial/projects/market.html"><strong>Tutorial</strong> &gt; <strong>Projects</strong> &gt; <strong>Grid Market</strong></a></p>
+				</blockquote>
+				<p>With <strong>TGrid</strong>, you can procure resources for <a href="#12-grid-computing">Grid Computing</a> from unspecified crowds, very easily and inexpensively.</p>
+				<p>When composing <em>traditional Grid Computing</em>, of course, many computers should be prepared. As the number of computers required increases, so does the infrastructure and costs associated with procuring them. Also, you&#39;ve to install programs and configure settings for the network communication on the prepared computers. Such duties increase your efforts and let you to be tired. Is it so nature?</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Consumer</th>
+							<th>Supplier</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>Who</td>
+							<td>Developer of <a href="#12-grid-computing">Grid Computing</a></td>
+							<td>Unspecified crowds connecting to the Internet</td>
+						</tr>
+						<tr>
+							<td>What</td>
+							<td>Consumes resources of the <em>Suppliers</em></td>
+							<td>Provides resources to <em>Consumer</em></td>
+						</tr>
+						<tr>
+							<td>How</td>
+							<td>Deliver program code to <em>Suppliers</em></td>
+							<td>Connect to special URL by Internet Browser</td>
+						</tr>
+				</tbody></table>
+				<p>However, TGrid even can economize such costs and efforts dramatically. You can procure resources for <a href="#12-grid-computing">Grid Computing</a> from the unspecified crowds. Those unspecified crowds do not need to prepare anything like installing some program or configuring some setting. The only need those unspecified crowds is just connecting to special URL by Internet Browser.</p>
+				<p>The program that each <em>Supplier</em> should run is provided by the <em>Consumer</em> as JavaScript code. Each <em>Supplier</em> would act its role by the JavaScript code. Of course, interactions with <em>Supplier</em> and <em>Consumer</em> (or with a third-party computer) would use the ${{ Remote Function Call }}, so they are just one virtual computer.</p>
+				<blockquote>
+					<p>Base language of the <strong>TGrid</strong> is <em>TypeScript</em> and compilation result of the TypeScript is the <em>JavaScript</em> file. As <em>JavaScript</em> is a type of script language, it can be executed dinamiccaly. Therefore, the <em>Supplier</em> can execute the program by script code delivered by the <em>Consumer</em>.</p>
+				</blockquote>
+				<p>![Grid Market](${{ assets }}images/projects/market/actors.png)</p>
+				<p><a href="https://tgrid.dev/en/tutorial/projects/market.html">Grid Market</a> is one of the most typical example case for the <em>Public Grid</em>, a demo project for tutorial learning. In this demo project, <em>Consumer</em> also procures resources from the <em>Suppliers</em> for composing the <a href="#12-grid-computing">Grid Computing</a> system. <em>Supplier</em> also provides its resources just by connecting to the special URL by Internet Browser, too. Of course, in the <a href="https://tgrid.dev/en/tutorial/projects/market.html">Grid Market</a>, the program that <em>Supplier</em> would run still comes from the <em>Consumer</em>.</p>
+				<p>However, there&#39;s a special thing about the <a href="https://tgrid.dev/en/tutorial/projects/market.html">Grid Market</a>, it is that there is a <em>cost</em> for the <em>Consumer</em> to procure the <em>Suppliers</em>&#39; resources. Also, intermediary <em>Market</em> exists and it charges fee for mediation between the <em>Consumer</em> and <em>Supplier</em>.</p>
 				<ul>
-					<li>Blockchain&#39;s <a href="#31-business-logic">Business Logic</a> is not difficult.</li>
-					<li>With <strong>TGrid</strong>, you can concentrate only on the <a href="#31-business-logic">Business Logic</a>.</li>
-					<li>Thus, you can implement Blockchain easily through <strong>TGrid</strong>.</li>
+					<li><code>Market</code>: Intermediary market for the <em>Suppliers</em> and <em>Consumers</em>.</li>
+					<li><code>Consumer</code>: Purchase resources from the *Suppliers.</li>
+					<li><code>Supplier</code>: Sells its own resources to the <em>Consumer</em>.</li>
 				</ul>
-				<p>Are you preparing a new Blockchain project? Then realize <a href="#12-grid-computing">Grid Computing</a> with <strong>TGrid</strong> and <a href="#13-remote-function-call">Remote Function Call</a>. Focus only on the essence of the Blockchain what you want to create, <a href="#31-business-logic">Business Logic</a> itself.</p>
+				<h3 id="3-3-market-expansions">3.3. Market Expansions</h3>
+				<p>The <a href="#12-grid-computing">Grid Computing</a> market would be grown up day by day.</p>
+				<p>The future belongs to those who prepare. Prepare the future by <strong>TGrid</strong> and ${{ Remote Function Call }}. Also, I hope you to hold some changes from the future.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">

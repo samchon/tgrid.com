@@ -1,3 +1,8 @@
+<!-- @templates([
+    [ "Grid Computing", "[Grid Computing](#12-grid-computing)" ],
+    [ "Remote Function Call", "[Remote Function Call](#13-remote-function-call)" ]
+]) -->
+
 # TGrid
 ## 1. Introduction
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/tgrid/blob/master/LICENSE)
@@ -13,7 +18,7 @@
 
 Full name of **TGrid** is <u>TypeScript Grid Computing Framework</u>.
 
-As its name suggests, **TGrid** is a useful framework for implementating [Grid Computing](#12-grid-computing) in the TypeScript. With **TGrid** and its core concept [Remote Funtion Call](#13-remote-function-call), you can make many computers to be <u>a virtual computer</u>.
+As its name suggests, **TGrid** is a useful framework for implementating ${{ Grid Computing }} in the TypeScript. With **TGrid** and its core concept ${{ Remote Function Call }}, you can make many computers to be <u>a virtual computer</u>.
 
 To know more, refer below links. If you are the first comer to the **TGrid**, I strongly recommend you to read the [Guide Documents](https://tgrid.dev). In article level, [Basic Concepts](https://tgrid.dev/en/tutorial/concepts.html) and [Learn from Examples](https://tgrid.dev/en/tutorial/examples.html) sections would be good choices.
 
@@ -42,11 +47,11 @@ Therefore, within framework of the **TGrid**, it must be possible to develop *Gr
 Do you agree with me?
 
 ### 1.3. Remote Function Call
-**TGrid** realizes the true [Grid Computing](#12-grid-computing) through *Remote Function Call*. It literally calling remote system's functions are possible. With the *Remote Function Call*, you can access to objects of remote system as if they have been in my memory from the beginning.
+**TGrid** realizes the true ${{ Grid Computing }} through *Remote Function Call*. It literally calling remote system's functions are possible. With the *Remote Function Call*, you can access to objects of remote system as if they have been in my memory from the beginning.
 
 With **TGrid** and *Remote Function Call*, it's possible to handle remote system's objects and functions as if they're mine from the beginning. Do you think what that sentence means? Right, being able to call objects and functions of the remote system, it means that current and remote system are integrated into a <u>single virtual computer</u>.
 
-However, whatever [Grid Computing](#12-grid-computing) and *Remote Function Call* are, you've only heard theoretical stories. Now, it's time to see the real program code. Let's see the demonstration code and feel the *Remote Function Call*. If you want to know more about the below demonstration code, read a lesson [Learn from Examples](https://tgrid.dev/en/tutorial/examples.html) wrote into the [Guide Documents](https://tgrid.dev).
+However, whatever ${{ Grid Computing }} and *Remote Function Call* are, you've only heard theoretical stories. Now, it's time to see the real program code. Let's see the demonstration code and feel the *Remote Function Call*. If you want to know more about the below demonstration code, read a lesson [Learn from Examples](https://tgrid.dev/en/tutorial/examples.html) wrote into the [Guide Documents](https://tgrid.dev).
 
 #### [`composite-calculator/server.ts`](https://github.com/samchon/tgrid.examples/blob/master/src/projects/composite-calculator/server.ts)
 ```typescript
@@ -128,100 +133,18 @@ main();
 
 
 
-## 2. Strengths
-### 2.1. Easy Development
-Anyone can make a network system very easily.
-
-### 2.2. Flexible Structure
-Significant changes to network systems can be handled very flexibly.
-
-![Diagram of Composite Calculator](../assets/images/examples/composite-calculator.png) | ![Diagram of Hierarchical Calculator](../assets/images/examples/hierarchical-calculator.png)
-:-------------------:|:-----------------------:
-Composite Calculator | Hierarchical Calculator
-
-### 2.3. Safe Implementation
-Compilation and type checking help you to implement safe network system.
+<!-- @templates([
+    ["chapter", "2"],
+    ["assets", "../assets/"],
+    ["blockchain.md", "appendix/blockchain.md"],
+    ["examples.md", "tutorial/examples.md"]
+]) -->
+<!-- @import("appendix/internal/strengths.md") -->
 
 
 
 
-## 3. Block Chain
-### 3.1. Business Logic
-Principle components of Blockchain are simpler and easy to implement.
-
-The core elements of Blockchain are 'Block' and 'Chain'. The first, 'Block' is a data level issue. Considers how to design the data structure and how to archive them. The second, 'Chain' is a policy issue that how to reach to an agreement when writing some data to 'Block'.
-
- Component | Conception     | Description
------------|----------------|---------------------------------------
- Block     | Data Structure | Way to defining and storing data
- Chain     | Requirements   | A policy for reaching to an agreement
-
-Let's imagine a situation that develop these 'Block' and 'Chain' onto not Network System but a single computer. In that case, those skills are required:
-
-  - Ability to design Data Structure
-  - Ability to store Data on Device
-  - Ability to analyze policy (requirements)
-  - Ability to implement them
-
-Those skills are just the essentials for programmers. In other word, *Business Logic* of Blockchain is something that any skilled programmers can implement.
-
-### 3.2. Network System
-The real challenge to implementing Blockchain comes from the Distributed Processing System using Network Communication.
-
-I said that [Business Logic](#31-business-logic) of Blockchain is easy. However, it's a conditional story only when developing the Blockchain programming running on a single computer. The actual Blockchain projects, they're not running only on a single computer, but on very large Distributed Processing System. The Distributed Processing System is composed with over millions of computers and they're interacting through network communications.
-
-Those enormous Distributed Processing Sytems always present us tremendous difficulties. Because over millions of computers are interacting together thorugh network communication, its architecutre design must be thorough and perfect. There must not be any contradiction and error. If there's an error on below step, you've to roll back whole processes and start again.
-
-{% collapse title="Read Path to Hell" %}
-> #### 1 Requirements
-> To develop a Blockchain in the traditional way, you've to hire an excellent architect.
-> 
-> First of all, this architect collects and documets all of the requirements about the Blockchain to be newly created. If failed to discover some requirements or if some requirements are changed later, you've to restart all the processes. Thus, discovering requirements must very meticulous and detail.
-> 
-> #### 2 Analyses
-> Analyze collected requirements and discover all of the use cases perfectly. After determining these use cases, design a Conceptual Architecture. If any contraction or error was found on the collected requirements, turn back to the [1 Requirements](#1-requirements) and start everything again.
-> 
-> #### 3 Designs
-> After Conceptual Architecture, design below architectures continuously.
-> 
->  - Data Architecture
->  - Network Architecture
->  - Software Architecture
-> 
-> The first thing to design is the Data Architecture. It means to design the Data Model that the new Blockchain project would use. The Data Models is correspond to the 'Block'. If you've mis-designed the Data Architecture, you've retreat to current step and design it again. The step where you are, it's not a matter, so try to be sure the design it perfectly
-> 
-> The second is Network Architecture, where the design of Network Distribution is done. At first, grant each role to every computers in the Distributed Processing System. After that, define all of the network communications between participated computers. This Network Architecture may be the most difficult stage in the development processes. Also, the Network Architecture must be more perfact than any other architectures.
-> 
->>  - Define every moment of network transmissions and receptions
->>  - Define every network messages (maybe binary structure)
->>  - Define implications of each network message means (commands tobe executed, etc.)
-> 
-> The last is Software Architecture for individual programs running on each computer. Refering Data Architecture and Network Architecture, you'll design the Software Architectures representing what each program should implement.
-> 
-> #### 4 Implementations
-> This is the process implementing software programs for each computer participated in the Distributed Processing System. The implementation would reference pre-designed architectures. If you any error of Architecture Design was found on the implementation process, you've to retreat to the step and retart all the processes again.
-> 
-> If the error was caused by Requirements or Business Model...
-> 
-> #### 5 Conservations
-> It's the last stage verifying the designs and implementations are perfect.
-> 
-> Of course, if there are any omissionss or contradctions in the development process, you have to retreat and restart the process from the beginning. For example, if the Data Architecture is invalid, the majority of the Network Architecture must be destroyed and redesigned, resulting in Software Architecture and Program Code being affected.
-> 
-> On the contrary, if the verification process confirms that all development is completed, then the Blockchain system can be operated.
-{% endcollapse %}
-
-It's tremendous difficult to develop such an actual Blockchain. No matter how simple the Business Logic is, behind it lies the path to heel, an enormous Distributed Processing System. If you want to develop a Blockchain, you've hire the excellent architects and developers, who are in the genius level. 
-
-However, even those crazy architects and genius developers cannot assure the success. Even they can be fallen into the swamp due to incomplete requirement analyses or mistakes on architecture designs. I think those crazy difficulties may be a reason why many people and companies, who had made loud noises developing Blockchain, are quite in nowadays.
-
-### 3.3. Conclusion
-Reading the stories, it can be summarized as '[Business Logic](#31-business-logic) of Blockchain is easy, however composing its [Network System](#32-network-system) is extremely difficult'.
-
-Do you remember? With **TGrid** and [Remote Function Call](#13-remote-function-call), you can turn multiple computers into a single virtual computer. Also, program code running on the virtual computer is similar with which runs on only one computer. Only in [Business Logic](#31-business-logic) level, two programs' codes are perfectly same. Thus, following conclusions can be drawn:
-
-  - Blockchain's [Business Logic](#31-business-logic) is not difficult.
-  - With **TGrid**, you can concentrate only on the [Business Logic](#31-business-logic).
-  - Thus, you can implement Blockchain easily through **TGrid**.
-
-Are you preparing a new Blockchain project? Then realize [Grid Computing](#12-grid-computing) with **TGrid** and [Remote Function Call](#13-remote-function-call). Focus only on the essence of the Blockchain what you want to create, [Business Logic](#31-business-logic) itself.
+<!-- @templates([
+    ["market.md", "tutorial/projects/market.md"]
+]) -->
+<!-- @import("appendix/internal/opportunities.md") -->

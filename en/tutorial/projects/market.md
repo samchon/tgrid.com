@@ -2,10 +2,15 @@
 > https://github.com/samchon/tgrid.projects.market
 
 ## 1. Outline
+  - Demo site: http://samchon.org/market
+  - Code repository: https://github.com/samchon/tgrid.projects.market
+
 
 
 
 ## 2. Design
+
+
 
 
 

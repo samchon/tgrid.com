@@ -510,6 +510,8 @@
 <h3 id="21-considerations">2.1. Considerations</h3>
 <h3 id="22-controllers">2.2. Controllers</h3>
 <h4 id="221-market">2.2.1. Market</h4>
+<p>&#xC544;&#xB798;&#xB294; Market &#xC774; Consumer &#xC5D0;&#xAC8C; &#xC81C;&#xACF5;&#xD560; &#xAE30;&#xB2A5;&#xB4E4;&#xC744; &#xC815;&#xC758;&#xD55C; <a href="../concepts.html#24-controller">Controller</a> &#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>Consumer &#xAC00; &#xC774; <a href="../concepts.html#24-controller">Controller</a> &#xB97C; &#xD1B5;&#xD574; &#xD560; &#xC218; &#xC788;&#xB294; &#xC77C;&#xC740; &#xD06C;&#xAC8C; &#xB450; &#xAC00;&#xC9C0;&#xB85C; &#xB098;&#xB20C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xCCAB;&#xC9F8;&#xB294; &#xBC14;&#xB85C; &#xD604;&#xC7AC; Market &#xC5D0; &#xCC38;&#xC5EC;&#xC911;&#xC778; Supplier &#xB4E4;&#xC774; &#xB204;&#xAD6C;&#xC778;&#xC9C0; &#xC544;&#xB294; &#xAC83;&#xC785;&#xB2C8;&#xB2E4; (<code>getSuppliers()</code>). &#xADF8;&#xB9AC;&#xACE0; &#xB458;&#xC9F8;&#xB294; &#xADF8;&#xB4E4;&#xC758; &#xC790;&#xC6D0;&#xC744; &#xAD6C;&#xC6D0;&#xC744; &#xAD6C;&#xB9E4;&#xD558;&#xACE0; (<code>buyResource()</code>), &#xADF8;&#xAC83;&#xB4E4;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAC83;&#xC785;&#xB2C8;&#xB2E4; (<code>assignees</code>).</p>
 <pre class="language-"><code class="lang-typescript"><span class="token keyword">export</span> <span class="token keyword">namespace</span> ConsumerChannel
 <span class="token punctuation">{</span>
     <span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">IController</span>
@@ -539,7 +541,11 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>&#xADF8;&#xB9AC;&#xACE0; Market &#xC774; Supplier &#xC5D0; &#xC81C;&#xACF5;&#xD574;&#xC8FC;&#xB294; Provider &#xB294; &#xAE30;&#xB2A5;&#xC740; &#xB531; &#xB450;&#xAC00;&#xC9C0; &#xBFD0;&#xC785;&#xB2C8;&#xB2E4;. &#xCCAB;&#xC9F8;&#xB294; &#xD574;&#xB2F9; Supplier &#xC5D0;&#xAC8C; &#xBD80;&#xC5EC;&#xB41C; &#xC2DD;&#xBCC4;&#xC790; &#xBC88;&#xD638;&#xB97C; &#xAC00;&#xC838;&#xC624;&#xB294; &#xAE30;&#xB2A5;&#xC774;&#xBA70;, &#xB458;&#xC9F8;&#xB294; </p>
+<p>&#xADF8;&#xB9AC;&#xACE0; Market &#xC774; Supplier &#xC5D0; &#xC81C;&#xACF5;&#xD574;&#xC8FC;&#xB294; <a href="../concepts.html#22-provider">Provider</a> &#xAC00; &#xAC00;&#xC9C4; &#xAC1D;&#xCCB4;&#xB294; &#xB531; &#xB450;&#xAC00;&#xC9C0; &#xBFD0;&#xC785;&#xB2C8;&#xB2E4;. &#xCCAB;&#xC9F8;&#xB294; &#xD574;&#xB2F9; Supplier &#xC5D0;&#xAC8C; &#xBD80;&#xC5EC;&#xB41C; &#xC2DD;&#xBCC4;&#xC790; &#xBC88;&#xD638;&#xB97C; &#xAC00;&#xC838;&#xC624;&#xB294; &#xD568;&#xC218;&#xC774;&#xBA70;, &#xB458;&#xC9F8;&#xB294; <code>provider</code> &#xBCC0;&#xC218;&#xB85C;&#xC368;, Consumer &#xB97C; &#xAE30;&#xC900;&#xC73C;&#xB85C;&#xB294; Supplier &#xC5D0;&#xAC8C; &#xC81C;&#xACF5;&#xD558;&#xB294; <a href="../concepts.html#22-provider">Provider</a> &#xC774;&#xACE0;, Supplier &#xB97C; &#xAE30;&#xC900;&#xC73C;&#xB85C;&#xB294; <a href="../concepts.html#23-driver">Driver</a>&lt;<a href="../concepts.html#24-controller">Controller</a>&gt; &#xAC00; &#xB418;&#xACA0;&#xC8E0;.</p>
+<ul>
+<li>Consumer: <code>WebConnector<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Provider</span><span class="token punctuation">&gt;</span></span>.getProvider()</code></li>
+<li>Supplier: <code>WebConnector.getDriver<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Controller</span><span class="token punctuation">&gt;</span></span>()</code></li>
+</ul>
 <pre class="language-"><code class="lang-typescript"><span class="token keyword">export</span> <span class="token keyword">namespace</span> SupplierChannel
 <span class="token punctuation">{</span>
     <span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">IController</span>
@@ -557,6 +563,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <h4 id="222-consumer">2.2.2. Consumer</h4>
+<p>Consumer &#xAC00; Market &#xC5D0;&#xAC8C; &#xC81C;&#xACF5;&#xD558;&#xB294; <a href="../concepts.html#22-provider">Provider</a> &#xB294;, Market &#xC740; &#xB2E8;&#xC9C0; &#xC911;&#xAC04; &#xB9E4;&#xAC1C;&#xCCB4;&#xB85C;&#xC368; &#xACBD;&#xC720;&#xD558;&#xAE30;&#xB9CC; &#xD560; &#xBFD0;, &#xC2E4;&#xC9C8;&#xC801;&#xC73C;&#xB85C;&#xB294; Supplier &#xB4E4;&#xC5D0;&#xAC8C; &#xC81C;&#xACF5;&#xB418;&#xB294; <a href="../concepts.html#22-provider">Provider</a> &#xB77C;&#xACE0; &#xBCF4;&#xC544;&#xB3C4; &#xBB34;&#xBC29;&#xD569;&#xB2C8;&#xB2E4;. &#xC2E4;&#xC81C;&#xB85C; Supplier &#xB294; Market &#xC11C;&#xBC84;&#xC5D0; &#xC811;&#xC18D;&#xD55C; &#xD6C4;, <code>Servant.IController</code> &#xC5D0; &#xC815;&#xC758;&#xB41C; <code>provider: object</code> &#xBCC0;&#xC218;&#xB97C; &#xC774;&#xC6A9;&#xD558;&#xC5EC; Consumer &#xC758; <a href="../concepts.html#22-provider">Provider</a> &#xAC1D;&#xCCB4;&#xAC00; &#xC81C;&#xACF5;&#xD558;&#xB294; &#xD568;&#xC218;&#xB4E4;&#xC744; &#xC774;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre class="language-"><code class="lang-typescript"><span class="token keyword">export</span> <span class="token keyword">namespace</span> Consumer
 <span class="token punctuation">{</span>
     <span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">IController</span>
@@ -567,13 +574,13 @@
         servants<span class="token punctuation">:</span> ArrayLike<span class="token operator">&lt;</span>Servant<span class="token punctuation">.</span>IController<span class="token operator">&gt;</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre>
-<pre class="language-"><code class="lang-typescript"><span class="token keyword">export</span> <span class="token keyword">namespace</span> Servant
+
+<span class="token keyword">export</span> <span class="token keyword">namespace</span> Servant
 <span class="token punctuation">{</span>
     <span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">IController</span>
     <span class="token punctuation">{</span>
         <span class="token comment">/**
-         * Consuemr &#xC5D0;&#xC11C; &#xC81C;&#xACF5;&#xD574;&#xC8FC;&#xB294; provider
+         * Consumer &#xC5D0;&#xC11C; &#xC81C;&#xACF5;&#xD574;&#xC8FC;&#xB294; provider
          */</span>
         provider<span class="token punctuation">:</span> object<span class="token punctuation">;</span>
 
@@ -700,8 +707,36 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <h3 id="23-architecture-design">2.3. Architecture Design</h3>
-<h2 id="3-implementation">3. Implementation</h2>
+<h2 id="3-core-implementation">3. Core Implementation</h2>
 <h3 id="31-market">3.1. Market</h3>
+<p>Market &#xC740; Consumer &#xC640; Supplier &#xAC04;&#xC758; &#xCEF4;&#xD4E8;&#xD305; &#xC790;&#xC6D0; &#xAC70;&#xB798;&#xAC00; &#xC774;&#xB8E8;&#xC5B4;&#xC9C0;&#xB294; &#xC911;&#xAC1C;&#xC2DC;&#xC7A5;&#xC785;&#xB2C8;&#xB2E4;. </p>
+<p>&#xB530;&#xB77C;&#xC11C; Market &#xD074;&#xB798;&#xC2A4;&#xC758; &#xAD6C;&#xD604; &#xCF54;&#xB4DC;&#xB294; &#xC81C;&#xC77C; &#xBA3C;&#xC800; &#xC6F9;&#xC18C;&#xCF13; &#xC11C;&#xBC84;&#xB97C; &#xAC1C;&#xC124;&#xD558;&#xB294; &#xAC83;&#xC5D0;&#xC11C;&#xBD80;&#xD130; &#xC2DC;&#xC791;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; Market &#xC11C;&#xBC84;&#xC5D0; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xAC00; &#xC811;&#xC18D;&#xD560; &#xB54C;&#xB9C8;&#xB2E4;, &#xD574;&#xB2F9; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xAC00; &#xC811;&#xC18D;&#xC5D0; &#xC0AC;&#xC6A9;&#xD55C; &#xC8FC;&#xC18C;&#xB97C; &#xAE30;&#xC900;&#xC73C;&#xB85C; &#xADF8; &#xC5ED;&#xD560;&#xC744; &#xC2DD;&#xBCC4;&#xD558;&#xACE0; &#xC804;&#xB2F4; &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xC5EC; &#xC9C0;&#xC6D0;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Role</th>
+<th>Generated Class</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/consumer</td>
+<td>Consumer</td>
+<td>ConsummerChannel</td>
+</tr>
+<tr>
+<td>/supplier</td>
+<td>Supplier</td>
+<td>SupplierChannel</td>
+</tr>
+<tr>
+<td>/monitor</td>
+<td>Monitor</td>
+<td>MonitorChannel</td>
+</tr>
+</tbody>
+</table>
 <h4 id="coremarketmarketts"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/market/Market.ts" target="_blank"><code>core/market/Market.ts</code></a></h4>
 <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> HashMap <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tstl/container/HashMap&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> WebServer<span class="token punctuation">,</span> WebAcceptor <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/web&quot;</span><span class="token punctuation">;</span>
@@ -935,6 +970,8 @@
     <span class="token constant">MONITOR</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<p><code>ConsumerChannel</code> &#xC740; Market &#xC11C;&#xBC84;&#xC5D0; &#xC811;&#xC18D;&#xD55C; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8; Consumer &#xC5D0; &#xB300;&#xC751;&#xD558;&#xAE30; &#xC704;&#xD55C; &#xD074;&#xB798;&#xC2A4;&#xC785;&#xB2C8;&#xB2E4;. </p>
+<p>Market &#xC11C;&#xBC84; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC740; &#xC774; <code>ConsumerChannel</code> &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xD1B5;&#xD558;&#xC5EC; Consumer &#xAC00; &#xAD6C;&#xC785;&#xD55C; Supplier &#xB4E4;&#xC758; &#xC790;&#xC6D0; &#xB9AC;&#xC2A4;&#xD2B8;&#xB97C; &#xAE30;&#xB85D;&#xD558;&#xACE0; &#xAD00;&#xB9AC;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; Consumer &#xB294; &#xC774; <code>ConsumerChannel</code> &#xD074;&#xB798;&#xC2A4;&#xC758; &#xB0B4;&#xBD80; &#xB124;&#xC784;&#xC2A4;&#xD398;&#xC774;&#xC2A4;&#xC5D0; &#xC815;&#xC758;&#xB41C; <code>ConsumerChannel.Provider</code> &#xB97C; &#xD1B5;&#xD558;&#xC5EC;, Market &#xC11C;&#xBC84;&#xC5D0; &#xC811;&#xC18D;&#xD574;&#xC788;&#xB294; &#xC804;&#xCCB4; Supplier &#xB4E4;&#xC758; &#xB9AC;&#xC2A4;&#xD2B8;&#xB97C; &#xC5F4;&#xB78C;&#xD558;&#xACE0;, &#xADF8;&#xB4E4;&#xC758; &#xC790;&#xC6D0;&#xC744; &#xAD6C;&#xB9E4;&#xD558;&#xACE0; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <h4 id="coremarketconsumerchannelts"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/market/ConsumerChannel.ts" target="_blank"><code>core/market/ConsumerChannel.ts</code></a></h4>
 <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WebAcceptor <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/web/WebAcceptor&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> SharedWorkerAcceptor <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/workers/SharedWorkerAcceptor&quot;</span><span class="token punctuation">;</span>
@@ -1126,6 +1163,9 @@
  */</span>
 <span class="token keyword">type</span> Acceptor <span class="token operator">=</span> WebAcceptor<span class="token operator">&lt;</span>ConsumerChannel<span class="token punctuation">.</span>Provider<span class="token operator">&gt;</span> <span class="token operator">|</span> SharedWorkerAcceptor<span class="token operator">&lt;</span>ConsumerChannel<span class="token punctuation">.</span>Provider<span class="token operator">&gt;</span><span class="token punctuation">;</span>
 </code></pre>
+<p><code>SupplierChannel</code> &#xC740; Market &#xC11C;&#xBC84;&#xC5D0; &#xC811;&#xC18D;&#xD55C; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8; Supplier &#xC5D0; &#xB300;&#xC751;&#xD558;&#xAE30; &#xC704;&#xD55C; &#xD074;&#xB798;&#xC2A4;&#xC785;&#xB2C8;&#xB2E4;. </p>
+<p>Market &#xC11C;&#xBC84; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC740; &#xC774; <code>SupplierChannel</code> &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xD1B5;&#xD558;&#xC5EC;, &#xD574;&#xB2F9; Supplier &#xC758; performance &#xC815;&#xBCF4;&#xB97C; &#xAE30;&#xB85D;&#xD558;&#xACE0; &#xAD00;&#xB9AC;&#xD558;&#xBA70;, &#xB9C8;&#xCC2C;&#xAC00;&#xC9C0;&#xB85C; &#xD574;&#xB2F9; Supplier &#xC758; &#xC790;&#xC6D0;&#xC744; &#xAD6C;&#xC785;&#xD55C; Consumer &#xC815;&#xBCF4; &#xC5ED;&#xC2DC; &#xC774; <code>SupplierChannel</code> &#xD074;&#xB798;&#xC2A4;&#xC5D0; &#xAE30;&#xB85D;&#xB429;&#xB2C8;&#xB2E4;. </p>
+<p> Supplier &#xB294; &#xC774; <code>SupplierChannel</code> &#xD074;&#xB798;&#xC2A4;&#xC758; &#xB0B4;&#xBD80; &#xB124;&#xC784;&#xC2A4;&#xD398;&#xC774;&#xC2A4;&#xC5D0; &#xC815;&#xC758;&#xB41C; <code>SupplierChannel.Provider</code> &#xB97C; &#xD1B5;&#xD558;&#xC5EC;, Consumer &#xAC00; &#xC790;&#xC2E0;&#xC5D0;&#xAC8C; &#xD560;&#xB2F9;&#xD574; &#xC900; <a href="../concepts.html#22-provider">Provider</a> &#xC758; &#xD568;&#xC218;&#xB4E4;&#xC744; <a href="../concepts.html#23-driver">Driver</a>&lt;<a href="../concepts.html#24-controller">Controller</a>&gt; &#xB97C; &#xD1B5;&#xD558;&#xC5EC; &#xC6D0;&#xACA9; &#xD638;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <h4 id="coremarketsupplierchannelts"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/market/SupplierChannel.ts" target="_blank"><code>core/market/SupplierChannel.ts</code></a></h4>
 <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WebAcceptor <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/web&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> SharedWorkerAcceptor <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/workers&quot;</span><span class="token punctuation">;</span>
@@ -1316,6 +1356,113 @@
 <span class="token keyword">type</span> Acceptor <span class="token operator">=</span> WebAcceptor<span class="token operator">&lt;</span>SupplierChannel<span class="token punctuation">.</span>Provider<span class="token operator">&gt;</span> <span class="token operator">|</span> SharedWorkerAcceptor<span class="token operator">&lt;</span>SupplierChannel<span class="token punctuation">.</span>Provider<span class="token operator">&gt;</span><span class="token punctuation">;</span>
 </code></pre>
 <h3 id="32-consumer">3.2. Consumer</h3>
+<p><code>Consumer</code> &#xD074;&#xB798;&#xC2A4;&#xB294; Consumer &#xB97C; &#xC704;&#xD558;&#xC5EC; &#xC81C;&#xC791;&#xB41C; Facade &#xD074;&#xB798;&#xC2A4;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>Consumer &#xB294; <code>Consumer.participate()</code> &#xBA54;&#xC11C;&#xB4DC;&#xB97C; &#xC774;&#xC6A9;&#xD558;&#xC5EC; Market &#xC11C;&#xBC84;&#xC5D0; &#xC811;&#xC18D;&#xD568;&#xC73C;&#xB85C;&#xC368;, &#xC2DC;&#xC7A5;&#xC5D0; &#xCC38;&#xC5EC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; <code>Consumer.getSuppliers()</code> &#xBA54;&#xC11C;&#xB4DC;&#xB97C; &#xC774;&#xC6A9;&#xD558;&#xC5EC; &#xC2DC;&#xC7A5;&#xC5D0; &#xCC38;&#xC5EC;&#xC911;&#xC778; &#xC804;&#xCCB4; Supplier &#xB4E4;&#xC758; &#xB9AC;&#xC2A4;&#xD2B8;&#xB97C; &#xC870;&#xD68C;&#xD560; &#xC218; &#xC788;&#xACE0;, &#xC774;&#xB4E4; &#xC911; &#xC6D0;&#xD558;&#xB294; Supplier &#xB4E4;&#xC758; &#xC790;&#xC6D0;&#xC744; <code>Consumer.buyResource()</code> &#xBA54;&#xC11C;&#xB4DC;&#xB97C; &#xC774;&#xC6A9;&#xD558;&#xC5EC; &#xAD6C;&#xC785;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<h4 id="coreconsumerconsumerts"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/consumer/Consumer.ts" target="_blank"><code>core/consumer/Consumer.ts</code></a></h4>
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WebConnector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/web/WebConnector&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> SharedWorkerConnector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/workers&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Driver <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/components/Driver&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ArrayDict <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../../utils/ArrayDict&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Servant <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./Servant&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ISupplier <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../supplier/ISupplier&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ConsumerChannel <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../market/ConsumerChannel&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">Consumer</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">readonly</span> uid<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> connector_<span class="token punctuation">:</span> Connector<span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> market_<span class="token punctuation">:</span> Driver<span class="token operator">&lt;</span>ConsumerChannel<span class="token punctuation">.</span>IController<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> servants_<span class="token punctuation">:</span> Servant<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* ----------------------------------------------------------------
+        CONSTRUCTORS
+    ---------------------------------------------------------------- */</span>
+    <span class="token keyword">private</span> <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">uid<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> connector<span class="token punctuation">:</span> Connector</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>uid <span class="token operator">=</span> uid<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>connector_ <span class="token operator">=</span> connector<span class="token punctuation">;</span>
+
+        <span class="token keyword">this</span><span class="token punctuation">.</span>market_ <span class="token operator">=</span> connector<span class="token punctuation">.</span>getDriver<span class="token operator">&lt;</span>ConsumerChannel<span class="token punctuation">.</span>IController<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>servants_ <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">async</span> <span class="token function">participate</span><span class="token punctuation">(</span>url<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span>Consumer<span class="token operator">&gt;</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> provider<span class="token punctuation">:</span> Consumer<span class="token punctuation">.</span>Provider <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Consumer<span class="token punctuation">.</span>Provider</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> connector<span class="token punctuation">:</span> WebConnector<span class="token operator">&lt;</span>Consumer<span class="token punctuation">.</span>Provider<span class="token operator">&gt;</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebConnector</span><span class="token punctuation">(</span>provider<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">await</span> connector<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">let</span> uid<span class="token punctuation">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token keyword">await</span> connector<span class="token punctuation">.</span>getDriver<span class="token operator">&lt;</span>ConsumerChannel<span class="token punctuation">.</span>IController<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getUID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Consumer</span><span class="token punctuation">(</span>uid<span class="token punctuation">,</span> connector<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">leave</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>connector_<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/* ----------------------------------------------------------------
+        ACCESSORS
+    ---------------------------------------------------------------- */</span>
+    <span class="token keyword">public</span> <span class="token function">getSuppliers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span>ISupplier<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">&gt;</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>market_<span class="token punctuation">.</span><span class="token function">getSuppliers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">buyResource</span><span class="token punctuation">(</span>base<span class="token punctuation">:</span> ISupplier<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span>Servant <span class="token operator">|</span> <span class="token keyword">null</span><span class="token operator">&gt;</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>market_<span class="token punctuation">.</span><span class="token function">buyResource</span><span class="token punctuation">(</span>base<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">let</span> driver <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>market_<span class="token punctuation">.</span>assginees<span class="token punctuation">[</span>base<span class="token punctuation">.</span>uid<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> ret<span class="token punctuation">:</span> Servant <span class="token operator">=</span> Servant<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>base<span class="token punctuation">,</span> driver<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        ret<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i<span class="token punctuation">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>servants_<span class="token punctuation">.</span>length<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>servants_<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>uid <span class="token operator">===</span> ret<span class="token punctuation">.</span>uid<span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    <span class="token keyword">this</span><span class="token punctuation">.</span>servants_<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>connector_<span class="token punctuation">.</span><span class="token function">getProvider</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!</span><span class="token punctuation">.</span>servants<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>ret<span class="token punctuation">.</span>uid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">this</span><span class="token punctuation">.</span>servants_<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>ret<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>connector_<span class="token punctuation">.</span><span class="token function">getProvider</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!</span><span class="token punctuation">.</span>servants<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span>ret<span class="token punctuation">.</span>uid<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Servant<span class="token punctuation">.</span>Provider</span><span class="token punctuation">(</span>ret<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> ret<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">namespace</span> Consumer
+<span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * @internal
+     */</span>
+    <span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">IController</span>
+    <span class="token punctuation">{</span>
+        servants<span class="token punctuation">:</span> ArrayLike<span class="token operator">&lt;</span>Servant<span class="token punctuation">.</span>IController<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * @internal
+     */</span>
+    <span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">Provider</span> <span class="token keyword">implements</span> <span class="token class-name">IController</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> servants<span class="token punctuation">:</span> ArrayDict<span class="token operator">&lt;</span>Servant<span class="token punctuation">.</span>Provider<span class="token operator">&gt;</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayDict</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+ * @hidden
+ */</span>
+<span class="token keyword">type</span> Connector <span class="token operator">=</span> WebConnector<span class="token operator">&lt;</span>Consumer<span class="token punctuation">.</span>Provider<span class="token operator">&gt;</span> <span class="token operator">|</span> SharedWorkerConnector<span class="token operator">&lt;</span>Consumer<span class="token punctuation">.</span>Provider<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+</code></pre>
+<p><code>Consumer.buyResource()</code> &#xB97C; &#xD1B5;&#xD574; &#xAD6C;&#xC785;&#xD55C; Supplier &#xC758; &#xC790;&#xC6D0;&#xC740; <code>Servant</code> &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xD1B5;&#xD558;&#xC5EC; &#xAD00;&#xB9AC;&#xB429;&#xB2C8;&#xB2E4;. &#xC774; <code>Servant</code> &#xD074;&#xB798;&#xC2A4;&#xC758; &#xC5ED;&#xD560;&#xC740; Consumer &#xC640; Supplier &#xC758; Worker &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC744; &#xC787;&#xB294; Communicator &#xD074;&#xB798;&#xC2A4;&#xC785;&#xB2C8;&#xB2E4;. &#xBE44;&#xB85D; Consumer &#xC640; Supplier &#xC758; Worker &#xD504;&#xB85C;&#xADF8;&#xB7A8; &#xC0AC;&#xC774;&#xC5D0;&#xB294; Market &#xACFC; Supplier &#xC758; &#xBA54;&#xC778; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC774; &#xC911;&#xAC04; &#xB9E4;&#xAC1C;&#xCCB4;&#xB85C;&#xC368; &#xC790;&#xB9AC;&#xD558;&#xACE0; &#xC788;&#xB354;&#xB77C;&#xB3C4; &#xB9D0;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>Consumer &#xB294; <code>Servant.compile()</code> &#xBA54;&#xC11C;&#xB4DC;&#xB97C; &#xD1B5;&#xD574; Supplier &#xC5D0;&#xAC8C; &#xC81C;&#xACF5;&#xD560; <a href="../concepts.html#22-provider">Provider</a> &#xC640;, &#xADF8;&#xAC83;&#xC774; &#xC2E4;&#xD589;&#xD574;&#xC57C; &#xD560; &#xD504;&#xB85C;&#xADF8;&#xB7A8; &#xC18C;&#xC2A4;&#xCF54;&#xB4DC;&#xB97C; &#xAC74;&#xB124;&#xC904; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB300;&#xC0C1; Supplier &#xB294; &#xD574;&#xB2F9; &#xD504;&#xB85C;&#xADF8;&#xB7A8; &#xC18C;&#xC2A4;&#xCF54;&#xB4DC;&#xB97C; &#xCEF4;&#xD30C;&#xC77C;&#xD558;&#xACE0;, &#xC774;&#xB97C; &#xC0C8; Worker &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC5D0; &#xD0D1;&#xC7AC;&#xD558;&#xC5EC; &#xAD6C;&#xB3D9;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; &#xADF8; Worker &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC774; &#xBC14;&#xB85C;, &#xD604; Consumer &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xACFC; &#xC5F0;&#xB3D9;&#xD558;&#xAC8C; &#xB420; &#xCD5C;&#xC885; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <h4 id="coreconsumerservantts"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/consumer/Servant.ts" target="_blank"><code>core/consumer/Servant.ts</code></a></h4>
 <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> ISupplier <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../supplier/ISupplier&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> Driver <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/components/Driver&quot;</span><span class="token punctuation">;</span>
@@ -1466,120 +1613,9 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h4 id="coreconsumerconsumerts"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/consumer/Consumer.ts" target="_blank"><code>core/consumer/Consumer.ts</code></a></h4>
-<pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WebConnector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/web/WebConnector&quot;</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> SharedWorkerConnector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/workers&quot;</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> Driver <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/components/Driver&quot;</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> ArrayDict <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../../utils/ArrayDict&quot;</span><span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> <span class="token punctuation">{</span> Servant <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./Servant&quot;</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> ISupplier <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../supplier/ISupplier&quot;</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> ConsumerChannel <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;../market/ConsumerChannel&quot;</span><span class="token punctuation">;</span>
-
-<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">Consumer</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">readonly</span> uid<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> connector_<span class="token punctuation">:</span> Connector<span class="token punctuation">;</span>
-
-    <span class="token keyword">private</span> market_<span class="token punctuation">:</span> Driver<span class="token operator">&lt;</span>ConsumerChannel<span class="token punctuation">.</span>IController<span class="token operator">&gt;</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> servants_<span class="token punctuation">:</span> Servant<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-
-    <span class="token comment">/* ----------------------------------------------------------------
-        CONSTRUCTORS
-    ---------------------------------------------------------------- */</span>
-    <span class="token keyword">private</span> <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">uid<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> connector<span class="token punctuation">:</span> Connector</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>uid <span class="token operator">=</span> uid<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>connector_ <span class="token operator">=</span> connector<span class="token punctuation">;</span>
-
-        <span class="token keyword">this</span><span class="token punctuation">.</span>market_ <span class="token operator">=</span> connector<span class="token punctuation">.</span>getDriver<span class="token operator">&lt;</span>ConsumerChannel<span class="token punctuation">.</span>IController<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>servants_ <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">async</span> <span class="token function">participate</span><span class="token punctuation">(</span>url<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span>Consumer<span class="token operator">&gt;</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">let</span> provider<span class="token punctuation">:</span> Consumer<span class="token punctuation">.</span>Provider <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Consumer<span class="token punctuation">.</span>Provider</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">let</span> connector<span class="token punctuation">:</span> WebConnector<span class="token operator">&lt;</span>Consumer<span class="token punctuation">.</span>Provider<span class="token operator">&gt;</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebConnector</span><span class="token punctuation">(</span>provider<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">await</span> connector<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">let</span> uid<span class="token punctuation">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token keyword">await</span> connector<span class="token punctuation">.</span>getDriver<span class="token operator">&lt;</span>ConsumerChannel<span class="token punctuation">.</span>IController<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getUID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Consumer</span><span class="token punctuation">(</span>uid<span class="token punctuation">,</span> connector<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token function">leave</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">&gt;</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>connector_<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment">/* ----------------------------------------------------------------
-        ACCESSORS
-    ---------------------------------------------------------------- */</span>
-    <span class="token keyword">public</span> <span class="token function">getSuppliers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span>ISupplier<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">&gt;</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>market_<span class="token punctuation">.</span><span class="token function">getSuppliers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">async</span> <span class="token function">buyResource</span><span class="token punctuation">(</span>base<span class="token punctuation">:</span> ISupplier<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span>Servant <span class="token operator">|</span> <span class="token keyword">null</span><span class="token operator">&gt;</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>market_<span class="token punctuation">.</span><span class="token function">buyResource</span><span class="token punctuation">(</span>base<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
-            <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">let</span> driver <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>market_<span class="token punctuation">.</span>assginees<span class="token punctuation">[</span>base<span class="token punctuation">.</span>uid<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">let</span> ret<span class="token punctuation">:</span> Servant <span class="token operator">=</span> Servant<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>base<span class="token punctuation">,</span> driver<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        ret<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
-        <span class="token punctuation">{</span>
-            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i<span class="token punctuation">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>servants_<span class="token punctuation">.</span>length<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>servants_<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>uid <span class="token operator">===</span> ret<span class="token punctuation">.</span>uid<span class="token punctuation">)</span>
-                <span class="token punctuation">{</span>
-                    <span class="token keyword">this</span><span class="token punctuation">.</span>servants_<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    <span class="token keyword">break</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-            <span class="token keyword">this</span><span class="token punctuation">.</span>connector_<span class="token punctuation">.</span><span class="token function">getProvider</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!</span><span class="token punctuation">.</span>servants<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>ret<span class="token punctuation">.</span>uid<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">this</span><span class="token punctuation">.</span>servants_<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>ret<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>connector_<span class="token punctuation">.</span><span class="token function">getProvider</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">!</span><span class="token punctuation">.</span>servants<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span>ret<span class="token punctuation">.</span>uid<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Servant<span class="token punctuation">.</span>Provider</span><span class="token punctuation">(</span>ret<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">return</span> ret<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">export</span> <span class="token keyword">namespace</span> Consumer
-<span class="token punctuation">{</span>
-    <span class="token comment">/**
-     * @internal
-     */</span>
-    <span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">IController</span>
-    <span class="token punctuation">{</span>
-        servants<span class="token punctuation">:</span> ArrayLike<span class="token operator">&lt;</span>Servant<span class="token punctuation">.</span>IController<span class="token operator">&gt;</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment">/**
-     * @internal
-     */</span>
-    <span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">Provider</span> <span class="token keyword">implements</span> <span class="token class-name">IController</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">public</span> servants<span class="token punctuation">:</span> ArrayDict<span class="token operator">&lt;</span>Servant<span class="token punctuation">.</span>Provider<span class="token operator">&gt;</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayDict</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment">/**
- * @hidden
- */</span>
-<span class="token keyword">type</span> Connector <span class="token operator">=</span> WebConnector<span class="token operator">&lt;</span>Consumer<span class="token punctuation">.</span>Provider<span class="token operator">&gt;</span> <span class="token operator">|</span> SharedWorkerConnector<span class="token operator">&lt;</span>Consumer<span class="token punctuation">.</span>Provider<span class="token operator">&gt;</span><span class="token punctuation">;</span>
-</code></pre>
 <h3 id="33-supplier">3.3. Supplier</h3>
-<h4 id="coresupplierisupplierts"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/supplier/ISupplier.ts" target="_blank"><code>core/supplier/ISupplier.ts</code></a></h4>
-<pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> IPerformance <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./IPerformance&quot;</span><span class="token punctuation">;</span>
-
-<span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">ISupplier</span>
-<span class="token punctuation">{</span>
-    uid<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
-    performance<span class="token punctuation">:</span> IPerformance<span class="token punctuation">;</span>
-    free<span class="token punctuation">:</span> <span class="token builtin">boolean</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
+<p><code>Supplier</code> &#xD074;&#xB798;&#xC2A4;&#xB294; Supplier &#xB97C; &#xC704;&#xD574; &#xB9CC;&#xB4E4;&#xC5B4;&#xC9C4; Facade Controller &#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>Supplier &#xB294; <code>Supplier.participate()</code> &#xBA54;&#xC11C;&#xB4DC;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xC5EC; Market &#xC11C;&#xBC84;&#xC5D0; &#xC811;&#xC18D;&#xD568;&#xC73C;&#xB85C;&#xC368;, &#xC2DC;&#xC7A5;&#xC5D0; &#xCC38;&#xC5EC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; Supplier &#xD074;&#xB798;&#xC2A4;&#xC758; &#xB0B4;&#xBD80; &#xB124;&#xC784;&#xC2A4;&#xD398;&#xC774;&#xC2A4;&#xC5D0; &#xC815;&#xC758;&#xB41C; <code>Supplier.Provider</code> &#xB97C; &#xC774;&#xC6A9;&#xD558;&#xC5EC;, Market &#xACFC; Consumer &#xAC00; &#xD544;&#xC694;&#xB85C; &#xD558;&#xB294; &#xAE30;&#xB2A5;&#xB4E4;&#xC744; &#xC81C;&#xACF5;&#xD558;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <h4 id="coresuppliersupplierts"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/supplier/Supplier.ts" target="_blank"><code>core/supplier/Supplier.ts</code></a></h4>
 <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> EventEmitter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;events&quot;</span><span class="token punctuation">;</span>
 
@@ -1726,7 +1762,21 @@
 
 <span class="token keyword">type</span> Connector <span class="token operator">=</span> WebConnector<span class="token operator">&lt;</span>Supplier<span class="token punctuation">.</span>Provider<span class="token operator">&gt;</span> <span class="token operator">|</span> SharedWorkerConnector<span class="token operator">&lt;</span>Supplier<span class="token punctuation">.</span>Provider<span class="token operator">&gt;</span><span class="token punctuation">;</span>
 </code></pre>
+<p>&#xB610;&#xD55C;, Supplier &#xC758; &#xC2DD;&#xBCC4;&#xC790; &#xBC0F; performance &#xC5D0; &#xB300;&#xD55C; &#xC815;&#xBCF4;&#xB294;, &#xC544;&#xB798; <code>ISupplier</code> &#xAD6C;&#xC870;&#xCCB4;&#xB85C; &#xC694;&#xC57D;&#xB420; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. Consumer &#xB294; &#xC774; <code>ISupplier</code> &#xC5D0; &#xAE30;&#xC7AC;&#xB41C; Supplier &#xC758; &#xC694;&#xC57D;&#xC815;&#xBCF4;&#xB97C; &#xBCF4;&#xACE0;, &#xD574;&#xB2F9; Supplier &#xC758; &#xC790;&#xC6D0; &#xAD6C;&#xB9E4; &#xC5EC;&#xBD80;&#xB97C; &#xACB0;&#xC815;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<h4 id="coresupplierisupplierts"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/supplier/ISupplier.ts" target="_blank"><code>core/supplier/ISupplier.ts</code></a></h4>
+<pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> IPerformance <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./IPerformance&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">ISupplier</span>
+<span class="token punctuation">{</span>
+    uid<span class="token punctuation">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    performance<span class="token punctuation">:</span> IPerformance<span class="token punctuation">;</span>
+    free<span class="token punctuation">:</span> <span class="token builtin">boolean</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <h3 id="34-monitor">3.4. Monitor</h3>
+<p><code>Monitor</code> &#xD074;&#xB798;&#xC2A4;&#xB294; Monitor &#xB97C; &#xC704;&#xD574; &#xB9CC;&#xB4E4;&#xC5B4;&#xC9C4; Facade Controller &#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>Monitor &#xB294; <code>Monitor.participate()</code> &#xBA54;&#xC11C;&#xB4DC;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xC5EC; Market &#xC11C;&#xBC84;&#xC5D0; &#xC811;&#xC18D;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; <code>Monitor</code> &#xD074;&#xB798;&#xC2A4;&#xC758; &#xB0B4;&#xBD80; &#xB124;&#xC784;&#xC2A4;&#xD398;&#xC774;&#xC2A4;&#xC5D0; &#xC815;&#xC758;&#xB41C; <code>Monitor.Provider</code> &#xD074;&#xB798;&#xC2A4;&#xC640; <code>Monitor</code> &#xD074;&#xB798;&#xC2A4;&#xC758; &#xB2E4;&#xC591;&#xD55C; accessor &#xBA54;&#xC11C;&#xB4DC;&#xB4E4;&#xC744; &#xC774;&#xC6A9;&#xD558;&#xC5EC;, &#xC2DC;&#xC7A5;&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD558;&#xB294; &#xBAA8;&#xB4E0; &#xAC70;&#xB798;&#xB0B4;&#xC5ED;&#xC744; &#xC2E4;&#xC2DC;&#xAC04;&#xC73C;&#xB85C; &#xB4E4;&#xC5EC;&#xB2E4;&#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xBC18;&#xB300;&#xB85C; &#xC598;&#xAE30;&#xD558;&#xBA74;, Market &#xC740; &#xC2DC;&#xC7A5;&#xC5D0;&#xC11C; &#xCC38;&#xC5EC;&#xC790; &#xB9AC;&#xC2A4;&#xD2B8;&#xC5D0; &#xBCC0;&#xB3D9;&#xC774; &#xC0DD;&#xAE30;&#xAC70;&#xB098; &#xC0C8;&#xB85C;&#xC6B4; &#xAC70;&#xB798;&#xB0B4;&#xC5ED;&#xC774; &#xBC1C;&#xC0DD;&#xD560; &#xB54C;&#xB9C8;&#xB2E4;, <a href="../concepts.html#23-driver">Driver</a><monitor.icontroller> &#xC758; &#xD568;&#xC218;&#xB4E4;&#xC744; &#xC6D0;&#xACA9; &#xD638;&#xCD9C;&#xD558;&#xC5EC; &#xC774;&#xB97C; Monitor &#xC5D0;&#xAC8C; &#xC54C;&#xB824;&#xC90D;&#xB2C8;&#xB2E4;.</monitor.icontroller></p>
 <h4 id="coremonitormonitorts"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/monitor/Monitor.ts" target="_blank">`core/monitor/Monitor.ts</a></h4>
 <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> WebConnector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/web&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> SharedWorkerConnector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tgrid/protocols/workers&quot;</span><span class="token punctuation">;</span>
@@ -1964,6 +2014,7 @@
  */</span>
 <span class="token keyword">type</span> Connector <span class="token operator">=</span> WebConnector <span class="token operator">|</span> SharedWorkerConnector<span class="token punctuation">;</span>
 </code></pre>
+<p><code>ConsumerNode</code> &#xD074;&#xB798;&#xC2A4;&#xB294; Market &#xC5D0; &#xCC38;&#xC5EC;&#xD55C; Consumer &#xB97C; &#xD45C;&#xD604;&#xD558;&#xAE30; &#xC704;&#xD574; &#xC81C;&#xC791;&#xB41C; &#xD074;&#xB798;&#xC2A4;&#xB85C;&#xC368;, &#xD574;&#xB2F9; Consumer &#xAD6C;&#xB9E4;&#xD55C; Supplier &#xC758; &#xC790;&#xC6D0; &#xB0B4;&#xC5ED;&#xC744; &#xAE30;&#xB85D;&#xD558;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <h4 id="coremonitorconsumernodets"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/monitor/ConsumerNode.ts" target="_blank"><code>core/monitor/ConsumerNode.ts</code></a></h4>
 <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> HashMap <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;tstl/container/HashMap&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> SupplierNode <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./SupplierNode&quot;</span><span class="token punctuation">;</span>
@@ -1980,6 +2031,7 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<p><code>SupplierNode</code> &#xD074;&#xB798;&#xC2A4;&#xB294; Market &#xC5D0; &#xCC38;&#xC5EC;&#xD55C; Supplier &#xB97C; &#xD45C;&#xD604;&#xD558;&#xAE30; &#xC704;&#xD574; &#xC124;&#xACC4;&#xB41C; &#xD074;&#xB798;&#xC2A4;&#xB85C;&#xC368;, &#xD574;&#xB2F9; Supplier &#xC758; &#xC790;&#xC6D0;&#xC744; &#xAD6C;&#xB9E4;&#xD558;&#xC5EC; &#xC0AC;&#xC6A9;&#xD558;&#xACE0; &#xC788;&#xB294; Consumer &#xC5D0; &#xB300;&#xD55C; &#xC815;&#xBCF4; &#xB610;&#xD55C; &#xAE30;&#xB85D;&#xD558;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <h4 id="coremonitorsuppliernodets"><a href="https://github.com/samchon/tgrid.projects.market/blob/master/src/core/monitor/SupplierNode.ts" target="_blank"><code>core/monitor/SupplierNode.ts</code></a></h4>
 <pre class="language-"><code class="lang-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> ConsumerNode <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./ConsumerNode&quot;</span><span class="token punctuation">;</span>
 
@@ -2063,7 +2115,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"2.3.3. Grid Market","level":"2.3.3","depth":2,"next":{"title":"3.1. SWOT Analysis","level":"3.1","depth":1,"path":"appendix/swot.md","ref":"appendix/swot.md","articles":[]},"previous":{"title":"2.3.2. Othello Game","level":"2.3.2","depth":2,"path":"tutorial/projects/othello.md","ref":"tutorial/projects/othello.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","addcssjs","back-to-top-button","codegroup","collapse","disqus","github","hide-navigation-buttons","hide-published-with","import","language-picker","meta","panel","prism","scroll-to-top","theme-darkblue","theme-github","sitemap-general"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"disqus":{"useIdentifier":false,"shortName":"tgrid"},"language-picker":{"grid-columns":3},"scroll-to-top":{},"github":{"url":"https://github.com/samchon/tgrid"},"panel":{},"meta":{"content":"","data":[{"name":"og:url","content":"https://tgrid.dev"},{"name":"og:type","content":"website"},{"name":"og:title","content":"TGrid Guide Documents"},{"name":"og:description","content":"TypeScript Grid Computing Framework"},{"name":"og:image","content":"https://tgrid.dev/assets/images/flag.png"}],"name":""},"import":{},"theme-github":{},"search":{},"addcssjs":{"css":[],"js":[]},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"collapse":{},"hide-published-with":{},"sitemap-general":{"prefix":"https://tgrid.dev/"},"codegroup":{"defaultTabName":"Code","rememberTabs":true,"tabNameSeperator":"::"},"fontsettings":{"theme":"white","family":"sans","size":2},"hide-navigation-buttons":{},"theme-darkblue":{},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Jeongho Nam","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"TGrid","language":"ko","gitbook":"*","description":"Guide Documents for TGrid"},"file":{"path":"tutorial/projects/market.md","mtime":"2019-10-02T13:19:55.612Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-10-02T13:20:12.497Z"},"basePath":"../..","book":{"language":"ko"}});
+            gitbook.page.hasChanged({"page":{"title":"2.3.3. Grid Market","level":"2.3.3","depth":2,"next":{"title":"3.1. SWOT Analysis","level":"3.1","depth":1,"path":"appendix/swot.md","ref":"appendix/swot.md","articles":[]},"previous":{"title":"2.3.2. Othello Game","level":"2.3.2","depth":2,"path":"tutorial/projects/othello.md","ref":"tutorial/projects/othello.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","addcssjs","back-to-top-button","codegroup","collapse","disqus","github","hide-navigation-buttons","hide-published-with","import","language-picker","meta","panel","prism","scroll-to-top","theme-darkblue","theme-github","sitemap-general"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"disqus":{"useIdentifier":false,"shortName":"tgrid"},"language-picker":{"grid-columns":3},"scroll-to-top":{},"github":{"url":"https://github.com/samchon/tgrid"},"panel":{},"meta":{"content":"","data":[{"name":"og:url","content":"https://tgrid.dev"},{"name":"og:type","content":"website"},{"name":"og:title","content":"TGrid Guide Documents"},{"name":"og:description","content":"TypeScript Grid Computing Framework"},{"name":"og:image","content":"https://tgrid.dev/assets/images/flag.png"}],"name":""},"import":{},"theme-github":{},"search":{},"addcssjs":{"css":[],"js":[]},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"collapse":{},"hide-published-with":{},"sitemap-general":{"prefix":"https://tgrid.dev/"},"codegroup":{"defaultTabName":"Code","rememberTabs":true,"tabNameSeperator":"::"},"fontsettings":{"theme":"white","family":"sans","size":2},"hide-navigation-buttons":{},"theme-darkblue":{},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Jeongho Nam","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"TGrid","language":"ko","gitbook":"*","description":"Guide Documents for TGrid"},"file":{"path":"tutorial/projects/market.md","mtime":"2019-10-03T14:58:38.265Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-10-03T14:58:52.642Z"},"basePath":"../..","book":{"language":"ko"}});
         });
     </script>
 </div>

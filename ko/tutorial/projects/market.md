@@ -42,6 +42,10 @@ Grid Computing 시스템을 구축하는 데 필요한 연산력을 매매할 �
 ### 2.1. Considerations
 ### 2.2. Controllers
 #### 2.2.1. Market
+아래는 Market 이 Consumer 에게 제공할 기능들을 정의한 ${{ Controller }} 입니다.
+
+Consumer 가 이 ${{ Controller }} 를 통해 할 수 있는 일은 크게 두 가지로 나눌 수 있습니다. 첫째는 바로 현재 Market 에 참여중인 Supplier 들이 누구인지 아는 것입니다 (`getSuppliers()`). 그리고 둘째는 그들의 자원을 구원을 구매하고 (`buyResource()`), 그것들을 사용하는 것입니다 (`assignees`).
+
 ```typescript
 export namespace ConsumerChannel
 {
@@ -73,7 +77,10 @@ export namespace ConsumerChannel
 }
 ```
 
-그리고 Market 이 Supplier 에 제공해주는 Provider 는 기능은 딱 두가지 뿐입니다. 첫째는 해당 Supplier 에게 부여된 식별자 번호를 가져오는 기능이며, 둘째는 
+그리고 Market 이 Supplier 에 제공해주는 ${{ Provider }} 가 가진 객체는 딱 두가지 뿐입니다. 첫째는 해당 Supplier 에게 부여된 식별자 번호를 가져오는 함수이며, 둘째는 `provider` 변수로써, Consumer 를 기준으로는 Supplier 에게 제공하는 ${{ Provider }} 이고, Supplier 를 기준으로는 ${{ Driver }}<${{ Controller }}> 가 되겠죠.
+
+  - Consumer: `WebConnector<Provider>.getProvider()`
+  - Supplier: `WebConnector.getDriver<Controller>()`
 
 ```typescript
 export namespace SupplierChannel
@@ -94,6 +101,8 @@ export namespace SupplierChannel
 ```
 
 #### 2.2.2. Consumer
+Consumer 가 Market 에게 제공하는 ${{ Provider }} 는, Market 은 단지 중간 매개체로써 경유하기만 할 뿐, 실질적으로는 Supplier 들에게 제공되는 ${{ Provider }} 라고 보아도 무방합니다. 실제로 Supplier 는 Market 서버에 접속한 후, `Servant.IController` 에 정의된 `provider: object` 변수를 이용하여 Consumer 의 ${{ Provider }} 객체가 제공하는 함수들을 이용합니다.
+
 ```typescript
 export namespace Consumer
 {
@@ -105,15 +114,13 @@ export namespace Consumer
         servants: ArrayLike<Servant.IController>;
     }
 }
-```
 
-```typescript
 export namespace Servant
 {
     export interface IController
     {
         /**
-         * Consuemr 에서 제공해주는 provider
+         * Consumer 에서 제공해주는 provider
          */
         provider: object;
 
@@ -255,17 +262,37 @@ export namespace Monitor
 
 
 
-## 3. Implementation
+## 3. Core Implementation
 ### 3.1. Market
+Market 은 Consumer 와 Supplier 간의 컴퓨팅 자원 거래가 이루어지는 중개시장입니다. 
+
+따라서 Market 클래스의 구현 코드는 제일 먼저 웹소켓 서버를 개설하는 것에서부터 시작합니다. 그리고 Market 서버에 클라이언트가 접속할 때마다, 해당 클라이언트가 접속에 사용한 주소를 기준으로 그 역할을 식별하고 전담 클래스를 생성하여 지원하게 됩니다.
+
+ Path     | Role     | Generated Class
+----------|----------|------------------
+/consumer | Consumer | ConsummerChannel
+/supplier | Supplier | SupplierChannel
+/monitor  | Monitor  | MonitorChannel
+
 #### [`core/market/Market.ts`](https://github.com/samchon/tgrid.projects.market/blob/master/src/core/market/Market.ts)
 ```typescript
 <!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.market/master/src/core/market/Market.ts") -->
 ```
 
+`ConsumerChannel` 은 Market 서버에 접속한 클라이언트 Consumer 에 대응하기 위한 클래스입니다. 
+
+Market 서버 프로그램은 이 `ConsumerChannel` 클래스를 통하여 Consumer 가 구입한 Supplier 들의 자원 리스트를 기록하고 관리합니다. 그리고 Consumer 는 이 `ConsumerChannel` 클래스의 내부 네임스페이스에 정의된 `ConsumerChannel.Provider` 를 통하여, Market 서버에 접속해있는 전체 Supplier 들의 리스트를 열람하고, 그들의 자원을 구매하고 사용할 수 있습니다.
+
 #### [`core/market/ConsumerChannel.ts`](https://github.com/samchon/tgrid.projects.market/blob/master/src/core/market/ConsumerChannel.ts)
 ```typescript
 <!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.market/master/src/core/market/ConsumerChannel.ts") -->
 ```
+
+`SupplierChannel` 은 Market 서버에 접속한 클라이언트 Supplier 에 대응하기 위한 클래스입니다. 
+
+Market 서버 프로그램은 이 `SupplierChannel` 클래스를 통하여, 해당 Supplier 의 performance 정보를 기록하고 관리하며, 마찬가지로 해당 Supplier 의 자원을 구입한 Consumer 정보 역시 이 `SupplierChannel` 클래스에 기록됩니다. 
+
+ Supplier 는 이 `SupplierChannel` 클래스의 내부 네임스페이스에 정의된 `SupplierChannel.Provider` 를 통하여, Consumer 가 자신에게 할당해 준 ${{ Provider }} 의 함수들을 ${{ Driver }}<${{ Controller }}> 를 통하여 원격 호출할 수 있습니다.
 
 #### [`core/market/SupplierChannel.ts`](https://github.com/samchon/tgrid.projects.market/blob/master/src/core/market/SupplierChannel.ts)
 ```typescript
@@ -273,37 +300,61 @@ export namespace Monitor
 ```
 
 ### 3.2. Consumer
-#### [`core/consumer/Servant.ts`](https://github.com/samchon/tgrid.projects.market/blob/master/src/core/consumer/Servant.ts)
-```typescript
-<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.market/master/src/core/consumer/Servant.ts") -->
-```
+`Consumer` 클래스는 Consumer 를 위하여 제작된 Facade 클래스입니다.
+
+Consumer 는 `Consumer.participate()` 메서드를 이용하여 Market 서버에 접속함으로써, 시장에 참여할 수 있습니다. 그리고 `Consumer.getSuppliers()` 메서드를 이용하여 시장에 참여중인 전체 Supplier 들의 리스트를 조회할 수 있고, 이들 중 원하는 Supplier 들의 자원을 `Consumer.buyResource()` 메서드를 이용하여 구입할 수 있습니다.
 
 #### [`core/consumer/Consumer.ts`](https://github.com/samchon/tgrid.projects.market/blob/master/src/core/consumer/Consumer.ts)
 ```typescript
 <!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.market/master/src/core/consumer/Consumer.ts") -->
 ```
 
-### 3.3. Supplier
-#### [`core/supplier/ISupplier.ts`](https://github.com/samchon/tgrid.projects.market/blob/master/src/core/supplier/ISupplier.ts)
+`Consumer.buyResource()` 를 통해 구입한 Supplier 의 자원은 `Servant` 클래스를 통하여 관리됩니다. 이 `Servant` 클래스의 역할은 Consumer 와 Supplier 의 Worker 프로그램을 잇는 Communicator 클래스입니다. 비록 Consumer 와 Supplier 의 Worker 프로그램 사이에는 Market 과 Supplier 의 메인 프로그램이 중간 매개체로써 자리하고 있더라도 말입니다.
+
+Consumer 는 `Servant.compile()` 메서드를 통해 Supplier 에게 제공할 ${{ Provider }} 와, 그것이 실행해야 할 프로그램 소스코드를 건네줄 수 있습니다. 대상 Supplier 는 해당 프로그램 소스코드를 컴파일하고, 이를 새 Worker 프로그램에 탑재하여 구동하게 됩니다. 그리고 그 Worker 프로그램이 바로, 현 Consumer 프로그램과 연동하게 될 최종 인스턴스입니다.
+
+#### [`core/consumer/Servant.ts`](https://github.com/samchon/tgrid.projects.market/blob/master/src/core/consumer/Servant.ts)
 ```typescript
-<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.market/master/src/core/supplier/ISupplier.ts") -->
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.market/master/src/core/consumer/Servant.ts") -->
 ```
+
+### 3.3. Supplier
+`Supplier` 클래스는 Supplier 를 위해 만들어진 Facade Controller 입니다.
+
+Supplier 는 `Supplier.participate()` 메서드를 호출하여 Market 서버에 접속함으로써, 시장에 참여할 수 있습니다. 그리고 Supplier 클래스의 내부 네임스페이스에 정의된 `Supplier.Provider` 를 이용하여, Market 과 Consumer 가 필요로 하는 기능들을 제공하고 있습니다.
 
 #### [`core/supplier/Supplier.ts`](https://github.com/samchon/tgrid.projects.market/blob/master/src/core/supplier/Supplier.ts)
 ```typescript
 <!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.market/master/src/core/supplier/Supplier.ts") -->
 ```
 
+또한, Supplier 의 식별자 및 performance 에 대한 정보는, 아래 `ISupplier` 구조체로 요약될 수 있습니다. Consumer 는 이 `ISupplier` 에 기재된 Supplier 의 요약정보를 보고, 해당 Supplier 의 자원 구매 여부를 결정하게 됩니다.
+
+#### [`core/supplier/ISupplier.ts`](https://github.com/samchon/tgrid.projects.market/blob/master/src/core/supplier/ISupplier.ts)
+```typescript
+<!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.market/master/src/core/supplier/ISupplier.ts") -->
+```
+
 ### 3.4. Monitor
+`Monitor` 클래스는 Monitor 를 위해 만들어진 Facade Controller 입니다.
+
+Monitor 는 `Monitor.participate()` 메서드를 호출하여 Market 서버에 접속합니다. 그리고 `Monitor` 클래스의 내부 네임스페이스에 정의된 `Monitor.Provider` 클래스와 `Monitor` 클래스의 다양한 accessor 메서드들을 이용하여, 시장에서 발생하는 모든 거래내역을 실시간으로 들여다볼 수 있습니다.
+
+반대로 얘기하면, Market 은 시장에서 참여자 리스트에 변동이 생기거나 새로운 거래내역이 발생할 때마다, ${{ Driver }}<Monitor.IController> 의 함수들을 원격 호출하여 이를 Monitor 에게 알려줍니다.
+
 #### [`core/monitor/Monitor.ts](https://github.com/samchon/tgrid.projects.market/blob/master/src/core/monitor/Monitor.ts)
 ```typescript
 <!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.market/master/src/core/monitor/Monitor.ts") -->
 ```
 
+`ConsumerNode` 클래스는 Market 에 참여한 Consumer 를 표현하기 위해 제작된 클래스로써, 해당 Consumer 구매한 Supplier 의 자원 내역을 기록하고 있습니다.
+
 #### [`core/monitor/ConsumerNode.ts`](https://github.com/samchon/tgrid.projects.market/blob/master/src/core/monitor/ConsumerNode.ts)
 ```typescript
 <!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.market/master/src/core/monitor/ConsumerNode.ts") -->
 ```
+
+`SupplierNode` 클래스는 Market 에 참여한 Supplier 를 표현하기 위해 설계된 클래스로써, 해당 Supplier 의 자원을 구매하여 사용하고 있는 Consumer 에 대한 정보 또한 기록하고 있습니다.
 
 #### [`core/monitor/SupplierNode.ts`](https://github.com/samchon/tgrid.projects.market/blob/master/src/core/monitor/SupplierNode.ts)
 ```typescript

@@ -284,7 +284,7 @@ With **TGrid**, your Business Logic codes are always similar in any situation.
 
 
 ## 4. Remote Critical Section
-With **TGrid**, multiple computers using entwork communication can be turned into A <u>single program</u> running on </u>a virtual computer</u>. The example codes I've shown you throughout this lesson are also intended to demonstrate such concept.
+With **TGrid**, multiple computers using entwork communication can be turned into A <u>single program</u> running on <u>a virtual computer</u>. The example codes I've shown you throughout this lesson are also intended to demonstrate such concept.
 
 However, the the <u>single virtual program</u> doens't mean the single-threaded program. Rather, it is more like a multi-threading (or multi-processing) program in logically. In other words, all of the systems made by **TGrid** are a type of virtual multi-threading programs.
 

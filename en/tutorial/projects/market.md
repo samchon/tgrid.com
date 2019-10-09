@@ -327,7 +327,7 @@ Also, by the `SupplierChannel.Provider` class, the *Consumer* can remotely call 
 ```
 
 ### 3.2. Consumer
-`Consumer` is a Facade class designed for the *Consumer*.
+The `Consumer` is a facade class designed for the *Consumer*.
 
 *Consumer* can participate in the *Market* by calling the `Consumer.participate()` method. After that, the *Consumer* can list up all of the *Suppliers* participating in the *Market* by calling the `Consumer.getSuppliers()` method and also can purchase some of their computing resources by calling the `Consumer.buyResource()` method.
 
@@ -338,7 +338,7 @@ Also, by the `SupplierChannel.Provider` class, the *Consumer* can remotely call 
 
 The `Servant` class manages the computing resources purchased from *Suppliers* through the `Consumer.buyResource()`. The key role of the `Servant` class is to being a ${{ Communicator }} interacting with the Worker program mounted on the *Supplier*, even if *Market* and main program of the *Supplier* are located between the *Consumer* and Worker program of the *Supplier*.
 
-Consumer 는 `Servant.compile()` 메서드를 통해 Supplier 에게 제공할 ${{ Provider }} 와, 그것이 실행해야 할 프로그램 소스코드를 건네줄 수 있습니다. 대상 Supplier 는 해당 프로그램 소스코드를 컴파일하고, 이를 새 Worker 프로그램에 탑재하여 구동하게 됩니다. 그리고 그 Worker 프로그램이 바로, 현 Consumer 프로그램과 연동하게 될 최종 인스턴스입니다.
+*Consumer* passes the ${{ Provider }} and source code to the Supplier through the `Servant.compile()` method. Target *Supplier* would compile the program code and mount it to a new Worker program. The Worker program is the final instance that would interact with the *Consumer* program.
 
 #### [`core/consumer/Servant.ts`](https://github.com/samchon/tgrid.projects.market/blob/master/src/core/consumer/Servant.ts)
 ```typescript
@@ -346,16 +346,16 @@ Consumer 는 `Servant.compile()` 메서드를 통해 Supplier 에게 제공할 $
 ```
 
 ### 3.3. Supplier
-`Supplier` 클래스는 Supplier 를 위해 만들어진 Facade Controller 입니다.
+The `Supplier` is a facde class designed for the *Supplier*.
 
-Supplier 는 `Supplier.participate()` 메서드를 호출하여 Market 서버에 접속함으로써, 시장에 참여할 수 있습니다. 그리고 Supplier 클래스의 내부 네임스페이스에 정의된 `Supplier.Provider` 를 이용하여, Market 과 Consumer 가 필요로 하는 기능들을 제공하고 있습니다.
+*Supplier* can participate in the *Market* by calling the `Supplier.participate()` method. Also, *Supplier* provides features for *Market* and *Consumer* through the `Supplier.Provider` class defined in the internal namespace.
 
 #### [`core/supplier/Supplier.ts`](https://github.com/samchon/tgrid.projects.market/blob/master/src/core/supplier/Supplier.ts)
 ```typescript
 <!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.market/master/src/core/supplier/Supplier.ts") -->
 ```
 
-또한, Supplier 의 식별자 및 performance 에 대한 정보는, 아래 `ISupplier` 구조체로 요약될 수 있습니다. Consumer 는 이 `ISupplier` 에 기재된 Supplier 의 요약정보를 보고, 해당 Supplier 의 자원 구매 여부를 결정하게 됩니다.
+In addition, identifier and performance information about a *Supplier* can be summarized as `ISupplier` structure. *Consumer* references the `ISupplier` information and determines whether purchase the Supplier's computing resources or not.
 
 #### [`core/supplier/ISupplier.ts`](https://github.com/samchon/tgrid.projects.market/blob/master/src/core/supplier/ISupplier.ts)
 ```typescript
@@ -363,25 +363,25 @@ Supplier 는 `Supplier.participate()` 메서드를 호출하여 Market 서버에
 ```
 
 ### 3.4. Monitor
-`Monitor` 클래스는 Monitor 를 위해 만들어진 Facade Controller 입니다.
+The `Monitor` is a facade class designed for the *Monitor*.
 
-Monitor 는 `Monitor.participate()` 메서드를 호출하여 Market 서버에 접속합니다. 그리고 `Monitor` 클래스의 내부 네임스페이스에 정의된 `Monitor.Provider` 클래스와 `Monitor` 클래스의 다양한 accessor 메서드들을 이용하여, 시장에서 발생하는 모든 거래내역을 실시간으로 들여다볼 수 있습니다.
+*Monitor* can participate in the *Market* by calling the `Monitor.participate()` method. Also, *Monitor* can observe all transactions occured in the *Market* by providing a `Monitor.Provider` object to the *Market* server.
 
-반대로 얘기하면, Market 은 시장에서 참여자 리스트에 변동이 생기거나 새로운 거래내역이 발생할 때마다, ${{ Driver }}<Monitor.IController> 의 함수들을 원격 호출하여 이를 Monitor 에게 알려줍니다.
+In other words, whenever transaction or participants I/O occured in the *Market*, *Market* informs it to *Monitors* by calling related function remotely through the {{ Driver }}<Monitor.IController> object.
 
 #### [`core/monitor/Monitor.ts](https://github.com/samchon/tgrid.projects.market/blob/master/src/core/monitor/Monitor.ts)
 ```typescript
 <!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.market/master/src/core/monitor/Monitor.ts") -->
 ```
 
-`ConsumerNode` 클래스는 Market 에 참여한 Consumer 를 표현하기 위해 제작된 클래스로써, 해당 Consumer 구매한 Supplier 의 자원 내역을 기록하고 있습니다.
+The `ConsumerNode` is a class designed to represent a *Consumer* who is participating in the *Market*. It also records information about the *Suppliers* purchased by the *Consumer*.
 
 #### [`core/monitor/ConsumerNode.ts`](https://github.com/samchon/tgrid.projects.market/blob/master/src/core/monitor/ConsumerNode.ts)
 ```typescript
 <!-- @import("https://raw.githubusercontent.com/samchon/tgrid.projects.market/master/src/core/monitor/ConsumerNode.ts") -->
 ```
 
-`SupplierNode` 클래스는 Market 에 참여한 Supplier 를 표현하기 위해 설계된 클래스로써, 해당 Supplier 의 자원을 구매하여 사용하고 있는 Consumer 에 대한 정보 또한 기록하고 있습니다.
+The `SupplierNode` is a class designed to represent a *Supplier* who is participating in the *Market*. Information about the *Consumer* who purchased computing resources of the *Supplier* is also recorded in the `SupplierNode` class.
 
 #### [`core/monitor/SupplierNode.ts`](https://github.com/samchon/tgrid.projects.market/blob/master/src/core/monitor/SupplierNode.ts)
 ```typescript

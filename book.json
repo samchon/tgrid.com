@@ -10,6 +10,7 @@
         "codegroup",
         "collapse",
         "disqus",
+        "ga",
         "github",
         "hide-navigation-buttons",
         "hide-published-with",
@@ -29,6 +30,9 @@
         },
         "disqus": {
             "shortName": "tgrid"
+        },
+        "ga": {
+            "token": "UA-146254534-1"
         },
         "github": {
             "url": "https://github.com/samchon/tgrid"

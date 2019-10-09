@@ -41,6 +41,8 @@ Market 은 웹소켓 서버로써, Consumer 와 Supplier 및 Monitor 들을 클�
 #### 2.1.2. Consumer
 Supplier 의 자원을 구매하여 사용하는 수요자입니다.
 
+  - http://samchon.org/market/consumer.html
+
 Consumer 는 Grid Computing 을 구성하는 데 필요한 연산력을 확보하기 위하여, Supplier 의 연산 자원을 가져다쓰는 수요자입니다. 
 
 Consumer 가 Supplier 의 자원을 구매하는 데 성공하거든, 각 Supplier 들에게 그들이 구동해야 할 프로그램의 소스를 건네주게 됩니다. 각 Supplier 는 이 소스코드를 컴파일하여 Worker 프로그램에 탑재하게 되고, Consumer 는 그 Worker 프로그램들과 연동하게 됩니다.
@@ -48,18 +50,18 @@ Consumer 가 Supplier 의 자원을 구매하는 데 성공하거든, 각 Suppli
 #### 2.1.3. Supplier
 자신의 연산 자원을 Consumer 에게 제공하는 공급자입니다.
 
-Supplier 는 Consumer 에게 자신의 연산력을 제공하며, 이를 대가로 돈을 받습니다. 단, 이 프로젝트는 **TGrid** 에 대한 이해를 돕기 위한 데모 프로젝트에 지나지 않는지라, 실제로 돈이 오가지는 않습니다. 더불어 Market 에 Supplier 로 참여하는 것은 매우 간단하여, 단지 웹 브라우저를 열고 특정 URL 에 접속하기만 하면 될 뿐입니다.
-
   - http://samchon.org/market/supplier.html
+
+Supplier 는 Consumer 에게 자신의 연산력을 제공하며, 이를 대가로 돈을 받습니다. 단, 이 프로젝트는 **TGrid** 에 대한 이해를 돕기 위한 데모 프로젝트에 지나지 않는지라, 실제로 돈이 오가지는 않습니다. 더불어 Market 에 Supplier 로 참여하는 것은 매우 간단하여, 단지 웹 브라우저를 열고 특정 URL 에 접속하기만 하면 될 뿐입니다.
 
 그리고 Consumer 와 거래가 체결되거든, 자신의 연산 자원을 구매한 Consumer 로부터 프로그램 코드를 제공받게 됩니다. Supplier 는 이를 컴파일하여 Worker 프로그램에 탑재하게 되고, 해당 Worker 프로그램이 Consumer 와 연동하게 됩니다.
 
 #### 2.1.4. Monitor
 Market 에서 이루어지는 모든 거래내역을 들여다볼 수 있는 감시자입니다.
 
-Market 서버에 접속해있는 모든 시장 참여자들 (Consumer 와 Supplier) 들의 현황을 실시간으로 확인할 수 있으며, 시장에서 이루어지는 Consumer 와 Supplier 간의 모든 거래내역 또한 들여다볼 수 있는 감시자 시스템입니다.
-
   - http://samchon.org/market/monitor.html
+
+Market 서버에 접속해있는 모든 시장 참여자들 (Consumer 와 Supplier) 들의 현황을 실시간으로 확인할 수 있으며, 시장에서 이루어지는 Consumer 와 Supplier 간의 모든 거래내역 또한 들여다볼 수 있는 감시자 시스템입니다.
 
 ### 2.2. Controllers
 #### 2.2.1. Market

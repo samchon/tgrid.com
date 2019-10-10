@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>tgrid.utils | tgrid</title>
+	<title>IJsonable | tgrid</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,27 +56,92 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="tgrid_utils.html">tgrid.utils</a>
+					<a href="../modules/_utils_ijsonable_.html">&quot;utils/IJsonable&quot;</a>
+				</li>
+				<li>
+					<a href="_utils_ijsonable_.ijsonable.html">IJsonable</a>
 				</li>
 			</ul>
-			<h1>External module tgrid.utils</h1>
+			<h1>Interface IJsonable&lt;T&gt;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Custom serializer for JSON-string.</p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>author</dt>
+						<dd><p>Jeongho Nam <a href="http://samchon.org">http://samchon.org</a></p>
+						</dd>
+					</dl>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>T</h4>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Custom structure to be serialized</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">IJsonable</span>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Classes</h3>
+							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/tgrid_utils.urlvariables.html" class="tsd-kind-icon">URLVariables</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_utils_ijsonable_.ijsonable.html#tojson" class="tsd-kind-icon">toJSON</a></li>
 							</ul>
 						</section>
 					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="tojson" class="tsd-anchor"></a>
+					<h3>toJSON</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">toJSON<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/samchon/tgrid/blob/7a765f6/src/utils/IJsonable.ts#L18">utils/IJsonable.ts:18</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Custom JSON serializer.</p>
+								</div>
+								<p>When you call <code>JSON.stringify()</code> to this object (or some object containg this
+									object), this object would be serialized not following member variables, but
+								following the returned value of this method <a href="_utils_ijsonable_.ijsonable.html#tojson">toJSON</a>().</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+							<p>Custom object to be serialized</p>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -86,34 +151,43 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_utils_ijsonable_.html">"utils/IJsonable"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="tgrid.html">tgrid</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="tgrid_components.html">tgrid.components</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="tgrid_protocols.html">tgrid.protocols</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="tgrid_protocols_web.html">tgrid.protocols.web</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="tgrid_protocols_workers.html">tgrid.protocols.workers</a>
-					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="tgrid_utils.html">tgrid.utils</a>
+						<a href="../modules/_utils_ijsonable_.html">"utils/IJsonable"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/tgrid.html">tgrid</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/tgrid_components.html">tgrid.components</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/tgrid_protocols.html">tgrid.protocols</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/tgrid_protocols_web.html">tgrid.protocols.web</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/tgrid_protocols_workers.html">tgrid.protocols.workers</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/tgrid_utils.html">tgrid.utils</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/tgrid_utils.urlvariables.html" class="tsd-kind-icon">URLVariables</a>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_utils_ijsonable_.ijsonable.html" class="tsd-kind-icon">IJsonable</a>
+						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_utils_ijsonable_.ijsonable.html#tojson" class="tsd-kind-icon">toJSON</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 				</ul>
 			</nav>
 		</div>

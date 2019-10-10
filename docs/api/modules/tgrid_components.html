@@ -66,10 +66,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-				</div>
-			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -77,6 +73,7 @@
 						<section class="tsd-index-section ">
 							<h3>Modules</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-module tsd-parent-kind-external-module tsd-has-type-parameter"><a href="tgrid_components.driver.html" class="tsd-kind-icon">Driver</a></li>
 								<li class="tsd-kind-module tsd-parent-kind-external-module"><a href="tgrid_components.invoke.html" class="tsd-kind-icon">Invoke</a></li>
 							</ul>
 						</section>
@@ -86,97 +83,6 @@
 								<li class="tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter"><a href="../classes/tgrid_components.communicator.html" class="tsd-kind-icon">Communicator</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
-							<h3>Type aliases</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="tgrid_components.html#driver" class="tsd-kind-icon">Driver</a></li>
-								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="tgrid_components.html#primitify" class="tsd-kind-icon">Primitify</a></li>
-								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="tgrid_components.html#promisify" class="tsd-kind-icon">Promisify</a></li>
-							</ul>
-						</section>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Type aliases</h2>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-					<a name="driver" class="tsd-anchor"></a>
-					<h3>Driver</h3>
-					<div class="tsd-signature tsd-kind-icon">Driver<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="tgrid_components.html#promisify" class="tsd-signature-type">Promisify</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Controller</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;Proxy</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/95f3d5d/src/components/Driver.ts#L20">components/Driver.ts:20</a></li>
-							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/95f3d5d/src/components/Driver.ts#L21">components/Driver.ts:21</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Driver RFC (Remote Function Call).</p>
-						</div>
-						<p>The <code>Controller</code> is an interface who defines provided functions from the remote system.
-							The <code>Driver</code> is an object who makes to call remote functions, defined in the
-						<code>Controller</code> and provided by <code>Provider</code> in the remote system, possible.</p>
-						<p>In other words, calling a functions in the <code>Driver&lt;Controller&gt;</code>, it means to call a
-						matched function in the remote system&#39;s <code>Provider</code> object.</p>
-						<ul>
-							<li><code>Controller</code>: Definition only</li>
-							<li><code>Driver</code>: Remote Function Call</li>
-						</ul>
-						<dl class="tsd-comment-tags">
-							<dt>author</dt>
-							<dd><p>Jeongho Nam <a href="http://samchon.org">http://samchon.org</a></p>
-							</dd>
-						</dl>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-					<a name="primitify" class="tsd-anchor"></a>
-					<h3>Primitify</h3>
-					<div class="tsd-signature tsd-kind-icon">Primitify<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Primitify&lt;T&gt;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/95f3d5d/src/components/Driver.ts#L60">components/Driver.ts:60</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Primitify a type.</p>
-						</div>
-						<p>If target type is an object, all methods defined in the object would be removed.</p>
-						<dl class="tsd-comment-tags">
-							<dt>typeparam</dt>
-							<dd><p>type to be primitive</p>
-							</dd>
-							<dt>author</dt>
-							<dd><p>Jeongho Nam <a href="http://samchon.org">http://samchon.org</a></p>
-							</dd>
-						</dl>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-					<a name="promisify" class="tsd-anchor"></a>
-					<h3>Promisify</h3>
-					<div class="tsd-signature tsd-kind-icon">Promisify<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promisify&lt;Instance&gt;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/95f3d5d/src/components/Driver.ts#L35">components/Driver.ts:35</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Promisify an object type.</p>
-						</div>
-						<p>It promisifies all member types. When a member type is:</p>
-						<ul>
-							<li>function: returns <code>Promise</code> (<code>R</code> -&gt; <code>Promise&lt;R&gt;</code>).</li>
-							<li>object: promisifies recursively (<code>O</code> -&gt; <code>Promisify&lt;O&gt;</code>).</li>
-							<li>atomic value: be ignored (be <code>never</code> type).</li>
-						</ul>
-						<dl class="tsd-comment-tags">
-							<dt>author</dt>
-							<dd><p>Jeongho Nam <a href="http://samchon.org">http://samchon.org</a></p>
-							</dd>
-						</dl>
 					</div>
 				</section>
 			</section>
@@ -186,6 +92,9 @@
 				<ul>
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_utils_ijsonable_.html">"utils/IJsonable"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="tgrid.html">tgrid</a>
@@ -211,15 +120,6 @@
 				<ul class="before-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="../classes/tgrid_components.communicator.html" class="tsd-kind-icon">Communicator</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="tgrid_components.html#driver" class="tsd-kind-icon">Driver</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="tgrid_components.html#primitify" class="tsd-kind-icon">Primitify</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="tgrid_components.html#promisify" class="tsd-kind-icon">Promisify</a>
 					</li>
 				</ul>
 			</nav>

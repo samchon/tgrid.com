@@ -1,8 +1,8 @@
 <!-- @templates([
     ["Grid Computing", "[Grid Computing](../tutorial/concepts.md#11-grid-computing)"],
     ["Remote Function Call", "[Remote Function Call](../tutorial/concepts.md#12-remote-function-call)"],
-    ["Network System", "#2-network-system"],
-    ["Business Logic", "#3-business-logic"]
+    ["Network System", "[Network System](#2-network-system)"],
+    ["Business Logic", "[Business Logic](#3-business-logic)"]
 ]) -->
 
 # Blockchain

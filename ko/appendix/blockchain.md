@@ -1,6 +1,8 @@
 <!-- @templates([
     ["Grid Computing", "[Grid Computing](../tutorial/concepts.md#11-grid-computing)"],
-    ["Remote Function Call", "[Remote Function Call](../tutorial/concepts.md#12-remote-function-call)"]
+    ["Remote Function Call", "[Remote Function Call](../tutorial/concepts.md#12-remote-function-call)"],
+    ["Network System", "[Network System](#2-network-system)"],
+    ["Business Logic", "[Business Logic](#3-business-logic)"]
 ]) -->
 
 # Blockchain
@@ -9,7 +11,7 @@
 
 블록체인 프로젝트의 개발 난이도가 높다는 것은 매우 유명한 이야기입니다. 구태여 블록체인 개발자들의 몸값이 다락같이 높아서 그런 것만이 아닙니다. 순 기술적인 관점에서 보더라도, 블록체인은 그 자체로 난이도가 매우 높습니다. 단, 기술적으로 무엇이 그렇게 어렵냐고 물었을 때, 저는 이렇게 말하고 싶습니다. 
 
-진정 어려운 것은 [Network System](#2-network-system) 때문이지, [Business Logic](#3-business-logic) 때문은 아니라고 말입니다.
+진정 어려운 것은 ${{ Network System }} 때문이지, ${{ Business Logic }} 때문은 아니라고 말입니다.
 
 
 
@@ -89,12 +91,12 @@
 ## 4. Conclusion
 ![Difficulty Level Graph](../../assets/images/appendix/difficulty_level_graph.png)
 
-여태까지의 이야기를 정리하면, '블록체인은 [Business Logic](#3-business-logic) 은 간단하지만, 그것의 [Network System](#2-network-system) 을 구성하는 것은 매우 어렵다' 라고 요약할 수 있습니다. 그리고 여기서, 우리는 한 가지 대목에 주목할 필요가 있습니다. 그것은 바로 '블록체인의 [Business Logic](#3-business-logic) 은 간단하다' 라는 것입니다.
+여태까지의 이야기를 정리하면, '블록체인은 ${{ Business Logic }} 은 간단하지만, 그것의 ${{ Network System }} 을 구성하는 것은 매우 어렵다' 라고 요약할 수 있습니다. 그리고 여기서, 우리는 한 가지 대목에 주목할 필요가 있습니다. 그것은 바로 '블록체인의 ${{ Business Logic }} 은 간단하다' 라는 것입니다.
 
-기억하십니까? **TGrid** 와 ${{ Remote Function Call }} 을 이용하면, 여러 대의 컴퓨터를 [한 대의 가상 컴퓨터](../tutorial/concepts.md#11-grid-computing) 로 만들 수 있습니다. 그리고 이렇게 만든 가상 컴퓨터에서 동작하는 코드는, 실제로 단 한대의 컴퓨터에서 동작하는 프로그램과 그 [Business Logic](#3-business-logic) 코드가 동일합니다. 따라서, 우리는 다음과 같은 결론을 도출해낼 수 있습니다.
+기억하십니까? **TGrid** 와 ${{ Remote Function Call }} 을 이용하면, 여러 대의 컴퓨터를 [한 대의 가상 컴퓨터](../tutorial/concepts.md#11-grid-computing) 로 만들 수 있습니다. 그리고 이렇게 만든 가상 컴퓨터에서 동작하는 코드는, 실제로 단 한대의 컴퓨터에서 동작하는 프로그램과 그 ${{ Business Logic }} 코드가 동일합니다. 따라서, 우리는 다음과 같은 결론을 도출해낼 수 있습니다.
 
-  - 블록체인의 [Business Logic](#3-business-logic) 은 어렵지 않다.
-  - **TGrid** 를 사용하면, [Business Logic](#3-business-logic) 에만 집중할 수 있다.
+  - 블록체인의 ${{ Business Logic }} 은 어렵지 않다.
+  - **TGrid** 를 사용하면, ${{ Business Logic }} 에만 집중할 수 있다.
   - 따라서 **TGrid** 와 함께라면, 블록체인을 쉽게 만들 수 있다.
 
-블록체인 프로젝트를 하나 새로이 만드신다구요? **TGrid** 와 ${{ Remote Function Call }} 을 사용하시어 ${{ Grid Computing }} 을 실현하십시오. 그리고 여러분께서 만들고자 하시는 블록체인의 본질, [Business Logic](#3-business-logic), 그 자체에만 집중하십시오.
+블록체인 프로젝트를 하나 새로이 만드신다구요? **TGrid** 와 ${{ Remote Function Call }} 을 사용하시어 ${{ Grid Computing }} 을 실현하십시오. 복잡한 ${{ Network System }} 은 잊어버리시고 여러분께서 만들고자 하시는 블록체인의 본질, ${{ Business Logic }}, 그 자체에만 집중하십시오.

@@ -97,6 +97,8 @@ In other word, *Business Logic* of blockchain is something that any skilled prog
 
 
 ## 4. Conclusion
+![Difficulty Level Graph](../../assets/images/appendix/difficulty_level_graph.png)
+
 Reading the stories, it can be summarized as '${{ Business Logic }} of blockchain is easy, however composing its ${{ Network System }} is extremely difficult'.
 
 Do you remember? With **TGrid** and ${{ Remote Function Call }}, you can come true the true ${{ Grid Computing }}. Many computers interacting with network communication are replaced by only <u>one virtual computer</u>. Even ${{ Business Logic }} code of the virtual computer is same with another ${{ Business Logic }} code running on a single physical computer.

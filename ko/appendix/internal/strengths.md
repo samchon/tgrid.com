@@ -18,11 +18,11 @@ must define those templates
 
 {% panel style="info", title="Something to Read" %}
 [블록체인의 Network System, 지옥으로의 발걸음](${{ blockchain.md }}#steps-to-hell)
+
+![Difficulty Level Graph](${{ assets }}/images/appendix/difficulty_level_graph.png)
 {% endpanel %}
 
 하지만, **TGrid** 와 ${{ Remote Function Call }} 을 이용하면, 진정한 ${{ Grid Computing }} 을 실현할 수 있습니다. 네트워크로 연동된 여러 대의 컴퓨터들은 단 <u>하나의 가상 컴퓨터</u>로 치환됩니다. 심지어 이렇게 만들어진 가상 컴퓨터에서 동작하는 프로그램의 *비지니스 로직* 코드는, 실제로 단일 컴퓨터에서 동작하는 단일 프로그램의 *비지니스 로직* 코드와 동일하기까지 합니다.
-
-![Difficulty Level Graph](${{ assets }}/images/appendix/difficulty_level_graph.png)
 
 따라서 **TGrid** 를 이용하시거든 네트워크 연동 시스템을 매우 쉽게 만드실 수 있습니다. 복잡하고 어려운 네트워크 프로토콜이니 메시지 구조 설계니 하는 것들은 모두 잊어버리십시오. 오로지 여러분께서 만들고자 하는 것의 본질, *비지니스 로직*, 그 자체에만 집중하십시오. **TGrid** 를 사용하시는 이상, 여러분은 단지 한 대의 (가상) 컴퓨터에서 동작하는 단일 프로그램을 개발하는 것일 뿐입니다.
 

@@ -22,6 +22,8 @@ It's difficult to make network system because many of computers are interacting 
 
 However, with TGrid and ${{ Remote Function Call }}, you can come true the true ${{ Grid Computing }}. Many computers interacting with network communication are replaced by only <u>one virtual computer</u>. Even *Business Logic* code of the virtual computer is same with another *Business Logic* code running on a single physical computer.
 
+![Difficulty Level Graph](${{ assets }}/images/appendix/difficulty_level_graph.png)
+
 Thus, you can make a network system very easily if you use the **TGrid**. Forget everything about the network; protocolcs and designing message structures, etc. You only concentrate on the *Business Logic*, the essence of what you want to make. Remeber that, as long as you use the TGrid, you're just making a single program running on a single (virtual) computer.
 
 ### ${{ chapter }}.2. Safe Implementation

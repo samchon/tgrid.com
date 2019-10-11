@@ -87,6 +87,8 @@
 
 
 ## 4. Conclusion
+![Difficulty Level Graph](../../assets/images/appendix/difficulty_level_graph.png)
+
 여태까지의 이야기를 정리하면, '블록체인은 [Business Logic](#3-business-logic) 은 간단하지만, 그것의 [Network System](#2-network-system) 을 구성하는 것은 매우 어렵다' 라고 요약할 수 있습니다. 그리고 여기서, 우리는 한 가지 대목에 주목할 필요가 있습니다. 그것은 바로 '블록체인의 [Business Logic](#3-business-logic) 은 간단하다' 라는 것입니다.
 
 기억하십니까? **TGrid** 와 ${{ Remote Function Call }} 을 이용하면, 여러 대의 컴퓨터를 [한 대의 가상 컴퓨터](../tutorial/concepts.md#11-grid-computing) 로 만들 수 있습니다. 그리고 이렇게 만든 가상 컴퓨터에서 동작하는 코드는, 실제로 단 한대의 컴퓨터에서 동작하는 프로그램과 그 [Business Logic](#3-business-logic) 코드가 동일합니다. 따라서, 우리는 다음과 같은 결론을 도출해낼 수 있습니다.

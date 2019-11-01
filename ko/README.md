@@ -19,16 +19,16 @@
 
 **TGrid** 는 그 이름 그대로, TypeScript 에서 ${{ Grid Computing }} 시스템을 구현하는 데 유용하게 사용할 수 있는 Framework 입니다. **TGrid** 와 그것의 핵심 개념인 ${{ Remote Function Call }} 을 사용하시거든, 여러분께서는 여러 대의 컴퓨터를 <u>단 한 대의 가상 컴퓨터</u>로 만드실 수 있습니다. 그것이 비록 수천 ~ 수만 대에 달할 지라도 말입니다.
 
-여타 **TGrid** 에 대한 자세한 내용은 아래 링크들을 참고해주세요. 특히 아래 링크 중에서 [가이드 문서](https://tgrid.dev/ko) 의 [Basic Concepts](tutorial/concepts.md) 나 [Learn from Examples](tutorial/examples.md) 단원만큼은, **TGrid** 를 처음 접하시는 분이시라면, 꼭 한 번 읽어보시기를 권해드립니다.
+여타 **TGrid** 에 대한 자세한 내용은 아래 링크들을 참고해주세요. 특히 아래 링크 중에서 [가이드 문서](https://tgrid.com/ko) 의 [Basic Concepts](tutorial/concepts.md) 나 [Learn from Examples](tutorial/examples.md) 단원만큼은, **TGrid** 를 처음 접하시는 분이시라면, 꼭 한 번 읽어보시기를 권해드립니다.
 
   - Repositories
     - [GitHub Repository](https://github.com/samchon/tgrid)
     - [NPM Repository](https://www.npmjs.com/package/tgrid)
   - Documents
-    - [API Documents](https://tgrid.dev/api)
-    - [**Guide Documents**](https://tgrid.dev)
-      - [English](https://tgrid.dev/en)
-      - [한국어](https://tgrid.dev/ko)
+    - [API Documents](https://tgrid.com/api)
+    - [**Guide Documents**](https://tgrid.com)
+      - [English](https://tgrid.com/en)
+      - [한국어](https://tgrid.com/ko)
     - [Release Notes](https://github.com/samchon/tgrid/releases)
 
 ### 1.2. Grid Computing
@@ -47,7 +47,7 @@
 
 **TGrid** 와 `Remote Function Call` 을 이용하면 원격 시스템의 객체와 함수를 마치 내 것인양 사용할 수 있다, 이 문장이 무엇을 의미할까요? 맞습니다, 원격 시스템의 객체와 함수를 직접 호출할 수 있다는 것은 곧, 현 시스템과 원격 시스템이 <u>하나의 가상 컴퓨터로 통합</u>되었다는 것을 의미합니다. 하나의 컴퓨터에 탑재된 <u>단일 프로그램</u>이니까, 객체간 함수도 호출할 수 있고 뭐 그런 것 아니겠습니까? 
 
-하지만 **TGrid** 가 말하는 진정한 ${{ Grid Computing }} 이 무슨 개념이니, `Remote Function Call` 이 어떤 이론이니... 백날 설명만 들어봐야 뭐합니까? 백문이 불여일견, 이쯤에서 실제 프로그램 코드를 한 번 봐야겠죠? 아래 예제 코드에 대하여 보다 자세히 알아보고 싶으시다면, [가이드 문서](https://tgrid.dev/ko) 의 [Learn from Examples](tutorial/examples.md) 단원을 참고해주세요.
+하지만 **TGrid** 가 말하는 진정한 ${{ Grid Computing }} 이 무슨 개념이니, `Remote Function Call` 이 어떤 이론이니... 백날 설명만 들어봐야 뭐합니까? 백문이 불여일견, 이쯤에서 실제 프로그램 코드를 한 번 봐야겠죠? 아래 예제 코드에 대하여 보다 자세히 알아보고 싶으시다면, [가이드 문서](https://tgrid.com/ko) 의 [Learn from Examples](tutorial/examples.md) 단원을 참고해주세요.
 
 ```typescript
 import { WebConnector } from "tgrid/protocols/web/WebConnector";

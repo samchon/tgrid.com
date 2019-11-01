@@ -39,15 +39,15 @@
         },
         "meta": {
             "data": [
-                { "name": "og:url", "content": "https://tgrid.dev" },
+                { "name": "og:url", "content": "https://tgrid.com" },
                 { "name": "og:type", "content": "website" },
                 { "name": "og:title", "content": "TGrid Guide Documents" },
                 { "name": "og:description", "content": "TypeScript Grid Computing Framework" },
-                { "name": "og:image", "content": "https://tgrid.dev/assets/images/flag.png" }
+                { "name": "og:image", "content": "https://tgrid.com/assets/images/flag.png" }
             ]
         },
         "sitemap-general": {
-            "prefix": "https://tgrid.dev/"
+            "prefix": "https://tgrid.com/"
         }
     }
 }

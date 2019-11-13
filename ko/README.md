@@ -3,9 +3,9 @@
     [ "Remote Function Call", "[Remote Function Call](#13-remote-function-call)" ]
 ]) -->
 
-# Introduction
-## 1. Outline
-### 1.1. TGrid
+# TGrid
+## 1. Introduction
+### 1.1. Outline
 ![Slogan Flag](../assets/images/flag.png)
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/samchon/tgrid/blob/master/LICENSE)

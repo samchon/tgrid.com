@@ -66,16 +66,16 @@
 			<div class="tsd-panel tsd-typography">
 				<h1 id="tgrid">TGrid</h1>
 				<h2 id="introduction">Introduction</h2>
-				<p><img src="https://tgrid.dev/assets/images/flag.png" alt="Flag"></p>
+				<p><img src="https://tgrid.com/assets/images/flag.png" alt="Flag"></p>
 				<p><a href="https://github.com/samchon/tgrid/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="GitHub license"></a>
 					<a href="https://www.npmjs.com/package/tgrid"><img src="https://badge.fury.io/js/tgrid.svg" alt="npm version"></a>
 					<a href="https://www.npmjs.com/package/tgrid"><img src="https://img.shields.io/npm/dm/tgrid.svg" alt="Downloads"></a>
-					<a href="https://travis-ci.org/samchon/tgrid"><img src="https://travis-ci.org/samchon/tgrid.svg?branch=master" alt="Build Status"></a>
+					<a href="https://github.com/samchon/tgrid/actions?query=workflow%3Abuild"><img src="https://github.com/samchon/tgrid/workflows/build/badge.svg" alt="Build Status"></a>
 					<a href="https://app.fossa.io/projects/git%2Bgithub.com%2Fsamchon%2Ftgrid?ref=badge_shield"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Fsamchon%2Ftgrid.svg?type=shield" alt="FOSSA Status"></a>
 				<a href="https://gitter.im/samchon/tgrid?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/samchon/tgrid.svg" alt="Chat on Gitter"></a></p>
 				<p>Full name of <strong>TGrid</strong> is <u>TypeScript Grid Computing Framework</u>.</p>
 				<p>As its name suggests, <strong>TGrid</strong> is a useful framework for implementating <a href="#12-grid-computing">Grid Computing</a> in the TypeScript. With <strong>TGrid</strong> and its core concept <a href="#13-remote-function-call">Remote Funtion Call</a>, you can make many computers to be <u>a virtual computer</u>.</p>
-				<p>To know more, refer below links. If you are the first comer to the <strong>TGrid</strong>, I strongly recommend you to read the <a href="https://tgrid.dev">Guide Documents</a>. In article level, I <a href="https://tgrid.dev/en/tutorial/concepts.html">Basic Concepts</a> and <a href="https://tgrid.dev/en/tutorial/examples.html">Learn from Examples</a> sections would be good choices.</p>
+				<p>To know more, refer below links. If you are the first comer to the <strong>TGrid</strong>, I strongly recommend you to read the <a href="https://tgrid.com">Guide Documents</a>. In article level, I <a href="https://tgrid.com/en/tutorial/concepts.html">Basic Concepts</a> and <a href="https://tgrid.com/en/tutorial/examples.html">Learn from Examples</a> sections would be good choices.</p>
 				<ul>
 					<li>Repositories<ul>
 							<li><a href="https://github.com/samchon/tgrid">GitHub Repository</a></li>
@@ -83,10 +83,10 @@
 						</ul>
 					</li>
 					<li>Documents<ul>
-							<li><a href="https://tgrid.dev/api">API Documents</a></li>
+							<li><a href="https://tgrid.com/api">API Documents</a></li>
 							<li><strong>Guide Documents</strong><ul>
-									<li><a href="https://tgrid.dev/en">English</a></li>
-									<li><a href="https://tgrid.dev/ko">한국어</a></li>
+									<li><a href="https://tgrid.com/en">English</a></li>
+									<li><a href="https://tgrid.com/ko">한국어</a></li>
 								</ul>
 							</li>
 							<li><a href="https://github.com/samchon/tgrid/releases">Release Notes</a></li>
@@ -94,7 +94,7 @@
 					</li>
 				</ul>
 				<h3 id="1-2-grid-computing">1.2. Grid Computing</h3>
-				<p><img src="https://tgrid.dev/assets/images/concepts/grid-computing.png" alt="Grid Computing"></p>
+				<p><img src="https://tgrid.com/assets/images/concepts/grid-computing.png" alt="Grid Computing"></p>
 				<blockquote>
 					<p>Computers be a (virtual) computer</p>
 				</blockquote>
@@ -105,7 +105,7 @@
 				<h3 id="1-3-remote-function-call">1.3. Remote Function Call</h3>
 				<p><strong>TGrid</strong> realizes the <a href="#12-grid-computing">Grid Computing</a> through <em>Remote Function Call</em>. It literally calling remote system&#39;s functions are possible. With the <em>Remote Function Call</em>, you can access to objects of remote system as if they have been in my memory from the beginning.</p>
 				<p>With <strong>TGrid</strong> and <em>Remote Function Call</em>, it&#39;s possible to handle remote system&#39;s objects and functions as if they&#39;re mine from the beginning. Do you think what that sentence means? Right, being able to call objects and functions of the remote system, it means that current and remote system are integrated into a <u>single virtual computer</u>.</p>
-				<p>However, whatever <a href="#12-grid-computing">Grid Computing</a> and <em>Remote Function Call</em> are, you&#39;ve only heard theoretical stories. Now, it&#39;s time to see the real program code. Let&#39;s see the demonstration code and feel the <em>Remote Function Call</em>. If you want to know more about the below demonstration code, read a section <a href="https://tgrid.dev/en/tutorial/examples.html">Learn from Examples</a> wrote into the <a href="https://tgrid.dev">Guide Documents</a>.</p>
+				<p>However, whatever <a href="#12-grid-computing">Grid Computing</a> and <em>Remote Function Call</em> are, you&#39;ve only heard theoretical stories. Now, it&#39;s time to see the real program code. Let&#39;s see the demonstration code and feel the <em>Remote Function Call</em>. If you want to know more about the below demonstration code, read a section <a href="https://tgrid.com/en/tutorial/examples.html">Learn from Examples</a> wrote into the <a href="https://tgrid.com">Guide Documents</a>.</p>
 				<h4 id="composite-calculator-server-ts"><a href="https://github.com/samchon/tgrid.examples/blob/master/src/projects/composite-calculator/server.ts"><code>composite-calculator/server.ts</code></a></h4>
 				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { WebServer, WebAcceptor } <span class="hljs-keyword">from</span> <span class="hljs-string">"tgrid/protocols/web"</span>;
 <span class="hljs-keyword">import</span> { CompositeCalculator } <span class="hljs-keyword">from</span> <span class="hljs-string">"../../providers/Calculator"</span>;
@@ -193,8 +193,8 @@ must define those templates
 				<p>It&#39;s difficult to make network system because many of computers are interacting together to accomplish a common task. Therefore, the word &#39;perfect&#39; is inserted on every development processes; requirements must be analyzed perfectly, use-cases must be identified perfectly, data and network architectures must be designed, perfectly and mutual interaction test must be perfectly.</p>
 				<blockquote>
 					<h4 id="something-to-read">Something to Read</h4>
-					<p><a href="https://tgrid.dev/en/appendix/blockchain.html#steps-to-hell">Blockchain&#39;s Network System, Steps to Hell</a></p>
-					<p><img src="https://tgrid.dev/assets/images/appendix/difficulty_level_graph.png" alt="Difficulty Level Graph"></p>
+					<p><a href="https://tgrid.com/en/appendix/blockchain.html#steps-to-hell">Blockchain&#39;s Network System, Steps to Hell</a></p>
+					<p><img src="https://tgrid.com/assets/images/appendix/difficulty_level_graph.png" alt="Difficulty Level Graph"></p>
 				</blockquote>
 				<p>However, with TGrid and <a href="#13-remote-function-call">Remote Function Call</a>, you can come true the true <a href="#12-grid-computing">Grid Computing</a>. Many computers interacting with network communication are replaced by only <u>one virtual computer</u>. Even <em>Business Logic</em> code of the virtual computer is same with another <em>Business Logic</em> code running on a single physical computer.</p>
 				<p>Thus, you can make a network system very easily if you use the <strong>TGrid</strong>. Forget everything about the network; protocolcs and designing message structures, etc. You only concentrate on the <em>Business Logic</em>, the essence of what you want to make. Remeber that, as long as you use the TGrid, you&#39;re just making a single program running on a single (virtual) computer.</p>
@@ -262,20 +262,20 @@ src/index.ts:35:32 - error TS2349: Cannot invoke an expression whose <span class
 				<table>
 					<thead>
 						<tr>
-							<th align="center"><img src="https://tgrid.dev/assets/images/examples/composite-calculator.png" alt="Diagram of Composite Calculator"></th>
-							<th align="center"><img src="https://tgrid.dev/assets/images/examples/hierarchical-calculator.png" alt="Diagram of Hierarchical Calculator"></th>
+							<th align="center"><img src="https://tgrid.com/assets/images/examples/composite-calculator.png" alt="Diagram of Composite Calculator"></th>
+							<th align="center"><img src="https://tgrid.com/assets/images/examples/hierarchical-calculator.png" alt="Diagram of Hierarchical Calculator"></th>
 						</tr>
 					</thead>
 					<tbody><tr>
-							<td align="center"><a href="https://tgrid.dev/en/tutorial/examples.html#22-remote-object-call">Composite Calculator</a></td>
-							<td align="center"><a href="https://tgrid.dev/en/tutorial/examples.html#23-object-oriented-network">Hierarchical Calculator</a></td>
+							<td align="center"><a href="https://tgrid.com/en/tutorial/examples.html#22-remote-object-call">Composite Calculator</a></td>
+							<td align="center"><a href="https://tgrid.com/en/tutorial/examples.html#23-object-oriented-network">Hierarchical Calculator</a></td>
 						</tr>
 				</tbody></table>
 				<p>I&#39;ll explain this <em>Network Refactoring</em>, caused by performance issue, through an example case that is very simple and clear. In a distributed processing system, there was a computer that providing a calculator. However, when this system was actually started, amount of the computations was so enormous that the single computer couldn&#39;t afford the computations. Thus, decided to separate the computer to three computers.</p>
 				<ul>
-					<li><a href="https://tgrid.dev/en/tutorial/examples.html#hierarchical-calculatorscientificts"><code>scientific</code></a>: scientific calculator server</li>
-					<li><a href="https://tgrid.dev/en/tutorial/examples.html#hierarchical-calculatorstatisticsts"><code>statistics</code></a>: statistics calculator server</li>
-					<li><a href="https://tgrid.dev/en/tutorial/examples.html#hierarchical-calculatorcalculatorts"><code>calculator</code></a>: mainframe server<ul>
+					<li><a href="https://tgrid.com/en/tutorial/examples.html#hierarchical-calculatorscientificts"><code>scientific</code></a>: scientific calculator server</li>
+					<li><a href="https://tgrid.com/en/tutorial/examples.html#hierarchical-calculatorstatisticsts"><code>statistics</code></a>: statistics calculator server</li>
+					<li><a href="https://tgrid.com/en/tutorial/examples.html#hierarchical-calculatorcalculatorts"><code>calculator</code></a>: mainframe server<ul>
 							<li>four arithmetic operations are computed by itself</li>
 							<li>scientific and statistics operations are shifted to another computers</li>
 							<li>and intermediates the computation results to client</li>
@@ -295,18 +295,18 @@ src/index.ts:35:32 - error TS2349: Cannot invoke an expression whose <span class
 				<p>However, if you use the <strong>TGrid</strong> and <a href="#13-remote-function-call">Remote Function Call</a>, the issue can&#39;t be a problem. In the <strong>TGrid</strong>, each computer in the network system is just one object. Whether you implement the remote calculator in one computer or distribute operations to three computers, its <em>Business Logic</em> code must be the same, in always.</p>
 				<p>I also provide you the best example for this <em>performance</em> issue causing the <em>Network Refactoring</em>. The first demonstration code is an implementation of a single calculator server and the second demonstration code is an implementation of a system distributing operations to three servers. As you can see, although principle structure of network system has been changed, you don&#39;t need to worry about it if you&#39;re using the <strong>TGrid</strong> and <a href="#13-remote-function-call">Remote Function Call</a>.</p>
 				<ul>
-					<li><a href="https://tgrid.dev/en/tutorial/examples.html#22-remote-object-call">Demonstration - Remote Object Call</a></li>
-					<li><a href="https://tgrid.dev/en/tutorial/examples.html#23-object-oriented-network">Demonstration - Object Oriented Network</a></li>
+					<li><a href="https://tgrid.com/en/tutorial/examples.html#22-remote-object-call">Demonstration - Remote Object Call</a></li>
+					<li><a href="https://tgrid.com/en/tutorial/examples.html#23-object-oriented-network">Demonstration - Object Oriented Network</a></li>
 				</ul>
 				<h2 id="3-opportunities">3. Opportunities</h2>
 				<h3 id="3-1-blockchain">3.1. Blockchain</h3>
 				<blockquote>
-					<p>Detailed Content: <a href="https://tgrid.dev/en/appendix/blockchain.html"><strong>Appendix</strong> &gt; <strong>Blockchain</strong></a></p>
+					<p>Detailed Content: <a href="https://tgrid.com/en/appendix/blockchain.html"><strong>Appendix</strong> &gt; <strong>Blockchain</strong></a></p>
 				</blockquote>
 				<p>With <strong>TGrid</strong>, you can develop <em>Blockchain</em> easily.</p>
 				<p>It&#39;s a famous story that difficulty of developing blockchain is very high. Not only because of the high wages of the blockchain developers, but also from a technical point of view, blockchain is actually very difficult to implement. But, if you ask me what is such difficult, I will answer that not Business Logic* but <em>Network System</em>.</p>
-				<p>The <a href="https://tgrid.dev/en/appendix/blockchain.html#2-network-system">Network System</a> used by blockchain is a type of great distributed processing system, conostructed by millions of computers interacting with network communication. The great distributed processing systems like the blockchain always present us the tremendous difficulties. The word &#39;perfect&#39; is inserted on every development processes; requirements must be analyzed perfectly, use-cases must be identified perfectly, data and network architectures must be designed, perfectly and mutual interaction test must be perfectly.</p>
-				<p>On contrary, <a href="https://tgrid.dev/en/appendix/blockchain.html#3-business-logic">Business Logic</a> of the blockchain is not such difficult. Core elements of the blockchain are, as the name suggest, the first is &#39;Block&#39; and the second is &#39;Chain&#39;. The &#39;Block&#39; is about defining and storing data and the &#39;Chain&#39; is about policy that how to reach to an agreement when writing data to the &#39;Block&#39;.</p>
+				<p>The <a href="https://tgrid.com/en/appendix/blockchain.html#2-network-system">Network System</a> used by blockchain is a type of great distributed processing system, conostructed by millions of computers interacting with network communication. The great distributed processing systems like the blockchain always present us the tremendous difficulties. The word &#39;perfect&#39; is inserted on every development processes; requirements must be analyzed perfectly, use-cases must be identified perfectly, data and network architectures must be designed, perfectly and mutual interaction test must be perfectly.</p>
+				<p>On contrary, <a href="https://tgrid.com/en/appendix/blockchain.html#3-business-logic">Business Logic</a> of the blockchain is not such difficult. Core elements of the blockchain are, as the name suggest, the first is &#39;Block&#39; and the second is &#39;Chain&#39;. The &#39;Block&#39; is about defining and storing data and the &#39;Chain&#39; is about policy that how to reach to an agreement when writing data to the &#39;Block&#39;.</p>
 				<table>
 					<thead>
 						<tr>
@@ -326,7 +326,7 @@ src/index.ts:35:32 - error TS2349: Cannot invoke an expression whose <span class
 							<td>A policy for reaching to an agreement</td>
 						</tr>
 				</tbody></table>
-				<p>Let&#39;s assume that you are developing the &#39;Block&#39; and &#39;Chain&#39; as a program running only on a single computer. In this case, you just need to design the data structure and implement code storing the data on disk. Also, you would analyze the requirements (policy) and implement them. Those skills are just the essentials for programmers. In other word, <a href="https://tgrid.dev/en/appendix/blockchain.html#3-business-logic">Business Logic</a> of blockchain is something that any skilled programmers can implement.</p>
+				<p>Let&#39;s assume that you are developing the &#39;Block&#39; and &#39;Chain&#39; as a program running only on a single computer. In this case, you just need to design the data structure and implement code storing the data on disk. Also, you would analyze the requirements (policy) and implement them. Those skills are just the essentials for programmers. In other word, <a href="https://tgrid.com/en/appendix/blockchain.html#3-business-logic">Business Logic</a> of blockchain is something that any skilled programmers can implement.</p>
 				<ul>
 					<li>To develop the <em>Block</em> and <em>Chain</em>:<ul>
 							<li>Ability to design Data Structure</li>
@@ -336,11 +336,11 @@ src/index.ts:35:32 - error TS2349: Cannot invoke an expression whose <span class
 						</ul>
 					</li>
 				</ul>
-				<p>Do you remember? With <strong>TGrid</strong> and <a href="#13-remote-function-call">Remote Function Call</a>, you can come true the true <a href="#12-grid-computing">Grid Computing</a>. Many computers interacting with network communication are replaced by only <u>one virtual computer</u>. Even <a href="https://tgrid.dev/en/appendix/blockchain.html#2-network-system">Business Logic</a> code of the virtual computer is same with another <a href="https://tgrid.dev/en/appendix/blockchain.html#2-network-system">Business Logic</a> code running on a single physical computer.</p>
-				<p>Thus, if you adapt the <strong>TGrid</strong> and <a href="#13-remote-function-call">Remote Function Call</a>, difficulty of the blockchain development would be dropped to the level of [Business Logic](<a href="https://tgrid.dev/en/appendix/blockchain.html">https://tgrid.dev/en/appendix/blockchain.html</a> rather than <a href="https://tgrid.dev/en/appendix/blockchain.html#2-network-system">Network System</a>. Forget complex <a href="https://tgrid.dev/en/appendix/blockchain.html#2-network-system">Network System</a> and just focus on the essence of what you want to develop; the [Business Logic](<a href="https://tgrid.dev/en/appendix/blockchain.html">https://tgrid.dev/en/appendix/blockchain.html</a>.</p>
+				<p>Do you remember? With <strong>TGrid</strong> and <a href="#13-remote-function-call">Remote Function Call</a>, you can come true the true <a href="#12-grid-computing">Grid Computing</a>. Many computers interacting with network communication are replaced by only <u>one virtual computer</u>. Even <a href="https://tgrid.com/en/appendix/blockchain.html#2-network-system">Business Logic</a> code of the virtual computer is same with another <a href="https://tgrid.com/en/appendix/blockchain.html#2-network-system">Business Logic</a> code running on a single physical computer.</p>
+				<p>Thus, if you adapt the <strong>TGrid</strong> and <a href="#13-remote-function-call">Remote Function Call</a>, difficulty of the blockchain development would be dropped to the level of [Business Logic](<a href="https://tgrid.com/en/appendix/blockchain.html">https://tgrid.com/en/appendix/blockchain.html</a> rather than <a href="https://tgrid.com/en/appendix/blockchain.html#2-network-system">Network System</a>. Forget complex <a href="https://tgrid.com/en/appendix/blockchain.html#2-network-system">Network System</a> and just focus on the essence of what you want to develop; the [Business Logic](<a href="https://tgrid.com/en/appendix/blockchain.html">https://tgrid.com/en/appendix/blockchain.html</a>.</p>
 				<h3 id="3-2-public-grid">3.2. Public Grid</h3>
 				<blockquote>
-					<p>Related Project: <a href="https://tgrid.dev/en/tutorial/projects/market.html"><strong>Tutorial</strong> &gt; <strong>Projects</strong> &gt; <strong>Grid Market</strong></a></p>
+					<p>Related Project: <a href="https://tgrid.com/en/tutorial/projects/market.html"><strong>Tutorial</strong> &gt; <strong>Projects</strong> &gt; <strong>Grid Market</strong></a></p>
 				</blockquote>
 				<p>With <strong>TGrid</strong>, you can procure resources for <a href="#12-grid-computing">Grid Computing</a> from unspecified crowds, very easily and inexpensively.</p>
 				<p>When composing <em>traditional Grid Computing</em>, of course, many computers should be prepared. As the number of computers required increases, so does the infrastructure and costs associated with procuring them. Also, you&#39;ve to install programs and configure settings for the network communication on the prepared computers. Such duties increase your efforts and let you to be tired. Is it so nature?</p>
@@ -373,9 +373,9 @@ src/index.ts:35:32 - error TS2349: Cannot invoke an expression whose <span class
 				<blockquote>
 					<p>Base language of the <strong>TGrid</strong> is <em>TypeScript</em> and compilation result of the TypeScript is the <em>JavaScript</em> file. As <em>JavaScript</em> is a type of script language, it can be executed dinamiccaly. Therefore, the <em>Supplier</em> can execute the program by script code delivered by the <em>Consumer</em>.</p>
 				</blockquote>
-				<p><img src="https://tgrid.dev/assets/images/projects/market/actors.png" alt="Grid Market"></p>
-				<p><a href="https://tgrid.dev/en/tutorial/projects/market.html">Grid Market</a> is one of the most typical example case for the <em>Public Grid</em>, a demo project for tutorial learning. In this demo project, <em>Consumer</em> also procures resources from the <em>Suppliers</em> for composing the <a href="#12-grid-computing">Grid Computing</a> system. <em>Supplier</em> also provides its resources just by connecting to the special URL by Internet Browser, too. Of course, in the <a href="https://tgrid.dev/en/tutorial/projects/market.html">Grid Market</a>, the program that <em>Supplier</em> would run still comes from the <em>Consumer</em>.</p>
-				<p>However, there&#39;s a special thing about the <a href="https://tgrid.dev/en/tutorial/projects/market.html">Grid Market</a>, it is that there is a <em>cost</em> for the <em>Consumer</em> to procure the <em>Suppliers</em>&#39; resources. Also, intermediary <em>Market</em> exists and it charges fee for mediation between the <em>Consumer</em> and <em>Supplier</em>.</p>
+				<p><img src="https://tgrid.com/assets/images/projects/market/actors.png" alt="Grid Market"></p>
+				<p><a href="https://tgrid.com/en/tutorial/projects/market.html">Grid Market</a> is one of the most typical example case for the <em>Public Grid</em>, a demo project for tutorial learning. In this demo project, <em>Consumer</em> also procures resources from the <em>Suppliers</em> for composing the <a href="#12-grid-computing">Grid Computing</a> system. <em>Supplier</em> also provides its resources just by connecting to the special URL by Internet Browser, too. Of course, in the <a href="https://tgrid.com/en/tutorial/projects/market.html">Grid Market</a>, the program that <em>Supplier</em> would run still comes from the <em>Consumer</em>.</p>
+				<p>However, there&#39;s a special thing about the <a href="https://tgrid.com/en/tutorial/projects/market.html">Grid Market</a>, it is that there is a <em>cost</em> for the <em>Consumer</em> to procure the <em>Suppliers</em>&#39; resources. Also, intermediary <em>Market</em> exists and it charges fee for mediation between the <em>Consumer</em> and <em>Supplier</em>.</p>
 				<ul>
 					<li><code>Market</code>: Intermediary market for the <em>Suppliers</em> and <em>Consumers</em>.</li>
 					<li><code>Consumer</code>: Purchase resources from the *Suppliers.</li>
@@ -391,9 +391,6 @@ src/index.ts:35:32 - error TS2349: Cannot invoke an expression whose <span class
 				<ul>
 					<li class="globals  ">
 						<a href="globals.html"><em>Globals</em></a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_utils_ijsonable_.html">"utils/IJsonable"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/tgrid.html">tgrid</a>

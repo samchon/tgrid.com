@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/tgrid_protocols_workers.html">tgrid.protocols.workers</a>
+					<a href="../modules/tgrid_protocols.html">tgrid.protocols</a>
 				</li>
 				<li>
-					<a href="../classes/tgrid_protocols_workers.sharedworkerserver.html">SharedWorkerServer</a>
+					<a href="../modules/tgrid_protocols.iacceptor.html">IAcceptor</a>
 				</li>
 				<li>
-					<a href="tgrid_protocols_workers.sharedworkerserver.state.html">State</a>
+					<a href="tgrid_protocols.iacceptor.state.html">State</a>
 				</li>
 			</ul>
 			<h1>Enumeration State</h1>
@@ -79,11 +79,12 @@
 						<section class="tsd-index-section ">
 							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tgrid_protocols_workers.sharedworkerserver.state.html#closed" class="tsd-kind-icon">CLOSED</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tgrid_protocols_workers.sharedworkerserver.state.html#closing" class="tsd-kind-icon">CLOSING</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tgrid_protocols_workers.sharedworkerserver.state.html#none" class="tsd-kind-icon">NONE</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tgrid_protocols_workers.sharedworkerserver.state.html#open" class="tsd-kind-icon">OPEN</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tgrid_protocols_workers.sharedworkerserver.state.html#opening" class="tsd-kind-icon">OPENING</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tgrid_protocols.iacceptor.state.html#accepting" class="tsd-kind-icon">ACCEPTING</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tgrid_protocols.iacceptor.state.html#closed" class="tsd-kind-icon">CLOSED</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tgrid_protocols.iacceptor.state.html#closing" class="tsd-kind-icon">CLOSING</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tgrid_protocols.iacceptor.state.html#none" class="tsd-kind-icon">NONE</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tgrid_protocols.iacceptor.state.html#open" class="tsd-kind-icon">OPEN</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="tgrid_protocols.iacceptor.state.html#rejecting" class="tsd-kind-icon">REJECTING</a></li>
 							</ul>
 						</section>
 					</div>
@@ -92,52 +93,62 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Enumeration members</h2>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="closed" class="tsd-anchor"></a>
-					<h3>CLOSED</h3>
-					<div class="tsd-signature tsd-kind-icon">CLOSED<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;3</span></div>
+					<a name="accepting" class="tsd-anchor"></a>
+					<h3>ACCEPTING</h3>
+					<div class="tsd-signature tsd-kind-icon">ACCEPTING<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/6605cd1/src/protocols/workers/SharedWorkerServer.ts#L155">protocols/workers/SharedWorkerServer.ts:155</a></li>
+							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/80fa44e/src/protocols/internal/IAcceptor.ts#L26">protocols/internal/IAcceptor.ts:26</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="closed" class="tsd-anchor"></a>
+					<h3>CLOSED</h3>
+					<div class="tsd-signature tsd-kind-icon">CLOSED<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/80fa44e/src/protocols/internal/IAcceptor.ts#L29">protocols/internal/IAcceptor.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="closing" class="tsd-anchor"></a>
 					<h3>CLOSING</h3>
-					<div class="tsd-signature tsd-kind-icon">CLOSING<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;2</span></div>
+					<div class="tsd-signature tsd-kind-icon">CLOSING<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/6605cd1/src/protocols/workers/SharedWorkerServer.ts#L154">protocols/workers/SharedWorkerServer.ts:154</a></li>
+							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/80fa44e/src/protocols/internal/IAcceptor.ts#L28">protocols/internal/IAcceptor.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="none" class="tsd-anchor"></a>
 					<h3>NONE</h3>
-					<div class="tsd-signature tsd-kind-icon">NONE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;-1</span></div>
+					<div class="tsd-signature tsd-kind-icon">NONE<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/6605cd1/src/protocols/workers/SharedWorkerServer.ts#L151">protocols/workers/SharedWorkerServer.ts:151</a></li>
+							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/80fa44e/src/protocols/internal/IAcceptor.ts#L25">protocols/internal/IAcceptor.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="open" class="tsd-anchor"></a>
 					<h3>OPEN</h3>
-					<div class="tsd-signature tsd-kind-icon">OPEN<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;1</span></div>
+					<div class="tsd-signature tsd-kind-icon">OPEN<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/6605cd1/src/protocols/workers/SharedWorkerServer.ts#L153">protocols/workers/SharedWorkerServer.ts:153</a></li>
+							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/80fa44e/src/protocols/internal/IAcceptor.ts#L27">protocols/internal/IAcceptor.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="opening" class="tsd-anchor"></a>
-					<h3>OPENING</h3>
-					<div class="tsd-signature tsd-kind-icon">OPENING<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;0</span></div>
+					<a name="rejecting" class="tsd-anchor"></a>
+					<h3>REJECTING</h3>
+					<div class="tsd-signature tsd-kind-icon">REJECTING<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;-2</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/6605cd1/src/protocols/workers/SharedWorkerServer.ts#L152">protocols/workers/SharedWorkerServer.ts:152</a></li>
+							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/80fa44e/src/protocols/internal/IAcceptor.ts#L24">protocols/internal/IAcceptor.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -149,86 +160,45 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_utils_ijsonable_.html">"utils/IJsonable"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/tgrid.html">tgrid</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/tgrid_components.html">tgrid.components</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/tgrid_protocols.html">tgrid.protocols</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/tgrid_protocols_web.html">tgrid.protocols.web</a>
-					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="../modules/tgrid_protocols_workers.html">tgrid.protocols.workers</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/tgrid_utils.html">tgrid.utils</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="../classes/tgrid_protocols_workers.sharedworkeracceptor.html" class="tsd-kind-icon">Shared<wbr>Worker<wbr>Acceptor</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="../classes/tgrid_protocols_workers.sharedworkerconnector.html" class="tsd-kind-icon">Shared<wbr>Worker<wbr>Connector</a>
-					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="../classes/tgrid_protocols_workers.sharedworkerserver.html" class="tsd-kind-icon">Shared<wbr>Worker<wbr>Server</a>
+					<li class="current tsd-kind-enum tsd-parent-kind-module">
+						<a href="tgrid_protocols.iacceptor.state.html" class="tsd-kind-icon">State</a>
 						<ul>
-							<li class="current tsd-kind-enum tsd-parent-kind-class tsd-is-static">
-								<a href="tgrid_protocols_workers.sharedworkerserver.state.html" class="tsd-kind-icon">State</a>
-								<ul>
-									<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-										<a href="tgrid_protocols_workers.sharedworkerserver.state.html#closed" class="tsd-kind-icon">CLOSED</a>
-									</li>
-									<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-										<a href="tgrid_protocols_workers.sharedworkerserver.state.html#closing" class="tsd-kind-icon">CLOSING</a>
-									</li>
-									<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-										<a href="tgrid_protocols_workers.sharedworkerserver.state.html#none" class="tsd-kind-icon">NONE</a>
-									</li>
-									<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-										<a href="tgrid_protocols_workers.sharedworkerserver.state.html#open" class="tsd-kind-icon">OPEN</a>
-									</li>
-									<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-										<a href="tgrid_protocols_workers.sharedworkerserver.state.html#opening" class="tsd-kind-icon">OPENING</a>
-									</li>
-								</ul>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tgrid_protocols.iacceptor.state.html#accepting" class="tsd-kind-icon">ACCEPTING</a>
 							</li>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="../classes/tgrid_protocols_workers.sharedworkerserver.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tgrid_protocols.iacceptor.state.html#closed" class="tsd-kind-icon">CLOSED</a>
 							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
-								<a href="../classes/tgrid_protocols_workers.sharedworkerserver.html#state-1" class="tsd-kind-icon">state</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tgrid_protocols.iacceptor.state.html#closing" class="tsd-kind-icon">CLOSING</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="../classes/tgrid_protocols_workers.sharedworkerserver.html#close" class="tsd-kind-icon">close</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tgrid_protocols.iacceptor.state.html#none" class="tsd-kind-icon">NONE</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="../classes/tgrid_protocols_workers.sharedworkerserver.html#open" class="tsd-kind-icon">open</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tgrid_protocols.iacceptor.state.html#open" class="tsd-kind-icon">OPEN</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="tgrid_protocols.iacceptor.state.html#rejecting" class="tsd-kind-icon">REJECTING</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="../classes/tgrid_protocols_workers.workerconnector.html" class="tsd-kind-icon">Worker<wbr>Connector</a>
+					<li class=" tsd-kind-property tsd-parent-kind-module tsd-is-inherited">
+						<a href="../modules/tgrid_protocols.iacceptor.html#state-1" class="tsd-kind-icon">state</a>
 					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="../classes/tgrid_protocols_workers.workerserver.html" class="tsd-kind-icon">Worker<wbr>Server</a>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="../modules/tgrid_protocols.iacceptor.html#inspect" class="tsd-kind-icon">inspect</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/tgrid_protocols_workers.iworkersystem.html" class="tsd-kind-icon">IWorker<wbr>System</a>
+					<li class=" tsd-kind-method tsd-parent-kind-module">
+						<a href="../modules/tgrid_protocols.iacceptor.html#accept" class="tsd-kind-icon">accept</a>
 					</li>
 				</ul>
 			</nav>

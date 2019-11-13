@@ -25,7 +25,7 @@ CURRENT="$(pwd)"
 # BUILD TYPEDOC
 mkdir docs/api
 cd ../tgrid
-node build/api $CURRENT/docs/api
+npm run api $CURRENT/docs/api
 
 # TURN BACK TO CURRENT DIRECTORY
 cd $CURRENT

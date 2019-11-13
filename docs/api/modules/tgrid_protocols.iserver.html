@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IConnector | tgrid</title>
+	<title>IServer | tgrid</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/tgrid_protocols.html">tgrid.protocols</a>
+					<a href="tgrid_protocols.html">tgrid.protocols</a>
 				</li>
 				<li>
-					<a href="tgrid_protocols.iconnector.html">IConnector</a>
+					<a href="tgrid_protocols.iserver.html">IServer</a>
 				</li>
 			</ul>
-			<h1>Interface IConnector&lt;State&gt;</h1>
+			<h1>Module IServer&lt;State&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -73,7 +73,7 @@
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
-						<h4>State<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">State</span></h4>
+						<h4>State<span class="tsd-signature-symbol">: </span><a href="../enums/tgrid_protocols.iserver.state.html" class="tsd-signature-type">State</a></h4>
 					</li>
 				</ul>
 			</section>
@@ -81,10 +81,10 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="tgrid_protocols.istate.html" class="tsd-signature-type">IState</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">State</span><span class="tsd-signature-symbol">&gt;</span>
+						<a href="../interfaces/tgrid_protocols.istate.html" class="tsd-signature-type">IState</a><span class="tsd-signature-symbol">&lt;</span><a href="../enums/tgrid_protocols.iserver.state.html" class="tsd-signature-type">State</a><span class="tsd-signature-symbol">&gt;</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">IConnector</span>
+								<span class="target">IServer</span>
 							</li>
 						</ul>
 					</li>
@@ -93,18 +93,25 @@
 			<section class="tsd-panel">
 				<h3>Implemented by</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../classes/tgrid_protocols_workers.sharedworkerconnector.html" class="tsd-signature-type">SharedWorkerConnector</a></li>
-					<li><a href="../classes/tgrid_protocols_web.webconnector.html" class="tsd-signature-type">WebConnector</a></li>
+					<li><a href="../classes/tgrid_protocols_workers.sharedworkerserver.html" class="tsd-signature-type">SharedWorkerServer</a></li>
+					<li><a href="../classes/tgrid_protocols_web.webserver.html" class="tsd-signature-type">WebServer</a></li>
+					<li><a href="../classes/tgrid_protocols_workers.workerserver.html" class="tsd-signature-type">WorkerServer</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Enumerations</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-enum tsd-parent-kind-module"><a href="../enums/tgrid_protocols.iserver.state.html" class="tsd-kind-icon">State</a></li>
+							</ul>
+						</section>
 						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="tgrid_protocols.iconnector.html#state" class="tsd-kind-icon">state</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-module tsd-is-inherited"><a href="tgrid_protocols.iserver.html#state-1" class="tsd-kind-icon">state</a></li>
 							</ul>
 						</section>
 					</div>
@@ -112,14 +119,14 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="state" class="tsd-anchor"></a>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-module tsd-is-inherited">
+					<a name="state-1" class="tsd-anchor"></a>
 					<h3>state</h3>
-					<div class="tsd-signature tsd-kind-icon">state<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">State</span></div>
+					<div class="tsd-signature tsd-kind-icon">state<span class="tsd-signature-symbol">:</span> <a href="../enums/tgrid_protocols.iserver.state.html" class="tsd-signature-type">State</a></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="tgrid_protocols.istate.html">IState</a>.<a href="tgrid_protocols.istate.html#state">state</a></p>
+						<p>Inherited from <a href="../interfaces/tgrid_protocols.istate.html">IState</a>.<a href="../interfaces/tgrid_protocols.istate.html#state">state</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/6605cd1/src/protocols/internal/IState.ts#L9">protocols/internal/IState.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/samchon/tgrid/blob/80fa44e/src/protocols/internal/IState.ts#L9">protocols/internal/IState.ts:9</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -136,48 +143,15 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_utils_ijsonable_.html">"utils/IJsonable"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/tgrid.html">tgrid</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/tgrid_components.html">tgrid.components</a>
-					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="../modules/tgrid_protocols.html">tgrid.protocols</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/tgrid_protocols_web.html">tgrid.protocols.web</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/tgrid_protocols_workers.html">tgrid.protocols.workers</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/tgrid_utils.html">tgrid.utils</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="tgrid_protocols.iacceptor.html" class="tsd-kind-icon">IAcceptor</a>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="../enums/tgrid_protocols.iserver.state.html" class="tsd-kind-icon">State</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="tgrid_protocols.iconnector.html" class="tsd-kind-icon">IConnector</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="tgrid_protocols.iconnector.html#state" class="tsd-kind-icon">state</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="tgrid_protocols.istate.html" class="tsd-kind-icon">IState</a>
+					<li class=" tsd-kind-property tsd-parent-kind-module tsd-is-inherited">
+						<a href="tgrid_protocols.iserver.html#state-1" class="tsd-kind-icon">state</a>
 					</li>
 				</ul>
 			</nav>

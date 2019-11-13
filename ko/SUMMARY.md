@@ -1,6 +1,6 @@
 ## 1. Introduction
   - [1.1. README](README.md)
-    - [1.1.1. Outline](README.md#1-outline)
+    - [1.1.1. Introduction](README.md#1-introduction)
     - [1.1.2. Strengths](README.md#2-strengths)
     - [1.1.3. Opportunities](README.md#3-opportunities)
 
